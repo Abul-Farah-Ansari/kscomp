@@ -15,7 +15,6 @@ import FAQ from "./components/FAQ";
 import QueryForm from "./components/QueryForm";
 import Footer from "./components/Footer";
 import Chatbot from "./components/Chatbot";
-import WhatsAppButton from "./components/WhatsAppButton";
 
 
 const Home = () => {
@@ -51,7 +50,7 @@ const Home = () => {
       <QueryForm />
       <Footer />
       <Chatbot />
-      <WhatsAppButton />
+   
 
     </main>
   );
