@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+
 import {
   MessageSquare,
   Menu,
@@ -7,22 +9,42 @@ import {
   ChevronUp,
 } from "lucide-react";
 
-import CA from "../assets/CA.png";
-import KS from "../assets/ks.png";
+import KS from "../assets/WhatsApp Image 2026-08-30 at 19.16.22 (1).jpeg";
+
 
 const menuItems = [
-  "Home",
-  "About",
-  "Our Services",
-  "Contact",
-  "Blog",
-  "Careers",
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "About",
+    path: "/about",
+  },
+  {
+    name: "Our Services",
+    path: "/services",
+  },
+  {
+    name: "Contact",
+    path: "/contact",
+  },
+  {
+    name: "Blog",
+    path: "/blog",
+  },
+  {
+    name: "Careers",
+    path: "/careers",
+  },
 ];
+
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(true);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,10 +70,17 @@ const Navbar = () => {
     };
   }, []);
 
+
   const toggleNavbar = () => {
     setNavbarOpen((prev) => !prev);
     setMobileMenu(false);
   };
+
+
+  const closeMobileMenu = () => {
+    setMobileMenu(false);
+  };
+
 
   return (
     <>
@@ -83,104 +112,37 @@ const Navbar = () => {
           ${
             hasScrolled
               ? `
-                border-b
-                border-white/10
-                bg-[#171923]/95
-                shadow-[0_10px_35px_rgba(0,0,0,0.25)]
-                backdrop-blur-xl
-              `
+                  border-b
+                  border-white/10
+                  bg-[#171923]/95
+                  shadow-[0_10px_35px_rgba(0,0,0,0.25)]
+                  backdrop-blur-xl
+                `
               : `
-                border-b
-                border-transparent
-                bg-transparent
-                shadow-none
-              `
+                  border-b
+                  border-transparent
+                  bg-transparent
+                  shadow-none
+                `
           }
         `}
       >
         <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-8">
 
-          {/* MAIN CONTENT */}
-
           <div className="flex h-[76px] items-center justify-between sm:h-[84px] lg:h-[90px]">
 
+
             {/* =================================================
-                BRAND
+                BRAND / LOGO
             ================================================= */}
 
-            <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
+            <NavLink
+              to="/"
+              onClick={closeMobileMenu}
+              className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3"
+            >
 
-              {/* CA LOGO - LEFT */}
-
-              <div
-                className="
-                  flex
-                  h-[42px]
-                  w-[42px]
-                  shrink-0
-                  items-center
-                  justify-center
-                  overflow-hidden
-                  rounded-[5px]
-                  bg-white
-                  shadow-[0_5px_20px_rgba(0,0,0,0.12)]
-                  sm:h-[50px]
-                  sm:w-[50px]
-                  lg:h-[58px]
-                  lg:w-[58px]
-                "
-              >
-                <img
-                  src={CA}
-                  alt="Chartered Accountant Logo"
-                  className="
-                    h-full
-                    w-full
-                    object-contain
-                    p-1
-                  "
-                />
-              </div>
-
-
-              {/* COMPANY NAME */}
-
-              <div className="ml-1 flex min-w-0 flex-col">
-
-                <h1
-                  className="
-                    whitespace-nowrap
-                    text-[16px]
-                    font-semibold
-                    leading-none
-                    tracking-[0.3px]
-                    sm:text-[20px]
-                    lg:text-[27px]
-                  "
-                >
-                  KS &amp; COMPANY
-                </h1>
-
-                <span
-                  className="
-                    mt-1.5
-                    whitespace-nowrap
-                    text-[7px]
-                    font-medium
-                    tracking-[0.7px]
-                    text-white/75
-                    sm:mt-2
-                    sm:text-[9px]
-                    lg:text-[15px]
-                  "
-                >
-                  CHARTERED ACCOUNTANTS
-                </span>
-
-              </div>
-
-
-              {/* KS LOGO - RIGHT */}
+              {/* LOGO */}
 
               <div
                 className="
@@ -212,7 +174,45 @@ const Navbar = () => {
                 />
               </div>
 
-            </div>
+
+              {/* COMPANY NAME */}
+
+              <div className="ml-1 flex min-w-0 flex-col">
+
+                <h1
+                  className="
+                    whitespace-nowrap
+                    text-[16px]
+                    font-semibold
+                    leading-none
+                    tracking-[0.3px]
+                    sm:text-[20px]
+                    lg:text-[27px]
+                  "
+                >
+                  KS &amp; COMPANY
+                </h1>
+
+
+                <span
+                  className="
+                    mt-1.5
+                    whitespace-nowrap
+                    text-[7px]
+                    font-medium
+                    tracking-[0.7px]
+                    text-white/75
+                    sm:mt-2
+                    sm:text-[9px]
+                    lg:text-[15px]
+                  "
+                >
+                  CHARTERED ACCOUNTANTS
+                </span>
+
+              </div>
+
+            </NavLink>
 
 
             {/* =================================================
@@ -223,10 +223,11 @@ const Navbar = () => {
 
               {menuItems.map((item) => (
 
-                <button
-                  key={item}
-                  type="button"
-                  className="
+                <NavLink
+                  key={item.name}
+                  to={item.path}
+                  end={item.path === "/"}
+                  className={({ isActive }) => `
                     group
                     relative
                     flex
@@ -237,18 +238,24 @@ const Navbar = () => {
                     px-4
                     text-[17px]
                     font-semibold
-                    text-white
                     transition-colors
                     duration-200
                     xl:px-5
                     xl:text-[19px]
-                  "
+
+                    ${
+                      isActive
+                        ? "text-white"
+                        : "text-white/75 hover:text-white"
+                    }
+                  `}
                 >
+
                   <span className="flex items-center gap-1">
 
-                    {item}
+                    {item.name}
 
-                    {item === "Our Services" && (
+                    {item.name === "Our Services" && (
                       <span className="ml-1 text-[15px]">
                         +
                       </span>
@@ -257,7 +264,7 @@ const Navbar = () => {
                   </span>
 
 
-                  {/* HOVER LINE */}
+                  {/* ACTIVE + HOVER LINE */}
 
                   <span
                     className="
@@ -276,7 +283,7 @@ const Navbar = () => {
                     "
                   />
 
-                </button>
+                </NavLink>
 
               ))}
 
@@ -290,8 +297,8 @@ const Navbar = () => {
                   SCHEDULE APPOINTMENT
               ================================================= */}
 
-              <button
-                type="button"
+              <NavLink
+                to="/contact"
                 className="
                   flex
                   cursor-pointer
@@ -301,6 +308,10 @@ const Navbar = () => {
                   px-3
                   text-[17px]
                   font-semibold
+                  text-white
+                  transition-all
+                  duration-300
+                  hover:text-[#9bd66f]
                   xl:px-4
                   xl:text-[19px]
                 "
@@ -341,6 +352,7 @@ const Navbar = () => {
 
                   </span>
 
+
                   <MessageSquare
                     size={22}
                     strokeWidth={1.5}
@@ -349,11 +361,12 @@ const Navbar = () => {
 
                 </div>
 
+
                 <span>
                   Schedule Appointment
                 </span>
 
-              </button>
+              </NavLink>
 
             </div>
 
@@ -387,11 +400,13 @@ const Navbar = () => {
                 lg:hidden
               "
             >
+
               {mobileMenu ? (
                 <X size={21} />
               ) : (
                 <Menu size={21} />
               )}
+
             </button>
 
           </div>
@@ -419,11 +434,12 @@ const Navbar = () => {
 
                 {menuItems.map((item) => (
 
-                  <button
-                    key={item}
-                    type="button"
-                    onClick={() => setMobileMenu(false)}
-                    className="
+                  <NavLink
+                    key={item.name}
+                    to={item.path}
+                    end={item.path === "/"}
+                    onClick={closeMobileMenu}
+                    className={({ isActive }) => `
                       flex
                       w-full
                       cursor-pointer
@@ -436,18 +452,23 @@ const Navbar = () => {
                       text-left
                       text-[13px]
                       font-medium
-                      text-white/80
                       transition-colors
-                      hover:text-white
                       sm:py-3
                       sm:text-[14px]
-                    "
+
+                      ${
+                        isActive
+                          ? "text-[#9bd66f]"
+                          : "text-white/80 hover:text-white"
+                      }
+                    `}
                   >
+
                     <span className="flex items-center gap-1">
 
-                      {item}
+                      {item.name}
 
-                      {item === "Our Services" && (
+                      {item.name === "Our Services" && (
                         <span className="ml-1 text-[12px]">
                           +
                         </span>
@@ -455,7 +476,7 @@ const Navbar = () => {
 
                     </span>
 
-                  </button>
+                  </NavLink>
 
                 ))}
 
@@ -464,9 +485,9 @@ const Navbar = () => {
 
               {/* MOBILE APPOINTMENT */}
 
-              <button
-                type="button"
-                onClick={() => setMobileMenu(false)}
+              <NavLink
+                to="/contact"
+                onClick={closeMobileMenu}
                 className="
                   relative
                   mt-4
@@ -520,6 +541,7 @@ const Navbar = () => {
 
                   </span>
 
+
                   <MessageSquare
                     size={17}
                     strokeWidth={1.5}
@@ -527,9 +549,10 @@ const Navbar = () => {
 
                 </div>
 
+
                 Schedule Appointment
 
-              </button>
+              </NavLink>
 
             </div>
 
@@ -616,6 +639,7 @@ const Navbar = () => {
             "
           />
 
+
           {navbarOpen ? (
 
             <ChevronUp
@@ -639,5 +663,6 @@ const Navbar = () => {
     </>
   );
 };
+
 
 export default Navbar;

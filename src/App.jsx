@@ -1,147 +1,63 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import FeatureCards from "./components/FeatureCards";
-import About from "./components/About";
-import FinancialManagement from "./components/FinancialManagement";
-import Services from "./components/Services";
-import IntroVideo from "./components/IntroVideo";
-import Clients from "./components/Clients";
-import Testimonials from "./components/Testimonials";
-import Stats from "./components/Stats";
-import CEOMessage from "./components/CEOMessage";
-import FAQ from "./components/FAQ";
-import QueryForm from "./components/QueryForm";
 import Footer from "./components/Footer";
-import Chatbot from "./components/Chatbot";
+import WhatsAppButton from "./components/WhatsAppButton";
 
-
-const Home = () => {
-  return (
-    <main className="bg-white">
-
-      {/* Navbar */}
-      <div className="absolute top-0 left-0 right-0 z-[200]">
-        <Navbar />
-      </div>
-
-      {/* Hero */}
-      <Hero />
-
-      {/* Feature Cards */}
-      <FeatureCards />
-
-      {/* About */}
-      <About />
-      <Stats />
-
-      <IntroVideo />
-
-      {/* Financial Management */}
-      <FinancialManagement />
-
-      {/* Our Services */}
-      <Services />
-      <Clients />
-      <Testimonials />
-      <CEOMessage />
-      <FAQ />
-      <QueryForm />
-      <Footer />
-      <Chatbot />
-   
-
-    </main>
-  );
-};
+import Home from "./pages/home";
+import About from "./pages/About";
+import Services from "./pages/Services";
 
 function App() {
   return (
-    <Routes>
+    <>
+      <Navbar />
 
-      {/* Home Page */}
-      <Route path="/" element={<Home />} />
+      <Routes>
+        {/* HOME */}
+        <Route path="/" element={<Home />} />
 
-      {/* About Page */}
-      <Route
-        path="/about"
-        element={
-          <>
-            <Navbar />
-            <h1 className="p-10 text-4xl">
-              About
-            </h1>
-          </>
-        }
-      />
+        {/* ABOUT */}
+        <Route path="/about" element={<About />} />
 
-      {/* Services Page */}
-      <Route
-        path="/services"
-        element={
-          <>
-            <Navbar />
-            <h1 className="p-10 text-4xl">
-              Services
-            </h1>
-          </>
-        }
-      />
+        {/* SERVICES */}
+        <Route path="/services" element={<Services />} />
 
-      {/* Contact Page */}
-      <Route
-        path="/contact"
-        element={
-          <>
-            <Navbar />
-            <h1 className="p-10 text-4xl">
-              Contact
-            </h1>
-          </>
-        }
-      />
+        {/* CONTACT */}
+        <Route
+          path="/contact"
+          element={
+            <div className="min-h-screen bg-[#f4f3ef] pt-32 text-center">
+              Contact Page
+            </div>
+          }
+        />
 
-      {/* Blog Page */}
-      <Route
-        path="/blog"
-        element={
-          <>
-            <Navbar />
-            <h1 className="p-10 text-4xl">
-              Blog
-            </h1>
-          </>
-        }
-      />
+        {/* BLOG */}
+        <Route
+          path="/blog"
+          element={
+            <div className="min-h-screen bg-[#f4f3ef] pt-32 text-center">
+              Blog Page
+            </div>
+          }
+        />
 
-      {/* Careers Page */}
-      <Route
-        path="/careers"
-        element={
-          <>
-            <Navbar />
-            <h1 className="p-10 text-4xl">
-              Careers
-            </h1>
-          </>
-        }
-      />
+        {/* CAREERS */}
+        <Route
+          path="/careers"
+          element={
+            <div className="min-h-screen bg-[#f4f3ef] pt-32 text-center">
+              Careers Page
+            </div>
+          }
+        />
+      </Routes>
 
-      {/* Appointment Page */}
-      <Route
-        path="/appointment"
-        element={
-          <>
-            <Navbar />
-            <h1 className="p-10 text-4xl">
-              Appointment
-            </h1>
-          </>
-        }
-      />
-
-    </Routes>
+      <Footer />
+      <WhatsAppButton />
+    </>
   );
 }
 

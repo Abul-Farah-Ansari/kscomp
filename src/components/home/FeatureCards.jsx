@@ -9,9 +9,9 @@ import { motion } from "framer-motion";
 const cards = [
   {
     number: "01",
-    title: "Financial & Business Advisory",
+    title: "Tax Advisor",
     description:
-      "Make informed business decisions with clear financial insights, performance analysis, strategic planning and professional advisory support.",
+      "Get expert guidance on tax planning, compliance, filing and strategies to help you manage your tax responsibilities effectively.",
     icon: ChartNoAxesCombined,
     type: "dark",
     animation: "left",
@@ -19,9 +19,9 @@ const cards = [
 
   {
     number: "02",
-    title: "Tax Planning & Compliance",
+    title: "Insurance Advisor",
     description:
-      "Optimize your tax position while staying compliant with evolving regulations through accurate planning, filing and expert guidance.",
+      "Receive professional advice to understand, evaluate and choose suitable insurance solutions that protect you and your future.",
     icon: CircleDollarSign,
     type: "featured",
     animation: "bottom",
@@ -29,15 +29,14 @@ const cards = [
 
   {
     number: "03",
-    title: "Audit & Assurance",
+    title: "Finance Advisor",
     description:
-      "Build confidence in your financial reporting with thorough audits, reliable assurance and practical recommendations for stronger compliance.",
+      "Make smarter financial decisions with expert guidance on financial planning, investments, business finances and long-term growth.",
     icon: BriefcaseBusiness,
     type: "light",
     animation: "right",
   },
 ];
-
 const cardVariants = {
   left: {
     hidden: {

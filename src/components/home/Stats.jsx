@@ -276,7 +276,7 @@ const Stats = () => {
                   text-[#4d7969]
                 "
               >
-                Our Journey
+                Our Stats
               </span>
 
               <span className="h-px w-10 bg-gradient-to-l from-transparent to-[#6fa18a]" />
