@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import {
   MessageSquare,
   Menu,
@@ -12,12 +11,12 @@ import CA from "../assets/CA.png";
 import KS from "../assets/ks.png";
 
 const menuItems = [
-  { name: "Home", path: "/" },
-  { name: "About", path: "/about" },
-  { name: "Our Services", path: "/services" },
-  { name: "Contact", path: "/contact" },
-  { name: "Blog", path: "/blog" },
-  { name: "Careers", path: "/careers" },
+  "Home",
+  "About",
+  "Our Services",
+  "Contact",
+  "Blog",
+  "Careers",
 ];
 
 const Navbar = () => {
@@ -111,11 +110,7 @@ const Navbar = () => {
 
             <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
 
-              {/* KS LOGO */}
-
-
-
-              {/* CA LOGO */}
+              {/* CA LOGO - LEFT */}
 
               <div
                 className="
@@ -146,36 +141,6 @@ const Navbar = () => {
                   "
                 />
               </div>
-                            <div
-                className="
-                  flex
-                  h-[42px]
-                  w-[42px]
-                  shrink-0
-                  items-center
-                  justify-center
-                  overflow-hidden
-                  rounded-[5px]
-                  bg-white
-                  shadow-[0_5px_20px_rgba(0,0,0,0.12)]
-                  sm:h-[50px]
-                  sm:w-[50px]
-                  lg:h-[58px]
-                  lg:w-[58px]
-                "
-              >
-                <img
-                  src={KS}
-                  alt="KS & Company Logo"
-                  className="
-                    h-full
-                    w-full
-                    object-contain
-                    p-1
-                  "
-                />
-              </div>
-
 
 
               {/* COMPANY NAME */}
@@ -214,6 +179,39 @@ const Navbar = () => {
 
               </div>
 
+
+              {/* KS LOGO - RIGHT */}
+
+              <div
+                className="
+                  flex
+                  h-[42px]
+                  w-[42px]
+                  shrink-0
+                  items-center
+                  justify-center
+                  overflow-hidden
+                  rounded-[5px]
+                  bg-white
+                  shadow-[0_5px_20px_rgba(0,0,0,0.12)]
+                  sm:h-[50px]
+                  sm:w-[50px]
+                  lg:h-[58px]
+                  lg:w-[58px]
+                "
+              >
+                <img
+                  src={KS}
+                  alt="KS & Company Logo"
+                  className="
+                    h-full
+                    w-full
+                    object-contain
+                    p-1
+                  "
+                />
+              </div>
+
             </div>
 
 
@@ -225,15 +223,15 @@ const Navbar = () => {
 
               {menuItems.map((item) => (
 
-                <NavLink
-                  key={item.name}
-                  to={item.path}
-                  end={item.path === "/"}
+                <button
+                  key={item}
+                  type="button"
                   className="
                     group
                     relative
                     flex
                     h-full
+                    cursor-pointer
                     items-center
                     whitespace-nowrap
                     px-4
@@ -246,46 +244,39 @@ const Navbar = () => {
                     xl:text-[19px]
                   "
                 >
-                  {({ isActive }) => (
-                    <>
-                      <span className="flex items-center gap-1">
+                  <span className="flex items-center gap-1">
 
-                        {item.name}
+                    {item}
 
-                        {item.name === "Our Services" && (
-                          <span className="ml-1 text-[15px]">
-                            +
-                          </span>
-                        )}
-
+                    {item === "Our Services" && (
+                      <span className="ml-1 text-[15px]">
+                        +
                       </span>
+                    )}
+
+                  </span>
 
 
-                      {/* ACTIVE LINE */}
+                  {/* HOVER LINE */}
 
-                      <span
-                        className={`
-                          absolute
-                          bottom-0
-                          left-4
-                          right-4
-                          h-[3px]
-                          rounded-full
-                          bg-white
-                          transition-all
-                          duration-300
+                  <span
+                    className="
+                      absolute
+                      bottom-0
+                      left-4
+                      right-4
+                      h-[3px]
+                      origin-center
+                      scale-x-0
+                      rounded-full
+                      bg-white
+                      transition-transform
+                      duration-300
+                      group-hover:scale-x-100
+                    "
+                  />
 
-                          ${
-                            isActive
-                              ? "opacity-100"
-                              : "opacity-0 group-hover:opacity-100"
-                          }
-                        `}
-                      />
-
-                    </>
-                  )}
-                </NavLink>
+                </button>
 
               ))}
 
@@ -299,10 +290,11 @@ const Navbar = () => {
                   SCHEDULE APPOINTMENT
               ================================================= */}
 
-              <NavLink
-                to="/appointment"
+              <button
+                type="button"
                 className="
                   flex
+                  cursor-pointer
                   items-center
                   gap-2
                   whitespace-nowrap
@@ -361,7 +353,7 @@ const Navbar = () => {
                   Schedule Appointment
                 </span>
 
-              </NavLink>
+              </button>
 
             </div>
 
@@ -427,20 +419,21 @@ const Navbar = () => {
 
                 {menuItems.map((item) => (
 
-                  <NavLink
-                    key={item.name}
-                    to={item.path}
-                    end={item.path === "/"}
+                  <button
+                    key={item}
+                    type="button"
                     onClick={() => setMobileMenu(false)}
                     className="
                       flex
                       w-full
+                      cursor-pointer
                       items-center
                       justify-between
                       border-b
                       border-white/10
                       px-2
                       py-2.5
+                      text-left
                       text-[13px]
                       font-medium
                       text-white/80
@@ -450,27 +443,19 @@ const Navbar = () => {
                       sm:text-[14px]
                     "
                   >
-                    {({ isActive }) => (
-                      <>
-                        <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-1">
 
-                          {item.name}
+                      {item}
 
-                          {item.name === "Our Services" && (
-                            <span className="ml-1 text-[12px]">
-                              +
-                            </span>
-                          )}
-
+                      {item === "Our Services" && (
+                        <span className="ml-1 text-[12px]">
+                          +
                         </span>
+                      )}
 
-                        {isActive && (
-                          <span className="h-1.5 w-1.5 rounded-full bg-[#6DA8B8]" />
-                        )}
+                    </span>
 
-                      </>
-                    )}
-                  </NavLink>
+                  </button>
 
                 ))}
 
@@ -479,14 +464,15 @@ const Navbar = () => {
 
               {/* MOBILE APPOINTMENT */}
 
-              <NavLink
-                to="/appointment"
+              <button
+                type="button"
                 onClick={() => setMobileMenu(false)}
                 className="
                   relative
                   mt-4
                   flex
                   w-full
+                  cursor-pointer
                   items-center
                   justify-center
                   gap-2
@@ -543,7 +529,7 @@ const Navbar = () => {
 
                 Schedule Appointment
 
-              </NavLink>
+              </button>
 
             </div>
 
