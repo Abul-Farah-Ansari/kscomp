@@ -1,36 +1,42 @@
+import { useState } from "react";
+
 import ServicesHero from "../components/services/ServicesHero";
-import ServicesIntro from "../components/services/ServicesIntro";
+import ServicesSearch from "../components/services/ServicesSearch";
+import ServicesCategories from "../components/services/ServicesCategories";
+import ServiceSection from "../components/services/ServiceSection";
+import ServiceModal from "../components/services/ServiceModal";
 
-import TaxationServices from "../components/services/TaxationServices";
-import InsuranceServices from "../components/services/InsuranceServices";
-import LoanServices from "../components/services/LoanServices";
-
-import RegistrationServices from "../components/services/RegistrationServices";
-import BusinessSupport from "../components/services/BusinessSupport";
-import DigitalServices from "../components/services/DigitalServices";
-
-import WhyOurServices from "../components/services/WhyOurServices";
-
+import { servicesData } from "../components/services/servicesData";
 
 const Services = () => {
+  const [selectedService, setSelectedService] =
+    useState(null);
+
   return (
     <>
       <ServicesHero />
 
-      <ServicesIntro />
+      <ServicesSearch
+        servicesData={servicesData}
+        onServiceClick={setSelectedService}
+      />
 
-      {/* MAIN SERVICES */}
-      <TaxationServices />
-      <InsuranceServices />
-      <LoanServices />
+      <ServicesCategories />
 
-      {/* ADDITIONAL SERVICES */}
-      <RegistrationServices />
-      <BusinessSupport />
-      <DigitalServices />
+      {servicesData.map((category, index) => (
+        <ServiceSection
+          key={category.id}
+          category={category}
+          dark={index % 2 === 0}
+          onServiceClick={setSelectedService}
+        />
+      ))}
 
-      <WhyOurServices />
-
+      <ServiceModal
+        selectedService={selectedService}
+        servicesData={servicesData}
+        onClose={() => setSelectedService(null)}
+      />
     </>
   );
 };

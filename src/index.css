@@ -14,3 +14,206 @@ body,
 body {
   font-family: "Roboto Condensed", sans-serif;
 }
+
+/* ========================================
+   KS & COMPANY PREMIUM CIRCLE CURSOR
+======================================== */
+
+
+/* MAIN OUTER RING */
+
+.ks-cursor-ring {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 999999;
+
+  opacity: 0;
+
+  border: 1px solid white;
+
+  mix-blend-mode: difference;
+
+  transition:
+    opacity 0.2s ease,
+    width 0.25s ease,
+    height 0.25s ease;
+
+  will-change: transform;
+}
+
+
+/* INNER DETAIL */
+
+.ks-cursor-inner {
+  position: absolute;
+
+  inset: 6px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+
+/* CENTER DOT */
+
+.ks-cursor-dot {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 1000000;
+
+  opacity: 0;
+
+  background: white;
+
+  mix-blend-mode: difference;
+
+  transition:
+    opacity 0.2s ease,
+    width 0.2s ease,
+    height 0.2s ease;
+
+  will-change: transform;
+}
+
+
+/* VISIBLE */
+
+.ks-cursor-visible {
+  opacity: 1;
+}
+
+
+/* ========================================
+   HOVER EFFECT
+======================================== */
+
+body.ks-cursor-hover .ks-cursor-ring {
+  width: 52px;
+  height: 52px;
+}
+
+
+body.ks-cursor-hover .ks-cursor-inner {
+  inset: 10px;
+}
+
+
+body.ks-cursor-hover .ks-cursor-dot {
+  width: 9px;
+  height: 9px;
+}
+
+
+/* ========================================
+   CLICK EFFECT
+======================================== */
+
+body.ks-cursor-click .ks-cursor-ring {
+  width: 27px;
+  height: 27px;
+}
+
+
+body.ks-cursor-click .ks-cursor-dot {
+  width: 4px;
+  height: 4px;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (pointer: coarse) {
+
+  .ks-cursor-ring,
+  .ks-cursor-dot {
+    display: none !important;
+  }
+
+}
+/* =========================================
+   PREMIUM THIN SCROLLBAR
+========================================= */
+
+/* Firefox */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #102b29 #f4f1eb;
+}
+
+
+/* Chrome, Edge, Safari */
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+
+/* Scrollbar Track */
+
+::-webkit-scrollbar-track {
+  background: #f4f1eb;
+}
+
+
+/* Scrollbar Handle */
+
+::-webkit-scrollbar-thumb {
+  background: #102b29;
+
+  border-radius: 20px;
+
+  border: 2px solid #f4f1eb;
+
+  background-clip: padding-box;
+
+  transition: background 0.3s ease;
+}
+
+
+/* Hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1b4541;
+
+  border: 1px solid #f4f1eb;
+
+  background-clip: padding-box;
+}
+
+
+/* Active */
+
+::-webkit-scrollbar-thumb:active {
+  background: #0a1d1b;
+}
+
+
+/* Horizontal Scrollbar */
+
+::-webkit-scrollbar-horizontal {
+  height: 7px;
+}

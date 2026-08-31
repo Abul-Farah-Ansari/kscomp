@@ -1,10 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   ChartNoAxesCombined,
   CircleDollarSign,
   BriefcaseBusiness,
 } from "lucide-react";
+
 import { motion } from "framer-motion";
+
 
 const cards = [
   {
@@ -37,6 +41,8 @@ const cards = [
     animation: "right",
   },
 ];
+
+
 const cardVariants = {
   left: {
     hidden: {
@@ -44,16 +50,19 @@ const cardVariants = {
       x: -100,
       rotate: -2,
     },
+
     visible: {
       opacity: 1,
       x: 0,
       rotate: 0,
+
       transition: {
         duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
       },
     },
   },
+
 
   bottom: {
     hidden: {
@@ -61,10 +70,12 @@ const cardVariants = {
       y: 100,
       scale: 0.9,
     },
+
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
+
       transition: {
         duration: 0.85,
         ease: [0.22, 1, 0.36, 1],
@@ -72,16 +83,19 @@ const cardVariants = {
     },
   },
 
+
   right: {
     hidden: {
       opacity: 0,
       x: 100,
       rotate: 2,
     },
+
     visible: {
       opacity: 1,
       x: 0,
       rotate: 0,
+
       transition: {
         duration: 0.8,
         ease: [0.22, 1, 0.36, 1],
@@ -89,6 +103,7 @@ const cardVariants = {
     },
   },
 };
+
 
 const iconVariants = {
   hidden: {
@@ -101,6 +116,7 @@ const iconVariants = {
     opacity: 1,
     scale: 1,
     rotate: 0,
+
     transition: {
       duration: 0.55,
       delay: 0.2,
@@ -108,6 +124,7 @@ const iconVariants = {
     },
   },
 };
+
 
 const contentVariants = {
   hidden: {
@@ -118,6 +135,7 @@ const contentVariants = {
   visible: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.6,
       ease: [0.22, 1, 0.36, 1],
@@ -125,23 +143,53 @@ const contentVariants = {
   },
 };
 
+
 const FeatureCards = () => {
+  const navigate = useNavigate();
+
+
+  const handleReadMore = () => {
+    navigate("/ceo-message");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+
   return (
     <section
       className="
         relative
         z-30
         -mt-20
-        sm:-mt-24
-        lg:-mt-28
         pb-28
+        sm:-mt-24
         sm:pb-32
+        lg:-mt-28
         lg:pb-36
       "
     >
-      <div className="w-full max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-10">
+      <div
+        className="
+          mx-auto
+          w-full
+          max-w-[1400px]
+          px-5
+          sm:px-8
+          lg:px-10
+        "
+      >
 
-        <div className="grid grid-cols-1 md:grid-cols-3 items-stretch">
+        <div
+          className="
+            grid
+            grid-cols-1
+            items-stretch
+            md:grid-cols-3
+          "
+        >
 
           {cards.map((card, index) => {
             const Icon = card.icon;
@@ -158,6 +206,7 @@ const FeatureCards = () => {
                 }}
                 whileHover={{
                   y: -10,
+
                   transition: {
                     duration: 0.3,
                     ease: "easeOut",
@@ -165,32 +214,41 @@ const FeatureCards = () => {
                 }}
                 className={`
                   relative
-                  overflow-hidden
-                  min-h-[350px]
-                  sm:min-h-[370px]
-                  lg:min-h-[390px]
                   flex
+                  min-h-[350px]
                   flex-col
                   items-center
                   justify-center
-                  text-center
+                  overflow-hidden
                   px-7
-                  sm:px-9
-                  lg:px-10
+                  text-center
                   transition-shadow
                   duration-500
+                  sm:min-h-[370px]
+                  sm:px-9
+                  lg:min-h-[390px]
+                  lg:px-10
 
                   ${
                     card.type === "dark"
                       ? "bg-[#20252b] text-white"
                       : card.type === "featured"
-                      ? "bg-gradient-to-br from-[#285b68] via-[#285f63] to-[#326844] text-white md:-my-7 z-20 shadow-[0_20px_50px_rgba(20,50,55,0.30)]"
+                      ? `
+                        z-20
+                        bg-gradient-to-br
+                        from-[#285b68]
+                        via-[#285f63]
+                        to-[#326844]
+                        text-white
+                        shadow-[0_20px_50px_rgba(20,50,55,0.30)]
+                        md:-my-7
+                      `
                       : "bg-[#f8faf9] text-[#20252b]"
                   }
                 `}
               >
 
-                {/* Background number */}
+                {/* BACKGROUND NUMBER */}
 
                 <motion.span
                   initial={{
@@ -207,16 +265,16 @@ const FeatureCards = () => {
                     delay: index * 0.15 + 0.3,
                   }}
                   className={`
+                    pointer-events-none
                     absolute
                     -bottom-8
                     right-2
+                    select-none
                     text-[150px]
-                    sm:text-[170px]
-                    lg:text-[190px]
                     font-bold
                     leading-none
-                    pointer-events-none
-                    select-none
+                    sm:text-[170px]
+                    lg:text-[190px]
 
                     ${
                       card.type === "light"
@@ -243,12 +301,12 @@ const FeatureCards = () => {
                   className={`
                     relative
                     z-10
-                    w-20
-                    h-20
+                    mb-6
                     flex
+                    h-20
+                    w-20
                     items-center
                     justify-center
-                    mb-6
                     transition-transform
 
                     ${
@@ -281,9 +339,9 @@ const FeatureCards = () => {
                     relative
                     z-10
                     text-2xl
-                    sm:text-[27px]
                     font-semibold
                     tracking-tight
+                    sm:text-[27px]
 
                     ${
                       card.type === "light"
@@ -319,8 +377,8 @@ const FeatureCards = () => {
                     mt-5
                     max-w-[390px]
                     text-sm
-                    sm:text-[15px]
                     leading-7
+                    sm:text-[15px]
 
                     ${
                       card.type === "light"
@@ -333,58 +391,16 @@ const FeatureCards = () => {
                 </motion.p>
 
 
-                {/* READ MORE */}
 
-                <motion.button
-                  type="button"
-                  initial={{
-                    opacity: 0,
-                    y: 15,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.45,
-                  }}
-                  whileHover={{
-                    scale: 1.05,
-                  }}
-                  whileTap={{
-                    scale: 0.97,
-                  }}
-                  className={`
-                    relative
-                    z-10
-                    mt-6
-                    text-sm
-                    sm:text-[15px]
-                    font-semibold
-                    transition-all
-                    duration-300
-                    hover:tracking-wide
-
-                    ${
-                      card.type === "dark"
-                        ? "text-[#65aaa9] hover:text-white"
-                        : card.type === "featured"
-                        ? "text-white hover:text-[#d8ebe0]"
-                        : "text-[#285b68] hover:text-[#326844]"
-                    }
-                  `}
-                >
-                  Read More
-                </motion.button>
-
-
-                {/* Hover bottom accent */}
+                {/* HOVER BOTTOM ACCENT */}
 
                 <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
+                  initial={{
+                    scaleX: 0,
+                  }}
+                  whileInView={{
+                    scaleX: 1,
+                  }}
                   viewport={{ once: true }}
                   transition={{
                     duration: 0.7,
@@ -416,5 +432,6 @@ const FeatureCards = () => {
     </section>
   );
 };
+
 
 export default FeatureCards;

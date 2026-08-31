@@ -7,9 +7,13 @@ import {
   X,
   ChevronDown,
   ChevronUp,
+  FileText,
+  ShieldCheck,
 } from "lucide-react";
 
 import KS from "../assets/WhatsApp Image 2026-08-30 at 19.16.22 (1).jpeg";
+
+import ScheduleAppointmentModal from "./ScheduleAppointmentModal";
 
 
 const menuItems = [
@@ -30,10 +34,6 @@ const menuItems = [
     path: "/contact",
   },
   {
-    name: "Blog",
-    path: "/blog",
-  },
-  {
     name: "Careers",
     path: "/careers",
   },
@@ -44,6 +44,12 @@ const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(true);
+
+  const [resourceOpen, setResourceOpen] = useState(false);
+  const [mobileResourceOpen, setMobileResourceOpen] = useState(false);
+
+  // Schedule Appointment Modal
+  const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
 
 
   useEffect(() => {
@@ -58,6 +64,7 @@ const Navbar = () => {
       } else {
         setNavbarOpen(false);
         setMobileMenu(false);
+        setResourceOpen(false);
       }
     };
 
@@ -74,11 +81,13 @@ const Navbar = () => {
   const toggleNavbar = () => {
     setNavbarOpen((prev) => !prev);
     setMobileMenu(false);
+    setResourceOpen(false);
   };
 
 
   const closeMobileMenu = () => {
     setMobileMenu(false);
+    setMobileResourceOpen(false);
   };
 
 
@@ -96,7 +105,7 @@ const Navbar = () => {
           z-[999]
           w-full
           max-w-full
-          overflow-hidden
+          overflow-visible
           font-condensed
           text-white
           transition-all
@@ -127,6 +136,7 @@ const Navbar = () => {
           }
         `}
       >
+
         <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-8">
 
           <div className="flex h-[76px] items-center justify-between sm:h-[84px] lg:h-[90px]">
@@ -162,6 +172,7 @@ const Navbar = () => {
                   lg:w-[58px]
                 "
               >
+
                 <img
                   src={KS}
                   alt="KS & Company Logo"
@@ -172,6 +183,7 @@ const Navbar = () => {
                     p-1
                   "
                 />
+
               </div>
 
 
@@ -215,13 +227,17 @@ const Navbar = () => {
             </NavLink>
 
 
+
             {/* =================================================
                 DESKTOP MENU
             ================================================= */}
 
             <div className="hidden h-full shrink-0 items-center lg:flex">
 
-              {menuItems.map((item) => (
+
+              {/* NORMAL MENU ITEMS */}
+
+              {menuItems.slice(0, 4).map((item) => (
 
                 <NavLink
                   key={item.name}
@@ -288,17 +304,257 @@ const Navbar = () => {
               ))}
 
 
+
+              {/* =================================================
+                  RESOURCES DROPDOWN
+              ================================================= */}
+
+              <div
+                className="relative flex h-full items-center"
+                onMouseEnter={() => setResourceOpen(true)}
+                onMouseLeave={() => setResourceOpen(false)}
+              >
+
+                <button
+                  type="button"
+                  onClick={() => setResourceOpen(!resourceOpen)}
+                  className="
+                    group
+                    relative
+                    flex
+                    h-full
+                    cursor-pointer
+                    items-center
+                    gap-1
+                    whitespace-nowrap
+                    px-4
+                    text-[17px]
+                    font-semibold
+                    text-white/75
+                    transition-colors
+                    duration-200
+                    hover:text-white
+                    xl:px-5
+                    xl:text-[19px]
+                  "
+                >
+
+                  Resources
+
+                  <ChevronDown
+                    size={17}
+                    className={`
+                      transition-transform
+                      duration-300
+                      ${
+                        resourceOpen
+                          ? "rotate-180"
+                          : ""
+                      }
+                    `}
+                  />
+
+
+                  {/* HOVER LINE */}
+
+                  <span
+                    className="
+                      absolute
+                      bottom-0
+                      left-4
+                      right-4
+                      h-[3px]
+                      origin-center
+                      scale-x-0
+                      rounded-full
+                      bg-white
+                      transition-transform
+                      duration-300
+                      group-hover:scale-x-100
+                    "
+                  />
+
+                </button>
+
+
+
+                {/* DROPDOWN MENU */}
+
+                <div
+                  className={`
+                    absolute
+                    right-0
+                    top-[76px]
+                    w-[260px]
+                    origin-top-right
+                    overflow-hidden
+                    rounded-b-xl
+                    border
+                    border-white/10
+                    bg-[#102b29]/98
+                    shadow-[0_25px_60px_rgba(0,0,0,0.35)]
+                    backdrop-blur-xl
+                    transition-all
+                    duration-300
+                    sm:top-[84px]
+                    lg:top-[90px]
+
+                    ${
+                      resourceOpen
+                        ? `
+                            visible
+                            translate-y-0
+                            scale-100
+                            opacity-100
+                          `
+                        : `
+                            invisible
+                            -translate-y-2
+                            scale-[0.98]
+                            opacity-0
+                          `
+                    }
+                  `}
+                >
+
+
+                  {/* PRIVACY POLICY */}
+
+                  <NavLink
+                    to="/privacy-policy"
+                    onClick={() => setResourceOpen(false)}
+                    className={({ isActive }) => `
+                      group
+                      flex
+                      items-center
+                      gap-4
+                      border-b
+                      border-white/10
+                      px-5
+                      py-5
+                      transition-all
+                      duration-300
+
+                      ${
+                        isActive
+                          ? "bg-white/10"
+                          : "hover:bg-white/10"
+                      }
+                    `}
+                  >
+
+                    <div
+                      className="
+                        flex
+                        h-10
+                        w-10
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-lg
+                        bg-white/10
+                        text-white
+                        transition
+                        group-hover:bg-white
+                        group-hover:text-[#102b29]
+                      "
+                    >
+                      <ShieldCheck size={18} />
+                    </div>
+
+
+                    <div>
+
+                      <p className="text-[15px] font-semibold text-white">
+                        Privacy Policy
+                      </p>
+
+                      <p className="mt-1 text-[11px] text-white/50">
+                        Information & privacy guidelines
+                      </p>
+
+                    </div>
+
+                  </NavLink>
+
+
+
+                  {/* COMPANY DOCUMENTS */}
+
+                  <NavLink
+                    to="/company-documents"
+                    onClick={() => setResourceOpen(false)}
+                    className={({ isActive }) => `
+                      group
+                      flex
+                      items-center
+                      gap-4
+                      px-5
+                      py-5
+                      transition-all
+                      duration-300
+
+                      ${
+                        isActive
+                          ? "bg-white/10"
+                          : "hover:bg-white/10"
+                      }
+                    `}
+                  >
+
+                    <div
+                      className="
+                        flex
+                        h-10
+                        w-10
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-lg
+                        bg-white/10
+                        text-white
+                        transition
+                        group-hover:bg-white
+                        group-hover:text-[#102b29]
+                      "
+                    >
+                      <FileText size={18} />
+                    </div>
+
+
+                    <div>
+
+                      <p className="text-[15px] font-semibold text-white">
+                        Company's Documents
+                      </p>
+
+                      <p className="mt-1 text-[11px] text-white/50">
+                        Important company resources
+                      </p>
+
+                    </div>
+
+                  </NavLink>
+
+                </div>
+
+              </div>
+
+
+
               {/* DIVIDER */}
 
               <div className="mx-2 h-[38px] w-px bg-white/20" />
 
 
+
               {/* =================================================
-                  SCHEDULE APPOINTMENT
+                  SCHEDULE APPOINTMENT - OPENS MODAL
               ================================================= */}
 
-              <NavLink
-                to="/contact"
+              <button
+                type="button"
+                onClick={() => setIsAppointmentOpen(true)}
                 className="
                   flex
                   cursor-pointer
@@ -318,6 +574,7 @@ const Navbar = () => {
               >
 
                 <div className="relative shrink-0">
+
 
                   {/* PULSE DOT */}
 
@@ -366,9 +623,10 @@ const Navbar = () => {
                   Schedule Appointment
                 </span>
 
-              </NavLink>
+              </button>
 
             </div>
+
 
 
             {/* =================================================
@@ -412,6 +670,7 @@ const Navbar = () => {
           </div>
 
 
+
           {/* =================================================
               MOBILE MENU
           ================================================= */}
@@ -432,7 +691,10 @@ const Navbar = () => {
 
               <div className="w-full">
 
-                {menuItems.map((item) => (
+
+                {/* NORMAL MOBILE ITEMS */}
+
+                {menuItems.slice(0, 4).map((item) => (
 
                   <NavLink
                     key={item.name}
@@ -480,14 +742,169 @@ const Navbar = () => {
 
                 ))}
 
+
+
+                {/* =================================================
+                    MOBILE RESOURCES
+                ================================================= */}
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setMobileResourceOpen(!mobileResourceOpen)
+                  }
+                  className="
+                    flex
+                    w-full
+                    items-center
+                    justify-between
+                    border-b
+                    border-white/10
+                    px-2
+                    py-3
+                    text-left
+                    text-[13px]
+                    font-medium
+                    text-white/80
+                    transition
+                    hover:text-white
+                    sm:text-[14px]
+                  "
+                >
+
+                  <span>
+                    Resources
+                  </span>
+
+                  <ChevronDown
+                    size={17}
+                    className={`
+                      transition-transform
+                      duration-300
+                      ${
+                        mobileResourceOpen
+                          ? "rotate-180"
+                          : ""
+                      }
+                    `}
+                  />
+
+                </button>
+
+
+
+                {mobileResourceOpen && (
+
+                  <div className="border-b border-white/10 bg-white/[0.03]">
+
+
+                    <NavLink
+                      to="/privacy-policy"
+                      onClick={closeMobileMenu}
+                      className="
+                        flex
+                        items-center
+                        gap-3
+                        border-b
+                        border-white/5
+                        px-5
+                        py-3
+                        text-[13px]
+                        text-white/70
+                        transition
+                        hover:bg-white/5
+                        hover:text-white
+                      "
+                    >
+
+                      <ShieldCheck
+                        size={16}
+                        className="text-white/70"
+                      />
+
+                      Privacy Policy
+
+                    </NavLink>
+
+
+
+                    <NavLink
+                      to="/company-documents"
+                      onClick={closeMobileMenu}
+                      className="
+                        flex
+                        items-center
+                        gap-3
+                        px-5
+                        py-3
+                        text-[13px]
+                        text-white/70
+                        transition
+                        hover:bg-white/5
+                        hover:text-white
+                      "
+                    >
+
+                      <FileText
+                        size={16}
+                        className="text-white/70"
+                      />
+
+                      Company's Documents
+
+                    </NavLink>
+
+                  </div>
+
+                )}
+
+
+
+                {/* CAREERS */}
+
+                <NavLink
+                  to="/careers"
+                  onClick={closeMobileMenu}
+                  className={({ isActive }) => `
+                    flex
+                    w-full
+                    cursor-pointer
+                    items-center
+                    justify-between
+                    border-b
+                    border-white/10
+                    px-2
+                    py-3
+                    text-left
+                    text-[13px]
+                    font-medium
+                    transition-colors
+                    sm:text-[14px]
+
+                    ${
+                      isActive
+                        ? "text-[#9bd66f]"
+                        : "text-white/80 hover:text-white"
+                    }
+                  `}
+                >
+                  Careers
+                </NavLink>
+
               </div>
 
 
-              {/* MOBILE APPOINTMENT */}
 
-              <NavLink
-                to="/contact"
-                onClick={closeMobileMenu}
+              {/* =================================================
+                  MOBILE SCHEDULE APPOINTMENT
+              ================================================= */}
+
+              <button
+                type="button"
+                onClick={() => {
+                  closeMobileMenu();
+                  setIsAppointmentOpen(true);
+                }}
                 className="
                   relative
                   mt-4
@@ -552,7 +969,7 @@ const Navbar = () => {
 
                 Schedule Appointment
 
-              </NavLink>
+              </button>
 
             </div>
 
@@ -561,6 +978,7 @@ const Navbar = () => {
         </div>
 
       </nav>
+
 
 
       {/* =====================================================
@@ -618,8 +1036,6 @@ const Navbar = () => {
           "
         >
 
-          {/* GLOW DOT */}
-
           <span
             className="
               absolute
@@ -659,6 +1075,17 @@ const Navbar = () => {
         </button>
 
       )}
+
+
+
+      {/* =====================================================
+          SCHEDULE APPOINTMENT MODAL
+      ====================================================== */}
+
+      <ScheduleAppointmentModal
+        isOpen={isAppointmentOpen}
+        onClose={() => setIsAppointmentOpen(false)}
+      />
 
     </>
   );
