@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import WhatsAppButton from "./components/WhatsAppButton";
+// import WhatsAppButton from "./components/WhatsAppButton";
 import CustomCursor from "./components/CustomCursor";
 import Chatbot from "./components/chatbot/Chatbot";
 
@@ -19,7 +19,6 @@ import Home from "./pages/home";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
-
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CompanyDocuments from "./pages/CompanyDocuments";
 
@@ -30,6 +29,7 @@ import CompanyDocuments from "./pages/CompanyDocuments";
 const Careers = () => {
   return (
     <main className="min-h-screen bg-[#f4f3ef] pt-24">
+      {/* HERO */}
       <section className="bg-[#102b29] px-6 py-20 sm:py-24">
         <div className="mx-auto max-w-5xl text-center">
           <p className="text-xs font-semibold tracking-[0.3em] text-white/50">
@@ -47,6 +47,7 @@ const Careers = () => {
         </div>
       </section>
 
+      {/* CONTENT */}
       <section className="px-6 py-20">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-3xl font-bold text-[#102b29]">
@@ -71,10 +72,10 @@ const Careers = () => {
 function App() {
   return (
     <>
-      {/* PREMIUM CUSTOM CURSOR */}
+      {/* CUSTOM CURSOR */}
       <CustomCursor />
 
-      {/* NAVIGATION */}
+      {/* NAVBAR */}
       <Navbar />
 
       {/* PAGE ROUTES */}
@@ -94,13 +95,13 @@ function App() {
         {/* CAREERS */}
         <Route path="/careers" element={<Careers />} />
 
-        {/* RESOURCES - PRIVACY POLICY */}
+        {/* PRIVACY POLICY */}
         <Route
           path="/privacy-policy"
           element={<PrivacyPolicy />}
         />
 
-        {/* RESOURCES - COMPANY DOCUMENTS */}
+        {/* COMPANY DOCUMENTS */}
         <Route
           path="/company-documents"
           element={<CompanyDocuments />}
@@ -109,13 +110,15 @@ function App() {
         {/* 404 FALLBACK */}
         <Route path="*" element={<Home />} />
       </Routes>
-       <Chatbot />
+
+      {/* CHATBOT */}
+      <Chatbot />
 
       {/* FOOTER */}
       <Footer />
 
       {/* FLOATING WHATSAPP BUTTON */}
-      <WhatsAppButton />
+      {/* <WhatsAppButton /> */}
     </>
   );
 }
