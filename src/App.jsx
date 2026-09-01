@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
 import CustomCursor from "./components/CustomCursor";
+import Chatbot from "./components/chatbot/Chatbot";
 
 // ================================
 // PAGES
@@ -108,6 +109,7 @@ function App() {
         {/* 404 FALLBACK */}
         <Route path="*" element={<Home />} />
       </Routes>
+       <Chatbot />
 
       {/* FOOTER */}
       <Footer />

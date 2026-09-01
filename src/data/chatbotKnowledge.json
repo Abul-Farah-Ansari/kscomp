@@ -1,0 +1,295 @@
+{
+  "company": {
+    "name": "KS & Company",
+    "type": "Chartered Accountants",
+    "description": "KS & Company provides professional support across taxation, accounting, registration, HR compliance, government documentation, insurance and finance services for individuals and businesses.",
+    "values": [
+      "Professional Expertise",
+      "Trusted Guidance",
+      "Client Focused",
+      "Confidentiality",
+      "Reliable Support"
+    ]
+  },
+
+  "services": [
+    {
+      "category": "Taxation Services",
+      "keywords": [
+        "tax",
+        "taxation",
+        "itr",
+        "income tax",
+        "gst",
+        "tds",
+        "tcs",
+        "epf",
+        "esic"
+      ],
+      "items": [
+        "ITR (Income Tax Return)",
+        "GST Return Filing",
+        "GST Registration",
+        "TDS Return Filing",
+        "TCS Return Filing",
+        "EPF Return Filing",
+        "ESIC Return Filing"
+      ]
+    },
+
+    {
+      "category": "Accounting Services",
+      "keywords": [
+        "accounting",
+        "accounts",
+        "bookkeeping",
+        "banking",
+        "invoice",
+        "balance sheet",
+        "profit",
+        "loss"
+      ],
+      "items": [
+        "Bookkeeping",
+        "Banking Entry",
+        "Account Receivable",
+        "Account Payable",
+        "Sales Invoice",
+        "Credit Note",
+        "Purchase Invoice",
+        "Debit Note",
+        "Profit & Loss Account",
+        "Balance Sheet"
+      ]
+    },
+
+    {
+      "category": "Registration Services",
+      "keywords": [
+        "registration",
+        "company registration",
+        "firm",
+        "private limited",
+        "llp",
+        "opc",
+        "udyam",
+        "msme",
+        "fssai",
+        "food license",
+        "iec",
+        "import export",
+        "trademark"
+      ],
+      "items": [
+        "Company Registration",
+        "Proprietorship Firm Registration",
+        "Partnership Firm Registration",
+        "Private Limited Company Registration",
+        "LLP (Limited Liability Partnership)",
+        "One Person Company (OPC) Pvt. Ltd.",
+        "UDYAM / MSME Registration",
+        "FSSAI / Food License",
+        "Import Export Code (IEC)",
+        "Trademark Registration"
+      ]
+    },
+
+    {
+      "category": "HR Compliance Services",
+      "keywords": [
+        "hr",
+        "salary",
+        "salary slip",
+        "esi",
+        "epf",
+        "compliance",
+        "form a",
+        "form b",
+        "form c",
+        "form d"
+      ],
+      "items": [
+        "Salary Sheet",
+        "Salary Slip",
+        "ESI Compliance",
+        "EPF Compliance",
+        "Form A, B, C, D and Other Compliance Forms"
+      ]
+    },
+
+    {
+      "category": "Other Compliance Services",
+      "keywords": [
+        "15ca",
+        "15cb",
+        "foreign transaction",
+        "project report",
+        "loan report",
+        "cash credit",
+        "cc"
+      ],
+      "items": [
+        "15CA & 15CB for Foreign Transactions",
+        "Project Report for Loan",
+        "Project Report for Cash Credit (CC)"
+      ]
+    },
+
+    {
+      "category": "Government & Documentation Services",
+      "keywords": [
+        "pan",
+        "tan",
+        "dsc",
+        "digital signature",
+        "passport",
+        "aadhaar",
+        "documentation"
+      ],
+      "items": [
+        "PAN Card (New)",
+        "PAN Card Correction",
+        "TAN Card (New)",
+        "TAN Card Correction",
+        "Digital Signature Certificate (DSC)",
+        "Passport Apply Online",
+        "PAN-Aadhaar Linking"
+      ]
+    },
+
+    {
+      "category": "Insurance Services",
+      "keywords": [
+        "insurance",
+        "vehicle insurance",
+        "health insurance",
+        "life insurance",
+        "marine insurance",
+        "home insurance",
+        "property insurance"
+      ],
+      "items": [
+        "Vehicle Insurance",
+        "Health Insurance",
+        "Life Insurance",
+        "Marine Insurance",
+        "Home / Property Insurance"
+      ]
+    },
+
+    {
+      "category": "Finance Services",
+      "keywords": [
+        "finance",
+        "loan",
+        "personal loan",
+        "business loan",
+        "home loan",
+        "lap",
+        "credit card",
+        "saving account",
+        "bank account"
+      ],
+      "items": [
+        "Saving Account",
+        "Personal Loan",
+        "Business Loan",
+        "Home Loan",
+        "LAP Loan",
+        "Credit Card"
+      ]
+    }
+  ],
+
+  "resources": {
+    "privacyPolicy": {
+      "path": "/privacy-policy",
+      "description": "Information and privacy guidelines related to the website and customer information."
+    },
+
+    "companyDocuments": {
+      "path": "/company-documents",
+      "description": "Company documents and resources including available business documentation such as the company brochure, GST and MSME certificates."
+    }
+  },
+
+  "appointment": {
+    "path": "/appointment",
+    "keywords": [
+      "appointment",
+      "consultation",
+      "consultant",
+      "book",
+      "meeting"
+    ],
+    "description": "Customers can schedule a consultation with KS & Company through the Schedule Appointment option available on the website."
+  },
+
+  "commonQuestions": [
+    {
+      "keywords": [
+        "hello",
+        "hi",
+        "hey"
+      ],
+      "answer": "Hello! 👋 Welcome to KS & Company. I can help you explore taxation, accounting, registration, compliance, documentation, insurance and finance services."
+    },
+
+    {
+      "keywords": [
+        "who are you",
+        "about company",
+        "about ks",
+        "ks company"
+      ],
+      "answer": "KS & Company provides professional guidance and support across taxation, accounting, registration, compliance, documentation, insurance and finance services."
+    },
+
+    {
+      "keywords": [
+        "services",
+        "all services",
+        "what do you do"
+      ],
+      "answer": "We provide Taxation, Accounting, Registration, HR Compliance, Other Compliance, Government & Documentation, Insurance and Finance services."
+    },
+
+    {
+      "keywords": [
+        "appointment",
+        "book consultation",
+        "book appointment",
+        "consultation"
+      ],
+      "answer": "You can book a consultation using the Schedule Appointment option on our website."
+    },
+
+    {
+      "keywords": [
+        "documents",
+        "company documents",
+        "gst certificate",
+        "msme certificate",
+        "brochure"
+      ],
+      "answer": "Our Company Documents section provides access to important company resources and available documents such as the company brochure, GST and MSME certificates."
+    },
+
+    {
+      "keywords": [
+        "privacy",
+        "privacy policy"
+      ],
+      "answer": "You can read our Privacy Policy from the Resources section of the website."
+    },
+
+    {
+      "keywords": [
+        "contact",
+        "reach",
+        "talk"
+      ],
+      "answer": "You can contact KS & Company through the Contact page or submit an enquiry through the available forms."
+    }
+  ]
+}
