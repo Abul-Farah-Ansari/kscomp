@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 // import WhatsAppButton from "./components/WhatsAppButton";
 import CustomCursor from "./components/CustomCursor";
 import Chatbot from "./components/chatbot/Chatbot";
-import WhatsAppButton from "./components/WhatsAppButton";
+// import WhatsAppButton from "./components/WhatsAppButton";
 // ================================
 // PAGES
 // ================================
@@ -120,7 +120,7 @@ function App() {
       <Footer />
 
       {/* FLOATING WHATSAPP BUTTON */}
-      <WhatsAppButton />
+      {/* <WhatsAppButton /> */}
       <ScrollToTop />
     </>
   );
