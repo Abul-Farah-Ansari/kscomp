@@ -213,7 +213,7 @@ const Footer = () => {
                 {/* EMAIL */}
 
                 <a
-                  href="mailto:info@ksandcompany.com"
+                  href="mailto:info@ks-company.in"
                   className="
                     flex
                     w-fit
@@ -228,14 +228,14 @@ const Footer = () => {
                 >
                   <Mail size={16} strokeWidth={1.6} />
 
-                  info@ksandcompany.com
+                  info@ks-company.in
                 </a>
 
 
-                {/* PHONE */}
+                {/* CALL / WHATSAPP */}
 
                 <a
-                  href="tel:+911234567890"
+                  href="tel:+917004946933"
                   className="
                     flex
                     w-fit
@@ -250,13 +250,38 @@ const Footer = () => {
                 >
                   <Phone size={16} strokeWidth={1.6} />
 
-                  +91 12345 67890
+                  +91 7004946933
+                </a>
+
+
+                {/* TELEPHONE */}
+
+                <a
+                  href="tel:+911145128015"
+                  className="
+                    flex
+                    w-fit
+                    items-center
+                    gap-3
+                    text-[13px]
+                    text-[#b5c6c1]
+                    transition-colors
+                    duration-300
+                    hover:text-[#b7d59d]
+                  "
+                >
+                  <Phone size={16} strokeWidth={1.6} />
+
+                  +91 1145128015
                 </a>
 
 
                 {/* ADDRESS */}
 
-                <div
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Nafees+Rd,+near+Hari+Masjid,+Block+P,+Batla+House,+Jamia+Nagar,+Okhla,+Delhi,+New+Delhi,+Delhi+110025"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="
                     flex
                     items-start
@@ -264,6 +289,9 @@ const Footer = () => {
                     text-[13px]
                     leading-6
                     text-[#b5c6c1]
+                    transition-colors
+                    duration-300
+                    hover:text-[#b7d59d]
                   "
                 >
                   <MapPin
@@ -273,12 +301,14 @@ const Footer = () => {
                   />
 
                   <span>
-                    Your Office Address,
+                    Nafees Rd, near Hari Masjid, Block P,
                     <br />
-                    India
+                    Batla House, Jamia Nagar, Okhla, Delhi,
+                    <br />
+                    New Delhi, Delhi 110025
                   </span>
 
-                </div>
+                </a>
 
               </div>
 
@@ -554,7 +584,9 @@ const Footer = () => {
                 {/* LINKEDIN */}
 
                 <a
-                  href="#"
+                  href="http://linkedin.com/in/k-s-and-company-740506102/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="LinkedIn"
                   className="
                     flex
@@ -581,7 +613,9 @@ const Footer = () => {
                 {/* INSTAGRAM */}
 
                 <a
-                  href="#"
+                  href="https://www.instagram.com/kscompany94?utm_source=qr&igsh=c3hjaDE2bDBpMXJu"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Instagram"
                   className="
                     flex
@@ -608,7 +642,9 @@ const Footer = () => {
                 {/* FACEBOOK */}
 
                 <a
-                  href="#"
+                  href="https://www.facebook.com/ksancompany?mibextid=ZbWKwL"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Facebook"
                   className="
                     flex
@@ -697,9 +733,20 @@ const Footer = () => {
 
             by
 
-            <span className="font-medium text-[#b7d59d]">
-              Zaib Infotech
-            </span>
+            <a
+  href="https://zaibinfotech.in/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="
+    font-medium
+    text-[#b7d59d]
+    transition-colors
+    duration-300
+    hover:text-white
+  "
+>
+  Zaib Infotech
+</a>
 
           </p>
 

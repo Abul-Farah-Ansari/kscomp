@@ -7,6 +7,7 @@ import {
   Users,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 /* =========================================================
    BENEFITS DATA
@@ -776,8 +777,10 @@ const About = () => {
                 gap-5
               "
             >
-              <button
-                type="button"
+              {/* DISCOVER MORE BUTTON */}
+
+              <Link
+                to="/about"
                 className="
                   group
                   inline-flex
@@ -814,7 +817,7 @@ const About = () => {
                     group-hover:translate-x-1
                   "
                 />
-              </button>
+              </Link>
 
               <span
                 className="

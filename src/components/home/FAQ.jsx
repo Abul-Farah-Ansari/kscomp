@@ -47,9 +47,9 @@ const FAQ = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  // OPEN CHATBOT
   const handleChatClick = () => {
-    // Connect your chatbot modal here later.
-    console.log("Open chatbot");
+    window.dispatchEvent(new Event("open-chatbot"));
   };
 
   return (
@@ -58,7 +58,7 @@ const FAQ = () => {
       {/* ================= BACKGROUND DECORATION ================= */}
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-
+        
         {/* LEFT DECORATIVE CIRCLE */}
 
         <div
@@ -106,9 +106,7 @@ const FAQ = () => {
         >
           FAQ
         </div>
-
       </div>
-
 
       {/* ================= MAIN CONTENT ================= */}
 
@@ -125,17 +123,15 @@ const FAQ = () => {
           xl:px-16
         "
       >
-
         <div
           className="
             grid
             gap-12
-
             lg:grid-cols-[0.75fr_1.25fr]
             lg:gap-20
           "
         >
-
+          
           {/* ================= LEFT SIDE ================= */}
 
           <motion.div
@@ -156,11 +152,10 @@ const FAQ = () => {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-
+            
             {/* LABEL */}
 
             <div className="mb-5 flex items-center gap-3">
-
               <span className="h-px w-10 bg-[#326844]" />
 
               <span
@@ -174,22 +169,18 @@ const FAQ = () => {
               >
                 Frequently Asked Questions
               </span>
-
             </div>
-
 
             {/* HEADING */}
 
             <h2
               className="
                 max-w-[520px]
-
                 text-[38px]
                 font-semibold
                 leading-[1.1]
                 tracking-tight
                 text-[#1e2d30]
-
                 sm:text-[52px]
                 lg:text-[58px]
               "
@@ -199,9 +190,7 @@ const FAQ = () => {
               <span className="block text-[#326844]">
                 move forward.
               </span>
-
             </h2>
-
 
             {/* DESCRIPTION */}
 
@@ -209,7 +198,6 @@ const FAQ = () => {
               className="
                 mt-6
                 max-w-[430px]
-
                 text-sm
                 leading-7
                 text-[#687779]
@@ -219,21 +207,17 @@ const FAQ = () => {
               services, approach, and how we support our clients.
             </p>
 
-
             {/* ================= STILL HAVE A QUESTION ================= */}
 
             <div
               className="
                 mt-10
-
                 border-l-2
                 border-[#75b43c]
-
                 pl-5
                 sm:pl-6
               "
             >
-
               <p
                 className="
                   text-sm
@@ -245,12 +229,10 @@ const FAQ = () => {
                 Still have a question?
               </p>
 
-
               <p
                 className="
                   mt-1
                   max-w-[420px]
-
                   text-[12px]
                   leading-6
                   text-[#7a8988]
@@ -260,21 +242,18 @@ const FAQ = () => {
                 understand your requirements and get the right guidance.
               </p>
 
-
               {/* ================= ACTION BUTTONS ================= */}
 
               <div
                 className="
                   mt-6
-
                   flex
                   flex-col
                   gap-3
-
                   sm:flex-row
                 "
               >
-
+                
                 {/* CHATBOT BUTTON */}
 
                 <button
@@ -282,38 +261,27 @@ const FAQ = () => {
                   onClick={handleChatClick}
                   className="
                     group
-
                     inline-flex
                     items-center
                     justify-center
                     gap-3
-
                     rounded-full
-
                     bg-[#285b68]
-
                     px-6
                     py-3.5
-
                     text-[10px]
                     font-semibold
                     uppercase
                     tracking-[0.12em]
-
                     text-white
-
                     shadow-[0_10px_25px_rgba(40,91,104,0.18)]
-
                     transition-all
                     duration-300
-
                     hover:-translate-y-1
                     hover:bg-[#1e4b56]
-
                     hover:shadow-[0_15px_35px_rgba(40,91,104,0.28)]
                   "
                 >
-
                   <MessageCircle
                     size={18}
                     strokeWidth={1.8}
@@ -325,51 +293,38 @@ const FAQ = () => {
                   />
 
                   Chat with AI Assistant
-
                 </button>
-
 
                 {/* CALL BUTTON */}
 
                 <a
-                  href="tel:+911234567890"
+                  href="tel:+917004946933"
                   className="
                     group
-
                     inline-flex
                     items-center
                     justify-center
                     gap-3
-
                     rounded-full
-
                     border
                     border-[#326844]/20
-
                     bg-white/60
-
                     px-6
                     py-3.5
-
                     text-[10px]
                     font-semibold
                     uppercase
                     tracking-[0.12em]
-
                     text-[#326844]
-
                     transition-all
                     duration-300
-
                     hover:-translate-y-1
                     hover:border-[#326844]
                     hover:bg-[#326844]
                     hover:text-white
-
                     hover:shadow-[0_12px_30px_rgba(50,104,68,0.15)]
                   "
                 >
-
                   <Phone
                     size={17}
                     strokeWidth={1.8}
@@ -381,15 +336,10 @@ const FAQ = () => {
                   />
 
                   Call Us Now
-
                 </a>
-
               </div>
-
             </div>
-
           </motion.div>
-
 
           {/* ================= FAQ ACCORDION ================= */}
 
@@ -415,9 +365,7 @@ const FAQ = () => {
               border-[#1e5260]/15
             "
           >
-
             {faqs.map((faq, index) => {
-
               const isActive = activeIndex === index;
 
               return (
@@ -428,8 +376,8 @@ const FAQ = () => {
                     border-[#1e5260]/15
                   "
                 >
-
-                  {/* ================= QUESTION ================= */}
+                  
+                  {/* QUESTION */}
 
                   <button
                     type="button"
@@ -440,39 +388,29 @@ const FAQ = () => {
                       items-center
                       justify-between
                       gap-4
-
                       py-6
                       text-left
-
                       sm:gap-5
                       sm:py-7
                     "
                   >
-
                     <div
                       className="
                         flex
                         min-w-0
                         items-center
                         gap-4
-
                         sm:gap-7
                       "
                     >
-
-                      {/* NUMBER */}
-
                       <span
                         className={`
                           shrink-0
-
                           text-[9px]
                           font-semibold
                           tracking-[1.5px]
-
                           sm:text-[10px]
                           sm:tracking-[2px]
-
                           ${
                             isActive
                               ? "text-[#326844]"
@@ -483,20 +421,14 @@ const FAQ = () => {
                         {String(index + 1).padStart(2, "0")}
                       </span>
 
-
-                      {/* QUESTION TEXT */}
-
                       <span
                         className={`
                           text-[15px]
                           font-medium
                           leading-6
-
                           transition-colors
                           duration-300
-
                           sm:text-[18px]
-
                           ${
                             isActive
                               ? "text-[#285b68]"
@@ -506,9 +438,7 @@ const FAQ = () => {
                       >
                         {faq.question}
                       </span>
-
                     </div>
-
 
                     {/* ICON */}
 
@@ -520,15 +450,11 @@ const FAQ = () => {
                         shrink-0
                         items-center
                         justify-center
-
                         rounded-full
-
                         transition-all
                         duration-300
-
                         sm:h-10
                         sm:w-10
-
                         ${
                           isActive
                             ? "bg-[#326844] text-white"
@@ -540,34 +466,24 @@ const FAQ = () => {
                         }
                       `}
                     >
-
                       {isActive ? (
-
                         <Minus
                           size={17}
                           strokeWidth={1.7}
                         />
-
                       ) : (
-
                         <Plus
                           size={17}
                           strokeWidth={1.7}
                         />
-
                       )}
-
                     </span>
-
                   </button>
 
-
-                  {/* ================= ANSWER ================= */}
+                  {/* ANSWER */}
 
                   <AnimatePresence initial={false}>
-
                     {isActive && (
-
                       <motion.div
                         initial={{
                           height: 0,
@@ -587,51 +503,36 @@ const FAQ = () => {
                         }}
                         className="overflow-hidden"
                       >
-
                         <div
                           className="
                             pb-7
-
                             pl-[25px]
                             pr-4
-
                             sm:pl-[46px]
                             sm:pr-16
                           "
                         >
-
                           <p
                             className="
                               max-w-[650px]
-
                               text-[13px]
                               leading-7
                               text-[#6b7978]
-
                               sm:text-sm
                             "
                           >
                             {faq.answer}
                           </p>
-
                         </div>
-
                       </motion.div>
-
                     )}
-
                   </AnimatePresence>
-
                 </div>
               );
             })}
-
           </motion.div>
-
         </div>
-
       </div>
-
     </section>
   );
 };

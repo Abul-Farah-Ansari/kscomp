@@ -153,9 +153,12 @@ const QueryForm = () => {
                     Email Us
                   </p>
 
-                  <p className="mt-1 text-sm font-medium text-[#334544]">
-                    info@ksandcompany.com
-                  </p>
+                  <a
+                    href="mailto:info@ks-company.in"
+                    className="mt-1 block text-sm font-medium text-[#334544] transition-colors hover:text-[#326844]"
+                  >
+                    info@ks-company.in
+                  </a>
                 </div>
               </div>
 
@@ -183,9 +186,12 @@ const QueryForm = () => {
                     Call Us
                   </p>
 
-                  <p className="mt-1 text-sm font-medium text-[#334544]">
-                    +91 12345 67890
-                  </p>
+                  <a
+                    href="tel:+917004946933"
+                    className="mt-1 block text-sm font-medium text-[#334544] transition-colors hover:text-[#326844]"
+                  >
+                    +91 7004946933
+                  </a>
                 </div>
               </div>
 
@@ -444,7 +450,6 @@ const QueryForm = () => {
                     <option value="Other">
                       Other
                     </option>
-
                   </select>
                 </div>
 

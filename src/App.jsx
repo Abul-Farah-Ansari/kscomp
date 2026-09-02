@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 
 // ================================
 // GLOBAL COMPONENTS
@@ -10,7 +11,7 @@ import Footer from "./components/Footer";
 // import WhatsAppButton from "./components/WhatsAppButton";
 import CustomCursor from "./components/CustomCursor";
 import Chatbot from "./components/chatbot/Chatbot";
-
+import WhatsAppButton from "./components/WhatsAppButton";
 // ================================
 // PAGES
 // ================================
@@ -113,12 +114,14 @@ function App() {
 
       {/* CHATBOT */}
       <Chatbot />
+     
 
       {/* FOOTER */}
       <Footer />
 
       {/* FLOATING WHATSAPP BUTTON */}
-      {/* <WhatsAppButton /> */}
+      <WhatsAppButton />
+      <ScrollToTop />
     </>
   );
 }

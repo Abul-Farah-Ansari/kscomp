@@ -1,66 +1,65 @@
 import React, { useEffect, useState } from "react";
-import { Quote, X, ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  Quote,
+  X,
+  ArrowLeft,
+  ArrowRight,
+  Star,
+} from "lucide-react";
+const GoogleIcon = ({ size = 30 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 48 48"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill="#FFC107"
+      d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.7 1.1 7.8 2.9l5.7-5.7C33.9 5.9 29.2 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.2-.1-2.4-.4-3.5z"
+    />
+    <path
+      fill="#FF3D00"
+      d="M6.3 14.7l6.6 4.8C14.7 15.1 18.9 12 24 12c3 0 5.7 1.1 7.8 2.9l5.7-5.7C33.9 5.9 29.2 4 24 4c-7.7 0-14.4 4.4-17.7 10.7z"
+    />
+    <path
+      fill="#4CAF50"
+      d="M24 44c5.1 0 9.8-2 13.3-5.2l-6.1-5.2C29.2 35.1 26.7 36 24 36c-5.3 0-9.7-3.3-11.4-8l-6.5 5C9.3 39.5 16.1 44 24 44z"
+    />
+    <path
+      fill="#1976D2"
+      d="M43.6 20.5H42V20H24v8h11.3c-1.1 3-3.2 5.3-6.1 6.6l6.1 5.2C38.8 36.5 44 31 44 24c0-1.2-.1-2.4-.4-3.5z"
+    />
+  </svg>
+);
 
 const testimonials = [
   {
     id: 1,
-    name: "Rahul Sharma",
-    role: "Managing Director",
-    company: "Business Solutions Pvt. Ltd.",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80",
-    shortText:
-      "Professional guidance, clear communication, and excellent financial support throughout our journey.",
-    fullText:
-      "The team provided professional financial guidance and practical solutions that helped us make better business decisions. Their communication was clear, timely, and transparent throughout the entire process.",
+    name: "Md Sahil",
+    review:
+      "K S Company accounting services ke saath-saath GST return filing aur IT return filing mein bhi expertise rakhti hai. Inki team professionals se bani hai jo compliance aur accuracy ensure karte hain. Financial transparency aur customer service bhi achchi hai.",
   },
   {
     id: 2,
-    name: "Amit Verma",
-    role: "Founder & CEO",
-    company: "Verma Enterprises",
-    image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
-    shortText:
-      "Their expertise helped us improve our financial planning and confidently focus on business growth.",
-    fullText:
-      "Their professional approach and financial expertise helped us improve planning, understand our financial position, and focus confidently on long-term business growth.",
+    name: "Md. Arshad",
+    review:
+      "KS& Company... Bahot hi helpful hai logo ke liye, yaha apko tax related har problem ka solution easily mil jata hai. Khursheed bhai bahot experienced person hain aur apni field mein unka nature bhi bahot humble hai.",
   },
   {
     id: 3,
-    name: "Priya Mehta",
-    role: "Director",
-    company: "Mehta Industries",
-    image:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
-    shortText:
-      "Reliable advisory support with a practical understanding of business and financial requirements.",
-    fullText:
-      "We were looking for a team that could understand our business instead of simply providing generic advice. Their practical approach, responsiveness, and professional support made a significant difference.",
+    name: "Ashif Raza",
+    review:
+      "Best place for Tax consulting and insurance related work in Bata House and nearby Okhla and Shaheenbagh.",
   },
   {
     id: 4,
-    name: "Vikram Singh",
-    role: "Business Owner",
-    company: "Singh Trading Co.",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
-    shortText:
-      "A dependable professional team that understands business challenges and provides practical solutions.",
-    fullText:
-      "Working with this team has been a positive experience. They understand business challenges, provide practical recommendations, and maintain a consistently professional approach.",
+    name: "MOHAMMAD AFTAB",
+    review: "Best service provider for taxation.",
   },
   {
     id: 5,
-    name: "Neha Kapoor",
-    role: "Managing Partner",
-    company: "Kapoor Ventures",
-    image:
-      "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80",
-    shortText:
-      "Their attention to detail and commitment to quality gave us confidence in every financial decision.",
-    fullText:
-      "Their attention to detail and commitment to quality gave us confidence in important financial decisions. The team is approachable, knowledgeable, and genuinely focused on client requirements.",
+    name: "Ishtar jahan Rashid khan",
+    review: "They are providing good service.",
   },
 ];
 
@@ -69,7 +68,6 @@ const Testimonials = () => {
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
   const [isTransitioning, setIsTransitioning] = useState(true);
 
-  // Duplicate testimonials for smooth continuous movement
   const sliderTestimonials = [...testimonials, ...testimonials];
 
   useEffect(() => {
@@ -118,62 +116,58 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#f3f5f4] py-8 sm:py-10 lg:py-12">
-      {/* Background details */}
+    <section className="relative min-h-screen overflow-hidden bg-[#f3f5f4] py-10 sm:py-12 lg:py-14">
+      {/* ================= BACKGROUND ================= */}
 
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="
+            absolute
+            -left-[3%]
+            -top-[18%]
+            select-none
+            font-serif
+            text-[650px]
+            font-bold
+            leading-none
+            text-[#193832]/[0.055]
+            sm:text-[850px]
+            lg:text-[1100px]
+          "
+        >
+          “
+        </div>
 
-  {/* Huge background quotation marks */}
+        <div
+          className="
+            absolute
+            -right-[2%]
+            -bottom-[38%]
+            select-none
+            font-serif
+            text-[650px]
+            font-bold
+            leading-none
+            text-[#193832]/[0.055]
+            sm:text-[850px]
+            lg:text-[1100px]
+          "
+        >
+          ”
+        </div>
 
-  <div
-    className="
-      absolute
-      -left-[3%]
-      -top-[18%]
-      font-serif
-      text-[650px]
-      font-bold
-      leading-none
-      text-[#193832]/[0.055]
-      select-none
-      sm:text-[850px]
-      lg:text-[1100px]
-    "
-  >
-    “
-  </div>
+        <div className="absolute right-0 top-0 h-[450px] w-[450px] rounded-full bg-[#2e6257]/[0.035] blur-3xl" />
 
-  <div
-    className="
-      absolute
-      -right-[2%]
-      -bottom-[38%]
-      font-serif
-      text-[650px]
-      font-bold
-      leading-none
-      text-[#193832]/[0.055]
-      select-none
-      sm:text-[850px]
-      lg:text-[1100px]
-    "
-  >
-    ”
-  </div>
+        <div className="absolute bottom-0 left-[20%] h-[300px] w-[300px] rounded-full bg-[#244b57]/[0.035] blur-3xl" />
+      </div>
 
-  {/* Existing soft background details */}
-
-  <div className="absolute top-0 right-0 h-[450px] w-[450px] rounded-full bg-[#2e6257]/[0.035] blur-3xl" />
-
-  <div className="absolute bottom-0 left-[20%] h-[300px] w-[300px] rounded-full bg-[#244b57]/[0.035] blur-3xl" />
-
-</div>
-
-      {/* Heading */}
+      {/* ================= HEADING ================= */}
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-10">
-        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-          <div className="max-w-[650px]">
+        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+          {/* LEFT */}
+
+          <div className="max-w-[700px]">
             <div className="mb-3 flex items-center gap-3">
               <span className="h-[1px] w-10 bg-[#5f8c79]" />
 
@@ -184,92 +178,150 @@ const Testimonials = () => {
 
             <h2 className="text-[38px] font-semibold leading-[1.03] tracking-tight text-[#243033] sm:text-5xl lg:text-[58px]">
               What Our Clients Say
+
               <span className="block text-[#376c5d]">
                 About Working With Us
               </span>
             </h2>
 
             <p className="mt-4 max-w-[600px] text-sm leading-6 text-[#65706f] sm:text-[15px] sm:leading-7">
-              Trusted by businesses that value professional guidance,
-              practical financial solutions, and long-term relationships.
+              Real experiences shared by clients who value professional
+              guidance, practical financial solutions, and reliable service.
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* RIGHT RATING + NAVIGATION */}
 
-          <div className="flex items-center gap-3 lg:mb-1">
-            <button
-              type="button"
-              onClick={previousSlide}
-              aria-label="Previous testimonial"
+          <div className="flex flex-col gap-5 lg:items-end">
+            {/* GOOGLE RATING CARD */}
+
+            <div
               className="
-                group
                 flex
-                h-12
-                w-12
                 items-center
-                justify-center
-                rounded-full
+                gap-4
+                rounded-2xl
                 border
-                border-[#315e54]/15
+                border-[#315e54]/10
                 bg-white
-                text-[#315e54]
-                shadow-[0_8px_25px_rgba(28,54,48,0.08)]
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:bg-[#315e54]
-                hover:text-white
+                px-5
+                py-4
+                shadow-[0_10px_30px_rgba(28,54,48,0.06)]
               "
             >
-              <ArrowLeft
-                size={19}
-                strokeWidth={1.8}
-              />
-            </button>
+              {/* GOOGLE ICON */}
 
-            <button
-              type="button"
-              onClick={nextSlide}
-              aria-label="Next testimonial"
-              className="
-                group
-                flex
-                h-12
-                w-12
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-[#315e54]/15
-                bg-white
-                text-[#315e54]
-                shadow-[0_8px_25px_rgba(28,54,48,0.08)]
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:bg-[#315e54]
-                hover:text-white
-              "
-            >
-              <ArrowRight
-                size={19}
-                strokeWidth={1.8}
-              />
-            </button>
+              <div
+                className="
+                  flex
+                  h-12
+                  w-12
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-[#f6f8f7]
+                  text-[28px]
+                "
+              >
+                <GoogleIcon size={30} />
+              </div>
+
+              {/* RATING */}
+
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8784]">
+                  Google Client Rating
+                </p>
+
+                <div className="mt-1 flex items-center gap-3">
+                  <span className="text-3xl font-bold text-[#243033]">
+                    4.9
+                  </span>
+
+                  <div>
+                    <div className="flex items-center gap-1">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star
+                          key={star}
+                          size={16}
+                          strokeWidth={1.8}
+                          fill="#F5A623"
+                          className="text-[#F5A623]"
+                        />
+                      ))}
+                    </div>
+
+                    <p className="mt-1 text-xs text-[#7a8784]">
+                      4.9/5 client rating
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* NAVIGATION */}
+
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={previousSlide}
+                aria-label="Previous testimonial"
+                className="
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-[#315e54]/15
+                  bg-white
+                  text-[#315e54]
+                  shadow-[0_8px_25px_rgba(28,54,48,0.08)]
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:bg-[#315e54]
+                  hover:text-white
+                "
+              >
+                <ArrowLeft size={19} strokeWidth={1.8} />
+              </button>
+
+              <button
+                type="button"
+                onClick={nextSlide}
+                aria-label="Next testimonial"
+                className="
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-[#315e54]/15
+                  bg-white
+                  text-[#315e54]
+                  shadow-[0_8px_25px_rgba(28,54,48,0.08)]
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:bg-[#315e54]
+                  hover:text-white
+                "
+              >
+                <ArrowRight size={19} strokeWidth={1.8} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Testimonials */}
+      {/* ================= TESTIMONIAL SLIDER ================= */}
 
-      <div className="relative z-10 mt-8 sm:mt-10 lg:mt-12">
-        {/* 
-          IMPORTANT:
-          Left blank area remains permanently visible.
-          Slider begins after approximately 20% screen width.
-        */}
-
+      <div className="relative z-10 mt-10 sm:mt-12 lg:mt-14">
         <div className="ml-[8%] overflow-hidden sm:ml-[12%] lg:ml-[20%]">
           <div
             className={`
@@ -307,15 +359,13 @@ const Testimonials = () => {
                   duration-500
                   hover:-translate-y-2
                   hover:shadow-[0_25px_60px_rgba(31,57,52,0.14)]
-
                   sm:min-w-[58%]
-
                   lg:h-[400px]
                   lg:min-w-[38%]
                   lg:p-8
                 "
               >
-                {/* Decorative background */}
+                {/* DECORATIVE CIRCLE */}
 
                 <div
                   className="
@@ -334,7 +384,7 @@ const Testimonials = () => {
                   "
                 />
 
-                {/* Quote */}
+                {/* QUOTE */}
 
                 <Quote
                   size={54}
@@ -343,90 +393,72 @@ const Testimonials = () => {
                   fill="currentColor"
                 />
 
-                {/* Text */}
+                {/* REVIEW */}
 
-                <p className="relative z-10 mt-5 max-w-[80%] text-[15px] leading-7 text-white/70 lg:text-[16px]">
-                  "{testimonial.shortText}"
+                <p
+                  className="
+                    relative
+                    z-10
+                    mt-5
+                    max-w-[90%]
+                    text-[14px]
+                    leading-7
+                    text-white/75
+                    lg:text-[15px]
+                  "
+                >
+                  "{testimonial.review}"
                 </p>
 
-                {/* Bottom content */}
+                {/* BOTTOM */}
 
-                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between">
+                <div className="absolute bottom-0 left-0 right-0">
                   <div className="relative z-10 p-7 lg:p-8">
+                    {/* STARS */}
+
+                    <div className="mb-3 flex gap-1">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star
+                          key={star}
+                          size={14}
+                          fill="#F5A623"
+                          className="text-[#F5A623]"
+                        />
+                      ))}
+                    </div>
+
+                    {/* NAME */}
+
                     <h3 className="text-xl font-semibold tracking-tight text-white">
                       {testimonial.name}
                     </h3>
 
-                    <p className="mt-1 text-sm text-white/55">
-                      {testimonial.role}
+                    <p className="mt-1 text-xs text-white/50">
+                      Verified Client Review
                     </p>
-
-                    <p className="mt-1 text-xs font-medium uppercase tracking-[0.12em] text-[#4d8272]">
-                      {testimonial.company}
-                    </p>
-                  </div>
-
-                  {/* Client Image */}
-
-                  <div
-                    className="
-                      relative
-                      h-[170px]
-                      w-[145px]
-                      overflow-hidden
-                      rounded-tl-[100px]
-                      transition-all
-                      duration-500
-
-                      group-hover:h-[185px]
-                      group-hover:w-[155px]
-
-                      sm:h-[190px]
-                      sm:w-[165px]
-
-                      lg:h-[205px]
-                      lg:w-[180px]
-                    "
-                  >
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="
-                        h-full
-                        w-full
-                        object-cover
-                        transition-transform
-                        duration-700
-                        group-hover:scale-110
-                      "
-                    />
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#18332d]/20 to-transparent" />
                   </div>
                 </div>
 
-                {/* Click indicator */}
+                {/* READ REVIEW */}
 
                 <div
                   className="
                     absolute
                     right-6
-                    bottom-5
+                    top-6
                     z-20
-                    translate-y-3
-                    text-[10px]
+                    text-[9px]
                     font-bold
                     uppercase
                     tracking-[0.16em]
-                    text-[#477364]
+                    text-[#8bb39e]
                     opacity-0
                     transition-all
                     duration-300
-                    group-hover:translate-y-0
                     group-hover:opacity-100
                   "
                 >
-                  Read Full Story
+                  Read Review
                 </div>
               </article>
             ))}
@@ -434,7 +466,7 @@ const Testimonials = () => {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* ================= REVIEW MODAL ================= */}
 
       {selectedTestimonial && (
         <div
@@ -456,7 +488,7 @@ const Testimonials = () => {
             className="
               relative
               w-full
-              max-w-3xl
+              max-w-2xl
               overflow-hidden
               rounded-[30px]
               bg-[#f8faf9]
@@ -465,14 +497,17 @@ const Testimonials = () => {
             "
             onClick={(event) => event.stopPropagation()}
           >
-            {/* Modal top */}
+            {/* MODAL HEADER */}
 
             <div className="relative bg-gradient-to-br from-[#254d45] to-[#193832] px-8 py-10 text-white sm:px-12">
               <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full border-[30px] border-white/[0.06]" />
 
+              {/* CLOSE BUTTON */}
+
               <button
                 type="button"
                 onClick={() => setSelectedTestimonial(null)}
+                aria-label="Close review"
                 className="
                   absolute
                   right-5
@@ -494,52 +529,67 @@ const Testimonials = () => {
                 <X size={19} />
               </button>
 
-              <Quote
-                size={48}
-                strokeWidth={1.3}
-                fill="currentColor"
-                className="relative z-10 text-[#9dc7b3]"
-              />
+              {/* REVIEWER */}
 
-              <p className="relative z-10 mt-5 text-sm font-semibold uppercase tracking-[0.22em] text-[#b7d4c6]">
-                Client Experience
-              </p>
-
-              <h3 className="relative z-10 mt-2 text-3xl font-semibold">
-                {selectedTestimonial.name}
-              </h3>
-
-              <p className="relative z-10 mt-1 text-white/65">
-                {selectedTestimonial.role} · {selectedTestimonial.company}
-              </p>
-            </div>
-
-            {/* Modal content */}
-
-            <div className="grid md:grid-cols-[1fr_190px]">
-              <div className="p-8 sm:p-12">
-                <p className="text-lg leading-8 text-[#53605e]">
-                  "{selectedTestimonial.fullText}"
+              <div className="relative z-10">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#b7d4c6]">
+                  Client Review
                 </p>
 
-                <div className="mt-8 h-[1px] w-full bg-[#315e54]/10" />
-
-                <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-[#4d8272]">
-                  Trusted Client Relationship
-                </p>
+                <h3 className="mt-2 text-2xl font-semibold sm:text-3xl">
+                  {selectedTestimonial.name}
+                </h3>
               </div>
 
-              <div className="hidden overflow-hidden md:block">
-                <img
-                  src={selectedTestimonial.image}
-                  alt={selectedTestimonial.name}
-                  className="h-full w-full object-cover"
-                />
+              {/* STARS */}
+
+              <div className="relative z-10 mt-6 flex gap-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <Star
+                    key={star}
+                    size={18}
+                    fill="#F5A623"
+                    className="text-[#F5A623]"
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* MODAL CONTENT */}
+
+            <div className="p-8 sm:p-12">
+              <Quote
+                size={40}
+                fill="currentColor"
+                className="text-[#4d8272]/20"
+              />
+
+              <p className="mt-4 text-lg leading-8 text-[#53605e] sm:text-xl">
+                "{selectedTestimonial.review}"
+              </p>
+
+              <div className="mt-8 h-[1px] w-full bg-[#315e54]/10" />
+
+              <div className="mt-5 flex items-center justify-between">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#4d8272]">
+                  Trusted Client Experience
+                </p>
+
+                <div className="flex items-center gap-1 text-sm font-semibold text-[#315e54]">
+                  <Star
+                    size={15}
+                    fill="#F5A623"
+                    className="text-[#F5A623]"
+                  />
+                  5.0
+                </div>
               </div>
             </div>
           </div>
         </div>
       )}
+
+      {/* ================= ANIMATION ================= */}
 
       <style>{`
         @keyframes modalEnter {

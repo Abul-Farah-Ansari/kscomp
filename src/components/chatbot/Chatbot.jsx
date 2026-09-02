@@ -29,14 +29,40 @@ const Chatbot = () => {
 
   const messagesEndRef = useRef(null);
 
+  // ==========================================
+  // AUTO SCROLL TO LATEST MESSAGE
+  // ==========================================
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({
       behavior: "smooth",
     });
   }, [messages, isTyping]);
 
+  // ==========================================
+  // OPEN CHATBOT FROM FAQ OR OTHER COMPONENTS
+  // ==========================================
+
+  useEffect(() => {
+    const openChatbot = () => {
+      setIsOpen(true);
+    };
+
+    window.addEventListener("open-chatbot", openChatbot);
+
+    return () => {
+      window.removeEventListener("open-chatbot", openChatbot);
+    };
+  }, []);
+
+  // ==========================================
+  // GET BOT RESPONSE
+  // ==========================================
+
   const getBotResponse = (message) => {
     const userMessage = message.toLowerCase().trim();
+
+    // COMMON ANSWERS
 
     for (const item of chatbotData.commonAnswers) {
       const matched = item.keywords.some((keyword) =>
@@ -50,6 +76,8 @@ const Chatbot = () => {
         };
       }
     }
+
+    // SERVICES
 
     for (const service of chatbotData.services) {
       const matched = service.keywords.some((keyword) =>
@@ -68,6 +96,8 @@ const Chatbot = () => {
       }
     }
 
+    // DEFAULT RESPONSE
+
     return {
       text:
         "I can help you with Taxation, Accounting, Company Registration, Compliance, Documentation, Insurance and Finance services. Please ask me about a specific service or select one of the quick options below.",
@@ -77,6 +107,10 @@ const Chatbot = () => {
       },
     };
   };
+
+  // ==========================================
+  // SEND MESSAGE
+  // ==========================================
 
   const handleSendMessage = (customMessage = null) => {
     const message = customMessage || input;
@@ -111,6 +145,10 @@ const Chatbot = () => {
       setIsTyping(false);
     }, 700);
   };
+
+  // ==========================================
+  // QUICK QUESTION
+  // ==========================================
 
   const handleQuickQuestion = (question) => {
     handleSendMessage(question);
@@ -284,6 +322,8 @@ const Chatbot = () => {
                   </div>
                 </div>
 
+                {/* CLOSE BUTTON */}
+
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
@@ -331,7 +371,6 @@ const Chatbot = () => {
                   key={message.id}
                   className={`
                     flex
-
                     ${
                       message.type === "user"
                         ? "justify-end"
@@ -364,6 +403,8 @@ const Chatbot = () => {
                       leading-6
                     `}
                   >
+                    {/* BOT LABEL */}
+
                     {message.type === "bot" && (
                       <div className="mb-2 flex items-center gap-2">
                         <Bot
@@ -377,9 +418,11 @@ const Chatbot = () => {
                       </div>
                     )}
 
+                    {/* MESSAGE */}
+
                     <p>{message.text}</p>
 
-                    {/* Service List */}
+                    {/* SERVICE LIST */}
 
                     {message.services && (
                       <div className="mt-3 space-y-1.5 border-t border-white/10 pt-3">
@@ -404,7 +447,7 @@ const Chatbot = () => {
                       </div>
                     )}
 
-                    {/* Action Button */}
+                    {/* ACTION BUTTON */}
 
                     {message.action && (
                       <a
@@ -449,7 +492,9 @@ const Chatbot = () => {
                 </div>
               ))}
 
-              {/* Typing */}
+              {/* =================================================
+                  TYPING INDICATOR
+              ================================================= */}
 
               {isTyping && (
                 <div className="flex justify-start">
@@ -655,7 +700,7 @@ const Chatbot = () => {
         "
         aria-label="Open KS Assistant"
       >
-        {/* Outer decoration */}
+        {/* OUTER DECORATION */}
 
         <span
           className="
@@ -669,7 +714,7 @@ const Chatbot = () => {
           "
         />
 
-        {/* Notification */}
+        {/* NOTIFICATION */}
 
         {!isOpen && (
           <span
@@ -714,6 +759,8 @@ const Chatbot = () => {
             />
           </span>
         )}
+
+        {/* ICON */}
 
         {isOpen ? (
           <X size={25} strokeWidth={1.7} />

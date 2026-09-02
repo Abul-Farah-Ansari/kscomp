@@ -1,6 +1,7 @@
 import React from "react";
 import { Quote, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import ceoImage from "../../assets/ChatGPT Image Jul 20, 2026, 02_17_19 AM.png";
 
 const CEOMessage = () => {
   return (
@@ -108,6 +109,7 @@ const CEOMessage = () => {
             {/* ================= CEO PHOTO ================= */}
 
             <div className="relative mt-9 max-w-[410px]">
+
               {/* PHOTO GLOW */}
 
               <div
@@ -134,8 +136,8 @@ const CEOMessage = () => {
                 "
               >
                 <img
-                  src="/images/ceo.jpg"
-                  alt="CEO"
+                  src={ceoImage}
+                  alt="Md. Khursheed Alam - Chief Executive Officer"
                   className="
                     h-[420px]
                     w-full
@@ -165,7 +167,7 @@ const CEOMessage = () => {
 
                 <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7">
                   <p className="text-xl font-semibold text-white sm:text-2xl">
-                    CEO Name
+                    Md. Khursheed Alam
                   </p>
 
                   <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#a8c98e]">

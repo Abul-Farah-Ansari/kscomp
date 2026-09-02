@@ -8,6 +8,7 @@ import {
   BriefcaseBusiness,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const services = [
   {
@@ -101,9 +102,7 @@ const FinancialManagement = () => {
           lg:py-8
         "
       >
-        {/* ===================================================
-            SECTION HEADER
-        ==================================================== */}
+        {/* SECTION HEADER */}
 
         <div
           className="
@@ -205,9 +204,7 @@ const FinancialManagement = () => {
           </motion.div>
         </div>
 
-        {/* ===================================================
-            MAIN CONTENT
-        ==================================================== */}
+        {/* MAIN CONTENT */}
 
         <div
           className="
@@ -222,9 +219,7 @@ const FinancialManagement = () => {
             lg:gap-14
           "
         >
-          {/* =================================================
-              LEFT CONTENT
-          ================================================== */}
+          {/* LEFT CONTENT */}
 
           <div className="order-2 lg:order-1">
             <motion.div
@@ -257,7 +252,7 @@ const FinancialManagement = () => {
                 </span>
               </div>
 
-              {/* MAIN CONTENT HEADING */}
+              {/* MAIN HEADING */}
 
               <h3
                 className="
@@ -321,9 +316,7 @@ const FinancialManagement = () => {
                 </p>
               </div>
 
-              {/* =================================================
-                  SERVICE POINTS
-              ================================================== */}
+              {/* SERVICE POINTS */}
 
               <div
                 className="
@@ -357,8 +350,7 @@ const FinancialManagement = () => {
                         amount: 0.3,
                       }}
                       transition={{
-                        delay:
-                          0.2 + index * 0.08,
+                        delay: 0.2 + index * 0.08,
                         duration: 0.5,
                       }}
                       whileHover={{
@@ -456,8 +448,10 @@ const FinancialManagement = () => {
                 }}
                 className="mt-6"
               >
-                <button
-                  type="button"
+                {/* UPDATED LINK */}
+
+                <Link
+                  to="/services"
                   className="
                     group
                     inline-flex
@@ -494,14 +488,12 @@ const FinancialManagement = () => {
                       group-hover:translate-x-1
                     "
                   />
-                </button>
+                </Link>
               </motion.div>
             </motion.div>
           </div>
 
-          {/* =================================================
-              RIGHT IMAGE
-          ================================================== */}
+          {/* RIGHT IMAGE */}
 
           <motion.div
             initial={{
