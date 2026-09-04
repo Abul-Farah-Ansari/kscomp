@@ -1,31 +1,215 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { Icon } from "@iconify/react";
+
+/* =========================================
+   CATEGORY BACKGROUND IMAGES
+========================================= */
 
 const categoryImages = {
   "taxation-services":
-    "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=500&q=80",
+    "/images/services/taxation.jpg",
 
   "accounting-services":
-    "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=500&q=80",
+    "/images/services/accounting.jpg",
 
   "registration-services":
-    "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=500&q=80",
+    "/images/services/registration.jpg",
 
   "hr-compliance-services":
-    "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=500&q=80",
+    "/images/services/hr.jpg",
 
   "other-compliance":
-    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=80",
+    "/images/services/compliance.jpg",
 
   "government-documentation":
-    "https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=500&q=80",
+    "/images/services/documentation.jpg",
 
   "insurance-services":
-    "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=500&q=80",
+    "/images/services/insurance.jpg",
 
   "finance-services":
-    "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=500&q=80",
+    "/images/services/finance.jpg",
 };
+
+
+/* =========================================
+   INDIVIDUAL SERVICE ICONS
+========================================= */
+
+const serviceIcons = {
+  /* ================= TAXATION ================= */
+
+  "Income Tax Return (ITR)":
+    "mdi:file-document-check-outline",
+
+  "GST Registration":
+    "mdi:file-percent-outline",
+
+  "GST Return Filing":
+    "mdi:receipt-text-check-outline",
+
+  "TDS Return Filing":
+    "mdi:calculator-variant-outline",
+
+  "TCS Return Filing":
+    "mdi:cash-check",
+
+  "EPF Return Filing":
+    "mdi:account-cash-outline",
+
+  "ESIC Return Filing":
+    "mdi:medical-bag",
+
+
+  /* ================= ACCOUNTING ================= */
+
+  Bookkeeping:
+    "mdi:book-open-outline",
+
+  "Banking Entry":
+    "mdi:bank-outline",
+
+  "Accounts Receivable":
+    "mdi:cash-plus",
+
+  "Accounts Payable":
+    "mdi:cash-minus",
+
+  "Sales Invoice":
+    "mdi:receipt-text-outline",
+
+  "Credit Note":
+    "mdi:note-edit-outline",
+
+  "Purchase Invoice":
+    "mdi:cart-outline",
+
+  "Debit Note":
+    "mdi:note-minus-outline",
+
+  "Profit & Loss Account":
+    "mdi:chart-line",
+
+  "Balance Sheet":
+    "mdi:scale-balance",
+
+
+  /* ================= REGISTRATION ================= */
+
+  "Company Registration":
+    "mdi:office-building-outline",
+
+  "Proprietorship Firm Registration":
+    "mdi:store-outline",
+
+  "Partnership Firm Registration":
+    "mdi:handshake-outline",
+
+  "Private Limited Company":
+    "mdi:domain",
+
+  "LLP Registration":
+    "mdi:domain-plus",
+
+  "One Person Company (OPC)":
+    "mdi:account-tie-outline",
+
+  "UDYAM / MSME Registration":
+    "mdi:store-check-outline",
+
+  "FSSAI / Food License":
+    "mdi:food-outline",
+
+  "Import Export Code (IEC)":
+    "mdi:swap-horizontal-bold",
+
+  "Trademark Registration":
+    "mdi:trademark",
+
+
+  /* ================= HR COMPLIANCE ================= */
+
+  "Salary Sheet & Salary Slip":
+    "mdi:cash-multiple",
+
+  "ESI & EPF Compliance":
+    "mdi:shield-account-outline",
+
+  "HR Compliance Forms":
+    "mdi:clipboard-text-outline",
+
+
+  /* ================= OTHER COMPLIANCE ================= */
+
+  "15CA & 15CB for Foreign Transactions":
+    "mdi:currency-usd",
+
+  "Project Report for Loan / Cash Credit":
+    "mdi:file-chart-outline",
+
+
+  /* ================= GOVERNMENT ================= */
+
+  "PAN Card (New / Correction)":
+    "mdi:card-account-details-outline",
+
+  "TAN Card (New / Correction)":
+    "mdi:card-text-outline",
+
+  "Digital Signature Certificate (DSC)":
+    "mdi:certificate-outline",
+
+  "Passport Apply Online":
+    "mdi:passport",
+
+  "PAN-Aadhaar Linking":
+    "mdi:link-variant",
+
+
+  /* ================= INSURANCE ================= */
+
+  "Vehicle Insurance":
+    "mdi:car-shield",
+
+  "Health Insurance":
+    "mdi:heart-pulse",
+
+  "Life Insurance":
+    "mdi:account-heart-outline",
+
+  "Marine Insurance":
+    "mdi:ferry",
+
+  "Home / Property Insurance":
+    "mdi:home-shield-outline",
+
+
+  /* ================= FINANCE ================= */
+
+  "Saving Account":
+    "mdi:bank-outline",
+
+  "Personal Loan":
+    "mdi:account-cash-outline",
+
+  "Business Loan":
+    "mdi:briefcase-check-outline",
+
+  "Home Loan":
+    "mdi:home-currency-usd",
+
+  "LAP Loan":
+    "mdi:home-lock-outline",
+
+  "Credit Card":
+    "mdi:credit-card-outline",
+};
+
+
+/* =========================================
+   SERVICE SECTION
+========================================= */
 
 const ServiceSection = ({
   category,
@@ -38,20 +222,37 @@ const ServiceSection = ({
     <section
       id={category.id}
       className={`scroll-mt-24 px-5 py-20 sm:px-8 sm:py-24 ${
-        dark ? "bg-[#102b29]" : "bg-[#f3f1ec]"
+        dark
+          ? "bg-[#102b29]"
+          : "bg-[#f3f1ec]"
       }`}
     >
       <div className="mx-auto max-w-7xl">
+
         <div className="grid gap-12 lg:grid-cols-[0.65fr_1.35fr]">
-          {/* LEFT CONTENT */}
+
+          {/* =================================
+              LEFT CONTENT
+          ================================= */}
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.6,
+            }}
             className="lg:sticky lg:top-28 lg:self-start"
           >
+
             <div
               className={`border-l-2 pl-6 ${
                 dark
@@ -59,6 +260,9 @@ const ServiceSection = ({
                   : "border-[#102b29]/25"
               }`}
             >
+
+              {/* CATEGORY LABEL */}
+
               <span
                 className={`text-xs font-semibold tracking-[0.3em] ${
                   dark
@@ -69,13 +273,21 @@ const ServiceSection = ({
                 CATEGORY {category.number}
               </span>
 
+
+              {/* CATEGORY TITLE */}
+
               <h2
                 className={`mt-5 text-4xl font-bold leading-tight tracking-tight sm:text-5xl ${
-                  dark ? "text-white" : "text-[#102b29]"
+                  dark
+                    ? "text-white"
+                    : "text-[#102b29]"
                 }`}
               >
                 {category.category}
               </h2>
+
+
+              {/* DESCRIPTION */}
 
               <p
                 className={`mt-6 max-w-md text-base leading-8 ${
@@ -86,7 +298,11 @@ const ServiceSection = ({
               >
                 {category.shortDescription}
               </p>
+
             </div>
+
+
+            {/* BOTTOM NOTE */}
 
             <div
               className={`mt-10 flex items-center gap-4 text-sm ${
@@ -95,6 +311,7 @@ const ServiceSection = ({
                   : "text-[#102b29]/45"
               }`}
             >
+
               <span
                 className={`h-px w-12 ${
                   dark
@@ -104,116 +321,190 @@ const ServiceSection = ({
               />
 
               Click a service to know more
+
             </div>
+
           </motion.div>
 
-          {/* SERVICE CARDS */}
+
+          {/* =================================
+              SERVICE CARDS
+          ================================= */}
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {category.services.map((service, index) => (
-              <motion.button
-                key={service.name}
-                type="button"
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.04,
-                }}
-                onClick={() =>
-                  onServiceClick({
-                    ...service,
-                    categoryName: category.category,
-                  })
-                }
-                className={`group relative aspect-square overflow-hidden border p-6 text-left transition duration-300 ${
-                  dark
-                    ? "border-white/10 bg-white/[0.035] hover:bg-white/[0.07]"
-                    : "border-[#102b29]/10 bg-white hover:border-[#102b29]/25"
-                }`}
-              >
-                {/* Small Background Image */}
 
-                <div
-                  className={`absolute bottom-0 right-0 h-[48%] w-[55%] transition duration-500 ${
-                    dark
-                      ? "opacity-[0.08] group-hover:opacity-[0.14]"
-                      : "opacity-[0.07] group-hover:opacity-[0.12]"
-                  }`}
-                  style={{
-                    backgroundImage: `url(${image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
+            {category.services.map((service, index) => {
+
+              const serviceIcon =
+                serviceIcons[service.name] ||
+                "mdi:briefcase-outline";
+
+              return (
+                <motion.button
+                  key={service.name}
+                  type="button"
+
+                  initial={{
+                    opacity: 0,
+                    y: 25,
                   }}
-                />
 
-                {/* Gradient Overlay */}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
 
-                <div
-                  className={`absolute inset-0 ${
+                  viewport={{
+                    once: true,
+                  }}
+
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.04,
+                  }}
+
+                  onClick={() =>
+                    onServiceClick({
+                      ...service,
+                      categoryName:
+                        category.category,
+                    })
+                  }
+
+                  className={`group relative aspect-square overflow-hidden border p-6 text-left transition duration-300 ${
                     dark
-                      ? "bg-gradient-to-t from-[#102b29] via-[#102b29]/95 to-transparent"
-                      : "bg-gradient-to-t from-white via-white/90 to-transparent"
-                  }`}
-                />
-
-                {/* Card Number */}
-
-                <span
-                  className={`relative z-10 text-xs font-semibold tracking-[0.2em] ${
-                    dark
-                      ? "text-white/30"
-                      : "text-[#102b29]/30"
+                      ? "border-white/10 bg-white/[0.035] hover:bg-white/[0.07]"
+                      : "border-[#102b29]/10 bg-white hover:border-[#102b29]/25"
                   }`}
                 >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
 
-                {/* Content */}
-
-                <div className="relative z-10 flex h-[calc(100%-20px)] flex-col justify-end">
-                  <h3
-                    className={`text-xl font-semibold leading-snug ${
-                      dark
-                        ? "text-white"
-                        : "text-[#102b29]"
-                    }`}
-                  >
-                    {service.name}
-                  </h3>
+                  {/* BACKGROUND IMAGE */}
 
                   <div
-                    className={`mt-5 flex items-center justify-between border-t pt-4 ${
+                    className={`absolute bottom-0 right-0 h-[48%] w-[55%] transition duration-500 ${
                       dark
-                        ? "border-white/10"
-                        : "border-[#102b29]/10"
+                        ? "opacity-[0.08] group-hover:opacity-[0.14]"
+                        : "opacity-[0.07] group-hover:opacity-[0.12]"
+                    }`}
+                    style={{
+                      backgroundImage:
+                        `url(${image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition:
+                        "center",
+                    }}
+                  />
+
+
+                  {/* GRADIENT OVERLAY */}
+
+                  <div
+                    className={`absolute inset-0 ${
+                      dark
+                        ? "bg-gradient-to-t from-[#102b29] via-[#102b29]/95 to-transparent"
+                        : "bg-gradient-to-t from-white via-white/90 to-transparent"
+                    }`}
+                  />
+
+
+                  {/* CARD NUMBER */}
+
+                  <span
+                    className={`relative z-10 text-xs font-semibold tracking-[0.2em] ${
+                      dark
+                        ? "text-white/30"
+                        : "text-[#102b29]/30"
                     }`}
                   >
-                    <span
-                      className={`text-xs font-medium ${
-                        dark
-                          ? "text-white/45"
-                          : "text-[#102b29]/45"
-                      }`}
-                    >
-                      VIEW DETAILS
-                    </span>
+                    {String(index + 1).padStart(
+                      2,
+                      "0"
+                    )}
+                  </span>
 
-                    <ArrowUpRight
-                      size={18}
-                      className={`transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 ${
+
+                  {/* =================================
+                      ICON
+                  ================================= */}
+
+                  <div
+                    className={`absolute right-6 top-14 z-10 transition-all duration-300 group-hover:-translate-y-1 ${
+                      dark
+                        ? "text-[#c7a45d]"
+                        : "text-[#9b7a36]"
+                    }`}
+                  >
+
+                    <Icon
+                      icon={serviceIcon}
+                      width="58"
+                      height="58"
+                    />
+
+                  </div>
+
+
+                  {/* =================================
+                      CONTENT
+                  ================================= */}
+
+                  <div className="relative z-10 flex h-[calc(100%-20px)] flex-col justify-end">
+
+                    {/* SERVICE NAME */}
+
+                    <h3
+                      className={`text-xl font-semibold leading-snug ${
                         dark
                           ? "text-white"
                           : "text-[#102b29]"
                       }`}
-                    />
+                    >
+                      {service.name}
+                    </h3>
+
+
+                    {/* BOTTOM ACTION */}
+
+                    <div
+                      className={`mt-5 flex items-center justify-between border-t pt-4 ${
+                        dark
+                          ? "border-white/10"
+                          : "border-[#102b29]/10"
+                      }`}
+                    >
+
+                      <span
+                        className={`text-xs font-medium ${
+                          dark
+                            ? "text-white/45"
+                            : "text-[#102b29]/45"
+                        }`}
+                      >
+                        VIEW DETAILS
+                      </span>
+
+
+                      <ArrowUpRight
+                        size={18}
+                        className={`transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 ${
+                          dark
+                            ? "text-white"
+                            : "text-[#102b29]"
+                        }`}
+                      />
+
+                    </div>
+
                   </div>
-                </div>
-              </motion.button>
-            ))}
+
+                </motion.button>
+              );
+            })}
+
           </div>
+
         </div>
+
       </div>
     </section>
   );

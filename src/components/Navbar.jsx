@@ -15,7 +15,6 @@ import KS from "../assets/WhatsApp Image 2026-08-30 at 19.16.22 (1).jpeg";
 
 import ScheduleAppointmentModal from "./ScheduleAppointmentModal";
 
-
 const menuItems = [
   {
     name: "Home",
@@ -39,7 +38,6 @@ const menuItems = [
   },
 ];
 
-
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -50,7 +48,6 @@ const Navbar = () => {
 
   // Schedule Appointment Modal
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,19 +74,16 @@ const Navbar = () => {
     };
   }, []);
 
-
   const toggleNavbar = () => {
     setNavbarOpen((prev) => !prev);
     setMobileMenu(false);
     setResourceOpen(false);
   };
 
-
   const closeMobileMenu = () => {
     setMobileMenu(false);
     setMobileResourceOpen(false);
   };
-
 
   return (
     <>
@@ -136,12 +130,8 @@ const Navbar = () => {
           }
         `}
       >
-
         <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-8">
-
           <div className="flex h-[76px] items-center justify-between sm:h-[84px] lg:h-[90px]">
-
-
             {/* =================================================
                 BRAND / LOGO
             ================================================= */}
@@ -151,7 +141,6 @@ const Navbar = () => {
               onClick={closeMobileMenu}
               className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3"
             >
-
               {/* LOGO */}
 
               <div
@@ -172,7 +161,6 @@ const Navbar = () => {
                   lg:w-[58px]
                 "
               >
-
                 <img
                   src={KS}
                   alt="KS & Company Logo"
@@ -183,14 +171,11 @@ const Navbar = () => {
                     p-1
                   "
                 />
-
               </div>
-
 
               {/* COMPANY NAME */}
 
               <div className="ml-1 flex min-w-0 flex-col">
-
                 <h1
                   className="
                     whitespace-nowrap
@@ -204,7 +189,6 @@ const Navbar = () => {
                 >
                   KS &amp; COMPANY
                 </h1>
-
 
                 <span
                   className="
@@ -221,24 +205,17 @@ const Navbar = () => {
                 >
                   CHARTERED ACCOUNTANTS
                 </span>
-
               </div>
-
             </NavLink>
-
-
 
             {/* =================================================
                 DESKTOP MENU
             ================================================= */}
 
             <div className="hidden h-full shrink-0 items-center lg:flex">
-
-
               {/* NORMAL MENU ITEMS */}
 
               {menuItems.slice(0, 4).map((item) => (
-
                 <NavLink
                   key={item.name}
                   to={item.path}
@@ -266,9 +243,7 @@ const Navbar = () => {
                     }
                   `}
                 >
-
                   <span className="flex items-center gap-1">
-
                     {item.name}
 
                     {item.name === "Our Services" && (
@@ -276,9 +251,7 @@ const Navbar = () => {
                         +
                       </span>
                     )}
-
                   </span>
-
 
                   {/* ACTIVE + HOVER LINE */}
 
@@ -298,12 +271,8 @@ const Navbar = () => {
                       group-hover:scale-x-100
                     "
                   />
-
                 </NavLink>
-
               ))}
-
-
 
               {/* =================================================
                   RESOURCES DROPDOWN
@@ -314,7 +283,6 @@ const Navbar = () => {
                 onMouseEnter={() => setResourceOpen(true)}
                 onMouseLeave={() => setResourceOpen(false)}
               >
-
                 <button
                   type="button"
                   onClick={() => setResourceOpen(!resourceOpen)}
@@ -338,7 +306,6 @@ const Navbar = () => {
                     xl:text-[19px]
                   "
                 >
-
                   Resources
 
                   <ChevronDown
@@ -353,7 +320,6 @@ const Navbar = () => {
                       }
                     `}
                   />
-
 
                   {/* HOVER LINE */}
 
@@ -373,10 +339,7 @@ const Navbar = () => {
                       group-hover:scale-x-100
                     "
                   />
-
                 </button>
-
-
 
                 {/* DROPDOWN MENU */}
 
@@ -416,8 +379,6 @@ const Navbar = () => {
                     }
                   `}
                 >
-
-
                   {/* PRIVACY POLICY */}
 
                   <NavLink
@@ -442,7 +403,6 @@ const Navbar = () => {
                       }
                     `}
                   >
-
                     <div
                       className="
                         flex
@@ -462,9 +422,7 @@ const Navbar = () => {
                       <ShieldCheck size={18} />
                     </div>
 
-
                     <div>
-
                       <p className="text-[15px] font-semibold text-white">
                         Privacy Policy
                       </p>
@@ -472,12 +430,8 @@ const Navbar = () => {
                       <p className="mt-1 text-[11px] text-white/50">
                         Information & privacy guidelines
                       </p>
-
                     </div>
-
                   </NavLink>
-
-
 
                   {/* COMPANY DOCUMENTS */}
 
@@ -501,7 +455,6 @@ const Navbar = () => {
                       }
                     `}
                   >
-
                     <div
                       className="
                         flex
@@ -521,9 +474,7 @@ const Navbar = () => {
                       <FileText size={18} />
                     </div>
 
-
                     <div>
-
                       <p className="text-[15px] font-semibold text-white">
                         Company's Documents
                       </p>
@@ -531,25 +482,17 @@ const Navbar = () => {
                       <p className="mt-1 text-[11px] text-white/50">
                         Important company resources
                       </p>
-
                     </div>
-
                   </NavLink>
-
                 </div>
-
               </div>
-
-
 
               {/* DIVIDER */}
 
               <div className="mx-2 h-[38px] w-px bg-white/20" />
 
-
-
               {/* =================================================
-                  SCHEDULE APPOINTMENT - OPENS MODAL
+                  SCHEDULE APPOINTMENT
               ================================================= */}
 
               <button
@@ -572,14 +515,10 @@ const Navbar = () => {
                   xl:text-[19px]
                 "
               >
-
                 <div className="relative shrink-0">
-
-
                   {/* PULSE DOT */}
 
                   <span className="absolute -right-2 -top-2 flex h-4 w-4">
-
                     <span
                       className="
                         absolute
@@ -606,28 +545,20 @@ const Navbar = () => {
                         shadow-[0_0_12px_rgba(143,206,98,0.9)]
                       "
                     />
-
                   </span>
-
 
                   <MessageSquare
                     size={22}
                     strokeWidth={1.5}
                     className="text-[#6DA8B8]"
                   />
-
                 </div>
-
 
                 <span>
                   Schedule Appointment
                 </span>
-
               </button>
-
             </div>
-
-
 
             {/* =================================================
                 MOBILE MENU BUTTON
@@ -658,25 +589,19 @@ const Navbar = () => {
                 lg:hidden
               "
             >
-
               {mobileMenu ? (
                 <X size={21} />
               ) : (
                 <Menu size={21} />
               )}
-
             </button>
-
           </div>
-
-
 
           {/* =================================================
               MOBILE MENU
           ================================================= */}
 
           {mobileMenu && (
-
             <div
               className="
                 w-full
@@ -688,14 +613,10 @@ const Navbar = () => {
                 lg:hidden
               "
             >
-
               <div className="w-full">
-
-
                 {/* NORMAL MOBILE ITEMS */}
 
                 {menuItems.slice(0, 4).map((item) => (
-
                   <NavLink
                     key={item.name}
                     to={item.path}
@@ -725,9 +646,7 @@ const Navbar = () => {
                       }
                     `}
                   >
-
                     <span className="flex items-center gap-1">
-
                       {item.name}
 
                       {item.name === "Our Services" && (
@@ -735,14 +654,9 @@ const Navbar = () => {
                           +
                         </span>
                       )}
-
                     </span>
-
                   </NavLink>
-
                 ))}
-
-
 
                 {/* =================================================
                     MOBILE RESOURCES
@@ -751,7 +665,9 @@ const Navbar = () => {
                 <button
                   type="button"
                   onClick={() =>
-                    setMobileResourceOpen(!mobileResourceOpen)
+                    setMobileResourceOpen(
+                      !mobileResourceOpen
+                    )
                   }
                   className="
                     flex
@@ -771,7 +687,6 @@ const Navbar = () => {
                     sm:text-[14px]
                   "
                 >
-
                   <span>
                     Resources
                   </span>
@@ -788,16 +703,10 @@ const Navbar = () => {
                       }
                     `}
                   />
-
                 </button>
 
-
-
                 {mobileResourceOpen && (
-
                   <div className="border-b border-white/10 bg-white/[0.03]">
-
-
                     <NavLink
                       to="/privacy-policy"
                       onClick={closeMobileMenu}
@@ -816,17 +725,13 @@ const Navbar = () => {
                         hover:text-white
                       "
                     >
-
                       <ShieldCheck
                         size={16}
                         className="text-white/70"
                       />
 
                       Privacy Policy
-
                     </NavLink>
-
-
 
                     <NavLink
                       to="/company-documents"
@@ -844,21 +749,15 @@ const Navbar = () => {
                         hover:text-white
                       "
                     >
-
                       <FileText
                         size={16}
                         className="text-white/70"
                       />
 
                       Company's Documents
-
                     </NavLink>
-
                   </div>
-
                 )}
-
-
 
                 {/* CAREERS */}
 
@@ -890,10 +789,7 @@ const Navbar = () => {
                 >
                   Careers
                 </NavLink>
-
               </div>
-
-
 
               {/* =================================================
                   MOBILE SCHEDULE APPOINTMENT
@@ -926,11 +822,8 @@ const Navbar = () => {
                   sm:text-[14px]
                 "
               >
-
                 <div className="relative">
-
                   <span className="absolute -right-2 -top-2 flex h-3.5 w-3.5">
-
                     <span
                       className="
                         absolute
@@ -955,38 +848,29 @@ const Navbar = () => {
                         shadow-[0_0_10px_rgba(117,180,60,0.9)]
                       "
                     />
-
                   </span>
-
 
                   <MessageSquare
                     size={17}
                     strokeWidth={1.5}
                   />
-
                 </div>
 
-
                 Schedule Appointment
-
               </button>
-
             </div>
-
           )}
-
         </div>
-
       </nav>
-
-
 
       {/* =====================================================
           RIGHT CORNER TOGGLE
+          
+          DESKTOP ONLY
+          Hidden below lg breakpoint
       ====================================================== */}
 
       {hasScrolled && (
-
         <button
           type="button"
           onClick={toggleNavbar}
@@ -1001,9 +885,11 @@ const Navbar = () => {
             top-0
             z-[1200]
 
-            flex
-            h-[52px]
-            w-[58px]
+            hidden
+            lg:flex
+
+            h-[62px]
+            w-[70px]
 
             items-center
             justify-center
@@ -1025,17 +911,10 @@ const Navbar = () => {
             transition-all
             duration-300
 
-            hover:w-[66px]
+            hover:w-[76px]
             hover:bg-[#326844]
-
-            sm:h-[58px]
-            sm:w-[64px]
-
-            lg:h-[62px]
-            lg:w-[70px]
           "
         >
-
           <span
             className="
               absolute
@@ -1055,28 +934,19 @@ const Navbar = () => {
             "
           />
 
-
           {navbarOpen ? (
-
             <ChevronUp
               size={22}
               strokeWidth={1.8}
             />
-
           ) : (
-
             <ChevronDown
               size={22}
               strokeWidth={1.8}
             />
-
           )}
-
         </button>
-
       )}
-
-
 
       {/* =====================================================
           SCHEDULE APPOINTMENT MODAL
@@ -1086,10 +956,8 @@ const Navbar = () => {
         isOpen={isAppointmentOpen}
         onClose={() => setIsAppointmentOpen(false)}
       />
-
     </>
   );
 };
-
 
 export default Navbar;

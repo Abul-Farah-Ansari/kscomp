@@ -1,46 +1,130 @@
 import React, { useState } from "react";
-import { Send, Mail, Phone, MessageCircle } from "lucide-react";
+import {
+  Send,
+  Mail,
+  Phone,
+  MessageCircle,
+  CheckCircle2,
+  AlertCircle,
+} from "lucide-react";
 import { motion } from "framer-motion";
 
+const initialFormData = {
+  name: "",
+  email: "",
+  phone: "",
+  service: "",
+  message: "",
+};
+
 const QueryForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    service: "",
+  const [formData, setFormData] = useState(initialFormData);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState({
+    type: "",
     message: "",
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    // Remove old status when user starts editing again
+    if (status.message) {
+      setStatus({
+        type: "",
+        message: "",
+      });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Query submitted:", formData);
+    if (isSubmitting) return;
 
-    // Connect your backend / EmailJS / API here
+    setIsSubmitting(true);
 
-    alert("Thank you! Your query has been submitted.");
-
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      service: "",
+    setStatus({
+      type: "",
       message: "",
     });
+
+    try {
+      /*
+       * LOCAL BACKEND
+       *
+       * Your backend is currently running on:
+       * http://localhost:5000
+       *
+       * Backend endpoint:
+       * POST /api/contact
+       */
+
+      const response = await fetch(
+        "http://localhost:5000/api/contact",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            phone: formData.phone.trim(),
+            service: formData.service,
+            message: formData.message.trim(),
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(
+          data.message ||
+            "Unable to send your enquiry. Please try again."
+        );
+      }
+
+      // Success
+      setStatus({
+        type: "success",
+        message:
+          data.message ||
+          "Your enquiry has been sent successfully.",
+      });
+
+      // Clear form
+      setFormData(initialFormData);
+    } catch (error) {
+      console.error("Query form error:", error);
+
+      setStatus({
+        type: "error",
+        message:
+          error.message ||
+          "Something went wrong. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section className="relative w-full overflow-hidden bg-[#f4f7f5] py-16 sm:py-20 lg:py-24">
+
       {/* ================= BACKGROUND ================= */}
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
+
         <div
           className="
             absolute
@@ -67,32 +151,54 @@ const QueryForm = () => {
             border-[#326844]/10
           "
         />
+
       </div>
 
       {/* ================= CONTENT ================= */}
 
       <div className="relative z-10 mx-auto w-full max-w-[1350px] px-5 sm:px-8 lg:px-12 xl:px-16">
+
         <div className="grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
 
           {/* ================= LEFT CONTENT ================= */}
 
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            initial={{
+              opacity: 0,
+              x: -30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
             transition={{
               duration: 0.7,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
+
             {/* LABEL */}
 
             <div className="mb-5 flex items-center gap-3">
+
               <span className="h-px w-10 bg-[#326844]" />
 
-              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#326844]">
+              <span
+                className="
+                  text-[10px]
+                  font-semibold
+                  uppercase
+                  tracking-[0.3em]
+                  text-[#326844]
+                "
+              >
                 Get In Touch
               </span>
+
             </div>
 
             {/* HEADING */}
@@ -105,7 +211,6 @@ const QueryForm = () => {
                 leading-[1.1]
                 tracking-tight
                 text-[#1e2d30]
-
                 sm:text-[52px]
                 lg:text-[58px]
               "
@@ -119,10 +224,18 @@ const QueryForm = () => {
 
             {/* DESCRIPTION */}
 
-            <p className="mt-6 max-w-[430px] text-sm leading-7 text-[#687779]">
-              Share your query with us and our professional team will
-              understand your requirements and get back to you with the
-              right guidance.
+            <p
+              className="
+                mt-6
+                max-w-[430px]
+                text-sm
+                leading-7
+                text-[#687779]
+              "
+            >
+              Share your query with us and our professional
+              team will understand your requirements and get
+              back to you with the right guidance.
             </p>
 
             {/* CONTACT OPTIONS */}
@@ -132,6 +245,7 @@ const QueryForm = () => {
               {/* EMAIL */}
 
               <div className="flex items-center gap-4">
+
                 <div
                   className="
                     flex
@@ -145,26 +259,45 @@ const QueryForm = () => {
                     text-[#326844]
                   "
                 >
-                  <Mail size={18} strokeWidth={1.7} />
+                  <Mail
+                    size={18}
+                    strokeWidth={1.7}
+                  />
                 </div>
 
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8a9897]">
+
+                  <p
+                    className="
+                      text-[10px]
+                      font-semibold
+                      uppercase
+                      tracking-[0.16em]
+                      text-[#8a9897]
+                    "
+                  >
                     Email Us
                   </p>
 
-                  <a
-                    href="mailto:info@ks-company.in"
-                    className="mt-1 block text-sm font-medium text-[#334544] transition-colors hover:text-[#326844]"
+                  <p
+                    className="
+                      mt-1
+                      text-sm
+                      font-medium
+                      text-[#334544]
+                    "
                   >
                     info@ks-company.in
-                  </a>
+                  </p>
+
                 </div>
+
               </div>
 
               {/* PHONE */}
 
               <div className="flex items-center gap-4">
+
                 <div
                   className="
                     flex
@@ -178,26 +311,45 @@ const QueryForm = () => {
                     text-[#285b68]
                   "
                 >
-                  <Phone size={18} strokeWidth={1.7} />
+                  <Phone
+                    size={18}
+                    strokeWidth={1.7}
+                  />
                 </div>
 
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8a9897]">
+
+                  <p
+                    className="
+                      text-[10px]
+                      font-semibold
+                      uppercase
+                      tracking-[0.16em]
+                      text-[#8a9897]
+                    "
+                  >
                     Call Us
                   </p>
 
-                  <a
-                    href="tel:+917004946933"
-                    className="mt-1 block text-sm font-medium text-[#334544] transition-colors hover:text-[#326844]"
+                  <p
+                    className="
+                      mt-1
+                      text-sm
+                      font-medium
+                      text-[#334544]
+                    "
                   >
-                    +91 7004946933
-                  </a>
+                    +91 70049 46933
+                  </p>
+
                 </div>
+
               </div>
 
               {/* RESPONSE */}
 
               <div className="flex items-center gap-4">
+
                 <div
                   className="
                     flex
@@ -211,29 +363,60 @@ const QueryForm = () => {
                     text-[#326844]
                   "
                 >
-                  <MessageCircle size={18} strokeWidth={1.7} />
+                  <MessageCircle
+                    size={18}
+                    strokeWidth={1.7}
+                  />
                 </div>
 
                 <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8a9897]">
+
+                  <p
+                    className="
+                      text-[10px]
+                      font-semibold
+                      uppercase
+                      tracking-[0.16em]
+                      text-[#8a9897]
+                    "
+                  >
                     Quick Response
                   </p>
 
-                  <p className="mt-1 text-sm font-medium text-[#334544]">
+                  <p
+                    className="
+                      mt-1
+                      text-sm
+                      font-medium
+                      text-[#334544]
+                    "
+                  >
                     We'll get back to you shortly
                   </p>
+
                 </div>
+
               </div>
 
             </div>
+
           </motion.div>
 
           {/* ================= FORM ================= */}
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
             transition={{
               duration: 0.7,
               delay: 0.1,
@@ -245,13 +428,20 @@ const QueryForm = () => {
               pt-2
             "
           >
-            <form onSubmit={handleSubmit} className="pt-5">
+
+            <form
+              onSubmit={handleSubmit}
+              className="pt-5"
+            >
 
               {/* NAME + EMAIL */}
 
               <div className="grid gap-6 sm:grid-cols-2">
 
+                {/* NAME */}
+
                 <div className="relative">
+
                   <label
                     htmlFor="name"
                     className="
@@ -274,6 +464,7 @@ const QueryForm = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    autoComplete="name"
                     placeholder="Enter your name"
                     className="
                       w-full
@@ -292,9 +483,13 @@ const QueryForm = () => {
                       focus:border-[#326844]
                     "
                   />
+
                 </div>
 
+                {/* EMAIL */}
+
                 <div className="relative">
+
                   <label
                     htmlFor="email"
                     className="
@@ -317,6 +512,7 @@ const QueryForm = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    autoComplete="email"
                     placeholder="Enter your email"
                     className="
                       w-full
@@ -335,6 +531,7 @@ const QueryForm = () => {
                       focus:border-[#326844]
                     "
                   />
+
                 </div>
 
               </div>
@@ -343,7 +540,10 @@ const QueryForm = () => {
 
               <div className="mt-7 grid gap-6 sm:grid-cols-2">
 
+                {/* PHONE */}
+
                 <div>
+
                   <label
                     htmlFor="phone"
                     className="
@@ -365,6 +565,7 @@ const QueryForm = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
+                    autoComplete="tel"
                     placeholder="Enter phone number"
                     className="
                       w-full
@@ -383,9 +584,13 @@ const QueryForm = () => {
                       focus:border-[#326844]
                     "
                   />
+
                 </div>
 
+                {/* SERVICE */}
+
                 <div>
+
                   <label
                     htmlFor="service"
                     className="
@@ -423,6 +628,7 @@ const QueryForm = () => {
                       focus:border-[#326844]
                     "
                   >
+
                     <option value="">
                       Select a service
                     </option>
@@ -450,7 +656,9 @@ const QueryForm = () => {
                     <option value="Other">
                       Other
                     </option>
+
                   </select>
+
                 </div>
 
               </div>
@@ -458,6 +666,7 @@ const QueryForm = () => {
               {/* MESSAGE */}
 
               <div className="mt-8">
+
                 <label
                   htmlFor="message"
                   className="
@@ -500,19 +709,86 @@ const QueryForm = () => {
                     focus:border-[#326844]
                   "
                 />
+
               </div>
+
+              {/* ================= STATUS MESSAGE ================= */}
+
+              {status.message && (
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    y: 10,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  className={`
+                    mt-6
+                    flex
+                    items-start
+                    gap-3
+                    rounded-xl
+                    border
+                    px-4
+                    py-3
+                    text-sm
+                    ${
+                      status.type === "success"
+                        ? "border-[#326844]/20 bg-[#326844]/[0.06] text-[#326844]"
+                        : "border-red-200 bg-red-50 text-red-600"
+                    }
+                  `}
+                >
+
+                  {status.type === "success" ? (
+                    <CheckCircle2
+                      size={19}
+                      className="mt-0.5 shrink-0"
+                    />
+                  ) : (
+                    <AlertCircle
+                      size={19}
+                      className="mt-0.5 shrink-0"
+                    />
+                  )}
+
+                  <span>
+                    {status.message}
+                  </span>
+
+                </motion.div>
+              )}
 
               {/* SUBMIT */}
 
-              <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div
+                className="
+                  mt-9
+                  flex
+                  flex-col
+                  gap-4
+                  sm:flex-row
+                  sm:items-center
+                  sm:justify-between
+                "
+              >
 
-                <p className="text-[11px] leading-5 text-[#899694]">
-                  Your information will be handled professionally and
-                  securely.
+                <p
+                  className="
+                    text-[11px]
+                    leading-5
+                    text-[#899694]
+                  "
+                >
+                  Your information will be handled
+                  professionally and securely.
                 </p>
 
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   className="
                     group
                     inline-flex
@@ -535,29 +811,57 @@ const QueryForm = () => {
                     hover:-translate-y-1
                     hover:bg-[#285b68]
                     hover:shadow-[0_16px_35px_rgba(40,91,104,0.25)]
+                    disabled:cursor-not-allowed
+                    disabled:opacity-60
+                    disabled:hover:translate-y-0
                   "
                 >
-                  Send Query
 
-                  <Send
-                    size={16}
-                    strokeWidth={1.8}
-                    className="
-                      transition-transform
-                      duration-300
-                      group-hover:translate-x-1
-                      group-hover:-translate-y-1
-                    "
-                  />
+                  {isSubmitting ? (
+                    <>
+                      <span
+                        className="
+                          h-4
+                          w-4
+                          animate-spin
+                          rounded-full
+                          border-2
+                          border-white/30
+                          border-t-white
+                        "
+                      />
+
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Query
+
+                      <Send
+                        size={16}
+                        strokeWidth={1.8}
+                        className="
+                          transition-transform
+                          duration-300
+                          group-hover:translate-x-1
+                          group-hover:-translate-y-1
+                        "
+                      />
+                    </>
+                  )}
+
                 </button>
 
               </div>
 
             </form>
+
           </motion.div>
 
         </div>
+
       </div>
+
     </section>
   );
 };

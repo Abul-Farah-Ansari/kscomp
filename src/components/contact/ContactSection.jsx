@@ -21,6 +21,8 @@ import {
 import PageHero from "../PageHero";
 
 const ContactSection = () => {
+  // ================= FORM STATE =================
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -30,6 +32,10 @@ const ContactSection = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
+  // ================= FORM CHANGE =================
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,29 +44,76 @@ const ContactSection = () => {
       ...prev,
       [name]: value,
     }));
+
+    // Remove previous error when user starts correcting form
+    if (submitError) {
+      setSubmitError("");
+    }
   };
 
-  const handleSubmit = (e) => {
+  // ================= FORM SUBMIT =================
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Contact Enquiry:", formData);
+    if (submitting) return;
 
-    setSubmitted(true);
+    try {
+      setSubmitting(true);
+      setSubmitError("");
 
-    setFormData({
-      name: "",
-      phone: "",
-      email: "",
-      service: "",
-      message: "",
-    });
+      const response = await fetch(
+        "http://localhost:5000/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(
+          data.message ||
+            "Something went wrong. Please try again."
+        );
+      }
+
+      // Email successfully sent
+      setSubmitted(true);
+
+      // Clear form
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        service: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Contact form error:", error);
+
+      setSubmitError(
+        error.message ||
+          "Unable to send your enquiry. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
+  // ================= SCROLL TO FORM =================
+
   const scrollToForm = () => {
-    document.getElementById("contact-form")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    document
+      .getElementById("contact-form")
+      ?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
   };
 
   // ================= CONTACT DETAILS =================
@@ -68,33 +121,40 @@ const ContactSection = () => {
   const contactItems = [
     {
       title: "Call Us",
-      description: "Speak directly with our professional team.",
+      description:
+        "Speak directly with our professional team.",
       value: "+91 7004946933",
       icon: Phone,
       link: "tel:+917004946933",
     },
     {
       title: "Email Us",
-      description: "Send your requirements directly to us.",
+      description:
+        "Send your requirements directly to us.",
       value: "info@ks-company.in",
       icon: Mail,
       link: "mailto:info@ks-company.in",
     },
     {
       title: "Visit Us",
-      description: "Meet our team and discuss your requirements.",
-      value: "Nafees Rd, Batla House, Jamia Nagar",
+      description:
+        "Meet our team and discuss your requirements.",
+      value:
+        "Nafees Rd, Batla House, Jamia Nagar",
       icon: MapPin,
       link: "#location",
     },
     {
       title: "WhatsApp",
-      description: "Get quick assistance from our team.",
+      description:
+        "Get quick assistance from our team.",
       value: "+91 7004946933",
       icon: MessageCircle,
       link: "https://wa.me/917004946933",
     },
   ];
+
+  // ================= BENEFITS =================
 
   const benefits = [
     "Professional guidance based on your requirements",
@@ -109,17 +169,20 @@ const ContactSection = () => {
     {
       name: "LinkedIn",
       icon: FaLinkedinIn,
-      link: "http://linkedin.com/in/k-s-and-company-740506102/",
+      link:
+        "http://linkedin.com/in/k-s-and-company-740506102/",
     },
     {
       name: "Instagram",
       icon: FaInstagram,
-      link: "https://www.instagram.com/kscompany94?utm_source=qr&igsh=c3hjaDE2bDBpMXJu",
+      link:
+        "https://www.instagram.com/kscompany94?utm_source=qr&igsh=c3hjaDE2bDBpMXJu",
     },
     {
       name: "Facebook",
       icon: FaFacebookF,
-      link: "https://www.facebook.com/ksancompany?mibextid=ZbWKwL",
+      link:
+        "https://www.facebook.com/ksancompany?mibextid=ZbWKwL",
     },
   ];
 
@@ -149,6 +212,7 @@ const ContactSection = () => {
 
       <section className="relative z-10 -mt-6 pb-20 sm:-mt-8 sm:pb-24">
         <div className="mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
+
           <div className="grid border border-[#102b29]/10 bg-white sm:grid-cols-2 lg:grid-cols-4">
 
             {contactItems.map((item, index) => {
@@ -158,21 +222,33 @@ const ContactSection = () => {
                 <motion.a
                   key={item.title}
                   href={item.link}
-                  initial={{ opacity: 0, y: 25 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  initial={{
+                    opacity: 0,
+                    y: 25,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  viewport={{
+                    once: true,
+                  }}
                   transition={{
                     duration: 0.5,
                     delay: index * 0.08,
                   }}
                   className={`group p-7 transition hover:bg-[#f4f3ef] ${
-                    index !== contactItems.length - 1
+                    index !==
+                    contactItems.length - 1
                       ? "border-b border-[#102b29]/10 lg:border-b-0 lg:border-r"
                       : ""
                   }`}
                 >
                   <div className="flex h-12 w-12 items-center justify-center bg-[#102b29]">
-                    <Icon size={20} className="text-white" />
+                    <Icon
+                      size={20}
+                      className="text-white"
+                    />
                   </div>
 
                   <h3 className="mt-6 text-xl font-semibold text-[#102b29]">
@@ -205,10 +281,20 @@ const ContactSection = () => {
           {/* ================= LEFT CONTENT ================= */}
 
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            initial={{
+              opacity: 0,
+              x: -30,
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
           >
             <p className="text-xs font-semibold uppercase tracking-[5px] text-[#102b29]/45">
               Get In Touch
@@ -224,9 +310,10 @@ const ContactSection = () => {
             </h2>
 
             <p className="mt-7 max-w-lg text-base leading-8 text-[#102b29]/65">
-              Every client requirement is different. Share some details
-              about what you are looking for, and our team can better
-              understand the type of professional assistance you require.
+              Every client requirement is different. Share some
+              details about what you are looking for, and our team
+              can better understand the type of professional
+              assistance you require.
             </p>
 
             {/* ================= CONTACT DETAILS ================= */}
@@ -237,7 +324,10 @@ const ContactSection = () => {
 
               <div className="flex gap-5">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#102b29]">
-                  <Phone size={18} className="text-white" />
+                  <Phone
+                    size={18}
+                    className="text-white"
+                  />
                 </div>
 
                 <div>
@@ -258,7 +348,10 @@ const ContactSection = () => {
 
               <div className="flex gap-5">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#102b29]">
-                  <Phone size={18} className="text-white" />
+                  <Phone
+                    size={18}
+                    className="text-white"
+                  />
                 </div>
 
                 <div>
@@ -279,7 +372,10 @@ const ContactSection = () => {
 
               <div className="flex gap-5">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#102b29]">
-                  <Mail size={18} className="text-white" />
+                  <Mail
+                    size={18}
+                    className="text-white"
+                  />
                 </div>
 
                 <div>
@@ -300,7 +396,10 @@ const ContactSection = () => {
 
               <div className="flex gap-5">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#102b29]">
-                  <MapPin size={18} className="text-white" />
+                  <MapPin
+                    size={18}
+                    className="text-white"
+                  />
                 </div>
 
                 <div>
@@ -309,8 +408,9 @@ const ContactSection = () => {
                   </p>
 
                   <p className="mt-2 max-w-md text-sm font-medium leading-6 text-[#102b29]">
-                    Nafees Rd, near Hari Masjid, Block P, Batla House,
-                    Jamia Nagar, Okhla, Delhi, New Delhi, Delhi 110025
+                    Nafees Rd, near Hari Masjid, Block P,
+                    Batla House, Jamia Nagar, Okhla,
+                    Delhi, New Delhi, Delhi 110025
                   </p>
                 </div>
               </div>
@@ -319,7 +419,10 @@ const ContactSection = () => {
 
               <div className="flex gap-5">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#102b29]">
-                  <Clock size={18} className="text-white" />
+                  <Clock
+                    size={18}
+                    className="text-white"
+                  />
                 </div>
 
                 <div>
@@ -344,7 +447,10 @@ const ContactSection = () => {
 
               <div className="mt-6 space-y-4">
                 {benefits.map((benefit) => (
-                  <div key={benefit} className="flex gap-3">
+                  <div
+                    key={benefit}
+                    className="flex gap-3"
+                  >
                     <CheckCircle2
                       size={18}
                       className="mt-0.5 shrink-0 text-[#102b29]"
@@ -362,12 +468,25 @@ const ContactSection = () => {
           {/* ================= FORM ================= */}
 
           <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            initial={{
+              opacity: 0,
+              y: 35,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
             className="bg-[#102b29] p-7 sm:p-10 lg:p-12"
           >
+
+            {/* ================= SUCCESS ================= */}
+
             {submitted ? (
               <div className="flex min-h-[500px] flex-col items-center justify-center text-center">
 
@@ -386,8 +505,11 @@ const ContactSection = () => {
 
                 <button
                   type="button"
-                  onClick={() => setSubmitted(false)}
-                  className="mt-8 bg-white px-7 py-4 text-sm font-semibold text-[#102b29]"
+                  onClick={() => {
+                    setSubmitted(false);
+                    setSubmitError("");
+                  }}
+                  className="mt-8 bg-white px-7 py-4 text-sm font-semibold text-[#102b29] transition hover:bg-white/90"
                 >
                   Send Another Enquiry
                 </button>
@@ -413,17 +535,25 @@ const ContactSection = () => {
                   of your requirement.
                 </p>
 
+                {/* ================= FORM ================= */}
+
                 <form
                   onSubmit={handleSubmit}
                   className="mt-10 grid gap-6 sm:grid-cols-2"
                 >
 
+                  {/* NAME */}
+
                   <div>
-                    <label className="text-xs text-white/50">
+                    <label
+                      htmlFor="name"
+                      className="text-xs text-white/50"
+                    >
                       Full Name *
                     </label>
 
                     <input
+                      id="name"
                       type="text"
                       name="name"
                       required
@@ -434,12 +564,18 @@ const ContactSection = () => {
                     />
                   </div>
 
+                  {/* PHONE */}
+
                   <div>
-                    <label className="text-xs text-white/50">
+                    <label
+                      htmlFor="phone"
+                      className="text-xs text-white/50"
+                    >
                       Phone Number *
                     </label>
 
                     <input
+                      id="phone"
                       type="tel"
                       name="phone"
                       required
@@ -450,12 +586,18 @@ const ContactSection = () => {
                     />
                   </div>
 
+                  {/* EMAIL */}
+
                   <div className="sm:col-span-2">
-                    <label className="text-xs text-white/50">
+                    <label
+                      htmlFor="email"
+                      className="text-xs text-white/50"
+                    >
                       Email Address
                     </label>
 
                     <input
+                      id="email"
                       type="email"
                       name="email"
                       value={formData.email}
@@ -465,18 +607,26 @@ const ContactSection = () => {
                     />
                   </div>
 
+                  {/* SERVICE */}
+
                   <div className="sm:col-span-2">
-                    <label className="text-xs text-white/50">
+                    <label
+                      htmlFor="service"
+                      className="text-xs text-white/50"
+                    >
                       Select Service
                     </label>
 
                     <select
+                      id="service"
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
                       className="mt-2 h-12 w-full border border-white/10 bg-[#102b29] px-4 text-sm text-white outline-none"
                     >
-                      <option value="">Select a service</option>
+                      <option value="">
+                        Select a service
+                      </option>
 
                       <option value="Taxation Services">
                         Taxation Services
@@ -512,12 +662,18 @@ const ContactSection = () => {
                     </select>
                   </div>
 
+                  {/* MESSAGE */}
+
                   <div className="sm:col-span-2">
-                    <label className="text-xs text-white/50">
+                    <label
+                      htmlFor="message"
+                      className="text-xs text-white/50"
+                    >
                       Your Requirement
                     </label>
 
                     <textarea
+                      id="message"
                       rows="5"
                       name="message"
                       value={formData.message}
@@ -527,24 +683,41 @@ const ContactSection = () => {
                     />
                   </div>
 
+                  {/* ERROR MESSAGE */}
+
+                  {submitError && (
+                    <div className="sm:col-span-2 border border-red-300/20 bg-red-500/10 px-4 py-3 text-sm leading-6 text-red-200">
+                      {submitError}
+                    </div>
+                  )}
+
+                  {/* SUBMIT */}
+
                   <div className="sm:col-span-2">
                     <button
                       type="submit"
-                      className="flex w-full items-center justify-center gap-3 bg-white px-6 py-4 text-sm font-semibold text-[#102b29] transition hover:opacity-90"
+                      disabled={submitting}
+                      className="flex w-full items-center justify-center gap-3 bg-white px-6 py-4 text-sm font-semibold text-[#102b29] transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      Submit Enquiry
+                      {submitting
+                        ? "Sending..."
+                        : "Submit Enquiry"}
 
-                      <Send size={17} />
+                      {!submitting && (
+                        <Send size={17} />
+                      )}
                     </button>
                   </div>
 
                 </form>
 
                 <p className="mt-5 text-center text-xs text-white/30">
-                  Your information will only be used to respond to your enquiry.
+                  Your information will only be used to respond
+                  to your enquiry.
                 </p>
               </>
             )}
+
           </motion.div>
         </div>
       </section>
@@ -566,7 +739,10 @@ const ContactSection = () => {
 
               <h2 className="mt-5 text-4xl font-bold text-white sm:text-5xl">
                 Find Us
-                <span className="text-white/50"> Easily.</span>
+                <span className="text-white/50">
+                  {" "}
+                  Easily.
+                </span>
               </h2>
 
               <p className="mt-5 max-w-xl text-base leading-8 text-white/60">
@@ -583,10 +759,20 @@ const ContactSection = () => {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            initial={{
+              opacity: 0,
+              scale: 0.98,
+            }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
             className="mt-10 overflow-hidden border border-white/10"
           >
             <iframe
@@ -594,7 +780,9 @@ const ContactSection = () => {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.0387903787105!2d77.28540547533312!3d28.568597875699684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5175d7807ef%3A0xe241d282c8ad4f7e!2sK%20S%20%26%20Company!5e0!3m2!1sen!2sin!4v1788180524986!5m2!1sen!2sin"
               width="100%"
               height="480"
-              style={{ border: 0 }}
+              style={{
+                border: 0,
+              }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="strict-origin-when-cross-origin"
@@ -644,9 +832,17 @@ const ContactSection = () => {
                     href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    initial={{
+                      opacity: 0,
+                      y: 20,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    viewport={{
+                      once: true,
+                    }}
                     transition={{
                       duration: 0.5,
                       delay: index * 0.1,
@@ -687,12 +883,23 @@ const ContactSection = () => {
         <div className="mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
 
           <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
             className="relative overflow-hidden bg-[#102b29] px-7 py-14 sm:px-14 sm:py-16"
           >
+
             <div className="pointer-events-none absolute -right-32 -top-32 h-[400px] w-[400px] rounded-full border border-white/[0.08]" />
 
             <div className="relative max-w-3xl">

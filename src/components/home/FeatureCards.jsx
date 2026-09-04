@@ -9,6 +9,9 @@ import {
 
 import { motion } from "framer-motion";
 
+/* =========================================================
+   FEATURE CARDS DATA
+========================================================= */
 
 const cards = [
   {
@@ -42,6 +45,9 @@ const cards = [
   },
 ];
 
+/* =========================================================
+   CARD ANIMATIONS
+========================================================= */
 
 const cardVariants = {
   left: {
@@ -63,7 +69,6 @@ const cardVariants = {
     },
   },
 
-
   bottom: {
     hidden: {
       opacity: 0,
@@ -82,7 +87,6 @@ const cardVariants = {
       },
     },
   },
-
 
   right: {
     hidden: {
@@ -104,6 +108,9 @@ const cardVariants = {
   },
 };
 
+/* =========================================================
+   ICON ANIMATION
+========================================================= */
 
 const iconVariants = {
   hidden: {
@@ -125,6 +132,9 @@ const iconVariants = {
   },
 };
 
+/* =========================================================
+   CONTENT ANIMATION
+========================================================= */
 
 const contentVariants = {
   hidden: {
@@ -143,10 +153,12 @@ const contentVariants = {
   },
 };
 
+/* =========================================================
+   FEATURE CARDS
+========================================================= */
 
 const FeatureCards = () => {
   const navigate = useNavigate();
-
 
   const handleReadMore = () => {
     navigate("/ceo-message");
@@ -157,17 +169,23 @@ const FeatureCards = () => {
     });
   };
 
-
   return (
     <section
       className="
         relative
         z-30
-        -mt-20
+
+        /* =========================================
+           HERO OVERLAP
+        ========================================= */
+
+        -mt-10
         pb-28
-        sm:-mt-24
+
+        sm:-mt-16
         sm:pb-32
-        lg:-mt-28
+
+        lg:-mt-20
         lg:pb-36
       "
     >
@@ -181,7 +199,6 @@ const FeatureCards = () => {
           lg:px-10
         "
       >
-
         <div
           className="
             grid
@@ -190,7 +207,6 @@ const FeatureCards = () => {
             md:grid-cols-3
           "
         >
-
           {cards.map((card, index) => {
             const Icon = card.icon;
 
@@ -222,33 +238,101 @@ const FeatureCards = () => {
                   overflow-hidden
                   px-7
                   text-center
-                  transition-shadow
+                  transition-all
                   duration-500
+
                   sm:min-h-[370px]
                   sm:px-9
+
                   lg:min-h-[390px]
                   lg:px-10
 
                   ${
+                    /* =================================================
+                       TAX CARD
+                    ================================================= */
+
                     card.type === "dark"
-                      ? "bg-[#20252b] text-white"
+                      ? `
+                        bg-[#20252b]
+                        text-white
+                      `
+
+                    /* =================================================
+                       INSURANCE CARD
+                       HERO BACKGROUND STYLE
+                    ================================================= */
+
                       : card.type === "featured"
                       ? `
                         z-20
-                        bg-gradient-to-br
-                        from-[#285b68]
-                        via-[#285f63]
-                        to-[#326844]
+
+                        bg-[#102b29]
                         text-white
-                        shadow-[0_20px_50px_rgba(20,50,55,0.30)]
+
+                        border
+                        border-[#d8bb72]/30
+
+                        shadow-[0_25px_70px_rgba(0,0,0,0.35)]
+
                         md:-my-7
+
+                        before:absolute
+                        before:inset-0
+                        before:pointer-events-none
+                        before:bg-gradient-to-br
+                        before:from-[#d8bb72]/10
+                        before:via-transparent
+                        before:to-[#020b0a]/25
+
+                        after:absolute
+                        after:left-[12%]
+                        after:right-[12%]
+                        after:top-0
+                        after:h-px
+                        after:bg-gradient-to-r
+                        after:from-transparent
+                        after:via-[#e5ca82]/80
+                        after:to-transparent
                       `
-                      : "bg-[#f8faf9] text-[#20252b]"
+
+                    /* =================================================
+                       FINANCE CARD
+                    ================================================= */
+
+                      : `
+                        bg-[#f8faf9]
+                        text-[#20252b]
+                      `
                   }
                 `}
               >
 
-                {/* BACKGROUND NUMBER */}
+                {/* =================================================
+                    GLOSSY EFFECT — MIDDLE CARD
+                ================================================= */}
+
+                {card.type === "featured" && (
+                  <>
+                    {/* Top Glow */}
+                    <div className="pointer-events-none absolute -top-20 left-1/2 h-40 w-72 -translate-x-1/2 rounded-full bg-[#d8bb72]/10 blur-3xl" />
+
+                    {/* Bottom Glow */}
+                    <div className="pointer-events-none absolute -bottom-24 -left-16 h-48 w-48 rounded-full bg-[#d8bb72]/7 blur-3xl" />
+
+                    {/* Gloss Reflection */}
+                    <div className="pointer-events-none absolute left-[15%] top-[7%] h-[25%] w-[70%] rotate-[-20deg] rounded-full bg-white/[0.045] blur-xl" />
+
+                    {/* Golden Corner Light */}
+                    <div className="pointer-events-none absolute right-0 top-0 h-28 w-28 bg-gradient-to-bl from-[#d8bb72]/10 to-transparent" />
+
+                    <div className="pointer-events-none absolute bottom-0 left-0 h-28 w-28 bg-gradient-to-tr from-[#d8bb72]/10 to-transparent" />
+                  </>
+                )}
+
+                {/* =================================================
+                    BACKGROUND NUMBER
+                ================================================= */}
 
                 <motion.span
                   initial={{
@@ -259,7 +343,9 @@ const FeatureCards = () => {
                     opacity: 1,
                     scale: 1,
                   }}
-                  viewport={{ once: true }}
+                  viewport={{
+                    once: true,
+                  }}
                   transition={{
                     duration: 0.8,
                     delay: index * 0.15 + 0.3,
@@ -273,7 +359,9 @@ const FeatureCards = () => {
                     text-[150px]
                     font-bold
                     leading-none
+
                     sm:text-[170px]
+
                     lg:text-[190px]
 
                     ${
@@ -286,14 +374,17 @@ const FeatureCards = () => {
                   {card.number}
                 </motion.span>
 
-
-                {/* ICON */}
+                {/* =================================================
+                    ICON
+                ================================================= */}
 
                 <motion.div
                   variants={iconVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true }}
+                  viewport={{
+                    once: true,
+                  }}
                   whileHover={{
                     scale: 1.12,
                     rotate: 5,
@@ -312,8 +403,13 @@ const FeatureCards = () => {
                     ${
                       card.type === "dark"
                         ? "text-[#58a5a5]"
+
                         : card.type === "featured"
-                        ? "text-white"
+                        ? `
+                          text-[#d8bb72]
+                          drop-shadow-[0_0_14px_rgba(216,187,114,0.3)]
+                        `
+
                         : "text-[#286577]"
                     }
                   `}
@@ -324,14 +420,17 @@ const FeatureCards = () => {
                   />
                 </motion.div>
 
-
-                {/* TITLE */}
+                {/* =================================================
+                    TITLE
+                ================================================= */}
 
                 <motion.h3
                   variants={contentVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true }}
+                  viewport={{
+                    once: true,
+                  }}
                   transition={{
                     delay: 0.15,
                   }}
@@ -341,6 +440,7 @@ const FeatureCards = () => {
                     text-2xl
                     font-semibold
                     tracking-tight
+
                     sm:text-[27px]
 
                     ${
@@ -353,8 +453,23 @@ const FeatureCards = () => {
                   {card.title}
                 </motion.h3>
 
+                {/* =================================================
+                    GOLD ACCENT FOR MIDDLE CARD
+                ================================================= */}
 
-                {/* DESCRIPTION */}
+                {card.type === "featured" && (
+                  <div className="relative z-10 mt-3 flex items-center gap-2">
+                    <span className="h-px w-7 bg-gradient-to-r from-transparent to-[#d8bb72]/70" />
+
+                    <span className="h-1 w-1 rounded-full bg-[#d8bb72] shadow-[0_0_8px_rgba(216,187,114,0.7)]" />
+
+                    <span className="h-px w-7 bg-gradient-to-l from-transparent to-[#d8bb72]/70" />
+                  </div>
+                )}
+
+                {/* =================================================
+                    DESCRIPTION
+                ================================================= */}
 
                 <motion.p
                   initial={{
@@ -365,7 +480,9 @@ const FeatureCards = () => {
                     opacity: 1,
                     y: 0,
                   }}
-                  viewport={{ once: true }}
+                  viewport={{
+                    once: true,
+                  }}
                   transition={{
                     duration: 0.6,
                     delay: 0.3,
@@ -378,6 +495,7 @@ const FeatureCards = () => {
                     max-w-[390px]
                     text-sm
                     leading-7
+
                     sm:text-[15px]
 
                     ${
@@ -390,9 +508,9 @@ const FeatureCards = () => {
                   {card.description}
                 </motion.p>
 
-
-
-                {/* HOVER BOTTOM ACCENT */}
+                {/* =================================================
+                    BOTTOM ACCENT
+                ================================================= */}
 
                 <motion.div
                   initial={{
@@ -401,7 +519,9 @@ const FeatureCards = () => {
                   whileInView={{
                     scaleX: 1,
                   }}
-                  viewport={{ once: true }}
+                  viewport={{
+                    once: true,
+                  }}
                   transition={{
                     duration: 0.7,
                     delay: index * 0.1 + 0.5,
@@ -417,21 +537,19 @@ const FeatureCards = () => {
                     ${
                       card.type === "light"
                         ? "bg-gradient-to-r from-[#285b68] to-[#326844]"
+                        : card.type === "featured"
+                        ? "bg-gradient-to-r from-transparent via-[#d8bb72] to-transparent"
                         : "bg-white/40"
                     }
                   `}
                 />
-
               </motion.div>
             );
           })}
-
         </div>
-
       </div>
     </section>
   );
 };
-
 
 export default FeatureCards;
