@@ -3,12 +3,24 @@ import cors from "cors";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 
+// --------------------------------------------------
+// LOAD ENVIRONMENT VARIABLES
+// --------------------------------------------------
+
+dotenv.config();
+
+// Debug - only tells whether variables exist.
+// It does NOT print your password.
 console.log("SMTP_USER loaded:", !!process.env.SMTP_USER);
 console.log("SMTP_PASSWORD loaded:", !!process.env.SMTP_PASSWORD);
 console.log("SMTP_HOST loaded:", !!process.env.SMTP_HOST);
 console.log("SMTP_PORT loaded:", !!process.env.SMTP_PORT);
+console.log("MAIL_FROM loaded:", !!process.env.MAIL_FROM);
+console.log("MAIL_TO loaded:", !!process.env.MAIL_TO);
 
-dotenv.config();
+// --------------------------------------------------
+// APP
+// --------------------------------------------------
 
 const app = express();
 
@@ -18,33 +30,56 @@ const PORT = process.env.PORT || 5000;
 // MIDDLEWARE
 // --------------------------------------------------
 
-
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
       "http://localhost:5174",
       "https://kscomp.vercel.app",
-
     ],
     methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
   })
 );
 
 app.use(express.json());
 
 // --------------------------------------------------
+// CHECK REQUIRED ENVIRONMENT VARIABLES
+// --------------------------------------------------
+
+const requiredEnv = [
+  "SMTP_HOST",
+  "SMTP_PORT",
+  "SMTP_USER",
+  "SMTP_PASSWORD",
+  "MAIL_FROM",
+  "MAIL_TO",
+];
+
+const missingEnv = requiredEnv.filter(
+  (key) => !process.env[key]
+);
+
+if (missingEnv.length > 0) {
+  console.error(
+    "Missing environment variables:",
+    missingEnv.join(", ")
+  );
+}
+
+// --------------------------------------------------
 // SMTP TRANSPORTER
 // --------------------------------------------------
 
 const transporter = nodemailer.createTransport({
-  host: "mail.ks-company.in",
-  port: 465,
-  secure: true,
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT || 465),
+  secure: Number(process.env.SMTP_PORT || 465) === 465,
 
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
   },
 });
 
@@ -93,7 +128,8 @@ app.post("/api/contact", async (req, res) => {
     if (!name || !email || !message) {
       return res.status(400).json({
         success: false,
-        message: "Name, email and message are required.",
+        message:
+          "Name, email and message are required.",
       });
     }
 
@@ -102,9 +138,9 @@ app.post("/api/contact", async (req, res) => {
     // ----------------------------------------------
 
     await transporter.sendMail({
-      from: `"KS & Company Website" <${process.env.EMAIL_USER}>`,
+      from: `"KS & Company Website" <${process.env.MAIL_FROM}>`,
 
-      to: process.env.EMAIL_USER,
+      to: process.env.MAIL_TO,
 
       replyTo: email,
 
@@ -334,16 +370,16 @@ ${message}
     });
 
     // ----------------------------------------------
-    // SUCCESS
+    // SUCCESS RESPONSE
     // ----------------------------------------------
 
     return res.status(200).json({
       success: true,
-      message: "Your enquiry has been sent successfully.",
+      message:
+        "Your enquiry has been sent successfully.",
     });
 
   } catch (error) {
-
     console.error("Email sending error:");
     console.error(error);
 
