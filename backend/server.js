@@ -3,6 +3,11 @@ import cors from "cors";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 
+console.log("SMTP_USER loaded:", !!process.env.SMTP_USER);
+console.log("SMTP_PASSWORD loaded:", !!process.env.SMTP_PASSWORD);
+console.log("SMTP_HOST loaded:", !!process.env.SMTP_HOST);
+console.log("SMTP_PORT loaded:", !!process.env.SMTP_PORT);
+
 dotenv.config();
 
 const app = express();
@@ -20,7 +25,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "https://kscomp.vercel.app",
-      
+
     ],
     methods: ["GET", "POST"],
   })
