@@ -1,26 +1,15 @@
 import React, { useState } from "react";
-import {
-  Send,
-  Mail,
-  Phone,
-  MessageCircle,
-  CheckCircle2,
-  AlertCircle,
-} from "lucide-react";
+import { Send, Mail, Phone, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
-const initialFormData = {
-  name: "",
-  email: "",
-  phone: "",
-  service: "",
-  message: "",
-};
-
-const API_URL = "https://kscompmail.onrender.com/api/contact";
-
 const QueryForm = () => {
-  const [formData, setFormData] = useState(initialFormData);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
+  });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -28,10 +17,6 @@ const QueryForm = () => {
     type: "",
     message: "",
   });
-
-  // ==================================================
-  // HANDLE INPUT CHANGE
-  // ==================================================
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +26,7 @@ const QueryForm = () => {
       [name]: value,
     }));
 
-    // Clear previous status when user edits
+    // Remove previous message when user starts editing again
     if (status.message) {
       setStatus({
         type: "",
@@ -50,44 +35,8 @@ const QueryForm = () => {
     }
   };
 
-  // ==================================================
-  // HANDLE FORM SUBMIT
-  // ==================================================
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (isSubmitting) return;
-
-    // ==================================================
-    // FRONTEND VALIDATION
-    // ==================================================
-
-    if (
-      !formData.name.trim() ||
-      !formData.email.trim() ||
-      !formData.message.trim()
-    ) {
-      setStatus({
-        type: "error",
-        message: "Please fill in all required fields.",
-      });
-
-      return;
-    }
-
-    // Email validation
-    const emailRegex =
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(formData.email.trim())) {
-      setStatus({
-        type: "error",
-        message: "Please enter a valid email address.",
-      });
-
-      return;
-    }
 
     setIsSubmitting(true);
 
@@ -96,78 +45,34 @@ const QueryForm = () => {
       message: "",
     });
 
-    // ==================================================
-    // REQUEST TIMEOUT
-    // ==================================================
-
-    const controller = new AbortController();
-
-    const timeoutId = setTimeout(() => {
-      controller.abort();
-    }, 15000);
-
     try {
-      console.log("Sending enquiry to:", API_URL);
+      const response = await fetch(
+        "http://localhost:5000/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
 
-      // ==================================================
-      // SEND REQUEST
-      // ==================================================
+            // Backend expects "subject"
+            subject: formData.service,
 
-      const response = await fetch(API_URL, {
-        method: "POST",
+            message: formData.message,
+          }),
+        }
+      );
 
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const data = await response.json();
 
-        signal: controller.signal,
-
-        body: JSON.stringify({
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          phone: formData.phone.trim(),
-          service: formData.service,
-          message: formData.message.trim(),
-        }),
-      });
-
-      clearTimeout(timeoutId);
-
-      // ==================================================
-      // READ RESPONSE SAFELY
-      // ==================================================
-
-      let data = null;
-
-      try {
-        data = await response.json();
-      } catch {
-        data = null;
-      }
-
-      // ==================================================
-      // SERVER ERROR
-      // ==================================================
-
-      if (!response.ok) {
+      if (!response.ok || !data.success) {
         throw new Error(
-          data?.message ||
-            `Server error (${response.status}). Please try again.`
+          data.message || "Unable to send your enquiry."
         );
       }
-
-      if (!data?.success) {
-        throw new Error(
-          data?.message ||
-            "Unable to send your enquiry. Please try again."
-        );
-      }
-
-      // ==================================================
-      // SUCCESS
-      // ==================================================
-
-      console.log("Enquiry sent successfully.");
 
       setStatus({
         type: "success",
@@ -176,54 +81,30 @@ const QueryForm = () => {
           "Your enquiry has been sent successfully.",
       });
 
-      // Clear form only after successful submission
-      setFormData(initialFormData);
-
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
     } catch (error) {
-      clearTimeout(timeoutId);
-
       console.error("Query form error:", error);
-
-      // ==================================================
-      // TIMEOUT
-      // ==================================================
-
-      if (error.name === "AbortError") {
-        setStatus({
-          type: "error",
-          message:
-            "The server is taking too long to respond. Please try again in a moment.",
-        });
-
-        return;
-      }
-
-      // ==================================================
-      // NETWORK / CORS / SERVER ERROR
-      // ==================================================
 
       setStatus({
         type: "error",
         message:
-          error.message ||
-          "Unable to send your enquiry. Please try again later.",
+          "Unable to send your enquiry. Please try again or contact us directly.",
       });
-
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // ==================================================
-  // UI
-  // ==================================================
-
   return (
     <section className="relative w-full overflow-hidden bg-[#f4f7f5] py-16 sm:py-20 lg:py-24">
 
-      {/* ==================================================
-          BACKGROUND
-      ================================================== */}
+      {/* ================= BACKGROUND ================= */}
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
 
@@ -256,31 +137,18 @@ const QueryForm = () => {
 
       </div>
 
-      {/* ==================================================
-          CONTENT
-      ================================================== */}
+      {/* ================= CONTENT ================= */}
 
       <div className="relative z-10 mx-auto w-full max-w-[1350px] px-5 sm:px-8 lg:px-12 xl:px-16">
 
         <div className="grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
 
-          {/* ==================================================
-              LEFT CONTENT
-          ================================================== */}
+          {/* ================= LEFT CONTENT ================= */}
 
           <motion.div
-            initial={{
-              opacity: 0,
-              x: -30,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.3,
-            }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{
               duration: 0.7,
               ease: [0.22, 1, 0.36, 1],
@@ -293,15 +161,7 @@ const QueryForm = () => {
 
               <span className="h-px w-10 bg-[#326844]" />
 
-              <span
-                className="
-                  text-[10px]
-                  font-semibold
-                  uppercase
-                  tracking-[0.3em]
-                  text-[#326844]
-                "
-              >
+              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#326844]">
                 Get In Touch
               </span>
 
@@ -330,18 +190,10 @@ const QueryForm = () => {
 
             {/* DESCRIPTION */}
 
-            <p
-              className="
-                mt-6
-                max-w-[430px]
-                text-sm
-                leading-7
-                text-[#687779]
-              "
-            >
-              Share your query with us and our professional
-              team will understand your requirements and get
-              back to you with the right guidance.
+            <p className="mt-6 max-w-[430px] text-sm leading-7 text-[#687779]">
+              Share your query with us and our professional team will
+              understand your requirements and get back to you with the
+              right guidance.
             </p>
 
             {/* CONTACT OPTIONS */}
@@ -365,36 +217,21 @@ const QueryForm = () => {
                     text-[#326844]
                   "
                 >
-                  <Mail
-                    size={18}
-                    strokeWidth={1.7}
-                  />
+                  <Mail size={18} strokeWidth={1.7} />
                 </div>
 
                 <div>
 
-                  <p
-                    className="
-                      text-[10px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.16em]
-                      text-[#8a9897]
-                    "
-                  >
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8a9897]">
                     Email Us
                   </p>
 
-                  <p
-                    className="
-                      mt-1
-                      text-sm
-                      font-medium
-                      text-[#334544]
-                    "
+                  <a
+                    href="mailto:info@ks-company.in"
+                    className="mt-1 block text-sm font-medium text-[#334544] transition-colors hover:text-[#326844]"
                   >
                     info@ks-company.in
-                  </p>
+                  </a>
 
                 </div>
 
@@ -417,36 +254,21 @@ const QueryForm = () => {
                     text-[#285b68]
                   "
                 >
-                  <Phone
-                    size={18}
-                    strokeWidth={1.7}
-                  />
+                  <Phone size={18} strokeWidth={1.7} />
                 </div>
 
                 <div>
 
-                  <p
-                    className="
-                      text-[10px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.16em]
-                      text-[#8a9897]
-                    "
-                  >
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8a9897]">
                     Call Us
                   </p>
 
-                  <p
-                    className="
-                      mt-1
-                      text-sm
-                      font-medium
-                      text-[#334544]
-                    "
+                  <a
+                    href="tel:+917004946933"
+                    className="mt-1 block text-sm font-medium text-[#334544] transition-colors hover:text-[#326844]"
                   >
-                    +91 70049 46933
-                  </p>
+                    +91 7004946933
+                  </a>
 
                 </div>
 
@@ -469,34 +291,16 @@ const QueryForm = () => {
                     text-[#326844]
                   "
                 >
-                  <MessageCircle
-                    size={18}
-                    strokeWidth={1.7}
-                  />
+                  <MessageCircle size={18} strokeWidth={1.7} />
                 </div>
 
                 <div>
 
-                  <p
-                    className="
-                      text-[10px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.16em]
-                      text-[#8a9897]
-                    "
-                  >
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8a9897]">
                     Quick Response
                   </p>
 
-                  <p
-                    className="
-                      mt-1
-                      text-sm
-                      font-medium
-                      text-[#334544]
-                    "
-                  >
+                  <p className="mt-1 text-sm font-medium text-[#334544]">
                     We'll get back to you shortly
                   </p>
 
@@ -508,23 +312,12 @@ const QueryForm = () => {
 
           </motion.div>
 
-          {/* ==================================================
-              FORM
-          ================================================== */}
+          {/* ================= FORM ================= */}
 
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 30,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.2,
-            }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{
               duration: 0.7,
               delay: 0.1,
@@ -537,10 +330,7 @@ const QueryForm = () => {
             "
           >
 
-            <form
-              onSubmit={handleSubmit}
-              className="pt-5"
-            >
+            <form onSubmit={handleSubmit} className="pt-5">
 
               {/* NAME + EMAIL */}
 
@@ -719,6 +509,7 @@ const QueryForm = () => {
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
+                    required
                     className="
                       w-full
                       cursor-pointer
@@ -759,6 +550,18 @@ const QueryForm = () => {
 
                     <option value="Compliance">
                       Compliance Support
+                    </option>
+
+                    <option value="Insurance">
+                      Insurance
+                    </option>
+
+                    <option value="Registration">
+                      Registration Services
+                    </option>
+
+                    <option value="Government Documentation">
+                      Government Documentation
                     </option>
 
                     <option value="Other">
@@ -820,84 +623,29 @@ const QueryForm = () => {
 
               </div>
 
-              {/* ==================================================
-                  STATUS
-              ================================================== */}
+              {/* ================= STATUS MESSAGE ================= */}
 
               {status.message && (
-
                 <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: 10,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  className={`
-                    mt-6
-                    flex
-                    items-start
-                    gap-3
-                    rounded-xl
-                    border
-                    px-4
-                    py-3
-                    text-sm
-                    ${
-                      status.type === "success"
-                        ? "border-[#326844]/20 bg-[#326844]/[0.06] text-[#326844]"
-                        : "border-red-200 bg-red-50 text-red-600"
-                    }
-                  `}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`mt-5 rounded-lg border px-4 py-3 text-sm ${
+                    status.type === "success"
+                      ? "border-[#326844]/20 bg-[#326844]/[0.06] text-[#326844]"
+                      : "border-red-200 bg-red-50 text-red-600"
+                  }`}
                 >
-
-                  {status.type === "success" ? (
-                    <CheckCircle2
-                      size={19}
-                      className="mt-0.5 shrink-0"
-                    />
-                  ) : (
-                    <AlertCircle
-                      size={19}
-                      className="mt-0.5 shrink-0"
-                    />
-                  )}
-
-                  <span>
-                    {status.message}
-                  </span>
-
+                  {status.message}
                 </motion.div>
-
               )}
 
-              {/* ==================================================
-                  SUBMIT
-              ================================================== */}
+              {/* SUBMIT */}
 
-              <div
-                className="
-                  mt-9
-                  flex
-                  flex-col
-                  gap-4
-                  sm:flex-row
-                  sm:items-center
-                  sm:justify-between
-                "
-              >
+              <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
-                <p
-                  className="
-                    text-[11px]
-                    leading-5
-                    text-[#899694]
-                  "
-                >
-                  Your information will be handled
-                  professionally and securely.
+                <p className="text-[11px] leading-5 text-[#899694]">
+                  Your information will be handled professionally and
+                  securely.
                 </p>
 
                 <button
@@ -931,37 +679,19 @@ const QueryForm = () => {
                   "
                 >
 
-                  {isSubmitting ? (
-                    <>
-                      <span
-                        className="
-                          h-4
-                          w-4
-                          animate-spin
-                          rounded-full
-                          border-2
-                          border-white/30
-                          border-t-white
-                        "
-                      />
+                  {isSubmitting ? "Sending..." : "Send Query"}
 
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      Send Query
-
-                      <Send
-                        size={16}
-                        strokeWidth={1.8}
-                        className="
-                          transition-transform
-                          duration-300
-                          group-hover:translate-x-1
-                          group-hover:-translate-y-1
-                        "
-                      />
-                    </>
+                  {!isSubmitting && (
+                    <Send
+                      size={16}
+                      strokeWidth={1.8}
+                      className="
+                        transition-transform
+                        duration-300
+                        group-hover:translate-x-1
+                        group-hover:-translate-y-1
+                      "
+                    />
                   )}
 
                 </button>
