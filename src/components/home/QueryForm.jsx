@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Send, Mail, Phone, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 const QueryForm = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,18 @@ const QueryForm = () => {
     type: "",
     message: "",
   });
+
+  // --------------------------------------------------
+  // EMAILJS CONFIGURATION
+  // --------------------------------------------------
+
+  const EMAILJS_SERVICE_ID = "service_nhrspe5";
+  const EMAILJS_TEMPLATE_ID = "template_q5n7b2n";
+  const EMAILJS_PUBLIC_KEY = "W5NCxywVfHt7M7Ubu";
+
+  // --------------------------------------------------
+  // HANDLE INPUT CHANGE
+  // --------------------------------------------------
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,8 +48,14 @@ const QueryForm = () => {
     }
   };
 
+  // --------------------------------------------------
+  // HANDLE FORM SUBMIT
+  // --------------------------------------------------
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isSubmitting) return;
 
     setIsSubmitting(true);
 
@@ -46,41 +65,34 @@ const QueryForm = () => {
     });
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/contact",
+      const templateParams = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim() || "Not provided",
+        service: formData.service,
+        message: formData.message.trim(),
+      };
+
+      console.log("Sending query through EmailJS:", templateParams);
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-
-            // Backend expects "subject"
-            subject: formData.service,
-
-            message: formData.message,
-          }),
+          publicKey: EMAILJS_PUBLIC_KEY,
         }
       );
 
-      const data = await response.json();
-
-      if (!response.ok || !data.success) {
-        throw new Error(
-          data.message || "Unable to send your enquiry."
-        );
-      }
+      console.log("Query sent successfully.");
 
       setStatus({
         type: "success",
         message:
-          data.message ||
-          "Your enquiry has been sent successfully.",
+          "Your enquiry has been sent successfully. We will get back to you shortly.",
       });
 
+      // Clear form after successful submission
       setFormData({
         name: "",
         email: "",
@@ -89,7 +101,7 @@ const QueryForm = () => {
         message: "",
       });
     } catch (error) {
-      console.error("Query form error:", error);
+      console.error("EmailJS query form error:", error);
 
       setStatus({
         type: "error",
@@ -627,8 +639,14 @@ const QueryForm = () => {
 
               {status.message && (
                 <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{
+                    opacity: 0,
+                    y: 8,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
                   className={`mt-5 rounded-lg border px-4 py-3 text-sm ${
                     status.type === "success"
                       ? "border-[#326844]/20 bg-[#326844]/[0.06] text-[#326844]"

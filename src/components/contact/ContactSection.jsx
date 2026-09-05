@@ -18,6 +18,8 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 
+import emailjs from "@emailjs/browser";
+
 import PageHero from "../PageHero";
 
 const ContactSection = () => {
@@ -35,6 +37,12 @@ const ContactSection = () => {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
+  // ================= EMAILJS CONFIG =================
+
+  const EMAILJS_SERVICE_ID = "service_nhrspe5";
+  const EMAILJS_TEMPLATE_ID = "template_q5n7b2n";
+  const EMAILJS_PUBLIC_KEY = "W5NCxywVfHt7M7Ubu";
+
   // ================= FORM CHANGE =================
 
   const handleChange = (e) => {
@@ -45,7 +53,6 @@ const ContactSection = () => {
       [name]: value,
     }));
 
-    // Remove previous error when user starts correcting form
     if (submitError) {
       setSubmitError("");
     }
@@ -62,30 +69,34 @@ const ContactSection = () => {
       setSubmitting(true);
       setSubmitError("");
 
-      const response = await fetch(
-        "https://kscompmail.onrender.com/api/contact",
+      const templateParams = {
+        name: formData.name.trim(),
+        phone: formData.phone.trim() || "Not provided",
+        email: formData.email.trim() || "Not provided",
+        service: formData.service || "Not specified",
+        message:
+          formData.message.trim() ||
+          "No additional details provided.",
+      };
+
+      console.log(
+        "Sending contact enquiry through EmailJS:",
+        templateParams
+      );
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+          publicKey: EMAILJS_PUBLIC_KEY,
         }
       );
 
-      const data = await response.json();
+      console.log("Contact enquiry sent successfully.");
 
-      if (!response.ok || !data.success) {
-        throw new Error(
-          data.message ||
-            "Something went wrong. Please try again."
-        );
-      }
-
-      // Email successfully sent
       setSubmitted(true);
 
-      // Clear form
       setFormData({
         name: "",
         phone: "",
@@ -94,11 +105,10 @@ const ContactSection = () => {
         message: "",
       });
     } catch (error) {
-      console.error("Contact form error:", error);
+      console.error("EmailJS contact form error:", error);
 
       setSubmitError(
-        error.message ||
-          "Unable to send your enquiry. Please try again."
+        "Unable to send your enquiry. Please try again later or contact us directly."
       );
     } finally {
       setSubmitting(false);
@@ -238,8 +248,7 @@ const ContactSection = () => {
                     delay: index * 0.08,
                   }}
                   className={`group p-7 transition hover:bg-[#f4f3ef] ${
-                    index !==
-                    contactItems.length - 1
+                    index !== contactItems.length - 1
                       ? "border-b border-[#102b29]/10 lg:border-b-0 lg:border-r"
                       : ""
                   }`}
@@ -441,11 +450,13 @@ const ContactSection = () => {
             {/* ================= BENEFITS ================= */}
 
             <div className="mt-12 border-t border-[#102b29]/10 pt-8">
+
               <p className="text-xs font-semibold uppercase tracking-[4px] text-[#102b29]/40">
                 Why Contact Us
               </p>
 
               <div className="mt-6 space-y-4">
+
                 {benefits.map((benefit) => (
                   <div
                     key={benefit}
@@ -461,8 +472,10 @@ const ContactSection = () => {
                     </p>
                   </div>
                 ))}
+
               </div>
             </div>
+
           </motion.div>
 
           {/* ================= FORM ================= */}
@@ -488,6 +501,7 @@ const ContactSection = () => {
             {/* ================= SUCCESS ================= */}
 
             {submitted ? (
+
               <div className="flex min-h-[500px] flex-col items-center justify-center text-center">
 
                 <div className="flex h-16 w-16 items-center justify-center bg-white text-[#102b29]">
@@ -515,8 +529,11 @@ const ContactSection = () => {
                 </button>
 
               </div>
+
             ) : (
+
               <>
+
                 <p className="text-xs font-semibold uppercase tracking-[5px] text-white/40">
                   Send An Enquiry
                 </p>
@@ -545,6 +562,7 @@ const ContactSection = () => {
                   {/* NAME */}
 
                   <div>
+
                     <label
                       htmlFor="name"
                       className="text-xs text-white/50"
@@ -560,13 +578,16 @@ const ContactSection = () => {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Enter your name"
+                      autoComplete="name"
                       className="mt-2 h-12 w-full border border-white/10 bg-white/[0.05] px-4 text-sm text-white outline-none placeholder:text-white/25 focus:border-white/30"
                     />
+
                   </div>
 
                   {/* PHONE */}
 
                   <div>
+
                     <label
                       htmlFor="phone"
                       className="text-xs text-white/50"
@@ -582,13 +603,16 @@ const ContactSection = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="Enter phone number"
+                      autoComplete="tel"
                       className="mt-2 h-12 w-full border border-white/10 bg-white/[0.05] px-4 text-sm text-white outline-none placeholder:text-white/25 focus:border-white/30"
                     />
+
                   </div>
 
                   {/* EMAIL */}
 
                   <div className="sm:col-span-2">
+
                     <label
                       htmlFor="email"
                       className="text-xs text-white/50"
@@ -603,13 +627,16 @@ const ContactSection = () => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="Enter your email address"
+                      autoComplete="email"
                       className="mt-2 h-12 w-full border border-white/10 bg-white/[0.05] px-4 text-sm text-white outline-none placeholder:text-white/25 focus:border-white/30"
                     />
+
                   </div>
 
                   {/* SERVICE */}
 
                   <div className="sm:col-span-2">
+
                     <label
                       htmlFor="service"
                       className="text-xs text-white/50"
@@ -624,6 +651,7 @@ const ContactSection = () => {
                       onChange={handleChange}
                       className="mt-2 h-12 w-full border border-white/10 bg-[#102b29] px-4 text-sm text-white outline-none"
                     >
+
                       <option value="">
                         Select a service
                       </option>
@@ -659,12 +687,15 @@ const ContactSection = () => {
                       <option value="Finance Services">
                         Finance Services
                       </option>
+
                     </select>
+
                   </div>
 
                   {/* MESSAGE */}
 
                   <div className="sm:col-span-2">
+
                     <label
                       htmlFor="message"
                       className="text-xs text-white/50"
@@ -681,6 +712,7 @@ const ContactSection = () => {
                       placeholder="Tell us briefly how we can help you..."
                       className="mt-2 w-full resize-none border border-white/10 bg-white/[0.05] p-4 text-sm text-white outline-none placeholder:text-white/25 focus:border-white/30"
                     />
+
                   </div>
 
                   {/* ERROR MESSAGE */}
@@ -694,11 +726,13 @@ const ContactSection = () => {
                   {/* SUBMIT */}
 
                   <div className="sm:col-span-2">
+
                     <button
                       type="submit"
                       disabled={submitting}
                       className="flex w-full items-center justify-center gap-3 bg-white px-6 py-4 text-sm font-semibold text-[#102b29] transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
                     >
+
                       {submitting
                         ? "Sending..."
                         : "Submit Enquiry"}
@@ -706,7 +740,9 @@ const ContactSection = () => {
                       {!submitting && (
                         <Send size={17} />
                       )}
+
                     </button>
+
                   </div>
 
                 </form>
@@ -715,10 +751,13 @@ const ContactSection = () => {
                   Your information will only be used to respond
                   to your enquiry.
                 </p>
+
               </>
+
             )}
 
           </motion.div>
+
         </div>
       </section>
 
@@ -733,12 +772,14 @@ const ContactSection = () => {
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
 
             <div>
+
               <p className="text-xs font-semibold uppercase tracking-[5px] text-white/40">
                 Visit Our Office
               </p>
 
               <h2 className="mt-5 text-4xl font-bold text-white sm:text-5xl">
                 Find Us
+
                 <span className="text-white/50">
                   {" "}
                   Easily.
@@ -749,6 +790,7 @@ const ContactSection = () => {
                 Visit K S & Company and speak with our team directly
                 about your requirements.
               </p>
+
             </div>
 
             <div className="flex items-center gap-3 text-sm text-white/55">
@@ -775,6 +817,7 @@ const ContactSection = () => {
             }}
             className="mt-10 overflow-hidden border border-white/10"
           >
+
             <iframe
               title="K S & Company Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.0387903787105!2d77.28540547533312!3d28.568597875699684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5175d7807ef%3A0xe241d282c8ad4f7e!2sK%20S%20%26%20Company!5e0!3m2!1sen!2sin!4v1788180524986!5m2!1sen!2sin"
@@ -788,6 +831,7 @@ const ContactSection = () => {
               referrerPolicy="strict-origin-when-cross-origin"
               className="block w-full grayscale"
             />
+
           </motion.div>
 
         </div>
@@ -796,11 +840,13 @@ const ContactSection = () => {
       {/* ================= SOCIAL MEDIA ================= */}
 
       <section className="bg-white py-20 sm:py-24">
+
         <div className="mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
 
           <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
 
             <div>
+
               <p className="text-xs font-semibold uppercase tracking-[5px] text-[#102b29]/45">
                 Stay Connected
               </p>
@@ -819,11 +865,13 @@ const ContactSection = () => {
                 helpful insights and the latest information
                 about our services.
               </p>
+
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3">
 
               {socialLinks.map((social, index) => {
+
                 const Icon = social.icon;
 
                 return (
@@ -849,37 +897,48 @@ const ContactSection = () => {
                     }}
                     className="group flex min-h-[200px] flex-col justify-between border border-[#102b29]/10 p-7 transition hover:bg-[#102b29]"
                   >
+
                     <div className="flex h-12 w-12 items-center justify-center bg-[#102b29] transition group-hover:bg-white">
+
                       <Icon
                         size={21}
                         className="text-white group-hover:text-[#102b29]"
                       />
+
                     </div>
 
                     <div>
+
                       <h3 className="text-xl font-semibold text-[#102b29] group-hover:text-white">
                         {social.name}
                       </h3>
 
                       <div className="mt-4 flex items-center gap-2 text-xs uppercase tracking-[3px] text-[#102b29]/40 group-hover:text-white/50">
+
                         Follow Us
 
                         <ArrowUpRight size={15} />
+
                       </div>
+
                     </div>
+
                   </motion.a>
                 );
               })}
 
             </div>
+
           </div>
 
         </div>
+
       </section>
 
       {/* ================= FINAL CTA ================= */}
 
       <section className="bg-[#f4f3ef] py-16 sm:py-20">
+
         <div className="mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
 
           <motion.div
@@ -947,10 +1006,13 @@ const ContactSection = () => {
                 </a>
 
               </div>
+
             </div>
+
           </motion.div>
 
         </div>
+
       </section>
 
     </main>

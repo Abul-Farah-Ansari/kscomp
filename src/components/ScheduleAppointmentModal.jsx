@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import {
   X,
   CalendarDays,
@@ -13,6 +14,18 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+/* =========================================================
+   EMAILJS CONFIGURATION
+========================================================= */
+
+const EMAILJS_SERVICE_ID = "service_nhrspe5";
+const EMAILJS_TEMPLATE_ID = "template_qro7e18";
+const EMAILJS_PUBLIC_KEY = "W5NCxywVfHt7M7Ubu";
+
+/* =========================================================
+   INITIAL FORM DATA
+========================================================= */
+
 const initialFormData = {
   name: "",
   phone: "",
@@ -23,13 +36,20 @@ const initialFormData = {
   message: "",
 };
 
+/* =========================================================
+   COMPONENT
+========================================================= */
+
 const ScheduleAppointmentModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState(initialFormData);
 
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const [error, setError] = useState("");
+
+  /* =========================================================
+     SERVICES
+  ========================================================= */
 
   const services = [
     "Taxation Services",
@@ -41,6 +61,10 @@ const ScheduleAppointmentModal = ({ isOpen, onClose }) => {
     "Insurance Services",
     "Finance & Loan Services",
   ];
+
+  /* =========================================================
+     TIME SLOTS
+  ========================================================= */
 
   const timeSlots = [
     "10:00 AM",
@@ -61,6 +85,16 @@ const ScheduleAppointmentModal = ({ isOpen, onClose }) => {
     "06:00 PM",
   ];
 
+  /* =========================================================
+     TODAY
+  ========================================================= */
+
+  const today = new Date().toISOString().split("T")[0];
+
+  /* =========================================================
+     HANDLE CHANGE
+  ========================================================= */
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -74,6 +108,26 @@ const ScheduleAppointmentModal = ({ isOpen, onClose }) => {
     }
   };
 
+  /* =========================================================
+     FORMAT DATE
+  ========================================================= */
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+
+    const date = new Date(`${dateString}T00:00:00`);
+
+    return date.toLocaleDateString("en-IN", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+  };
+
+  /* =========================================================
+     SUBMIT FORM
+  ========================================================= */
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -83,65 +137,95 @@ const ScheduleAppointmentModal = ({ isOpen, onClose }) => {
     setError("");
 
     try {
-      const response = await fetch(
-        "https://kscompmail.onrender.com/api/contact",
+      /* -----------------------------------------------------
+         BASIC VALIDATION
+      ----------------------------------------------------- */
+
+      if (!formData.name.trim()) {
+        throw new Error("Please enter your name.");
+      }
+
+      if (!formData.phone.trim()) {
+        throw new Error("Please enter your phone number.");
+      }
+
+      if (!formData.service) {
+        throw new Error("Please select a service.");
+      }
+
+      if (!formData.date) {
+        throw new Error("Please select an appointment date.");
+      }
+
+      if (!formData.time) {
+        throw new Error("Please select an appointment time.");
+      }
+
+      /* -----------------------------------------------------
+         EMAILJS TEMPLATE VARIABLES
+      ----------------------------------------------------- */
+
+      const templateParams = {
+        /* Customer information */
+        from_name: formData.name.trim(),
+        name: formData.name.trim(),
+
+        from_email: formData.email.trim(),
+        email: formData.email.trim(),
+
+        phone: formData.phone.trim(),
+
+        /* Service */
+        service: formData.service,
+
+        /* Appointment date */
+        appointment_date: formatDate(formData.date),
+        date: formatDate(formData.date),
+
+        /* Appointment time */
+        appointment_time: formData.time,
+        time: formData.time,
+
+        /* Message */
+        message:
+          formData.message.trim() ||
+          "No additional details provided.",
+
+        /* Useful combined value */
+        appointment_details: `
+Date: ${formatDate(formData.date)}
+Time: ${formData.time}
+        `.trim(),
+      };
+
+      console.log("Sending appointment data:", templateParams);
+
+      /* -----------------------------------------------------
+         SEND THROUGH EMAILJS
+      ----------------------------------------------------- */
+
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
         {
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-            name: formData.name.trim(),
-            phone: formData.phone.trim(),
-            email: formData.email.trim(),
-
-            // Send appointment service as subject
-            subject: `Appointment Request - ${formData.service}`,
-
-            message: `
-Appointment Request
-
-Name: ${formData.name}
-Phone: ${formData.phone}
-Email: ${formData.email || "Not provided"}
-
-Service:
-${formData.service}
-
-Preferred Date:
-${formData.date}
-
-Preferred Time:
-${formData.time}
-
-Additional Details:
-${formData.message || "No additional details provided."}
-            `.trim(),
-          }),
+          publicKey: EMAILJS_PUBLIC_KEY,
         }
       );
 
-      const data = await response.json();
+      console.log("EmailJS response:", response);
 
-      if (!response.ok || !data.success) {
-        throw new Error(
-          data.message ||
-            "Unable to send your appointment request."
-        );
-      }
+      /* -----------------------------------------------------
+         SUCCESS
+      ----------------------------------------------------- */
 
-      // Email sent successfully
       setSubmitted(true);
     } catch (err) {
-      console.error(
-        "Appointment submission error:",
-        err
-      );
+      console.error("Appointment submission error:", err);
 
       setError(
-        err.message ||
+        err?.text ||
+          err?.message ||
           "Unable to send your appointment request. Please try again."
       );
     } finally {
@@ -149,19 +233,22 @@ ${formData.message || "No additional details provided."}
     }
   };
 
+  /* =========================================================
+     CLOSE
+  ========================================================= */
+
   const handleClose = () => {
     setSubmitted(false);
     setIsSubmitting(false);
     setError("");
-
     setFormData(initialFormData);
 
     onClose();
   };
 
-  const today = new Date()
-    .toISOString()
-    .split("T")[0];
+  /* =========================================================
+     RENDER
+  ========================================================= */
 
   return (
     <AnimatePresence>
@@ -203,9 +290,7 @@ ${formData.message || "No additional details provided."}
               duration: 0.3,
               ease: "easeOut",
             }}
-            onMouseDown={(e) =>
-              e.stopPropagation()
-            }
+            onMouseDown={(e) => e.stopPropagation()}
             className="
               relative
               max-h-[90vh]
@@ -215,7 +300,9 @@ ${formData.message || "No additional details provided."}
               bg-[#f4f3ef]
             "
           >
-            {/* ================= CLOSE BUTTON ================= */}
+            {/* =================================================
+                CLOSE BUTTON
+            ================================================== */}
 
             <button
               type="button"
@@ -242,7 +329,9 @@ ${formData.message || "No additional details provided."}
             </button>
 
             {submitted ? (
-              /* ================= SUCCESS ================= */
+              /* =================================================
+                 SUCCESS SCREEN
+              ================================================= */
 
               <div
                 className="
@@ -328,14 +417,15 @@ ${formData.message || "No additional details provided."}
                   "
                 >
                   Close
-
                   <ArrowRight size={17} />
                 </button>
               </div>
             ) : (
               <div className="grid lg:grid-cols-[0.8fr_1.2fr]">
 
-                {/* ================= LEFT SIDE ================= */}
+                {/* =================================================
+                    LEFT SIDE
+                ================================================== */}
 
                 <div
                   className="
@@ -420,11 +510,9 @@ ${formData.message || "No additional details provided."}
                       confirm your appointment.
                     </p>
 
-                    {/* Information */}
+                    {/* DATE */}
 
                     <div className="mt-12 space-y-7">
-
-                      {/* DATE */}
 
                       <div className="flex gap-4">
 
@@ -578,7 +666,9 @@ ${formData.message || "No additional details provided."}
                   </div>
                 </div>
 
-                {/* ================= FORM ================= */}
+                {/* =================================================
+                    RIGHT SIDE / FORM
+                ================================================== */}
 
                 <div
                   className="
@@ -587,6 +677,7 @@ ${formData.message || "No additional details provided."}
                     sm:p-12
                   "
                 >
+
                   <p
                     className="
                       text-xs
@@ -626,7 +717,9 @@ ${formData.message || "No additional details provided."}
                     "
                   >
 
-                    {/* ================= NAME ================= */}
+                    {/* =================================================
+                        NAME
+                    ================================================== */}
 
                     <div>
 
@@ -685,7 +778,9 @@ ${formData.message || "No additional details provided."}
 
                     </div>
 
-                    {/* ================= PHONE ================= */}
+                    {/* =================================================
+                        PHONE
+                    ================================================== */}
 
                     <div>
 
@@ -744,7 +839,9 @@ ${formData.message || "No additional details provided."}
 
                     </div>
 
-                    {/* ================= EMAIL ================= */}
+                    {/* =================================================
+                        EMAIL
+                    ================================================== */}
 
                     <div className="sm:col-span-2">
 
@@ -802,7 +899,9 @@ ${formData.message || "No additional details provided."}
 
                     </div>
 
-                    {/* ================= SERVICE ================= */}
+                    {/* =================================================
+                        SERVICE
+                    ================================================== */}
 
                     <div className="sm:col-span-2">
 
@@ -875,7 +974,9 @@ ${formData.message || "No additional details provided."}
 
                     </div>
 
-                    {/* ================= DATE ================= */}
+                    {/* =================================================
+                        DATE
+                    ================================================== */}
 
                     <div>
 
@@ -917,7 +1018,9 @@ ${formData.message || "No additional details provided."}
 
                     </div>
 
-                    {/* ================= TIME ================= */}
+                    {/* =================================================
+                        TIME
+                    ================================================== */}
 
                     <div>
 
@@ -972,7 +1075,9 @@ ${formData.message || "No additional details provided."}
 
                     </div>
 
-                    {/* ================= MESSAGE ================= */}
+                    {/* =================================================
+                        MESSAGE
+                    ================================================== */}
 
                     <div className="sm:col-span-2">
 
@@ -1013,7 +1118,9 @@ ${formData.message || "No additional details provided."}
 
                     </div>
 
-                    {/* ================= ERROR ================= */}
+                    {/* =================================================
+                        ERROR
+                    ================================================== */}
 
                     {error && (
                       <motion.div
@@ -1039,16 +1146,20 @@ ${formData.message || "No additional details provided."}
                           text-red-600
                         "
                       >
+
                         <AlertCircle
                           size={18}
                           className="mt-0.5 shrink-0"
                         />
 
                         <span>{error}</span>
+
                       </motion.div>
                     )}
 
-                    {/* ================= SUBMIT ================= */}
+                    {/* =================================================
+                        SUBMIT
+                    ================================================== */}
 
                     <div className="sm:col-span-2">
 
