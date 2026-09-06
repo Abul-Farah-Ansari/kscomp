@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 // ================================
 // GLOBAL COMPONENTS
@@ -8,10 +9,10 @@ import ScrollToTop from "./components/ScrollToTop";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-// import WhatsAppButton from "./components/WhatsAppButton";
+
 import CustomCursor from "./components/CustomCursor";
 import Chatbot from "./components/chatbot/Chatbot";
-// import WhatsAppButton from "./components/WhatsAppButton";
+
 // ================================
 // PAGES
 // ================================
@@ -111,6 +112,7 @@ function App() {
         {/* 404 FALLBACK */}
         <Route path="*" element={<Home />} />
       </Routes>
+       <WhatsAppButton />
 
       {/* CHATBOT */}
       <Chatbot />
@@ -119,8 +121,7 @@ function App() {
       {/* FOOTER */}
       <Footer />
 
-      {/* FLOATING WHATSAPP BUTTON */}
-      {/* <WhatsAppButton /> */}
+    
       <ScrollToTop />
     </>
   );

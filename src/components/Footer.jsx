@@ -13,6 +13,9 @@ import {
   FaFacebookF,
 } from "react-icons/fa";
 
+// KS & Company Logo
+import KSCompanyLogo from "../assets/WhatsApp Image 2026-08-30 at 19.16.22 (1).jpeg";
+
 const Footer = () => {
   const [email, setEmail] = useState("");
 
@@ -116,40 +119,49 @@ const Footer = () => {
 
               {/* LOGO */}
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-5">
 
-                {/* CA LOGO */}
+                {/* ================= KS & COMPANY LOGO ================= */}
 
                 <div
                   className="
                     relative
                     flex
-                    h-[60px]
-                    w-[60px]
+                    h-[90px]
+                    w-[90px]
                     shrink-0
                     items-center
                     justify-center
                     overflow-hidden
                     rounded-full
                     border
-                    border-[#a7c68f]/35
-                    bg-white/[0.06]
-                    text-[20px]
-                    font-bold
-                    tracking-tight
-                    text-[#b7d59d]
-                    shadow-[0_10px_35px_rgba(0,0,0,0.18)]
+                    border-[#a7c68f]/40
+                    bg-white
+                                        p-2
+                    shadow-[0_10px_35px_rgba(0,0,0,0.22)]
                   "
                 >
-                  CA
+
+                  <img
+                    src={KSCompanyLogo}
+                    alt="KS & Company"
+                    className="
+                      h-full
+                      w-full
+                      object-contain
+                    "
+                  />
+
+                  {/* SUBTLE INNER CIRCLE */}
 
                   <span
                     className="
+                      pointer-events-none
                       absolute
                       inset-[5px]
                       rounded-full
                       border
-                      border-[#a7c68f]/15
+                      border-white/15
                     "
                   />
 
@@ -206,7 +218,7 @@ const Footer = () => {
               </p>
 
 
-              {/* CONTACT DETAILS */}
+              {/* ================= CONTACT DETAILS ================= */}
 
               <div className="mt-8 space-y-4">
 
@@ -226,9 +238,16 @@ const Footer = () => {
                     hover:text-[#b7d59d]
                   "
                 >
-                  <Mail size={16} strokeWidth={1.6} />
 
-                  info@ks-company.in
+                  <Mail
+                    size={16}
+                    strokeWidth={1.6}
+                  />
+
+                  <span>
+                    info@ks-company.in
+                  </span>
+
                 </a>
 
 
@@ -248,9 +267,14 @@ const Footer = () => {
                     hover:text-[#b7d59d]
                   "
                 >
-                  <Phone size={16} strokeWidth={1.6} />
+
+                  <Phone
+                    size={16}
+                    strokeWidth={1.6}
+                  />
 
                   +91 7004946933
+
                 </a>
 
 
@@ -270,9 +294,14 @@ const Footer = () => {
                     hover:text-[#b7d59d]
                   "
                 >
-                  <Phone size={16} strokeWidth={1.6} />
+
+                  <Phone
+                    size={16}
+                    strokeWidth={1.6}
+                  />
 
                   +91 1145128015
+
                 </a>
 
 
@@ -294,6 +323,7 @@ const Footer = () => {
                     hover:text-[#b7d59d]
                   "
                 >
+
                   <MapPin
                     size={16}
                     strokeWidth={1.6}
@@ -331,7 +361,6 @@ const Footer = () => {
               >
                 Our Services
               </p>
-
 
               <ul className="space-y-4">
 
@@ -402,7 +431,6 @@ const Footer = () => {
               >
                 Quick Links
               </p>
-
 
               <ul className="space-y-4">
 
@@ -734,19 +762,19 @@ const Footer = () => {
             by
 
             <a
-  href="https://zaibinfotech.in/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="
-    font-medium
-    text-[#b7d59d]
-    transition-colors
-    duration-300
-    hover:text-white
-  "
->
-  Zaib Infotech
-</a>
+              href="https://zaibinfotech.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                font-medium
+                text-[#b7d59d]
+                transition-colors
+                duration-300
+                hover:text-white
+              "
+            >
+              Zaib Infotech
+            </a>
 
           </p>
 

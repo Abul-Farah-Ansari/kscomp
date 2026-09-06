@@ -18,7 +18,7 @@ import {
    EMAILJS CONFIGURATION
 ========================================================= */
 
-const EMAILJS_SERVICE_ID = "service_nhrspe5";
+const EMAILJS_SERVICE_ID = "service_xyp8xo9";
 const EMAILJS_TEMPLATE_ID = "template_qro7e18";
 const EMAILJS_PUBLIC_KEY = "W5NCxywVfHt7M7Ubu";
 

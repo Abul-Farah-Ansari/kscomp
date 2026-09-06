@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import caHeroBg from "../../public/videos/ChatGPT Image Sep 6, 2026, 02_13_43 PM.png";
+
 const PageHero = ({
   label = "KS & COMPANY",
   title,
@@ -24,21 +26,132 @@ const PageHero = ({
         sm:pb-16
       "
     >
-      {/* =================================================
-          BACKGROUND STRUCTURES
+      {/* ================================================
+          BACKGROUND IMAGE
+      ================================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-cover
+          bg-center
+          bg-no-repeat
+        "
+        style={{
+          backgroundImage: "url(" + caHeroBg + ")",
+        }}
+      />
+
+      {/* ================================================
+          DARK GREEN OVERLAY
+      ================================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-[#102b29]/45
+        "
+      />
+
+      {/* ================================================
+          LEFT DARK GRADIENT
+          Keeps the text readable while allowing the
+          CA logo/books to remain visible on the right.
+      ================================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          bg-gradient-to-r
+          from-[#071c1b]/95
+          via-[#102b29]/75
+          to-[#102b29]/20
+        "
+      />
+
+      {/* ================================================
+          SUBTLE BOTTOM FADE
+      ================================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          bottom-0
+          left-0
+          right-0
+          h-24
+          bg-gradient-to-t
+          from-[#102b29]/65
+          to-transparent
+        "
+      />
+
+      {/* ================================================
+          DECORATIVE CIRCLES
       ================================================= */}
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -left-40 -top-40 h-[420px] w-[420px] rounded-full border border-white/5" />
+        <div
+          className="
+            absolute
+            -left-40
+            -top-40
+            h-[420px]
+            w-[420px]
+            rounded-full
+            border
+            border-white/5
+          "
+        />
 
-        <div className="absolute -left-20 -top-20 h-[320px] w-[320px] rounded-full border border-white/5" />
+        <div
+          className="
+            absolute
+            -left-20
+            -top-20
+            h-[320px]
+            w-[320px]
+            rounded-full
+            border
+            border-white/5
+          "
+        />
 
-        <div className="absolute right-[-120px] top-[-160px] h-[480px] w-[480px] rounded-full border border-white/5" />
+        <div
+          className="
+            absolute
+            right-[-120px]
+            top-[-160px]
+            h-[480px]
+            w-[480px]
+            rounded-full
+            border
+            border-white/5
+          "
+        />
 
-        <div className="absolute right-[-40px] top-[-60px] h-[350px] w-[350px] rounded-full border border-white/5" />
+        <div
+          className="
+            absolute
+            right-[-40px]
+            top-[-60px]
+            h-[350px]
+            w-[350px]
+            rounded-full
+            border
+            border-white/5
+          "
+        />
       </div>
 
-      {/* =================================================
+      {/* ================================================
           CONTENT
       ================================================= */}
 
@@ -57,7 +170,9 @@ const PageHero = ({
           lg:px-14
         "
       >
-        {/* Label */}
+        {/* ================================================
+            LABEL
+        ================================================= */}
 
         <motion.div
           initial={{
@@ -75,12 +190,22 @@ const PageHero = ({
         >
           <div className="h-px w-14 bg-white/40" />
 
-          <p className="text-xs font-semibold uppercase tracking-[5px] text-white/60">
+          <p
+            className="
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[5px]
+              text-white/60
+            "
+          >
             {label}
           </p>
         </motion.div>
 
-        {/* Heading */}
+        {/* ================================================
+            HEADING
+        ================================================= */}
 
         <motion.h1
           initial={{
@@ -113,12 +238,16 @@ const PageHero = ({
             <>
               <br />
 
-              <span className="text-white/60">{highlight}</span>
+              <span className="text-white/60">
+                {highlight}
+              </span>
             </>
           )}
         </motion.h1>
 
-        {/* Description */}
+        {/* ================================================
+            DESCRIPTION
+        ================================================= */}
 
         {description && (
           <motion.div
@@ -136,13 +265,22 @@ const PageHero = ({
             }}
             className="mt-5 max-w-3xl"
           >
-            <p className="text-base leading-7 text-white/65 sm:text-lg">
+            <p
+              className="
+                text-base
+                leading-7
+                text-white/65
+                sm:text-lg
+              "
+            >
               {description}
             </p>
           </motion.div>
         )}
 
-        {/* Button */}
+        {/* ================================================
+            BUTTON
+        ================================================= */}
 
         {buttonText && (
           <motion.div

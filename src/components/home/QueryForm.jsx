@@ -23,7 +23,7 @@ const QueryForm = () => {
   // EMAILJS CONFIGURATION
   // --------------------------------------------------
 
-  const EMAILJS_SERVICE_ID = "service_nhrspe5";
+  const EMAILJS_SERVICE_ID = "service_xyp8xo9";
   const EMAILJS_TEMPLATE_ID = "template_q5n7b2n";
   const EMAILJS_PUBLIC_KEY = "W5NCxywVfHt7M7Ubu";
 
