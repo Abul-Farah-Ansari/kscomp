@@ -133,10 +133,27 @@ const ContactSection = () => {
       title: "Call Us",
       description:
         "Speak directly with our professional team.",
-      value: "+91 7004946933",
+      value: (
+        <div className="space-y-1">
+          <a
+            href="tel:+917004946933"
+            className="block hover:underline"
+          >
+            +91 7004946933
+          </a>
+
+          <a
+            href="tel:+911145128015"
+            className="block hover:underline"
+          >
+            +91 1145128015
+          </a>
+        </div>
+      ),
       icon: Phone,
       link: "tel:+917004946933",
     },
+
     {
       title: "Email Us",
       description:
@@ -145,6 +162,7 @@ const ContactSection = () => {
       icon: Mail,
       link: "mailto:info@ks-company.in",
     },
+
     {
       title: "Visit Us",
       description:
@@ -154,6 +172,7 @@ const ContactSection = () => {
       icon: MapPin,
       link: "#location",
     },
+
     {
       title: "WhatsApp",
       description:
@@ -221,11 +240,13 @@ const ContactSection = () => {
       {/* ================= QUICK CONTACT ================= */}
 
       <section className="relative z-10 -mt-6 pb-20 sm:-mt-8 sm:pb-24">
+
         <div className="mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
 
           <div className="grid border border-[#102b29]/10 bg-white sm:grid-cols-2 lg:grid-cols-4">
 
             {contactItems.map((item, index) => {
+
               const Icon = item.icon;
 
               return (
@@ -253,6 +274,7 @@ const ContactSection = () => {
                       : ""
                   }`}
                 >
+
                   <div className="flex h-12 w-12 items-center justify-center bg-[#102b29]">
                     <Icon
                       size={20}
@@ -268,9 +290,10 @@ const ContactSection = () => {
                     {item.description}
                   </p>
 
-                  <p className="mt-5 text-sm font-medium text-[#102b29]">
+                  <div className="mt-5 text-sm font-medium leading-6 text-[#102b29]">
                     {item.value}
-                  </p>
+                  </div>
+
                 </motion.a>
               );
             })}
@@ -285,6 +308,7 @@ const ContactSection = () => {
         id="contact-form"
         className="scroll-mt-24 bg-[#f4f3ef] pb-20 sm:pb-24"
       >
+
         <div className="mx-auto grid max-w-[1280px] gap-14 px-6 sm:px-10 lg:grid-cols-[0.85fr_1.15fr] lg:px-14">
 
           {/* ================= LEFT CONTENT ================= */}
@@ -305,6 +329,7 @@ const ContactSection = () => {
               duration: 0.7,
             }}
           >
+
             <p className="text-xs font-semibold uppercase tracking-[5px] text-[#102b29]/45">
               Get In Touch
             </p>
@@ -332,6 +357,7 @@ const ContactSection = () => {
               {/* CALL */}
 
               <div className="flex gap-5">
+
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#102b29]">
                   <Phone
                     size={18}
@@ -340,6 +366,7 @@ const ContactSection = () => {
                 </div>
 
                 <div>
+
                   <p className="text-[10px] uppercase tracking-[3px] text-[#102b29]/40">
                     Call / WhatsApp
                   </p>
@@ -350,36 +377,22 @@ const ContactSection = () => {
                   >
                     +91 7004946933
                   </a>
-                </div>
-              </div>
-
-              {/* TELEPHONE */}
-
-              <div className="flex gap-5">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#102b29]">
-                  <Phone
-                    size={18}
-                    className="text-white"
-                  />
-                </div>
-
-                <div>
-                  <p className="text-[10px] uppercase tracking-[3px] text-[#102b29]/40">
-                    Telephone
-                  </p>
 
                   <a
                     href="tel:+911145128015"
-                    className="mt-2 block text-sm font-medium text-[#102b29]"
+                    className="mt-1 block text-sm font-medium text-[#102b29]"
                   >
                     +91 1145128015
                   </a>
+
                 </div>
               </div>
+
 
               {/* EMAIL */}
 
               <div className="flex gap-5">
+
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#102b29]">
                   <Mail
                     size={18}
@@ -388,6 +401,7 @@ const ContactSection = () => {
                 </div>
 
                 <div>
+
                   <p className="text-[10px] uppercase tracking-[3px] text-[#102b29]/40">
                     Email
                   </p>
@@ -398,12 +412,15 @@ const ContactSection = () => {
                   >
                     info@ks-company.in
                   </a>
+
                 </div>
               </div>
+
 
               {/* ADDRESS */}
 
               <div className="flex gap-5">
+
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#102b29]">
                   <MapPin
                     size={18}
@@ -412,6 +429,7 @@ const ContactSection = () => {
                 </div>
 
                 <div>
+
                   <p className="text-[10px] uppercase tracking-[3px] text-[#102b29]/40">
                     Address
                   </p>
@@ -421,12 +439,15 @@ const ContactSection = () => {
                     Batla House, Jamia Nagar, Okhla,
                     Delhi, New Delhi, Delhi 110025
                   </p>
+
                 </div>
               </div>
+
 
               {/* WORKING HOURS */}
 
               <div className="flex gap-5">
+
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-[#102b29]">
                   <Clock
                     size={18}
@@ -435,6 +456,7 @@ const ContactSection = () => {
                 </div>
 
                 <div>
+
                   <p className="text-[10px] uppercase tracking-[3px] text-[#102b29]/40">
                     Working Hours
                   </p>
@@ -442,10 +464,12 @@ const ContactSection = () => {
                   <p className="mt-2 text-sm font-medium text-[#102b29]">
                     Monday – Saturday
                   </p>
+
                 </div>
               </div>
 
             </div>
+
 
             {/* ================= BENEFITS ================= */}
 
@@ -458,10 +482,12 @@ const ContactSection = () => {
               <div className="mt-6 space-y-4">
 
                 {benefits.map((benefit) => (
+
                   <div
                     key={benefit}
                     className="flex gap-3"
                   >
+
                     <CheckCircle2
                       size={18}
                       className="mt-0.5 shrink-0 text-[#102b29]"
@@ -470,13 +496,17 @@ const ContactSection = () => {
                     <p className="text-sm leading-6 text-[#102b29]/65">
                       {benefit}
                     </p>
+
                   </div>
+
                 ))}
 
               </div>
+
             </div>
 
           </motion.div>
+
 
           {/* ================= FORM ================= */}
 
@@ -552,6 +582,7 @@ const ContactSection = () => {
                   of your requirement.
                 </p>
 
+
                 {/* ================= FORM ================= */}
 
                 <form
@@ -584,6 +615,7 @@ const ContactSection = () => {
 
                   </div>
 
+
                   {/* PHONE */}
 
                   <div>
@@ -609,6 +641,7 @@ const ContactSection = () => {
 
                   </div>
 
+
                   {/* EMAIL */}
 
                   <div className="sm:col-span-2">
@@ -632,6 +665,7 @@ const ContactSection = () => {
                     />
 
                   </div>
+
 
                   {/* SERVICE */}
 
@@ -692,6 +726,7 @@ const ContactSection = () => {
 
                   </div>
 
+
                   {/* MESSAGE */}
 
                   <div className="sm:col-span-2">
@@ -715,13 +750,17 @@ const ContactSection = () => {
 
                   </div>
 
+
                   {/* ERROR MESSAGE */}
 
                   {submitError && (
+
                     <div className="sm:col-span-2 border border-red-300/20 bg-red-500/10 px-4 py-3 text-sm leading-6 text-red-200">
                       {submitError}
                     </div>
+
                   )}
+
 
                   {/* SUBMIT */}
 
@@ -761,12 +800,14 @@ const ContactSection = () => {
         </div>
       </section>
 
+
       {/* ================= MAP ================= */}
 
       <section
         id="location"
         className="scroll-mt-24 bg-[#102b29] py-20 sm:py-24"
       >
+
         <div className="mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
 
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
@@ -799,6 +840,7 @@ const ContactSection = () => {
             </div>
 
           </div>
+
 
           <motion.div
             initial={{
@@ -837,6 +879,7 @@ const ContactSection = () => {
         </div>
       </section>
 
+
       {/* ================= SOCIAL MEDIA ================= */}
 
       <section className="bg-white py-20 sm:py-24">
@@ -867,6 +910,7 @@ const ContactSection = () => {
               </p>
 
             </div>
+
 
             <div className="grid gap-4 sm:grid-cols-3">
 
@@ -934,6 +978,7 @@ const ContactSection = () => {
         </div>
 
       </section>
+
 
       {/* ================= FINAL CTA ================= */}
 
