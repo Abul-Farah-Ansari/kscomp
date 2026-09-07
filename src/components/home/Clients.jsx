@@ -3,28 +3,34 @@ import { motion } from "framer-motion";
 
 const clients = [
   {
-    name: "TRIVENI",
-    logo: "https://via.placeholder.com/180x80?text=TRIVENI",
+    name: "Zaib Infotech",
+    logo: "/images/clients/zaib-infotech.png",
+    type: "image",
   },
   {
-    name: "SPJ COLLEGE",
-    logo: "https://via.placeholder.com/180x80?text=SPJ",
+    name: "Expert Organizers",
+    logo: "/images/clients/expert-organizers.png",
+    type: "image",
   },
   {
-    name: "R.H. ARLALKA",
-    logo: "https://via.placeholder.com/180x80?text=RH",
+    name: "Zen nex",
+    initials: "ZN",
+    type: "text",
   },
   {
-    name: "FINCORP",
-    logo: "https://via.placeholder.com/180x80?text=FINCORP",
+    name: "Alvida tour and travels",
+    logo: "/images/clients/alvida-tours.png",
+    type: "image",
   },
   {
-    name: "NEXUS",
-    logo: "https://via.placeholder.com/180x80?text=NEXUS",
+    name: "AR printing and packaging",
+    initials: "AR",
+    type: "text",
   },
   {
-    name: "VERTEX",
-    logo: "https://via.placeholder.com/180x80?text=VERTEX",
+    name: "Ak printing hub",
+    initials: "AK",
+    type: "text",
   },
 ];
 
@@ -150,22 +156,16 @@ const Clients = () => {
                 className="
                   group
                   relative
-
                   flex
                   w-full
                   min-w-0
-
                   min-h-[115px]
-
                   items-center
                   justify-center
-
                   overflow-hidden
-
                   border-b
                   border-r
                   border-[#1e5260]/10
-
                   px-3
                   py-5
 
@@ -185,16 +185,12 @@ const Clients = () => {
                     left-3
                     top-3
                     z-20
-
                     text-[8px]
                     font-medium
                     tracking-[1.5px]
-
                     text-[#326844]/40
-
                     transition-colors
                     duration-300
-
                     group-hover:text-white/40
 
                     sm:text-[9px]
@@ -211,91 +207,136 @@ const Clients = () => {
                   className="
                     absolute
                     inset-0
-
                     translate-y-full
-
                     bg-[#326844]
-
                     transition-transform
                     duration-500
                     ease-out
-
                     group-hover:translate-y-0
                   "
                 />
 
 
-                {/* ================= CLIENT LOGO ================= */}
+                {/* ================= LOGO ================= */}
 
                 <div
                   className="
                     relative
                     z-10
-
                     flex
                     min-w-0
                     items-center
                     justify-center
-
                     transition-all
                     duration-500
-
                     group-hover:-translate-y-5
                     group-hover:scale-90
                     group-hover:opacity-0
                   "
                 >
-                  <img
-                    src={client.logo}
-                    alt={`${client.name} logo`}
-                    loading="lazy"
-                    className="
-                      h-auto
 
-                      max-h-[45px]
-                      max-w-[115px]
+                  {/* IMAGE LOGO */}
 
-                      object-contain
+                  {client.type === "image" && (
+                    <img
+                      src={client.logo}
+                      alt={`${client.name} logo`}
+                      loading="lazy"
+                      className="
+                        h-auto
+                        max-h-[48px]
+                        max-w-[125px]
+                        object-contain
+                        grayscale
+                        opacity-80
+                        transition-all
+                        duration-500
+                        group-hover:grayscale-0
 
-                      grayscale
-                      opacity-80
+                        sm:max-h-[55px]
+                        sm:max-w-[145px]
 
-                      transition-all
-                      duration-500
+                        lg:max-h-[60px]
+                        lg:max-w-[155px]
+                      "
+                    />
+                  )}
 
-                      group-hover:grayscale-0
 
-                      sm:max-h-[55px]
-                      sm:max-w-[140px]
+                  {/* ================= ALPHABET LOGO ================= */}
 
-                      lg:max-h-[60px]
-                      lg:max-w-[150px]
-                    "
-                  />
+                  {client.type === "text" && (
+                    <div className="flex flex-col items-center justify-center">
+
+                      {/* Alphabet mark */}
+
+                      <div
+                        className="
+                          flex
+                          h-[52px]
+                          w-[52px]
+                          items-center
+                          justify-center
+                          rounded-xl
+                          border
+                          border-[#326844]/30
+                          bg-[#e9f0ec]
+                          text-[17px]
+                          font-bold
+                          tracking-[1px]
+                          text-[#326844]
+                          transition-all
+                          duration-500
+
+                          group-hover:border-white/30
+                          group-hover:bg-white/10
+                          group-hover:text-white
+                        "
+                      >
+                        {client.initials}
+                      </div>
+
+                      {/* Small client name */}
+
+                      <span
+                        className="
+                          mt-2
+                          max-w-[130px]
+                          text-center
+                          text-[8px]
+                          font-semibold
+                          uppercase
+                          tracking-[1px]
+                          text-[#6e7d79]
+                          transition-colors
+                          duration-500
+                          group-hover:text-white/80
+                        "
+                      >
+                        {client.name}
+                      </span>
+
+                    </div>
+                  )}
+
                 </div>
 
 
-                {/* ================= CLIENT NAME ================= */}
+                {/* ================= CLIENT NAME ON HOVER ================= */}
 
                 <div
                   className="
                     absolute
                     inset-0
                     z-10
-
                     flex
                     items-center
                     justify-center
-
                     translate-y-8
-
                     px-3
-
                     opacity-0
-
                     transition-all
                     duration-500
-
                     group-hover:translate-y-0
                     group-hover:opacity-100
                   "
@@ -304,17 +345,15 @@ const Clients = () => {
                     className="
                       max-w-full
                       text-center
-
-                      text-[12px]
+                      text-[11px]
                       font-semibold
-
                       uppercase
+                      leading-5
                       tracking-[1px]
-
                       text-white
 
-                      sm:text-[15px]
-                      sm:tracking-[1.5px]
+                      sm:text-[14px]
+                      sm:tracking-[1.2px]
                     "
                   >
                     {client.name}
@@ -340,7 +379,6 @@ const Clients = () => {
           }}
           className="
             mt-6
-
             flex
             flex-col
             gap-4
@@ -351,17 +389,43 @@ const Clients = () => {
             sm:justify-between
           "
         >
+
           <div className="flex items-center gap-3">
+
             <span className="h-2 w-2 shrink-0 rounded-full bg-[#75b43c]" />
 
-            <span className="text-[9px] font-semibold uppercase tracking-[1.5px] text-[#687779] sm:text-[10px] sm:tracking-[2px]">
+            <span
+              className="
+                text-[9px]
+                font-semibold
+                uppercase
+                tracking-[1.5px]
+                text-[#687779]
+
+                sm:text-[10px]
+                sm:tracking-[2px]
+              "
+            >
               Partnerships built on trust
             </span>
+
           </div>
 
-          <span className="text-[9px] uppercase tracking-[1.5px] text-[#9aa5a6] sm:text-[10px] sm:tracking-[2px]">
+
+          <span
+            className="
+              text-[9px]
+              uppercase
+              tracking-[1.5px]
+              text-[#9aa5a6]
+
+              sm:text-[10px]
+              sm:tracking-[2px]
+            "
+          >
             KS & Company
           </span>
+
         </motion.div>
 
       </div>

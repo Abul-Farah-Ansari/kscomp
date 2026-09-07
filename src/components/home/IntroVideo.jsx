@@ -10,10 +10,11 @@ const IntroVideo = () => {
       {/* ================= INTRO VIDEO SECTION ================= */}
 
       <section className="relative h-screen min-h-[650px] w-full overflow-hidden bg-[#10282c]">
-        
-        {/* BACKGROUND IMAGE */}
+
+        {/* ================= BACKGROUND IMAGE ================= */}
 
         <div className="absolute inset-0">
+
           <img
             src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2200&q=85"
             alt="KS & Company professionals"
@@ -25,10 +26,11 @@ const IntroVideo = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-[#0c2024]/95 via-[#16373b]/80 to-[#173d3f]/55" />
 
           <div className="absolute inset-0 bg-black/20" />
+
         </div>
 
 
-        {/* DECORATIVE CIRCLES */}
+        {/* ================= DECORATIVE CIRCLES ================= */}
 
         <div
           className="
@@ -75,31 +77,52 @@ const IntroVideo = () => {
             lg:px-12
           "
         >
+
           <div className="max-w-[850px]">
 
             {/* SMALL LABEL */}
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
+              transition={{
+                duration: 0.6,
+              }}
               className="mb-7 flex items-center gap-4"
             >
+
               <span className="h-[2px] w-12 bg-[#8fbd73]" />
 
               <span className="text-[11px] font-semibold uppercase tracking-[3px] text-[#b7d7a5]">
                 Discover KS & Company
               </span>
+
             </motion.div>
 
 
             {/* HEADING */}
 
             <motion.h2
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={{
+                opacity: 0,
+                y: 35,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
               transition={{
                 duration: 0.8,
                 delay: 0.1,
@@ -115,20 +138,30 @@ const IntroVideo = () => {
                 lg:text-[82px]
               "
             >
+
               Financial clarity.
 
               <span className="block text-[#a8c99b]">
                 Built for growth.
               </span>
+
             </motion.h2>
 
 
             {/* DESCRIPTION */}
 
             <motion.p
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              initial={{
+                opacity: 0,
+                y: 25,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+              }}
               transition={{
                 duration: 0.7,
                 delay: 0.25,
@@ -148,6 +181,7 @@ const IntroVideo = () => {
             </motion.p>
 
           </div>
+
         </div>
 
 
@@ -162,7 +196,9 @@ const IntroVideo = () => {
             opacity: 1,
             scale: 1,
           }}
-          viewport={{ once: true }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.7,
             delay: 0.35,
@@ -200,6 +236,7 @@ const IntroVideo = () => {
             sm:w-[108px]
           "
         >
+
           {/* OUTER RING */}
 
           <span
@@ -216,6 +253,7 @@ const IntroVideo = () => {
             "
           />
 
+
           {/* SECOND OUTER RING */}
 
           <span
@@ -229,6 +267,7 @@ const IntroVideo = () => {
             "
           />
 
+
           {/* PLAY ICON */}
 
           <Play
@@ -236,6 +275,7 @@ const IntroVideo = () => {
             fill="currentColor"
             className="relative z-10 ml-1.5 sm:h-[42px] sm:w-[42px]"
           />
+
 
           {/* PULSE EFFECT */}
 
@@ -250,6 +290,7 @@ const IntroVideo = () => {
               animate-ping
             "
           />
+
         </motion.button>
 
 
@@ -273,6 +314,7 @@ const IntroVideo = () => {
             lg:right-12
           "
         >
+
           <span className="text-[10px] uppercase tracking-[2px] text-white/35">
             Chartered Accountants
           </span>
@@ -280,6 +322,7 @@ const IntroVideo = () => {
           <span className="text-[10px] uppercase tracking-[2px] text-white/35">
             Scroll to Explore ↓
           </span>
+
         </div>
 
       </section>
@@ -288,11 +331,19 @@ const IntroVideo = () => {
       {/* ================= VIDEO MODAL ================= */}
 
       <AnimatePresence>
+
         {isOpen && (
+
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            exit={{
+              opacity: 0,
+            }}
             onClick={() => setIsOpen(false)}
             className="
               fixed
@@ -307,7 +358,7 @@ const IntroVideo = () => {
             "
           >
 
-            {/* CLOSE BUTTON */}
+            {/* ================= CLOSE BUTTON ================= */}
 
             <button
               onClick={() => setIsOpen(false)}
@@ -338,7 +389,7 @@ const IntroVideo = () => {
             </button>
 
 
-            {/* VIDEO CONTAINER */}
+            {/* ================= VIDEO CONTAINER ================= */}
 
             <motion.div
               initial={{
@@ -368,20 +419,38 @@ const IntroVideo = () => {
                 shadow-2xl
               "
             >
+
+              {/* ================= LOCAL MP4 VIDEO ================= */}
+
               <div className="aspect-video">
-                <iframe
-                  className="h-full w-full"
-                  src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1"
-                  title="KS & Company Introduction"
-                  allow="autoplay; encrypted-media; picture-in-picture"
-                  allowFullScreen
-                />
+
+                <video
+                  controls
+                  autoPlay
+                  playsInline
+                  preload="metadata"
+                  className="h-full w-full object-contain bg-black"
+                >
+
+                  <source
+                    src="/videos/WhatsApp%20Video%202026-09-08%20at%2000.38.20.mp4"
+                    type="video/mp4"
+                  />
+
+                  Your browser does not support the video tag.
+
+                </video>
+
               </div>
+
             </motion.div>
 
           </motion.div>
+
         )}
+
       </AnimatePresence>
+
     </>
   );
 };
