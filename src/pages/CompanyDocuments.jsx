@@ -72,7 +72,7 @@ const CompanyDocuments = () => {
   const supportingDocuments = [
     {
       id: 5,
-      title: "Certificate",
+      title: "Certification of Merit (NIVA HEALTH INSURANCE)",
       type: "Supporting Document",
       icon: FileCheck2,
       file: "/documents/Certificate.pdf",
@@ -80,7 +80,7 @@ const CompanyDocuments = () => {
 
     {
       id: 6,
-      title: "Agent Appointment Letter",
+      title: "Agent Appointment Letter (NIVA HEALTH INSURANCE)",
       subtitle: "NBHDEL06231003",
       type: "Appointment Document",
       icon: BriefcaseBusiness,
@@ -89,7 +89,7 @@ const CompanyDocuments = () => {
 
     {
       id: 7,
-      title: "Appointment Letter & Application Form",
+      title: "Appointment Letter & Application Form (MAX LIFE INSURANCE)",
       type: "Appointment Document",
       icon: FileText,
       file: "/documents/appointment-letter-application-form.pdf",
@@ -97,8 +97,8 @@ const CompanyDocuments = () => {
 
     {
       id: 8,
-      title: "Appointment Letter",
-      subtitle: "626271",
+      title: "Appointment Letter (TATA AIG INSURANCE)",
+      
       type: "Appointment Document",
       icon: FileText,
       file: "/documents/Appointment_Letter_626271.pdf",

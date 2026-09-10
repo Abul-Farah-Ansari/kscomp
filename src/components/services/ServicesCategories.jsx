@@ -39,26 +39,45 @@ const categoryImages = {
 ========================================= */
 
 const categoryIcons = {
+
+  /* TAXATION
+     Tax document + percentage
+  */
+
   "taxation-services":
     "mdi:file-document-percent-outline",
+
+  /* FINANCE */
 
   "finance-services":
     "mdi:chart-line",
 
+  /* INSURANCE */
+
   "insurance-services":
     "mdi:shield-check-outline",
+
+  /* ACCOUNTING */
 
   "accounting-services":
     "mdi:calculator-variant-outline",
 
+  /* REGISTRATION */
+
   "registration-services":
     "mdi:office-building-outline",
+
+  /* HR */
 
   "hr-compliance-services":
     "mdi:account-group-outline",
 
+  /* OTHER COMPLIANCE */
+
   "other-compliance":
     "mdi:clipboard-check-outline",
+
+  /* GOVERNMENT */
 
   "government-documentation":
     "mdi:file-document-outline",
@@ -67,13 +86,22 @@ const categoryIcons = {
 
 /* =========================================
    EXACT CATEGORY ORDER
+
+   01 - Taxation
+   02 - Insurance
+   03 - Accounting
+   04 - Loan & Finance
+   05 - Registration
+   06 - HR Compliance
+   07 - Other Compliance
+   08 - Government & Documentation
 ========================================= */
 
 const categoryOrder = [
   "taxation-services",
-  "finance-services",
   "insurance-services",
   "accounting-services",
+  "finance-services",
   "registration-services",
   "hr-compliance-services",
   "other-compliance",
@@ -87,9 +115,9 @@ const categoryOrder = [
 
 const categoryNumbers = {
   "taxation-services": "01",
-  "finance-services": "02",
-  "insurance-services": "03",
-  "accounting-services": "04",
+  "insurance-services": "02",
+  "accounting-services": "03",
+  "finance-services": "04",
   "registration-services": "05",
   "hr-compliance-services": "06",
   "other-compliance": "07",
@@ -131,7 +159,16 @@ const ServicesCategories = () => {
 
 
   return (
-    <section className="bg-[#f3f1ec] px-5 pb-20 pt-10 sm:px-8 sm:pb-24">
+    <section
+      className="
+        bg-[#f3f1ec]
+        px-5
+        pb-20
+        pt-10
+        sm:px-8
+        sm:pb-24
+      "
+    >
 
       <div className="mx-auto max-w-7xl">
 
@@ -139,15 +176,42 @@ const ServicesCategories = () => {
             HEADER
         ===================================== */}
 
-        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div
+          className="
+            mb-12
+            flex
+            flex-col
+            gap-6
+            md:flex-row
+            md:items-end
+            md:justify-between
+          "
+        >
 
           <div>
 
-            <p className="text-xs font-semibold tracking-[0.32em] text-[#102b29]/50">
+            <p
+              className="
+                text-xs
+                font-semibold
+                tracking-[0.32em]
+                text-[#102b29]/50
+              "
+            >
               OUR SERVICES
             </p>
 
-            <h2 className="mt-4 text-4xl font-bold tracking-tight text-[#102b29] sm:text-5xl">
+
+            <h2
+              className="
+                mt-4
+                text-4xl
+                font-bold
+                tracking-tight
+                text-[#102b29]
+                sm:text-5xl
+              "
+            >
               Professional solutions
               <br />
               for every need.
@@ -156,7 +220,14 @@ const ServicesCategories = () => {
           </div>
 
 
-          <p className="max-w-md text-sm leading-7 text-[#102b29]/60">
+          <p
+            className="
+              max-w-md
+              text-sm
+              leading-7
+              text-[#102b29]/60
+            "
+          >
             From taxation and financial solutions to insurance,
             registration, compliance and documentation, explore our
             complete range of professional services.
@@ -169,22 +240,36 @@ const ServicesCategories = () => {
             CATEGORY GRID
         ===================================== */}
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div
+          className="
+            grid
+            grid-cols-1
+            gap-5
+            sm:grid-cols-2
+            lg:grid-cols-4
+          "
+        >
 
           {orderedServices.map((item, index) => {
 
             const serialNumber =
-              categoryNumbers[item.id];
+              categoryNumbers[item.id] ||
+              String(index + 1).padStart(2, "0");
+
 
             const icon =
               categoryIcons[item.id] ||
               "mdi:briefcase-outline";
 
+
+            const backgroundImage =
+              categoryImages[item.id];
+
+
             return (
               <motion.button
                 key={item.id}
                 type="button"
-
                 onClick={() =>
                   scrollToSection(item.id)
                 }
@@ -201,6 +286,7 @@ const ServicesCategories = () => {
 
                 viewport={{
                   once: true,
+                  amount: 0.15,
                 }}
 
                 transition={{
@@ -208,47 +294,136 @@ const ServicesCategories = () => {
                   delay: index * 0.05,
                 }}
 
-                className="group relative aspect-square overflow-hidden bg-[#102b29] p-7 text-left"
+                className="
+                  group
+                  relative
+                  aspect-square
+                  overflow-hidden
+                  bg-[#102b29]
+                  p-7
+                  text-left
+                  transition-all
+                  duration-500
+                  hover:-translate-y-1
+                  hover:shadow-[0_20px_45px_rgba(16,43,41,0.18)]
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-[#c7a45d]/60
+                  focus:ring-offset-2
+                "
               >
 
                 {/* =================================
                     BACKGROUND IMAGE
                 ================================= */}
 
-                <div
-                  className="absolute bottom-0 right-0 h-[62%] w-[62%] bg-cover bg-center opacity-[0.16] transition duration-500 group-hover:scale-105 group-hover:opacity-[0.22]"
-                  style={{
-                    backgroundImage:
-                      `url("${categoryImages[item.id]}")`,
-                  }}
-                />
+                {backgroundImage && (
+                  <div
+                    className="
+                      absolute
+                      bottom-0
+                      right-0
+                      h-[62%]
+                      w-[62%]
+                      bg-cover
+                      bg-center
+                      opacity-[0.16]
+                      transition-all
+                      duration-700
+                      group-hover:scale-110
+                      group-hover:opacity-[0.24]
+                    "
+                    style={{
+                      backgroundImage:
+                        `url("${backgroundImage}")`,
+                    }}
+                  />
+                )}
 
 
                 {/* =================================
                     DARK OVERLAY
                 ================================= */}
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#102b29] via-[#102b29]/95 to-[#102b29]/30" />
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-[#102b29]
+                    via-[#102b29]/95
+                    to-[#102b29]/30
+                  "
+                />
+
+
+                {/* =================================
+                    SUBTLE GOLD GLOW
+                ================================= */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    -right-20
+                    -top-20
+                    h-44
+                    w-44
+                    rounded-full
+                    bg-[#c7a45d]/10
+                    blur-3xl
+                    opacity-0
+                    transition-opacity
+                    duration-700
+                    group-hover:opacity-100
+                  "
+                />
 
 
                 {/* =================================
                     INNER BORDER
                 ================================= */}
 
-                <div className="absolute inset-4 border border-white/[0.07]" />
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-4
+                    border
+                    border-white/[0.07]
+                    transition-colors
+                    duration-500
+                    group-hover:border-[#c7a45d]/20
+                  "
+                />
 
 
                 {/* =================================
                     CATEGORY ICON
                 ================================= */}
 
-                <div className="absolute right-8 top-16 z-10">
+                <div
+                  className="
+                    absolute
+                    right-8
+                    top-16
+                    z-10
+                  "
+                >
 
                   <Icon
                     icon={icon}
                     width="64"
                     height="64"
-                    className="text-[#c7a45d] opacity-80 transition-all duration-500 group-hover:scale-110 group-hover:opacity-100"
+                    className="
+                      text-[#c7a45d]
+                      opacity-80
+                      transition-all
+                      duration-500
+                      group-hover:scale-110
+                      group-hover:opacity-100
+                      group-hover:drop-shadow-[0_0_12px_rgba(199,164,93,0.2)]
+                    "
                   />
 
                 </div>
@@ -258,52 +433,142 @@ const ServicesCategories = () => {
                     CONTENT
                 ================================= */}
 
-                <div className="relative z-10 flex h-full flex-col">
+                <div
+                  className="
+                    relative
+                    z-10
+                    flex
+                    h-full
+                    flex-col
+                  "
+                >
 
-                  {/* TOP */}
+                  {/* =================================
+                      TOP
+                  ================================= */}
 
-                  <div className="flex items-start justify-between">
+                  <div
+                    className="
+                      flex
+                      items-start
+                      justify-between
+                    "
+                  >
 
                     {/* SERIAL NUMBER */}
 
-                    <span className="text-sm font-semibold tracking-wider text-white/40">
+                    <span
+                      className="
+                        text-sm
+                        font-semibold
+                        tracking-wider
+                        text-white/40
+                        transition-colors
+                        duration-300
+                        group-hover:text-[#c7a45d]
+                      "
+                    >
                       {serialNumber}
                     </span>
 
 
                     {/* BRAND */}
 
-                    <span className="text-[10px] font-medium tracking-[0.25em] text-white/30">
+                    <span
+                      className="
+                        text-[10px]
+                        font-medium
+                        tracking-[0.25em]
+                        text-white/30
+                        transition-colors
+                        duration-300
+                        group-hover:text-white/45
+                      "
+                    >
                       KS & COMPANY
                     </span>
 
                   </div>
 
 
-                  {/* BOTTOM */}
+                  {/* =================================
+                      BOTTOM
+                  ================================= */}
 
                   <div className="mt-auto">
 
                     {/* CATEGORY NAME */}
 
-                    <h3 className="max-w-[240px] text-2xl font-semibold leading-tight text-white">
+                    <h3
+                      className="
+                        max-w-[240px]
+                        text-2xl
+                        font-semibold
+                        leading-tight
+                        text-white
+                        transition-transform
+                        duration-500
+                        group-hover:translate-x-1
+                      "
+                    >
                       {item.category}
                     </h3>
 
 
                     {/* BOTTOM ACTION */}
 
-                    <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-5">
+                    <div
+                      className="
+                        mt-6
+                        flex
+                        items-center
+                        justify-between
+                        border-t
+                        border-white/10
+                        pt-5
+                      "
+                    >
 
-                      <span className="text-[11px] font-semibold tracking-[0.12em] text-white/45">
+                      {/* SERVICE COUNT */}
+
+                      <span
+                        className="
+                          text-[11px]
+                          font-semibold
+                          tracking-[0.12em]
+                          text-white/45
+                          transition-colors
+                          duration-300
+                          group-hover:text-white/70
+                        "
+                      >
                         {item.services.length} SERVICES
                       </span>
 
 
-                      <span className="flex h-10 w-10 items-center justify-center border border-white/20 text-white transition duration-300 group-hover:bg-white group-hover:text-[#102b29]">
+                      {/* ARROW */}
+
+                      <span
+                        className="
+                          flex
+                          h-10
+                          w-10
+                          items-center
+                          justify-center
+                          border
+                          border-white/20
+                          text-white
+                          transition-all
+                          duration-300
+                          group-hover:border-white
+                          group-hover:bg-white
+                          group-hover:text-[#102b29]
+                        "
+                      >
 
                         <ArrowDownRight
                           size={18}
+                          strokeWidth={1.6}
                         />
 
                       </span>

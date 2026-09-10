@@ -1,6 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+/* =========================================================
+   CLIENT DATA
+========================================================= */
+
 const clients = [
   {
     name: "Zaib Infotech",
@@ -34,12 +38,20 @@ const clients = [
   },
 ];
 
+
+/* =========================================================
+   CLIENTS COMPONENT
+========================================================= */
+
 const Clients = () => {
   return (
     <section className="relative w-full overflow-hidden bg-[#f4f7f5] py-14 sm:py-20 lg:py-24">
+
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-12 xl:px-16">
 
-        {/* ================= HEADER ================= */}
+        {/* =================================================
+            HEADER
+        ================================================== */}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -50,28 +62,45 @@ const Clients = () => {
             ease: [0.22, 1, 0.36, 1],
           }}
           className="
-            mb-9
+            mb-10
             flex
             flex-col
             gap-5
 
-            sm:mb-10
+            sm:mb-12
             sm:flex-row
             sm:items-end
             sm:justify-between
           "
         >
+
+          {/* LEFT */}
+
           <div className="max-w-[750px]">
 
             {/* SMALL TITLE */}
 
             <div className="mb-3 flex items-center gap-3">
+
               <span className="h-[2px] w-8 shrink-0 bg-[#326844] sm:w-9" />
 
-              <span className="text-[9px] font-semibold uppercase tracking-[2.5px] text-[#326844] sm:text-[10px] sm:tracking-[3px]">
+              <span
+                className="
+                  text-[9px]
+                  font-semibold
+                  uppercase
+                  tracking-[2.5px]
+                  text-[#326844]
+
+                  sm:text-[10px]
+                  sm:tracking-[3px]
+                "
+              >
                 Our Clients
               </span>
+
             </div>
+
 
             {/* MAIN TITLE */}
 
@@ -91,11 +120,22 @@ const Clients = () => {
             >
               Trusted by those who
 
-              <span className="block text-[#285b68] sm:ml-2 sm:inline">
+              <span
+                className="
+                  block
+                  text-[#285b68]
+
+                  sm:ml-2
+                  sm:inline
+                "
+              >
                 value expertise.
               </span>
+
             </h2>
+
           </div>
+
 
           {/* DESCRIPTION */}
 
@@ -112,10 +152,13 @@ const Clients = () => {
             Building long-term relationships through professional expertise,
             trust and consistent financial support.
           </p>
+
         </motion.div>
 
 
-        {/* ================= CLIENT LOGO STRIP ================= */}
+        {/* =================================================
+            CLIENT LOGO GRID
+        ================================================== */}
 
         <motion.div
           initial={{ opacity: 0, y: 25 }}
@@ -128,13 +171,18 @@ const Clients = () => {
           className="
             w-full
             overflow-hidden
-            border-y
-            border-[#1e5260]/15
+            rounded-[18px]
+            border
+            border-[#1e5260]/10
+            bg-white
+            shadow-[0_15px_50px_rgba(25,55,48,0.05)]
           "
         >
+
           <div className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
 
             {clients.map((client, index) => (
+
               <motion.div
                 key={client.name}
                 initial={{
@@ -157,163 +205,232 @@ const Clients = () => {
                   group
                   relative
                   flex
+                  min-h-[190px]
                   w-full
                   min-w-0
-                  min-h-[115px]
+                  flex-col
                   items-center
                   justify-center
                   overflow-hidden
+
                   border-b
                   border-r
                   border-[#1e5260]/10
-                  px-3
-                  py-5
 
-                  sm:min-h-[130px]
+                  px-4
+                  py-8
+
+                  transition-all
+                  duration-500
+
+                  hover:bg-[#f8faf9]
+
+                  sm:min-h-[205px]
                   sm:px-5
+                  sm:py-9
 
-                  lg:min-h-[140px]
+                  lg:min-h-[225px]
                   lg:border-b-0
+
+                  last:border-r-0
                 "
               >
 
-                {/* ================= NUMBER ================= */}
+                {/* =================================================
+                    NUMBER
+                ================================================== */}
 
                 <span
                   className="
                     absolute
-                    left-3
-                    top-3
+                    left-4
+                    top-4
                     z-20
+
                     text-[8px]
-                    font-medium
-                    tracking-[1.5px]
+                    font-semibold
+                    tracking-[1.8px]
+
                     text-[#326844]/40
+
                     transition-colors
                     duration-300
-                    group-hover:text-white/40
 
-                    sm:text-[9px]
-                    sm:tracking-[2px]
+                    group-hover:text-[#326844]
                   "
                 >
-                  0{index + 1}
+                  {String(index + 1).padStart(2, "0")}
                 </span>
 
 
-                {/* ================= HOVER BACKGROUND ================= */}
+                {/* =================================================
+                    SUBTLE TOP ACCENT
+                ================================================== */}
 
                 <div
                   className="
                     absolute
-                    inset-0
-                    translate-y-full
+                    left-1/2
+                    top-0
+                    h-[2px]
+                    w-0
+                    -translate-x-1/2
+
                     bg-[#326844]
-                    transition-transform
+
+                    transition-all
                     duration-500
-                    ease-out
-                    group-hover:translate-y-0
+
+                    group-hover:w-16
                   "
                 />
 
 
-                {/* ================= LOGO ================= */}
+                {/* =================================================
+                    LOGO AREA
+                ================================================== */}
 
                 <div
                   className="
                     relative
                     z-10
+
                     flex
-                    min-w-0
+                    h-[95px]
+                    w-full
                     items-center
                     justify-center
-                    transition-all
+
+                    transition-transform
                     duration-500
-                    group-hover:-translate-y-5
-                    group-hover:scale-90
-                    group-hover:opacity-0
+
+                    group-hover:-translate-y-1
                   "
                 >
 
-                  {/* IMAGE LOGO */}
+                  {/* =================================================
+                      IMAGE LOGO
+                  ================================================== */}
 
                   {client.type === "image" && (
-                    <img
-                      src={client.logo}
-                      alt={`${client.name} logo`}
-                      loading="lazy"
+                    <div
                       className="
-                        h-auto
-                        max-h-[48px]
-                        max-w-[125px]
-                        object-contain
-                        grayscale
-                        opacity-80
+                        flex
+                        h-[88px]
+                        w-[150px]
+                        items-center
+                        justify-center
+                        rounded-xl
+                        bg-white
+
                         transition-all
                         duration-500
-                        group-hover:grayscale-0
 
-                        sm:max-h-[55px]
-                        sm:max-w-[145px]
-
-                        lg:max-h-[60px]
-                        lg:max-w-[155px]
+                        group-hover:scale-105
                       "
-                    />
+                    >
+
+                      <img
+                        src={client.logo}
+                        alt={`${client.name} logo`}
+                        loading="lazy"
+                        className="
+                          block
+                          h-auto
+                          max-h-[78px]
+                          w-auto
+                          max-w-[145px]
+                          object-contain
+
+                          opacity-100
+
+                          transition-all
+                          duration-500
+                        "
+                      />
+
+                    </div>
                   )}
 
 
-                  {/* ================= ALPHABET LOGO ================= */}
+                  {/* =================================================
+                      TEXT / ALPHABET LOGO
+                  ================================================== */}
 
                   {client.type === "text" && (
-                    <div className="flex flex-col items-center justify-center">
+                    <div
+                      className="
+                        relative
+                        flex
+                        h-[82px]
+                        w-[82px]
+                        items-center
+                        justify-center
+                        overflow-hidden
+                        rounded-[20px]
 
-                      {/* Alphabet mark */}
+                        border
+                        border-[#326844]/20
+
+                        bg-[#eef4f0]
+
+                        shadow-[0_8px_25px_rgba(50,104,68,0.08)]
+
+                        transition-all
+                        duration-500
+
+                        group-hover:scale-105
+                        group-hover:border-[#326844]/40
+                        group-hover:shadow-[0_12px_30px_rgba(50,104,68,0.12)]
+                      "
+                    >
+
+                      {/* Decorative shape */}
 
                       <div
                         className="
-                          flex
-                          h-[52px]
-                          w-[52px]
-                          items-center
-                          justify-center
-                          rounded-xl
-                          border
-                          border-[#326844]/30
-                          bg-[#e9f0ec]
-                          text-[17px]
-                          font-bold
-                          tracking-[1px]
-                          text-[#326844]
-                          transition-all
-                          duration-500
-
-                          group-hover:border-white/30
-                          group-hover:bg-white/10
-                          group-hover:text-white
+                          absolute
+                          -right-5
+                          -top-5
+                          h-14
+                          w-14
+                          rounded-full
+                          bg-[#326844]/10
                         "
-                      >
-                        {client.initials}
-                      </div>
+                      />
 
-                      {/* Small client name */}
+                      <div
+                        className="
+                          absolute
+                          -bottom-6
+                          -left-5
+                          h-16
+                          w-16
+                          rounded-full
+                          bg-[#285b68]/10
+                        "
+                      />
+
+
+                      {/* Initials */}
 
                       <span
                         className="
-                          mt-2
-                          max-w-[130px]
-                          text-center
-                          text-[8px]
-                          font-semibold
-                          uppercase
-                          tracking-[1px]
-                          text-[#6e7d79]
+                          relative
+                          z-10
+
+                          text-[22px]
+                          font-bold
+                          tracking-[2px]
+                          text-[#326844]
+
                           transition-colors
-                          duration-500
-                          group-hover:text-white/80
+                          duration-300
+
+                          group-hover:text-[#285b68]
                         "
                       >
-                        {client.name}
+                        {client.initials}
                       </span>
 
                     </div>
@@ -322,52 +439,87 @@ const Clients = () => {
                 </div>
 
 
-                {/* ================= CLIENT NAME ON HOVER ================= */}
+                {/* =================================================
+                    CLIENT NAME
+                ================================================== */}
 
                 <div
                   className="
-                    absolute
-                    inset-0
+                    relative
                     z-10
+                    mt-5
                     flex
+                    min-h-[42px]
+                    w-full
                     items-center
                     justify-center
-                    translate-y-8
-                    px-3
-                    opacity-0
-                    transition-all
-                    duration-500
-                    group-hover:translate-y-0
-                    group-hover:opacity-100
+                    px-2
+                    text-center
                   "
                 >
+
                   <span
                     className="
-                      max-w-full
-                      text-center
+                      max-w-[180px]
+
                       text-[11px]
                       font-semibold
                       uppercase
-                      leading-5
+                      leading-[1.45]
                       tracking-[1px]
-                      text-white
 
-                      sm:text-[14px]
-                      sm:tracking-[1.2px]
+                      text-[#30403d]
+
+                      transition-all
+                      duration-300
+
+                      group-hover:text-[#326844]
+
+                      sm:text-[12px]
+                      sm:tracking-[1.15px]
                     "
                   >
                     {client.name}
                   </span>
+
                 </div>
 
+
+                {/* =================================================
+                    BOTTOM DECORATIVE LINE
+                ================================================== */}
+
+                <div
+                  className="
+                    absolute
+                    bottom-5
+                    left-1/2
+                    h-[1px]
+                    w-5
+                    -translate-x-1/2
+
+                    bg-[#326844]/20
+
+                    transition-all
+                    duration-500
+
+                    group-hover:w-10
+                    group-hover:bg-[#326844]/50
+                  "
+                />
+
               </motion.div>
+
             ))}
 
           </div>
+
         </motion.div>
 
 
-        {/* ================= BOTTOM ================= */}
+        {/* =================================================
+            BOTTOM
+        ================================================== */}
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -378,21 +530,31 @@ const Clients = () => {
             delay: 0.3,
           }}
           className="
-            mt-6
+            mt-7
+
             flex
             flex-col
             gap-4
 
-            sm:mt-7
             sm:flex-row
             sm:items-center
             sm:justify-between
           "
         >
 
+          {/* TRUST MESSAGE */}
+
           <div className="flex items-center gap-3">
 
-            <span className="h-2 w-2 shrink-0 rounded-full bg-[#75b43c]" />
+            <span
+              className="
+                h-2
+                w-2
+                shrink-0
+                rounded-full
+                bg-[#75b43c]
+              "
+            />
 
             <span
               className="
@@ -412,6 +574,8 @@ const Clients = () => {
           </div>
 
 
+          {/* COMPANY */}
+
           <span
             className="
               text-[9px]
@@ -423,12 +587,13 @@ const Clients = () => {
               sm:tracking-[2px]
             "
           >
-            KS & Company
+            KS &amp; Company
           </span>
 
         </motion.div>
 
       </div>
+
     </section>
   );
 };

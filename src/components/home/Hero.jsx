@@ -5,10 +5,10 @@ import {
   BadgeCheck,
   ShieldCheck,
   TrendingUp,
+  Percent,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import caLogo from "../../assets/CA.png";
 import heroVideo from "../../assets/hero-video.mp4";
 
 const Hero = () => {
@@ -89,6 +89,7 @@ const Hero = () => {
       />
 
       {/* Main Dark Overlay */}
+
       <div
         className="
           absolute
@@ -98,6 +99,7 @@ const Hero = () => {
       />
 
       {/* Left Content Protection */}
+
       <div
         className="
           absolute
@@ -112,6 +114,7 @@ const Hero = () => {
       />
 
       {/* Bottom Fade */}
+
       <div
         className="
           absolute
@@ -123,6 +126,7 @@ const Hero = () => {
           to-transparent
         "
       />
+
 
       {/* =====================================================
           GOLDEN AMBIENT LIGHT
@@ -183,6 +187,7 @@ const Hero = () => {
         "
       />
 
+
       {/* Decorative Lines */}
 
       <div
@@ -222,6 +227,7 @@ const Hero = () => {
           max-sm:h-20
         "
       />
+
 
       {/* =====================================================
           MAIN CONTAINER
@@ -271,6 +277,7 @@ const Hero = () => {
           "
         >
 
+
           {/* =================================================
               LEFT SIDE
           ================================================= */}
@@ -314,6 +321,7 @@ const Hero = () => {
             >
 
               <span className="relative flex h-2 w-2">
+
                 <span
                   className="
                     absolute
@@ -336,6 +344,7 @@ const Hero = () => {
                     bg-[#d8bb72]
                   "
                 />
+
               </span>
 
               <span
@@ -395,7 +404,7 @@ const Hero = () => {
               </span>
 
 
-              {/* Expertise / Space */}
+              {/* Decorative Line */}
 
               <span
                 className="
@@ -453,8 +462,6 @@ const Hero = () => {
                 "
               >
 
-                {/* Gold Glow */}
-
                 <span
                   className="
                     absolute
@@ -472,8 +479,6 @@ const Hero = () => {
                     sm:w-80
                   "
                 />
-
-                {/* Typing Text */}
 
                 <span
                   className="
@@ -519,9 +524,6 @@ const Hero = () => {
                   />
 
                 </span>
-
-
-                {/* Accent */}
 
                 <span
                   className="
@@ -704,10 +706,7 @@ const Hero = () => {
                   <Play
                     size={9}
                     fill="currentColor"
-                    className="
-                      ml-[1px]
-                      text-[#d8bb72]
-                    "
+                    className="ml-[1px] text-[#d8bb72]"
                   />
                 </span>
 
@@ -824,7 +823,7 @@ const Hero = () => {
               />
 
 
-              {/* EXCELLENCE */}
+              {/* EXPERIENCE */}
 
               <div className="flex items-center gap-2">
 
@@ -844,11 +843,11 @@ const Hero = () => {
                       text-white/70
                     "
                   >
-                    Excellence
+                    9+ Years
                   </p>
 
                   <p className="text-[9px] text-white/40">
-                    Client Focused
+                    Professional Experience
                   </p>
                 </div>
 
@@ -860,7 +859,7 @@ const Hero = () => {
 
 
           {/* =================================================
-              RIGHT SIDE — RESPONSIVE GOLD CIRCLE
+              RIGHT SIDE — GOLD GST CIRCLE
           ================================================= */}
 
           <div
@@ -1087,7 +1086,7 @@ const Hero = () => {
 
 
                 {/* =================================================
-                    CENTER CONTENT
+                    GST CENTER CONTENT
                 ================================================= */}
 
                 <div
@@ -1101,40 +1100,96 @@ const Hero = () => {
                   "
                 >
 
-                  {/* CA Logo */}
+                  {/* =================================================
+                      GST ICON / BADGE
+                  ================================================= */}
 
                   <div
                     className="
+                      relative
                       mb-2
                       flex
-                      h-[45px]
-                      w-[45px]
+                      h-[58px]
+                      w-[58px]
                       items-center
                       justify-center
                       rounded-full
                       border
-                      border-[#d8bb72]/60
-                      bg-white
-                      p-1.5
-                      shadow-[0_8px_30px_rgba(0,0,0,0.3)]
+                      border-[#d8bb72]/70
+                      bg-gradient-to-br
+                      from-[#fffaf0]
+                      to-[#e9dfc8]
+                      shadow-[0_8px_30px_rgba(0,0,0,0.35)]
 
-                      min-[361px]:h-[50px]
-                      min-[361px]:w-[50px]
+                      min-[361px]:h-[64px]
+                      min-[361px]:w-[64px]
 
                       sm:mb-3
-                      sm:h-[62px]
-                      sm:w-[62px]
+                      sm:h-[72px]
+                      sm:w-[72px]
                     "
                   >
-                    <img
-                      src={caLogo}
-                      alt="Chartered Accountant"
-                      className="h-full w-full object-contain"
-                    />
+
+                    {/* GST Symbol */}
+
+                    <div
+                      className="
+                        relative
+                        flex
+                        h-[45px]
+                        w-[45px]
+                        items-center
+                        justify-center
+                        rounded-full
+                        border-[2px]
+                        border-[#0b211f]
+
+                        min-[361px]:h-[50px]
+                        min-[361px]:w-[50px]
+
+                        sm:h-[56px]
+                        sm:w-[56px]
+                      "
+                    >
+
+                      <Percent
+                        className="
+                          absolute
+                          right-[6px]
+                          top-[6px]
+                          h-3
+                          w-3
+                          text-[#c7a45d]
+
+                          sm:right-[7px]
+                          sm:top-[7px]
+                        "
+                        strokeWidth={3}
+                      />
+
+                      <span
+                        className="
+                          font-black
+                          text-[15px]
+                          tracking-[-0.04em]
+                          text-[#0b211f]
+
+                          min-[361px]:text-[17px]
+
+                          sm:text-[19px]
+                        "
+                      >
+                        GST
+                      </span>
+
+                    </div>
+
                   </div>
 
 
-                  {/* 8+ */}
+                  {/* =================================================
+                      9+
+                  ================================================= */}
 
                   <div className="flex items-baseline">
 
@@ -1156,7 +1211,7 @@ const Hero = () => {
                         sm:text-[5rem]
                       "
                     >
-                      8+
+                      9+
                     </span>
 
                   </div>
@@ -1175,7 +1230,7 @@ const Hero = () => {
                       sm:tracking-[0.32em]
                     "
                   >
-                    Years of Services
+                    Years of Experience
                   </span>
 
 
@@ -1229,43 +1284,61 @@ const Hero = () => {
                   </div>
 
 
-                  {/* Calligraphy Name */}
+                  {/* GST Practitioner */}
 
                   <h2
                     className="
-                      text-[1.25rem]
+                      text-[1.55rem]
+                      font-semibold
                       leading-none
+                      tracking-[-0.03em]
                       text-[#e1c77f]
 
-                      min-[361px]:text-[1.45rem]
+                      min-[361px]:text-[1.7rem]
 
                       sm:text-[2.3rem]
                     "
-                    style={{
-                      fontFamily:
-                        '"Lucida Handwriting", "Brush Script MT", "Segoe Script", cursive',
-                      fontWeight: 400,
-                    }}
                   >
-                    Md. Khursheed Alam
+                    GST Practitioner
                   </h2>
 
+
+                  {/* Name */}
 
                   <p
                     className="
                       mt-2
+                      text-[10px]
+                      font-medium
+                      tracking-[0.04em]
+                      text-white/60
+
+                      min-[361px]:text-[11px]
+
+                      sm:mt-2.5
+                      sm:text-[13px]
+                    "
+                  >
+                    Md. Khursheed Alam
+                  </p>
+
+
+                  {/* Experience Label */}
+
+                  <p
+                    className="
+                      mt-1
                       text-[6px]
                       font-semibold
                       uppercase
                       tracking-[0.28em]
-                      text-white/55
+                      text-white/45
 
-                      sm:mt-2.5
                       sm:text-[8px]
                       sm:tracking-[0.32em]
                     "
                   >
-                    Chartered Accountant
+                    Professional Tax &amp; GST Services
                   </p>
 
 
@@ -1304,7 +1377,6 @@ const Hero = () => {
 
               {/* =================================================
                   FEATURE CARD 1
-                  Hidden on very small devices
               ================================================= */}
 
               <div
@@ -1361,6 +1433,7 @@ const Hero = () => {
                   </div>
 
                   <div>
+
                     <p
                       className="
                         text-[8px]
@@ -1374,8 +1447,9 @@ const Hero = () => {
                     </p>
 
                     <p className="mt-0.5 text-[9px] text-white/55">
-                      Financial Advisory
+                      GST &amp; Tax Advisory
                     </p>
+
                   </div>
 
                 </div>
@@ -1441,6 +1515,7 @@ const Hero = () => {
                   </div>
 
                   <div>
+
                     <p
                       className="
                         text-[8px]
@@ -1454,8 +1529,9 @@ const Hero = () => {
                     </p>
 
                     <p className="mt-0.5 text-[9px] text-white/40">
-                      Trusted Guidance
+                      9+ Years Experience
                     </p>
+
                   </div>
 
                 </div>

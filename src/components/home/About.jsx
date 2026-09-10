@@ -9,6 +9,9 @@ import {
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
+// Local About image
+import aboutImage from "../../assets/about.png";
+
 /* =========================================================
    BENEFITS DATA
 ========================================================= */
@@ -17,25 +20,25 @@ const benefits = [
   {
     icon: ShieldCheck,
     title: "Professional Expertise",
-    text: "Reliable financial guidance backed by expertise.",
+    text: "Reliable financial guidance backed by professional expertise.",
     color: "green",
   },
   {
     icon: Users,
     title: "Client Focused",
-    text: "Solutions built around your financial goals.",
+    text: "Solutions designed around your financial and business goals.",
     color: "blue",
   },
   {
     icon: CheckCircle2,
     title: "Confidential & Reliable",
-    text: "Your information is handled with care.",
+    text: "Your financial information is handled with care and confidentiality.",
     color: "green",
   },
   {
     icon: CheckCircle2,
     title: "Strategic Advisory",
-    text: "Clear insights for better business decisions.",
+    text: "Practical insights to help you make better financial decisions.",
     color: "blue",
   },
 ];
@@ -210,9 +213,9 @@ const About = () => {
                 lg:leading-6
               "
             >
-              Helping individuals and businesses make confident
-              financial decisions through reliable advice and
-              practical solutions.
+              Helping individuals and businesses make confident financial
+              decisions through reliable advice, practical solutions and
+              professional support.
             </p>
           </motion.div>
         </div>
@@ -234,7 +237,7 @@ const About = () => {
           "
         >
           {/* =================================================
-              LEFT IMAGE
+              LEFT IMAGE SECTION
           ================================================== */}
 
           <motion.div
@@ -262,7 +265,9 @@ const About = () => {
               lg:h-[480px]
             "
           >
-            {/* Image Frame */}
+            {/* ===============================================
+                DECORATIVE BACK FRAME
+            ================================================ */}
 
             <div
               className="
@@ -271,254 +276,254 @@ const About = () => {
                 -left-3
                 h-full
                 w-full
-                rounded-2xl
+                rounded-[22px]
                 border
                 border-[#326844]/20
               "
             />
 
-            {/* Image */}
+            {/* ===============================================
+                MAIN IMAGE CARD
+            ================================================ */}
 
             <div
               className="
+                group
                 relative
                 z-10
 
                 h-full
                 overflow-hidden
-                rounded-2xl
+                rounded-[20px]
 
                 bg-[#173538]
 
-                shadow-[0_20px_45px_rgba(22,58,55,0.12)]
+                shadow-[0_25px_55px_rgba(22,58,55,0.14)]
+
+                transition-all
+                duration-700
+
+                hover:shadow-[0_30px_70px_rgba(22,58,55,0.18)]
               "
             >
+              {/* IMAGE */}
+
               <motion.img
-                initial={{ scale: 1.06 }}
+                initial={{ scale: 1.05 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{
-                  duration: 1.1,
+                  duration: 1.2,
+                  ease: [0.22, 1, 0.36, 1],
                 }}
-                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1300&q=90"
-                alt="Professional business meeting"
+                src={aboutImage}
+                alt="Indian professionals working together in a modern accounting office"
+                loading="lazy"
                 className="
                   h-full
                   w-full
                   object-cover
+
+                  transition-transform
+                  duration-1000
+                  ease-out
+
+                  group-hover:scale-[1.025]
                 "
               />
 
-              {/* IMAGE OVERLAY */}
+              {/* =============================================
+                  VERY SUBTLE IMAGE VIGNETTE
+
+                  This does NOT cover the artwork text.
+              ============================================== */}
 
               <div
                 className="
+                  pointer-events-none
                   absolute
                   inset-0
+
                   bg-gradient-to-t
-                  from-[#0b292c]/75
+                  from-[#0b211f]/15
                   via-transparent
-                  to-[#0b292c]/10
+                  to-transparent
+
+                  opacity-70
                 "
               />
 
-              {/* COMPANY BADGE */}
+              {/* =============================================
+                  SMALL FLOATING LABEL
+              ============================================== */}
 
-              <div
-                className="
-                  absolute
-                  left-5
-                  top-5
-
-                  lg:left-6
-                  lg:top-6
-                "
-              >
-                <div
-                  className="
-                    flex
-                    items-center
-                    gap-3
-
-                    rounded-xl
-
-                    border
-                    border-white/15
-
-                    bg-[#102e30]/70
-
-                    px-3
-                    py-2
-
-                    backdrop-blur-md
-                  "
-                >
-                  <div
-                    className="
-                      flex
-                      h-8
-                      w-8
-                      items-center
-                      justify-center
-                      rounded-lg
-                      bg-white
-                    "
-                  >
-                    <span
-                      className="
-                        text-[10px]
-                        font-bold
-                        text-[#326844]
-                      "
-                    >
-                      KS
-                    </span>
-                  </div>
-
-                  <div>
-                    <p
-                      className="
-                        text-[8px]
-                        uppercase
-                        tracking-[1.5px]
-                        text-white/50
-                      "
-                    >
-                      KS & Company
-                    </p>
-
-                    <p
-                      className="
-                        text-[10px]
-                        font-medium
-                        text-white
-                      "
-                    >
-                      Chartered Accountants
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* BOTTOM IMAGE CONTENT */}
-
-              <div
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: -10,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  delay: 0.45,
+                  duration: 0.5,
+                }}
                 className="
                   absolute
                   bottom-5
-                  left-6
-                  right-6
+                  left-5
+                  z-20
 
-                  lg:bottom-6
-                  lg:left-7
-                  lg:right-7
+                  hidden
+
+                  rounded-full
+                  border
+                  border-white/20
+
+                  bg-[#0b211f]/75
+
+                  px-4
+                  py-2
+
+                  shadow-lg
+                  backdrop-blur-md
+
+                  sm:block
                 "
               >
-                <p
-                  className="
-                    text-[9px]
-                    font-medium
-                    uppercase
-                    tracking-[1.8px]
-                    text-[#a8c797]
-                  "
-                >
-                  Trusted • Professional • Reliable
-                </p>
-
-                <div className="mt-2 h-px w-full bg-white/15" />
-
-                <div
-                  className="
-                    mt-2
-                    flex
-                    items-center
-                    justify-between
-                  "
-                >
+                <div className="flex items-center gap-2">
                   <span
                     className="
-                      text-[11px]
-                      text-white/65
+                      h-1.5
+                      w-1.5
+                      rounded-full
+                      bg-[#a8c797]
+                    "
+                  />
+
+                  <span
+                    className="
+                      text-[8px]
+                      font-semibold
+                      uppercase
+                      tracking-[1.8px]
+                      text-white/80
                     "
                   >
-                    Your financial goals, our priority.
+                    Professional Financial Support
                   </span>
-
-                  <ArrowUpRight
-                    size={17}
-                    strokeWidth={1.5}
-                    className="text-white/70"
-                  />
                 </div>
-              </div>
+              </motion.div>
+
+              {/* =============================================
+                  IMAGE BORDER HIGHLIGHT
+              ============================================== */}
+
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  rounded-[20px]
+                  border
+                  border-white/10
+                "
+              />
             </div>
 
-            {/* CA BADGE */}
+            {/* ===============================================
+                FLOATING ACCENT
+            ================================================ */}
 
             <motion.div
               initial={{
                 opacity: 0,
                 scale: 0.7,
+                y: 10,
               }}
               whileInView={{
                 opacity: 1,
                 scale: 1,
+                y: 0,
               }}
-              viewport={{ once: true }}
+              viewport={{
+                once: true,
+              }}
               transition={{
-                delay: 0.4,
+                delay: 0.55,
+                duration: 0.6,
                 type: "spring",
-                stiffness: 180,
+                stiffness: 170,
               }}
               className="
                 absolute
-                -bottom-4
-                right-5
-                z-20
+                -bottom-5
+                right-6
+                z-30
 
                 flex
-                h-[68px]
-                w-[68px]
-
                 items-center
-                justify-center
+                gap-3
 
                 rounded-full
 
-                border-[4px]
+                border
                 border-[#f7f9f7]
 
                 bg-[#326844]
 
-                shadow-lg
+                px-4
+                py-2.5
+
+                shadow-[0_12px_30px_rgba(50,104,68,0.22)]
               "
             >
-              <div className="text-center">
-                <span
+              <div
+                className="
+                  flex
+                  h-8
+                  w-8
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white/15
+                "
+              >
+                <CheckCircle2
+                  size={16}
+                  strokeWidth={1.8}
+                  className="text-white"
+                />
+              </div>
+
+              <div className="pr-1">
+                <p
                   className="
-                    block
-                    text-[20px]
+                    text-[9px]
                     font-semibold
-                    leading-none
+                    uppercase
+                    tracking-[1.5px]
                     text-white
                   "
                 >
-                  CA
-                </span>
+                  Trusted
+                </p>
 
-                <span
+                <p
                   className="
-                    mt-1
-                    block
-                    text-[6px]
+                    text-[7px]
                     uppercase
                     tracking-[1px]
-                    text-white/70
+                    text-white/60
                   "
                 >
-                  Experts
-                </span>
+                  Professional Advisory
+                </p>
               </div>
             </motion.div>
           </motion.div>
@@ -610,11 +615,10 @@ const About = () => {
                   lg:leading-7
                 "
               >
-                Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat.
+                KS & Company provides professional support across taxation,
+                accounting, registrations, compliance, insurance and financial
+                services. We work with individuals, professionals and
+                businesses to simplify financial and regulatory requirements.
               </p>
 
               <p
@@ -628,10 +632,11 @@ const About = () => {
                   lg:leading-7
                 "
               >
-                Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur.
-                We focus on providing clear, practical and dependable
-                financial guidance.
+                Our approach is focused on clear communication, practical
+                solutions and dependable professional assistance. From routine
+                compliance to important financial decisions, our goal is to
+                make the process easier and more understandable for our
+                clients.
               </p>
             </motion.div>
 
@@ -668,8 +673,7 @@ const About = () => {
                       once: true,
                     }}
                     transition={{
-                      delay:
-                        0.3 + index * 0.08,
+                      delay: 0.3 + index * 0.08,
                       duration: 0.45,
                     }}
                     whileHover={{

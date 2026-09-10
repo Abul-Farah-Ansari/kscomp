@@ -331,7 +331,7 @@ const Footer = () => {
                   />
 
                   <span>
-                    Nafees Rd, near Hari Masjid, Block P,
+                    O, 16, Allama Iqbal Rd, Near Masjid Usman Bin Affan, 
                     <br />
                     Batla House, Jamia Nagar, Okhla, Delhi,
                     <br />

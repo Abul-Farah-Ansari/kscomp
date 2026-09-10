@@ -6,31 +6,45 @@ import {
   ArrowRight,
   Star,
 } from "lucide-react";
+
+/* =========================================================
+   GOOGLE SVG ICON
+========================================================= */
+
 const GoogleIcon = ({ size = 30 }) => (
   <svg
     width={size}
     height={size}
     viewBox="0 0 48 48"
     xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
   >
     <path
       fill="#FFC107"
       d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.7 1.1 7.8 2.9l5.7-5.7C33.9 5.9 29.2 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.2-.1-2.4-.4-3.5z"
     />
+
     <path
       fill="#FF3D00"
       d="M6.3 14.7l6.6 4.8C14.7 15.1 18.9 12 24 12c3 0 5.7 1.1 7.8 2.9l5.7-5.7C33.9 5.9 29.2 4 24 4c-7.7 0-14.4 4.4-17.7 10.7z"
     />
+
     <path
       fill="#4CAF50"
       d="M24 44c5.1 0 9.8-2 13.3-5.2l-6.1-5.2C29.2 35.1 26.7 36 24 36c-5.3 0-9.7-3.3-11.4-8l-6.5 5C9.3 39.5 16.1 44 24 44z"
     />
+
     <path
       fill="#1976D2"
       d="M43.6 20.5H42V20H24v8h11.3c-1.1 3-3.2 5.3-6.1 6.6l6.1 5.2C38.8 36.5 44 31 44 24c0-1.2-.1-2.4-.4-3.5z"
     />
   </svg>
 );
+
+
+/* =========================================================
+   TESTIMONIAL DATA
+========================================================= */
 
 const testimonials = [
   {
@@ -39,29 +53,40 @@ const testimonials = [
     review:
       "K S Company accounting services ke saath-saath GST return filing aur IT return filing mein bhi expertise rakhti hai. Inki team professionals se bani hai jo compliance aur accuracy ensure karte hain. Financial transparency aur customer service bhi achchi hai.",
   },
+
   {
     id: 2,
     name: "Md. Arshad",
     review:
       "KS& Company... Bahot hi helpful hai logo ke liye, yaha apko tax related har problem ka solution easily mil jata hai. Khursheed bhai bahot experienced person hain aur apni field mein unka nature bhi bahot humble hai.",
   },
+
   {
     id: 3,
     name: "Ashif Raza",
     review:
       "Best place for Tax consulting and insurance related work in Bata House and nearby Okhla and Shaheenbagh.",
   },
+
   {
     id: 4,
     name: "MOHAMMAD AFTAB",
-    review: "Best service provider for taxation.",
+    review:
+      "Best service provider for taxation.",
   },
+
   {
     id: 5,
     name: "Ishtar jahan Rashid khan",
-    review: "They are providing good service.",
+    review:
+      "They are providing good service.",
   },
 ];
+
+
+/* =========================================================
+   MAIN COMPONENT
+========================================================= */
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -70,6 +95,11 @@ const Testimonials = () => {
 
   const sliderTestimonials = [...testimonials, ...testimonials];
 
+
+  /* =======================================================
+     AUTO SLIDER
+  ======================================================== */
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => prev + 1);
@@ -77,6 +107,11 @@ const Testimonials = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+
+  /* =======================================================
+     LOOP RESET
+  ======================================================== */
 
   useEffect(() => {
     if (currentIndex === testimonials.length) {
@@ -95,9 +130,15 @@ const Testimonials = () => {
     }
   }, [currentIndex]);
 
+
+  /* =======================================================
+     NEXT / PREVIOUS
+  ======================================================== */
+
   const nextSlide = () => {
     setCurrentIndex((prev) => prev + 1);
   };
+
 
   const previousSlide = () => {
     if (currentIndex === 0) {
@@ -115,11 +156,16 @@ const Testimonials = () => {
     }
   };
 
+
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#f3f5f4] py-10 sm:py-12 lg:py-14">
-      {/* ================= BACKGROUND ================= */}
+
+      {/* =====================================================
+          BACKGROUND
+      ====================================================== */}
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
+
         <div
           className="
             absolute
@@ -137,6 +183,7 @@ const Testimonials = () => {
         >
           “
         </div>
+
 
         <div
           className="
@@ -156,27 +203,80 @@ const Testimonials = () => {
           ”
         </div>
 
-        <div className="absolute right-0 top-0 h-[450px] w-[450px] rounded-full bg-[#2e6257]/[0.035] blur-3xl" />
 
-        <div className="absolute bottom-0 left-[20%] h-[300px] w-[300px] rounded-full bg-[#244b57]/[0.035] blur-3xl" />
+        <div
+          className="
+            absolute
+            right-0
+            top-0
+            h-[450px]
+            w-[450px]
+            rounded-full
+            bg-[#2e6257]/[0.035]
+            blur-3xl
+          "
+        />
+
+
+        <div
+          className="
+            absolute
+            bottom-0
+            left-[20%]
+            h-[300px]
+            w-[300px]
+            rounded-full
+            bg-[#244b57]/[0.035]
+            blur-3xl
+          "
+        />
+
       </div>
 
-      {/* ================= HEADING ================= */}
+
+      {/* =====================================================
+          HEADING
+      ====================================================== */}
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-10">
+
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+
           {/* LEFT */}
 
           <div className="max-w-[700px]">
+
             <div className="mb-3 flex items-center gap-3">
+
               <span className="h-[1px] w-10 bg-[#5f8c79]" />
 
-              <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#477364] sm:text-xs">
+              <p
+                className="
+                  text-[11px]
+                  font-bold
+                  uppercase
+                  tracking-[0.28em]
+                  text-[#477364]
+                  sm:text-xs
+                "
+              >
                 Client Testimonials
               </p>
+
             </div>
 
-            <h2 className="text-[38px] font-semibold leading-[1.03] tracking-tight text-[#243033] sm:text-5xl lg:text-[58px]">
+
+            <h2
+              className="
+                text-[38px]
+                font-semibold
+                leading-[1.03]
+                tracking-tight
+                text-[#243033]
+                sm:text-5xl
+                lg:text-[58px]
+              "
+            >
               What Our Clients Say
 
               <span className="block text-[#376c5d]">
@@ -184,15 +284,31 @@ const Testimonials = () => {
               </span>
             </h2>
 
-            <p className="mt-4 max-w-[600px] text-sm leading-6 text-[#65706f] sm:text-[15px] sm:leading-7">
+
+            <p
+              className="
+                mt-4
+                max-w-[600px]
+                text-sm
+                leading-6
+                text-[#65706f]
+                sm:text-[15px]
+                sm:leading-7
+              "
+            >
               Real experiences shared by clients who value professional
               guidance, practical financial solutions, and reliable service.
             </p>
+
           </div>
 
-          {/* RIGHT RATING + NAVIGATION */}
+
+          {/* =================================================
+              RIGHT RATING + NAVIGATION
+          ================================================== */}
 
           <div className="flex flex-col gap-5 lg:items-end">
+
             {/* GOOGLE RATING CARD */}
 
             <div
@@ -209,7 +325,6 @@ const Testimonials = () => {
                 shadow-[0_10px_30px_rgba(28,54,48,0.06)]
               "
             >
-              {/* GOOGLE ICON */}
 
               <div
                 className="
@@ -221,26 +336,38 @@ const Testimonials = () => {
                   justify-center
                   rounded-xl
                   bg-[#f6f8f7]
-                  text-[28px]
                 "
               >
                 <GoogleIcon size={30} />
               </div>
 
-              {/* RATING */}
 
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#7a8784]">
+
+                <p
+                  className="
+                    text-[10px]
+                    font-bold
+                    uppercase
+                    tracking-[0.18em]
+                    text-[#7a8784]
+                  "
+                >
                   Google Client Rating
                 </p>
 
+
                 <div className="mt-1 flex items-center gap-3">
+
                   <span className="text-3xl font-bold text-[#243033]">
                     4.9
                   </span>
 
+
                   <div>
+
                     <div className="flex items-center gap-1">
+
                       {[1, 2, 3, 4, 5].map((star) => (
                         <Star
                           key={star}
@@ -250,19 +377,27 @@ const Testimonials = () => {
                           className="text-[#F5A623]"
                         />
                       ))}
+
                     </div>
+
 
                     <p className="mt-1 text-xs text-[#7a8784]">
                       4.9/5 client rating
                     </p>
+
                   </div>
+
                 </div>
+
               </div>
+
             </div>
+
 
             {/* NAVIGATION */}
 
             <div className="flex items-center gap-3">
+
               <button
                 type="button"
                 onClick={previousSlide}
@@ -289,6 +424,7 @@ const Testimonials = () => {
                 <ArrowLeft size={19} strokeWidth={1.8} />
               </button>
 
+
               <button
                 type="button"
                 onClick={nextSlide}
@@ -314,15 +450,24 @@ const Testimonials = () => {
               >
                 <ArrowRight size={19} strokeWidth={1.8} />
               </button>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
 
-      {/* ================= TESTIMONIAL SLIDER ================= */}
+
+      {/* =====================================================
+          TESTIMONIAL SLIDER
+      ====================================================== */}
 
       <div className="relative z-10 mt-10 sm:mt-12 lg:mt-14">
+
         <div className="ml-[8%] overflow-hidden sm:ml-[12%] lg:ml-[20%]">
+
           <div
             className={`
               flex
@@ -338,7 +483,9 @@ const Testimonials = () => {
               transform: `translateX(calc(-${currentIndex} * (38% + 20px)))`,
             }}
           >
+
             {sliderTestimonials.map((testimonial, index) => (
+
               <article
                 key={`${testimonial.id}-${index}`}
                 onClick={() => setSelectedTestimonial(testimonial)}
@@ -365,7 +512,10 @@ const Testimonials = () => {
                   lg:p-8
                 "
               >
-                {/* DECORATIVE CIRCLE */}
+
+                {/* =================================================
+                    DECORATIVE CIRCLE
+                ================================================== */}
 
                 <div
                   className="
@@ -384,7 +534,38 @@ const Testimonials = () => {
                   "
                 />
 
-                {/* QUOTE */}
+
+                {/* =================================================
+                    GOOGLE ICON
+                ================================================== */}
+
+                <div
+                  className="
+                    absolute
+                    right-7
+                    top-7
+                    z-30
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-white
+                    shadow-[0_8px_25px_rgba(0,0,0,0.16)]
+                    transition-all
+                    duration-300
+                    group-hover:scale-110
+                    group-hover:shadow-[0_12px_30px_rgba(0,0,0,0.22)]
+                  "
+                >
+                  <GoogleIcon size={30} />
+                </div>
+
+
+                {/* =================================================
+                    QUOTE
+                ================================================== */}
 
                 <Quote
                   size={54}
@@ -393,7 +574,10 @@ const Testimonials = () => {
                   fill="currentColor"
                 />
 
-                {/* REVIEW */}
+
+                {/* =================================================
+                    REVIEW
+                ================================================== */}
 
                 <p
                   className="
@@ -410,13 +594,19 @@ const Testimonials = () => {
                   "{testimonial.review}"
                 </p>
 
-                {/* BOTTOM */}
+
+                {/* =================================================
+                    BOTTOM
+                ================================================== */}
 
                 <div className="absolute bottom-0 left-0 right-0">
+
                   <div className="relative z-10 p-7 lg:p-8">
+
                     {/* STARS */}
 
                     <div className="mb-3 flex gap-1">
+
                       {[1, 2, 3, 4, 5].map((star) => (
                         <Star
                           key={star}
@@ -425,27 +615,42 @@ const Testimonials = () => {
                           className="text-[#F5A623]"
                         />
                       ))}
+
                     </div>
+
 
                     {/* NAME */}
 
-                    <h3 className="text-xl font-semibold tracking-tight text-white">
+                    <h3
+                      className="
+                        text-xl
+                        font-semibold
+                        tracking-tight
+                        text-white
+                      "
+                    >
                       {testimonial.name}
                     </h3>
+
 
                     <p className="mt-1 text-xs text-white/50">
                       Verified Client Review
                     </p>
+
                   </div>
+
                 </div>
 
-                {/* READ REVIEW */}
+
+                {/* =================================================
+                    READ REVIEW
+                ================================================== */}
 
                 <div
                   className="
                     absolute
                     right-6
-                    top-6
+                    top-[82px]
                     z-20
                     text-[9px]
                     font-bold
@@ -460,15 +665,24 @@ const Testimonials = () => {
                 >
                   Read Review
                 </div>
+
               </article>
+
             ))}
+
           </div>
+
         </div>
+
       </div>
 
-      {/* ================= REVIEW MODAL ================= */}
+
+      {/* =====================================================
+          REVIEW MODAL
+      ====================================================== */}
 
       {selectedTestimonial && (
+
         <div
           className="
             fixed
@@ -484,6 +698,7 @@ const Testimonials = () => {
           "
           onClick={() => setSelectedTestimonial(null)}
         >
+
           <div
             className="
               relative
@@ -497,10 +712,35 @@ const Testimonials = () => {
             "
             onClick={(event) => event.stopPropagation()}
           >
+
             {/* MODAL HEADER */}
 
-            <div className="relative bg-gradient-to-br from-[#254d45] to-[#193832] px-8 py-10 text-white sm:px-12">
-              <div className="absolute -right-16 -top-16 h-52 w-52 rounded-full border-[30px] border-white/[0.06]" />
+            <div
+              className="
+                relative
+                bg-gradient-to-br
+                from-[#254d45]
+                to-[#193832]
+                px-8
+                py-10
+                text-white
+                sm:px-12
+              "
+            >
+
+              <div
+                className="
+                  absolute
+                  -right-16
+                  -top-16
+                  h-52
+                  w-52
+                  rounded-full
+                  border-[30px]
+                  border-white/[0.06]
+                "
+              />
+
 
               {/* CLOSE BUTTON */}
 
@@ -529,21 +769,42 @@ const Testimonials = () => {
                 <X size={19} />
               </button>
 
+
               {/* REVIEWER */}
 
               <div className="relative z-10">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#b7d4c6]">
+
+                <p
+                  className="
+                    text-[10px]
+                    font-semibold
+                    uppercase
+                    tracking-[0.22em]
+                    text-[#b7d4c6]
+                  "
+                >
                   Client Review
                 </p>
 
-                <h3 className="mt-2 text-2xl font-semibold sm:text-3xl">
+
+                <h3
+                  className="
+                    mt-2
+                    text-2xl
+                    font-semibold
+                    sm:text-3xl
+                  "
+                >
                   {selectedTestimonial.name}
                 </h3>
+
               </div>
+
 
               {/* STARS */}
 
               <div className="relative z-10 mt-6 flex gap-1">
+
                 {[1, 2, 3, 4, 5].map((star) => (
                   <Star
                     key={star}
@@ -552,44 +813,89 @@ const Testimonials = () => {
                     className="text-[#F5A623]"
                   />
                 ))}
+
               </div>
+
             </div>
+
 
             {/* MODAL CONTENT */}
 
             <div className="p-8 sm:p-12">
+
               <Quote
                 size={40}
                 fill="currentColor"
                 className="text-[#4d8272]/20"
               />
 
-              <p className="mt-4 text-lg leading-8 text-[#53605e] sm:text-xl">
+
+              <p
+                className="
+                  mt-4
+                  text-lg
+                  leading-8
+                  text-[#53605e]
+                  sm:text-xl
+                "
+              >
                 "{selectedTestimonial.review}"
               </p>
 
+
               <div className="mt-8 h-[1px] w-full bg-[#315e54]/10" />
 
+
               <div className="mt-5 flex items-center justify-between">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#4d8272]">
+
+                <p
+                  className="
+                    text-xs
+                    font-semibold
+                    uppercase
+                    tracking-[0.2em]
+                    text-[#4d8272]
+                  "
+                >
                   Trusted Client Experience
                 </p>
 
-                <div className="flex items-center gap-1 text-sm font-semibold text-[#315e54]">
+
+                <div
+                  className="
+                    flex
+                    items-center
+                    gap-1
+                    text-sm
+                    font-semibold
+                    text-[#315e54]
+                  "
+                >
+
                   <Star
                     size={15}
                     fill="#F5A623"
                     className="text-[#F5A623]"
                   />
+
                   5.0
+
                 </div>
+
               </div>
+
             </div>
+
           </div>
+
         </div>
+
       )}
 
-      {/* ================= ANIMATION ================= */}
+
+      {/* =====================================================
+          ANIMATION
+      ====================================================== */}
 
       <style>{`
         @keyframes modalEnter {
@@ -604,6 +910,7 @@ const Testimonials = () => {
           }
         }
       `}</style>
+
     </section>
   );
 };
