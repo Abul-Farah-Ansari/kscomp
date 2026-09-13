@@ -2,6 +2,17 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const MissionVision = () => {
+  const missionCommitments = [
+    "Delivering timely and quality services",
+    "Providing personalized solutions based on each client's needs",
+    "Helping clients maintain proper tax and regulatory compliance",
+    "Supporting businesses with accounting, finance and strategic advisory",
+    "Providing suitable  insurance solutions",
+    "Using technology and professional expertise to improve accuracy and efficiency",
+    "Building relationships based on trust, transparency and integrity",
+    "Becoming a dependable partner in our clients' long-term financial and business journey",
+  ];
+
   return (
     <section className="relative overflow-hidden bg-[#102b29] py-28 sm:py-36">
 
@@ -12,12 +23,13 @@ const MissionVision = () => {
 
       <div className="relative mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
 
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="max-w-3xl"
+          className="max-w-4xl"
         >
           <div className="flex items-center gap-4">
             <div className="h-px w-14 bg-white/30" />
@@ -36,9 +48,10 @@ const MissionVision = () => {
           </h2>
         </motion.div>
 
-
+        {/* Mission & Vision */}
         <div className="mt-20 grid gap-16 lg:grid-cols-2">
 
+          {/* MISSION */}
           <motion.div
             initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -51,30 +64,50 @@ const MissionVision = () => {
             </span>
 
             <h3 className="mt-7 text-3xl font-semibold leading-tight text-white">
-              Making Professional Guidance Clear and Accessible.
+              Simplifying Complexity With Reliable Professional Solutions.
             </h3>
 
             <div className="mt-8 space-y-5 leading-8 text-white/65">
               <p>
-                Our mission is to provide dependable professional solutions
-                that help individuals and businesses understand their
-                responsibilities and available options with greater clarity.
+                Our mission is to simplify financial, taxation, compliance and
+                business-related complexities for our clients by providing
+                reliable, accurate and practical professional solutions.
               </p>
 
-              <p>
-                We aim to simplify complex processes while maintaining the
-                attention to detail that important financial decisions require.
-              </p>
+              <div className="pt-2">
+                <p className="mb-5 text-sm font-semibold uppercase tracking-[2px] text-white/70">
+                  We are committed to:
+                </p>
 
-              <p>
-                Through responsible communication and practical guidance, we
-                want our clients to feel more confident when managing important
-                financial requirements.
+                <ul className="space-y-3">
+                  {missionCommitments.map((item, index) => (
+                    <motion.li
+                      key={index}
+                      initial={{ opacity: 0, x: -15 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.4,
+                        delay: index * 0.05,
+                      }}
+                      className="flex items-start gap-3"
+                    >
+                      <span className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#c5a46d]" />
+
+                      <span>{item}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+
+              <p className="pt-3">
+                Our goal is not merely to provide services, but to create real
+                value for every client we serve.
               </p>
             </div>
           </motion.div>
 
-
+          {/* VISION */}
           <motion.div
             initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -87,26 +120,41 @@ const MissionVision = () => {
             </span>
 
             <h3 className="mt-7 text-3xl font-semibold leading-tight text-white">
-              Building Relationships That Grow With Our Clients.
+              Becoming a Trusted One-Stop Professional Advisory Partner.
             </h3>
 
             <div className="mt-8 space-y-5 leading-8 text-white/65">
               <p>
-                Our vision is to become a trusted professional partner for
-                individuals and businesses seeking responsible financial and
-                advisory support.
+                To become a trusted, one-stop professional advisory partner for
+                individuals and businesses, recognized for excellence in
+                taxation, accounting, finance, insurance, compliance and
+                business advisory.
               </p>
 
               <p>
-                We believe strong professional relationships are developed
-                gradually through consistency, transparency and dependable
-                service.
+                We envision building a professional organization where clients
+                can confidently rely on us for their financial management,
+                compliance requirements, business decisions and future growth.
               </p>
 
               <p>
-                As our clients grow and their requirements change, we aim to
-                continue providing relevant guidance and long-term value.
+                Our vision is to grow alongside our clients — helping
+                individuals achieve financial confidence, businesses operate
+                compliantly, and entrepreneurs build sustainable and successful
+                enterprises.
               </p>
+
+              {/* Vision in One Line */}
+              <div className="mt-8 border-l-2 border-[#c5a46d] pl-6">
+                <p className="text-xs font-semibold uppercase tracking-[3px] text-[#c5a46d]">
+                  Our Vision in One Line
+                </p>
+
+                <p className="mt-3 text-lg font-medium leading-8 text-white">
+                  “To be the trusted partner behind our clients' financial
+                  confidence, compliance and sustainable growth.”
+                </p>
+              </div>
             </div>
           </motion.div>
 

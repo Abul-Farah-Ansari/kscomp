@@ -14,7 +14,7 @@ import CustomCursor from "./components/CustomCursor";
 import Chatbot from "./components/chatbot/Chatbot";
 
 // ================================
-// PAGES
+// MAIN PAGES
 // ================================
 
 import Home from "./pages/home";
@@ -23,6 +23,19 @@ import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CompanyDocuments from "./pages/CompanyDocuments";
+
+// ================================
+// SERVICE DETAIL PAGES
+// ================================
+
+import Taxation from "./pages/services/Taxation";
+import Insurance from "./pages/services/Insurance";
+import Accounting from "./pages/services/Accounting";
+import Finance from "./pages/services/Finance";
+import Registration from "./pages/services/Registration";
+import HRCompliance from "./pages/services/HRCompliance";
+import OtherCompliance from "./pages/services/OtherCompliance";
+import GovernmentDocumentation from "./pages/services/GovernmentDocumentation";
 
 // ================================
 // CAREERS PAGE
@@ -39,12 +52,12 @@ const Careers = () => {
           </p>
 
           <h1 className="mt-5 text-4xl font-bold text-white sm:text-5xl md:text-6xl">
-            Careers at KS & Company
+            Careers at K S & Company
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/65 sm:text-lg">
             Explore opportunities to learn, grow, and build a meaningful
-            professional career with KS & Company.
+            professional career with K S & Company.
           </p>
         </div>
       </section>
@@ -82,46 +95,115 @@ function App() {
 
       {/* PAGE ROUTES */}
       <Routes>
-        {/* HOME */}
+        {/* =====================================
+            HOME
+        ===================================== */}
         <Route path="/" element={<Home />} />
 
-        {/* ABOUT */}
+        {/* =====================================
+            ABOUT
+        ===================================== */}
         <Route path="/about" element={<About />} />
 
-        {/* SERVICES */}
+        {/* =====================================
+            SERVICES OVERVIEW
+        ===================================== */}
         <Route path="/services" element={<Services />} />
 
-        {/* CONTACT */}
+        {/* =====================================
+            SERVICE DETAIL PAGES
+        ===================================== */}
+
+        {/* 01 — TAXATION */}
+        <Route
+          path="/services/taxation"
+          element={<Taxation />}
+        />
+
+        {/* 02 — INSURANCE */}
+        <Route
+          path="/services/insurance"
+          element={<Insurance />}
+        />
+
+        {/* 03 — ACCOUNTING */}
+        <Route
+          path="/services/accounting"
+          element={<Accounting />}
+        />
+
+        {/* 04 — LOAN & FINANCE */}
+        <Route
+          path="/services/finance"
+          element={<Finance />}
+        />
+
+        {/* 05 — REGISTRATION */}
+        <Route
+          path="/services/registration"
+          element={<Registration />}
+        />
+
+        {/* 06 — HR COMPLIANCE */}
+        <Route
+          path="/services/hr-compliance"
+          element={<HRCompliance />}
+        />
+
+        {/* 07 — OTHER COMPLIANCE */}
+        <Route
+          path="/services/other-compliance"
+          element={<OtherCompliance />}
+        />
+
+        {/* 08 — GOVERNMENT & DOCUMENTATION */}
+        <Route
+          path="/services/government-documentation"
+          element={<GovernmentDocumentation />}
+        />
+
+        {/* =====================================
+            CONTACT
+        ===================================== */}
         <Route path="/contact" element={<Contact />} />
 
-        {/* CAREERS */}
+        {/* =====================================
+            CAREERS
+        ===================================== */}
         <Route path="/careers" element={<Careers />} />
 
-        {/* PRIVACY POLICY */}
+        {/* =====================================
+            PRIVACY POLICY
+        ===================================== */}
         <Route
           path="/privacy-policy"
           element={<PrivacyPolicy />}
         />
 
-        {/* COMPANY DOCUMENTS */}
+        {/* =====================================
+            COMPANY DOCUMENTS
+        ===================================== */}
         <Route
           path="/company-documents"
           element={<CompanyDocuments />}
         />
 
-        {/* 404 FALLBACK */}
+        {/* =====================================
+            404 FALLBACK
+        ===================================== */}
         <Route path="*" element={<Home />} />
       </Routes>
-       <WhatsAppButton />
+
+      {/* WHATSAPP BUTTON */}
+      <WhatsAppButton />
 
       {/* CHATBOT */}
       <Chatbot />
-     
 
       {/* FOOTER */}
       <Footer />
 
-    
+      {/* SCROLL TO TOP */}
       <ScrollToTop />
     </>
   );

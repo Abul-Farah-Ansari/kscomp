@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 // ==================================================
 
 console.log("=================================");
-console.log("KS & COMPANY BACKEND");
+console.log("K S & COMPANY BACKEND");
 console.log("=================================");
 
 console.log("SMTP_HOST:", !!process.env.SMTP_HOST);
@@ -89,7 +89,7 @@ transporter.verify((error) => {
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "KS & Company backend is running.",
+    message: "K S & Company backend is running.",
   });
 });
 
@@ -146,7 +146,7 @@ app.post("/api/contact", async (req, res) => {
     console.log("---------------------------------");
 
     await transporter.sendMail({
-      from: `"KS & Company Website" <${process.env.MAIL_FROM}>`,
+      from: `"K S & Company Website" <${process.env.MAIL_FROM}>`,
 
       to: process.env.MAIL_TO,
 
@@ -161,7 +161,7 @@ app.post("/api/contact", async (req, res) => {
       // ==================================================
 
       text: `
-KS & COMPANY
+K S & COMPANY
 NEW WEBSITE ENQUIRY
 
 Name:
@@ -184,7 +184,7 @@ ${message}
 
 ---------------------------------
 
-This enquiry was submitted through the KS & Company website.
+This enquiry was submitted through the K S & Company website.
       `,
 
       // ==================================================
@@ -202,7 +202,7 @@ This enquiry was submitted through the KS & Company website.
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>KS & Company Enquiry</title>
+<title>K S & Company Enquiry</title>
 
 </head>
 
@@ -235,7 +235,7 @@ This enquiry was submitted through the KS & Company website.
       letter-spacing:3px;
       font-weight:600;
     ">
-      KS &amp; COMPANY
+      K S &amp; COMPANY
     </h1>
 
     <p style="
@@ -263,7 +263,7 @@ This enquiry was submitted through the KS & Company website.
       line-height:1.6;
     ">
       A new enquiry has been submitted through the
-      KS &amp; Company website.
+      K S &amp; Company website.
     </p>
 
     <!-- NAME -->
@@ -438,7 +438,7 @@ This enquiry was submitted through the KS & Company website.
   ">
 
     This enquiry was submitted through the
-    KS &amp; Company website.
+    K S &amp; Company website.
 
   </div>
 
@@ -484,6 +484,6 @@ This enquiry was submitted through the KS & Company website.
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(
-    `KS & Company backend running on port ${PORT}`
+    `K S & Company backend running on port ${PORT}`
   );
 });

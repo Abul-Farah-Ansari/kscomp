@@ -3,6 +3,13 @@ import { Icon } from "@iconify/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
+import image5 from "../../assets/5.png";
+import image6 from "../../assets/6.png";
+import image7 from "../../assets/7.png";
+import image8 from "../../assets/8.png";
+import image9 from "../../assets/9.png";
+import image10 from "../../assets/10.png";
+
 /* =========================================================
    SERVICES DATA
 ========================================================= */
@@ -16,6 +23,7 @@ const services = [
     description:
       "Our audit and assurance services help businesses maintain accurate reporting, strengthen internal controls and build confidence among stakeholders.",
     icon: "mdi:shield-check-outline",
+    image: image5,
     details: [
       "Statutory Audit",
       "Internal Audit",
@@ -31,6 +39,7 @@ const services = [
     description:
       "We provide professional tax advisory and compliance support designed to help individuals and businesses manage their tax responsibilities effectively.",
     icon: "mdi:receipt-text-check-outline",
+    image: image6,
     details: [
       "Income Tax",
       "GST Advisory",
@@ -46,6 +55,7 @@ const services = [
     description:
       "Our financial management services provide practical insights that help businesses improve performance, manage resources and plan for sustainable growth.",
     icon: "mdi:chart-line",
+    image: image7,
     details: [
       "Financial Planning",
       "Cash Flow Analysis",
@@ -61,6 +71,7 @@ const services = [
     description:
       "We maintain structured and accurate financial records that give businesses better control, visibility and confidence in their day-to-day finances.",
     icon: "mdi:calculator-variant-outline",
+    image: image8,
     details: [
       "Bookkeeping",
       "Financial Statements",
@@ -76,6 +87,7 @@ const services = [
     description:
       "Our advisory services help businesses identify challenges, evaluate opportunities and make informed decisions for long-term success.",
     icon: "mdi:briefcase-outline",
+    image: image9,
     details: [
       "Business Strategy",
       "Growth Advisory",
@@ -91,6 +103,7 @@ const services = [
     description:
       "We help businesses understand and manage statutory and regulatory responsibilities with a structured and dependable approach.",
     icon: "mdi:file-check-outline",
+    image: image10,
     details: [
       "Statutory Compliance",
       "Regulatory Filing",
@@ -114,10 +127,8 @@ const Services = () => {
         w-full
         overflow-hidden
         bg-[#f4f7f5]
-
         py-14
         sm:py-16
-
         lg:min-h-screen
         lg:flex
         lg:items-center
@@ -170,7 +181,6 @@ const Services = () => {
           mx-auto
           w-full
           max-w-[1600px]
-
           px-5
           sm:px-8
           lg:px-10
@@ -198,13 +208,8 @@ const Services = () => {
             duration: 0.7,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="
-            mb-8
-            lg:mb-9
-          "
+          className="mb-8 lg:mb-9"
         >
-
-          {/* LABEL */}
 
           <div className="mb-3 flex items-center gap-3">
 
@@ -230,15 +235,12 @@ const Services = () => {
 
           </div>
 
-          {/* HEADER CONTENT */}
-
           <div
             className="
               flex
               flex-col
               justify-between
               gap-5
-
               lg:flex-row
               lg:items-end
             "
@@ -247,26 +249,18 @@ const Services = () => {
             <h2
               className="
                 max-w-[700px]
-
                 text-[34px]
                 font-semibold
                 leading-[1.05]
                 tracking-[-0.8px]
                 text-[#1e2d30]
-
                 sm:text-[44px]
-
                 lg:text-[clamp(38px,3vw,52px)]
               "
             >
               Expertise designed for
 
-              <span
-                className="
-                  block
-                  text-[#285b68]
-                "
-              >
+              <span className="block text-[#285b68]">
                 every financial need.
               </span>
             </h2>
@@ -274,21 +268,17 @@ const Services = () => {
             <p
               className="
                 max-w-[300px]
-
                 border-l
                 border-[#326844]/20
-
                 pl-4
-
                 text-[12px]
                 leading-5
                 text-[#687477]
-
                 lg:mb-1
               "
             >
               Explore our professional services and discover how
-              KS & Company can support your financial journey.
+              K S & Company can support your financial journey.
             </p>
 
           </div>
@@ -305,9 +295,7 @@ const Services = () => {
             w-full
             grid-cols-1
             gap-4
-
             md:grid-cols-2
-
             xl:grid-cols-3
             xl:gap-5
           "
@@ -320,51 +308,37 @@ const Services = () => {
             return (
               <motion.div
                 key={service.number}
-
                 initial={{
                   opacity: 0,
                   y: 30,
                 }}
-
                 whileInView={{
                   opacity: 1,
                   y: 0,
                 }}
-
                 viewport={{
                   once: true,
                   amount: 0.15,
                 }}
-
                 transition={{
                   duration: 0.55,
                   delay: index * 0.06,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-
-                onMouseEnter={() =>
-                  setActiveCard(index)
-                }
-
-                onMouseLeave={() =>
-                  setActiveCard(null)
-                }
-
+                onMouseEnter={() => setActiveCard(index)}
+                onMouseLeave={() => setActiveCard(null)}
                 className="
                   relative
-                  h-[360px]
+                  h-[300px]
                   w-full
-
-                  sm:h-[380px]
-
-                  lg:h-[330px]
-
-                  xl:h-[345px]
+                  sm:h-[320px]
+                  lg:h-[285px]
+                  xl:h-[295px]
                 "
               >
 
                 {/* =================================================
-                    CARD
+                    MAIN CARD
                 ================================================== */}
 
                 <div
@@ -373,22 +347,20 @@ const Services = () => {
                     h-full
                     w-full
                     overflow-hidden
-
                     rounded-[20px]
-
-                    bg-[#173538]
-
-                    shadow-[0_14px_35px_rgba(18,50,48,0.12)]
-
-                    transition-shadow
+                    bg-[#f4f7f5]
+                    border
+                    border-[#102b29]/10
+                    shadow-[0_14px_35px_rgba(18,50,48,0.10)]
+                    transition-all
                     duration-500
-
-                    hover:shadow-[0_22px_50px_rgba(18,50,48,0.20)]
+                    hover:border-[#326844]/20
+                    hover:shadow-[0_22px_50px_rgba(18,50,48,0.18)]
                   "
                 >
 
                   {/* =================================================
-                      NORMAL CARD
+                      PNG IMAGE ONLY
                   ================================================== */}
 
                   <motion.div
@@ -396,264 +368,59 @@ const Services = () => {
                       opacity: isActive ? 0 : 1,
                       scale: isActive ? 0.98 : 1,
                     }}
-
                     transition={{
                       duration: 0.3,
                     }}
-
                     className="
                       absolute
                       inset-0
                       z-10
-
                       flex
-                      flex-col
-
-                      p-6
-                      sm:p-7
-                      lg:p-6
+                      items-center
+                      justify-center
+                      p-3
+                      sm:p-4
                     "
                   >
 
-                    {/* BACKGROUND GRADIENT */}
-
-                    <div
+                    <img
+                      src={service.image}
+                      alt={service.title}
                       className="
-                        absolute
-                        inset-0
-
-                        bg-gradient-to-br
-                        from-[#326844]/35
-                        via-transparent
-                        to-[#193d6b]/20
+                        h-full
+                        w-full
+                        object-contain
+                        object-center
+                        transition-transform
+                        duration-700
+                        hover:scale-[1.03]
                       "
                     />
 
-                    {/* =================================================
-                        LARGE DECORATIVE ICON
-                    ================================================== */}
-
-                    <motion.div
-                      initial={{
-                        opacity: 0,
-                        scale: 0.8,
-                        rotate: -8,
-                      }}
-
-                      whileInView={{
-                        opacity: 1,
-                        scale: 1,
-                        rotate: 0,
-                      }}
-
-                      viewport={{
-                        once: true,
-                      }}
-
-                      transition={{
-                        duration: 0.8,
-                        delay: 0.15 + index * 0.05,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
-
-                      className="
-                        pointer-events-none
-                        absolute
-
-                        -right-5
-                        bottom-[-15px]
-
-                        z-[1]
-
-                        flex
-                        items-center
-                        justify-center
-                      "
-                    >
-
-                      <Icon
-                        icon={service.icon}
-                        className="
-                          h-[175px]
-                          w-[175px]
-
-                          text-white/[0.055]
-
-                          transition-all
-                          duration-700
-                        "
-                      />
-
-                    </motion.div>
-
-                    {/* BACKGROUND NUMBER */}
-
-                    <span
-                      className="
-                        pointer-events-none
-
-                        absolute
-                        -right-2
-                        -top-2
-
-                        z-[2]
-
-                        text-[90px]
-                        font-semibold
-                        leading-none
-                        tracking-[-6px]
-
-                        text-white/[0.04]
-                      "
-                    >
-                      {service.number}
-                    </span>
-
-                    {/* =================================================
-                        CONTENT
-                    ================================================== */}
+                    {/* Subtle bottom gradient */}
 
                     <div
                       className="
-                        relative
-                        z-10
-
-                        flex
-                        h-full
-                        flex-col
+                        pointer-events-none
+                        absolute
+                        inset-x-0
+                        bottom-0
+                        h-16
+                        bg-gradient-to-t
+                        from-white/30
+                        to-transparent
                       "
-                    >
+                    />
 
-                      {/* TOP */}
-
-                      <div
-                        className="
-                          flex
-                          items-start
-                          justify-between
-                        "
-                      >
-
-                        {/* SMALL SERVICE ICON */}
-
-                        <div
-                          className="
-                            flex
-                            h-12
-                            w-12
-                            items-center
-                            justify-center
-
-                            rounded-xl
-
-                            border
-                            border-white/10
-
-                            bg-white/[0.07]
-
-                            text-[#9acb7c]
-
-                            shadow-[0_8px_20px_rgba(0,0,0,0.08)]
-                          "
-                        >
-
-                          <Icon
-                            icon={service.icon}
-                            className="
-                              h-6
-                              w-6
-                            "
-                          />
-
-                        </div>
-
-                        {/* NUMBER */}
-
-                        <span
-                          className="
-                            text-[9px]
-                            font-medium
-                            tracking-[1.8px]
-                            text-white/35
-                          "
-                        >
-                          SERVICE {service.number}
-                        </span>
-
-                      </div>
-
-                      {/* BOTTOM CONTENT */}
-
-                      <div className="mt-auto">
-
-                        <h3
-                          className="
-                            text-[22px]
-                            font-semibold
-                            tracking-[-0.4px]
-                            text-white
-
-                            sm:text-[25px]
-                          "
-                        >
-                          {service.title}
-                        </h3>
-
-                        <p
-                          className="
-                            mt-3
-                            max-w-[420px]
-
-                            text-[12px]
-                            leading-6
-                            text-white/60
-                          "
-                        >
-                          {service.short}
-                        </p>
-
-                        {/* EXPLORE */}
-
-                        <div
-                          className="
-                            mt-5
-
-                            flex
-                            items-center
-                            gap-2
-
-                            text-[10px]
-                            font-medium
-                            text-[#b9dca5]
-                          "
-                        >
-                          Hover to explore
-
-                          <Icon
-                            icon="mdi:arrow-top-right"
-                            className="
-                              h-4
-                              w-4
-                            "
-                          />
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                    {/* BOTTOM ACCENT */}
+                    {/* Bottom accent */}
 
                     <div
                       className="
                         absolute
                         bottom-0
                         left-0
-
                         h-[3px]
                         w-full
-
                         bg-gradient-to-r
                         from-[#75b43c]
                         via-[#326844]
@@ -664,7 +431,7 @@ const Services = () => {
                   </motion.div>
 
                   {/* =================================================
-                      DETAILS CARD
+                      HOVER DETAILS CARD
                   ================================================== */}
 
                   <AnimatePresence>
@@ -676,35 +443,30 @@ const Services = () => {
                           opacity: 0,
                           scale: 1.03,
                         }}
-
                         animate={{
                           opacity: 1,
                           scale: 1,
                         }}
-
                         exit={{
                           opacity: 0,
                           scale: 0.98,
                         }}
-
                         transition={{
                           duration: 0.32,
                           ease: [0.22, 1, 0.36, 1],
                         }}
-
                         className="
                           absolute
                           inset-0
                           z-30
-
                           flex
                           flex-col
-
-                          bg-[#edf4ef]
-
-                          p-6
-                          sm:p-7
-                          lg:p-6
+                          overflow-hidden
+                          bg-white
+                          p-5
+                          sm:p-6
+                          lg:p-5
+                          xl:p-6
                         "
                       >
 
@@ -720,11 +482,12 @@ const Services = () => {
 
                           <span
                             className="
-                              text-[9px]
+                              text-[8px]
                               font-semibold
                               uppercase
                               tracking-[1.8px]
                               text-[#326844]
+                              sm:text-[9px]
                             "
                           >
                             Service Overview
@@ -746,43 +509,36 @@ const Services = () => {
 
                         <div
                           className="
-                            mt-3
-
+                            mt-2
                             flex
                             items-center
-                            justify-between
                           "
                         >
 
                           <div
                             className="
                               flex
-                              h-10
-                              w-10
+                              h-9
+                              w-9
+                              shrink-0
                               items-center
                               justify-center
-
-                              rounded-xl
-
+                              rounded-lg
                               bg-[#326844]/10
-
                               text-[#326844]
                             "
                           >
 
                             <Icon
                               icon={service.icon}
-                              className="
-                                h-6
-                                w-6
-                              "
+                              className="h-5 w-5"
                             />
 
                           </div>
 
                           <div
                             className="
-                              ml-4
+                              ml-3
                               h-px
                               flex-1
                               bg-[#326844]/15
@@ -795,14 +551,14 @@ const Services = () => {
 
                         <h3
                           className="
-                            mt-4
-
-                            text-[21px]
+                            mt-3
+                            text-[19px]
                             font-semibold
+                            leading-tight
                             tracking-[-0.3px]
                             text-[#193d3f]
-
-                            sm:text-[24px]
+                            sm:text-[21px]
+                            xl:text-[22px]
                           "
                         >
                           {service.title}
@@ -812,13 +568,12 @@ const Services = () => {
 
                         <p
                           className="
-                            mt-3
-
-                            text-[11px]
-                            leading-5
+                            mt-2
+                            text-[10px]
+                            leading-[1.45]
                             text-[#405759]
-
-                            sm:text-[12px]
+                            sm:text-[11px]
+                            xl:text-[11px]
                           "
                         >
                           {service.description}
@@ -828,8 +583,8 @@ const Services = () => {
 
                         <div
                           className="
-                            mt-4
-                            space-y-2
+                            mt-3
+                            space-y-1.5
                           "
                         >
 
@@ -837,46 +592,41 @@ const Services = () => {
 
                             <div
                               key={detail}
-
                               className="
                                 flex
                                 items-center
-                                gap-3
-
-                                text-[11px]
+                                gap-2.5
+                                text-[10px]
                                 font-medium
                                 text-[#294346]
+                                sm:text-[11px]
                               "
                             >
 
                               <span
                                 className="
                                   flex
-                                  h-6
-                                  w-6
+                                  h-5
+                                  w-5
                                   shrink-0
                                   items-center
                                   justify-center
-
                                   rounded-full
-
                                   bg-[#326844]/10
-
                                   text-[#326844]
                                 "
                               >
 
                                 <Icon
                                   icon="mdi:check"
-                                  className="
-                                    h-3
-                                    w-3
-                                  "
+                                  className="h-3 w-3"
                                 />
 
                               </span>
 
-                              {detail}
+                              <span className="leading-5">
+                                {detail}
+                              </span>
 
                             </div>
 
@@ -888,21 +638,17 @@ const Services = () => {
 
                         <Link
                           to="/services"
-
                           className="
                             group/btn
-
                             mt-auto
-
                             inline-flex
                             items-center
-                            gap-3
-
+                            gap-2
                             self-start
-
-                            text-[10px]
+                            text-[9px]
                             font-semibold
                             text-[#285b68]
+                            sm:text-[10px]
                           "
                         >
 
@@ -911,20 +657,15 @@ const Services = () => {
                           <span
                             className="
                               flex
-                              h-8
-                              w-8
+                              h-7
+                              w-7
                               items-center
                               justify-center
-
                               rounded-full
-
                               bg-[#326844]
-
                               text-white
-
                               transition-transform
                               duration-300
-
                               group-hover/btn:translate-x-1
                               group-hover/btn:-translate-y-1
                             "
@@ -932,10 +673,7 @@ const Services = () => {
 
                             <Icon
                               icon="mdi:arrow-top-right"
-                              className="
-                                h-4
-                                w-4
-                              "
+                              className="h-3.5 w-3.5"
                             />
 
                           </span>
@@ -949,10 +687,8 @@ const Services = () => {
                             absolute
                             bottom-0
                             left-0
-
                             h-[3px]
                             w-full
-
                             bg-gradient-to-r
                             from-[#75b43c]
                             via-[#326844]
@@ -983,36 +719,27 @@ const Services = () => {
             opacity: 0,
             y: 20,
           }}
-
           whileInView={{
             opacity: 1,
             y: 0,
           }}
-
           viewport={{
             once: true,
           }}
-
           transition={{
             duration: 0.6,
           }}
-
           className="
             mt-8
-
             flex
             flex-col
             justify-between
             gap-4
-
             border-t
             border-[#dce5e0]
-
             pt-5
-
             sm:flex-row
             sm:items-center
-
             lg:mt-7
           "
         >
@@ -1045,34 +772,24 @@ const Services = () => {
 
           <Link
             to="/services"
-
             className="
               group
-
               inline-flex
               items-center
               gap-3
-
               self-start
-
               rounded-md
-
               bg-[#326844]
-
               px-5
               py-2.5
-
               text-[11px]
               font-semibold
               text-white
-
               transition-all
               duration-300
-
               hover:-translate-y-1
               hover:bg-[#285b68]
               hover:shadow-lg
-
               sm:self-auto
             "
           >
@@ -1084,10 +801,8 @@ const Services = () => {
               className="
                 h-4
                 w-4
-
                 transition-transform
                 duration-300
-
                 group-hover:translate-x-1
                 group-hover:-translate-y-1
               "
@@ -1098,7 +813,6 @@ const Services = () => {
         </motion.div>
 
       </div>
-
     </section>
   );
 };

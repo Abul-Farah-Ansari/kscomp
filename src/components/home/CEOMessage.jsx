@@ -678,7 +678,7 @@ const CEOMessage = () => {
                     text-[#9abca0]
                   "
                 >
-                  KS & Company
+                  K S & Company
                 </p>
 
                 <p

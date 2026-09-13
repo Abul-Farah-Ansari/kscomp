@@ -17,7 +17,7 @@ const IntroVideo = () => {
 
           <img
             src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2200&q=85"
-            alt="KS & Company professionals"
+            alt="K S & Company professionals"
             className="h-full w-full scale-105 object-cover opacity-70"
           />
 
@@ -103,7 +103,7 @@ const IntroVideo = () => {
               <span className="h-[2px] w-12 bg-[#8fbd73]" />
 
               <span className="text-[11px] font-semibold uppercase tracking-[3px] text-[#b7d7a5]">
-                Discover KS & Company
+                Discover K S & Company
               </span>
 
             </motion.div>
@@ -175,7 +175,7 @@ const IntroVideo = () => {
                 sm:text-[17px]
               "
             >
-              Discover how KS & Company helps businesses navigate
+              Discover how K S & Company helps businesses navigate
               financial complexity, strengthen decision-making and
               create a foundation for sustainable success.
             </motion.p>

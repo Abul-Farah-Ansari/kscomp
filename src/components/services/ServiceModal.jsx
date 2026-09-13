@@ -105,7 +105,7 @@ const ServiceModal = ({ service, selectedService, onClose }) => {
               </p>
 
               <p className="mt-8 text-xs font-semibold tracking-[0.2em] text-white/35">
-                {activeService.categoryName || "KS & COMPANY"}
+                {activeService.categoryName || "K S & COMPANY"}
               </p>
 
               <h2 className="mt-4 text-4xl font-bold leading-tight text-white sm:text-5xl">

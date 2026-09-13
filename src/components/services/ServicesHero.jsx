@@ -11,7 +11,7 @@ const ServicesHero = () => {
 
   return (
     <PageHero
-      label="KS & Company Services"
+      label="K S & Company Services"
       title="Professional Services."
       highlight="Practical Solutions."
       description="From taxation and accounting to registration, compliance, documentation, insurance and finance, we provide organized support for individuals and businesses."

@@ -154,7 +154,7 @@ const About = () => {
                   text-[#326844]
                 "
               >
-                About KS & Company
+                About K S & Company
               </span>
             </motion.div>
 
@@ -615,7 +615,7 @@ const About = () => {
                   lg:leading-7
                 "
               >
-                KS & Company provides professional support across taxation,
+                K S & Company provides professional support across taxation,
                 accounting, registrations, compliance, insurance and financial
                 services. We work with individuals, professionals and
                 businesses to simplify financial and regulatory requirements.

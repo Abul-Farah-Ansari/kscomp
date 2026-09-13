@@ -79,7 +79,7 @@ const ServicesSearch = ({ onServiceClick }) => {
 
           <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-[#102b29]/60 sm:text-base">
             Search across taxation, accounting, registration,
-            documentation, insurance, loans and professional services.
+            documentation, insurance and professional services.
           </p>
         </motion.div>
 

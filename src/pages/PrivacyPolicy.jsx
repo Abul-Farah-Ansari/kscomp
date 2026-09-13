@@ -7,7 +7,7 @@ const PrivacyPolicy = () => {
       number: "01",
       title: "Information We Collect",
       content:
-        "We may collect information that you voluntarily provide through enquiry forms, contact forms, email communication or other interactions with KS & Company. This may include your name, phone number, email address and details related to your service requirements.",
+        "We may collect information that you voluntarily provide through enquiry forms, contact forms, email communication or other interactions with K S & Company. This may include your name, phone number, email address and details related to your service requirements.",
     },
     {
       number: "02",
@@ -19,7 +19,7 @@ const PrivacyPolicy = () => {
       number: "03",
       title: "Information Protection",
       content:
-        "KS & Company takes reasonable measures to protect information shared by clients and website visitors. We aim to handle information responsibly and maintain appropriate safeguards against unauthorized access or misuse.",
+        "K S & Company takes reasonable measures to protect information shared by clients and website visitors. We aim to handle information responsibly and maintain appropriate safeguards against unauthorized access or misuse.",
     },
     {
       number: "04",
@@ -31,7 +31,7 @@ const PrivacyPolicy = () => {
       number: "05",
       title: "Third-Party Services",
       content:
-        "Our website may contain links, embedded maps or other services provided by third parties. Their privacy practices are governed by their respective policies, and KS & Company is not responsible for their independent privacy practices.",
+        "Our website may contain links, embedded maps or other services provided by third parties. Their privacy practices are governed by their respective policies, and K S & Company is not responsible for their independent privacy practices.",
     },
     {
       number: "06",
@@ -49,7 +49,7 @@ const PrivacyPolicy = () => {
         label="Legal Information"
         title="Privacy"
         highlight="Policy."
-        description="Your privacy and trust are important to us. This policy explains how KS & Company handles information shared by clients and visitors through our website and communication channels."
+        description="Your privacy and trust are important to us. This policy explains how K S & Company handles information shared by clients and visitors through our website and communication channels."
       />
 
       {/* ================= INTRODUCTION ================= */}
@@ -83,7 +83,7 @@ const PrivacyPolicy = () => {
             transition={{ duration: 0.7 }}
           >
             <p className="text-base leading-8 text-[#102b29]/65 sm:text-lg">
-              KS & Company values the trust placed in us by our clients.
+              K S & Company values the trust placed in us by our clients.
               Any information shared with us is handled responsibly and is
               used primarily for understanding requirements and providing
               appropriate professional assistance.
@@ -152,7 +152,7 @@ const PrivacyPolicy = () => {
 
             <p className="mt-5 max-w-2xl text-base leading-8 text-white/60">
               If you have any questions regarding this Privacy Policy or how
-              information is handled by KS & Company, please contact us.
+              information is handled by K S & Company, please contact us.
             </p>
           </motion.div>
         </div>

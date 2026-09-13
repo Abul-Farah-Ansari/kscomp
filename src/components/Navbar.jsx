@@ -59,52 +59,53 @@ const menuItems = [
 const serviceMenuItems = [
   {
     name: "Taxation Services",
-    path: "/services#taxation-services",
+    path: "/services/taxation",
     icon: ReceiptText,
     description: "Tax planning & return filing",
   },
-  {
-    name: "Loan & Finance Services",
-    path: "/services#finance-services",
-    icon: ChartLine,
-    description: "Loans & financial assistance",
-  },
+
   {
     name: "Insurance Services",
-    path: "/services#insurance-services",
+    path: "/services/insurance",
     icon: InsuranceIcon,
     description: "Life, health & general insurance",
   },
   {
     name: "Accounting Services",
-    path: "/services#accounting-services",
+    path: "/services/accounting",
     icon: Calculator,
     description: "Accounting & bookkeeping",
   },
   {
     name: "Registration Services",
-    path: "/services#registration-services",
+    path: "/services/registration",
     icon: Building2,
     description: "Business registrations",
   },
   {
     name: "HR Compliance Services",
-    path: "/services#hr-compliance-services",
+    path: "/services/hr-compliance",
     icon: Users,
     description: "Payroll & HR compliance",
   },
   {
     name: "Other Compliance Services",
-    path: "/services#other-compliance",
+    path: "/services/other-compliance",
     icon: ClipboardCheck,
     description: "Specialized compliance support",
   },
   {
     name: "Government & Documentation",
-    path: "/services#government-documentation",
+    path: "/services/government-documentation",
     icon: FileCheck,
     description: "Government & documentation",
   },
+    {
+    name: "Loan & Finance Services",
+    path: "/services/finance",
+    icon: ChartLine,
+    description: "Loans & financial assistance",
+  }
 ];
 
 
@@ -132,29 +133,6 @@ const Navbar = () => {
 
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
 
-
-  /* =========================================================
-     HASH / SERVICE SECTION SCROLL
-  ========================================================= */
-
-  useEffect(() => {
-    if (location.pathname !== "/services" || !location.hash) return;
-
-    const sectionId = decodeURIComponent(location.hash.slice(1));
-
-    const scrollToSection = () => {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    };
-
-    const timer = window.setTimeout(scrollToSection, 80);
-    return () => window.clearTimeout(timer);
-  }, [location.pathname, location.hash]);
 
   /* =========================================================
      SCROLL HANDLER
@@ -319,7 +297,7 @@ const Navbar = () => {
 
                 <img
                   src={KS}
-                  alt="KS & Company Logo"
+                  alt="K S & Company Logo"
                   className="
                     h-full
                     w-full
@@ -348,7 +326,7 @@ const Navbar = () => {
                     lg:text-[27px]
                   "
                 >
-                  KS &amp; COMPANY
+                  K S &amp; COMPANY
                 </h1>
 
 
@@ -613,7 +591,7 @@ const Navbar = () => {
                   {/* TAXATION */}
 
                   <NavLink
-                    to="/services#taxation-services"
+                    to="/services/taxation"
                     onClick={() => setServiceOpen(false)}
                     className="
                       group
@@ -669,65 +647,12 @@ const Navbar = () => {
 
                   {/* LOAN & FINANCE */}
 
-                  <NavLink
-                    to="/services#finance-services"
-                    onClick={() => setServiceOpen(false)}
-                    className="
-                      group
-                      flex
-                      items-center
-                      gap-4
-                      border-b
-                      border-white/10
-                      px-5
-                      py-4
-                      transition-all
-                      duration-300
-
-                      hover:bg-white/10
-                    "
-                  >
-
-                    <div
-                      className="
-                        flex
-                        h-10
-                        w-10
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-lg
-                        bg-white/10
-                        text-white
-                        transition
-
-                        group-hover:bg-white
-                        group-hover:text-[#102b29]
-                      "
-                    >
-                      <ChartLine size={18} />
-                    </div>
-
-
-                    <div>
-
-                      <p className="text-[14px] font-semibold text-white">
-                        Loan &amp; Finance Services
-                      </p>
-
-                      <p className="mt-1 text-[11px] text-white/50">
-                        Loans & financial assistance
-                      </p>
-
-                    </div>
-
-                  </NavLink>
 
 
                   {/* INSURANCE */}
 
                   <NavLink
-                    to="/services#insurance-services"
+                    to="/services/insurance"
                     onClick={() => setServiceOpen(false)}
                     className="
                       group
@@ -784,7 +709,7 @@ const Navbar = () => {
                   {/* ACCOUNTING */}
 
                   <NavLink
-                    to="/services#accounting-services"
+                    to="/services/accounting"
                     onClick={() => setServiceOpen(false)}
                     className="
                       group
@@ -841,7 +766,7 @@ const Navbar = () => {
                   {/* REGISTRATION */}
 
                   <NavLink
-                    to="/services#registration-services"
+                    to="/services/registration"
                     onClick={() => setServiceOpen(false)}
                     className="
                       group
@@ -898,7 +823,7 @@ const Navbar = () => {
                   {/* HR COMPLIANCE */}
 
                   <NavLink
-                    to="/services#hr-compliance-services"
+                    to="/services/hr-compliance"
                     onClick={() => setServiceOpen(false)}
                     className="
                       group
@@ -955,7 +880,7 @@ const Navbar = () => {
                   {/* OTHER COMPLIANCE */}
 
                   <NavLink
-                    to="/services#other-compliance"
+                    to="/services/other-compliance"
                     onClick={() => setServiceOpen(false)}
                     className="
                       group
@@ -1012,7 +937,7 @@ const Navbar = () => {
                   {/* GOVERNMENT */}
 
                   <NavLink
-                    to="/services#government-documentation"
+                    to="/services/government-documentation"
                     onClick={() => setServiceOpen(false)}
                     className="
                       group
@@ -1062,6 +987,54 @@ const Navbar = () => {
                     </div>
 
                   </NavLink>
+                  {/* LOAN & FINANCE */}
+
+<NavLink
+  to="/services/finance"
+  onClick={() => setServiceOpen(false)}
+  className="
+    group
+    flex
+    items-center
+    gap-4
+    border-b
+    border-white/10
+    px-5
+    py-4
+    transition-all
+    duration-300
+    hover:bg-white/10
+  "
+>
+  <div
+    className="
+      flex
+      h-10
+      w-10
+      shrink-0
+      items-center
+      justify-center
+      rounded-lg
+      bg-white/10
+      text-white
+      transition
+      group-hover:bg-white
+      group-hover:text-[#102b29]
+    "
+  >
+    <ChartLine size={18} />
+  </div>
+
+  <div>
+    <p className="text-[14px] font-semibold text-white">
+      Loan &amp; Finance Services
+    </p>
+
+    <p className="mt-1 text-[11px] text-white/50">
+      Loans & financial assistance
+    </p>
+  </div>
+</NavLink>
 
                 </div>
 

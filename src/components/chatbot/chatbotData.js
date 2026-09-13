@@ -4,11 +4,11 @@ export const chatbotData = {
   ========================================================= */
 
   company: {
-    name: "KS & Company",
+    name: "K S & Company",
     tagline: "Chartered Accountants",
 
     description:
-      "KS & Company provides professional support for taxation, accounting, registrations, compliance, documentation, insurance and financial services.",
+      "K S & Company provides professional support for taxation, accounting, registrations, compliance, documentation, insurance and financial services.",
 
     email: "info@ks-company.in",
 
@@ -407,7 +407,7 @@ export const chatbotData = {
       ],
 
       answer:
-        "Hello! 👋 Welcome to KS & Company. I can help you explore our taxation, accounting, registration, compliance, insurance, finance and documentation services.",
+        "Hello! 👋 Welcome to K S & Company. I can help you explore our taxation, accounting, registration, compliance, insurance, finance and documentation services.",
     },
 
 
@@ -424,7 +424,7 @@ export const chatbotData = {
       ],
 
       answer:
-        "KS & Company is a Chartered Accountants firm providing professional support in taxation, accounting, business registration, compliance, documentation, insurance and financial services.",
+        "K S & Company is a Chartered Accountants firm providing professional support in taxation, accounting, business registration, compliance, documentation, insurance and financial services.",
     },
 
 
@@ -441,7 +441,7 @@ export const chatbotData = {
       ],
 
       answer:
-        "KS & Company provides Taxation, Accounting, Registration, HR Compliance, Other Compliance, Government & Documentation, Insurance and Finance & Loan services.",
+        "K S & Company provides Taxation, Accounting, Registration, HR Compliance, Other Compliance, Government & Documentation, Insurance and Finance & Loan services.",
     },
 
 
@@ -644,7 +644,7 @@ export const chatbotData = {
       ],
 
       answer:
-        "You can contact KS & Company at +91 7004946933 or email us at info@ks-company.in. You can also submit your enquiry through our Contact page.",
+        "You can contact K S & Company at +91 7004946933 or email us at info@ks-company.in. You can also submit your enquiry through our Contact page.",
 
       action: {
         label: "Contact Us",
@@ -681,7 +681,7 @@ export const chatbotData = {
       ],
 
       answer:
-        "You can contact KS & Company at +91 7004946933.",
+        "You can contact K S & Company at +91 7004946933.",
     },
 
 
@@ -696,7 +696,7 @@ export const chatbotData = {
       ],
 
       answer:
-        "You can visit the KS & Company website for more information about our services and enquiries.",
+        "You can visit the K S & Company website for more information about our services and enquiries.",
     },
 
 
@@ -756,7 +756,7 @@ export const chatbotData = {
       ],
 
       answer:
-        "Some of the organizations and businesses associated with KS & Company include Zaib Infotech, Expert Organizers, Zen Nex, Alvida Tour and Travels, AR Printing and Packaging, and AK Printing Hub.",
+        "Some of the organizations and businesses associated with K S & Company include Zaib Infotech, Expert Organizers, Zen Nex, Alvida Tour and Travels, AR Printing and Packaging, and AK Printing Hub.",
     },
 
 
@@ -786,7 +786,7 @@ export const chatbotData = {
       ],
 
       answer:
-        "Thank you for contacting KS & Company. Have a great day! 👋",
+        "Thank you for contacting K S & Company. Have a great day! 👋",
     },
   ],
 

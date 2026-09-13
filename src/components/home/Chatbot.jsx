@@ -53,7 +53,7 @@ const getBotResponse = (message) => {
     text.includes("hi") ||
     text.includes("hey")
   ) {
-    return "Hello! 👋 How can KS & Company assist you today?";
+    return "Hello! 👋 How can K S & Company assist you today?";
   }
 
   return "Thank you for your message. Our team will be happy to assist you. You can also ask about our tax, audit, accounting or advisory services.";
@@ -66,7 +66,7 @@ const Chatbot = () => {
     {
       id: 1,
       sender: "bot",
-      text: "Hello! 👋 Welcome to KS & Company. How can we assist you today?",
+      text: "Hello! 👋 Welcome to K S & Company. How can we assist you today?",
     },
   ]);
 
@@ -496,7 +496,7 @@ const Chatbot = () => {
                     text-[#728082]
                   "
                 >
-                  KS & Company Assistant
+                  K S & Company Assistant
                 </span>
 
               </div>
@@ -871,7 +871,7 @@ const Chatbot = () => {
                   text-[#a0aaab]
                 "
               >
-                KS & COMPANY • PROFESSIONAL ASSISTANCE
+                K S & COMPANY • PROFESSIONAL ASSISTANCE
               </p>
 
             </div>

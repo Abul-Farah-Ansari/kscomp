@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import caHeroBg from "../../public/videos/ChatGPT Image Sep 6, 2026, 02_13_43 PM.png";
+import caHeroBg from "../assets/ChatGPT Image Sep 6, 2026, 02_13_43 PM.png";
 
 const PageHero = ({
-  label = "KS & COMPANY",
+  label = "K S & COMPANY",
   title,
   highlight,
   description,

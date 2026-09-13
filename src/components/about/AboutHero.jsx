@@ -5,10 +5,10 @@ import PageHero from "../PageHero";
 const AboutHero = () => {
   return (
     <PageHero
-      label="About KS & Company"
+      label="About K S & Company"
       title="Professional Guidance"
       highlight="Built Around Trust."
-      description="KS & Company provides professional guidance across taxation, insurance and financial advisory services, helping individuals and businesses make important financial decisions with greater clarity and confidence."
+      description="K S & Company provides professional guidance across taxation, insurance and financial advisory services, helping individuals and businesses make important financial decisions with greater clarity and confidence."
     >
       <Link
         to="/contact"

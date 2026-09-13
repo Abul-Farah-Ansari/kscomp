@@ -20,6 +20,13 @@ import {
 
 import emailjs from "@emailjs/browser";
 
+import whatsappQR from "../../assets/whatsapp.png";
+import instagramQR from "../../assets/insta.png";
+import facebookQR from "../../assets/fb.png";
+import linkedinQR from "../../assets/linkedIn.png";
+import googleQR from "../../assets/website.png";
+import googleReviewQR from "../../assets/whatsapp.png";
+
 import PageHero from "../PageHero";
 
 const ContactSection = () => {
@@ -221,7 +228,7 @@ const ContactSection = () => {
       {/* ================= HERO ================= */}
 
       <PageHero
-        label="Contact KS & Company"
+        label="Contact K S & Company"
         title="Let's Start A"
         highlight="Meaningful Conversation."
         description="Whether you need assistance with taxation, accounting, registration, documentation, insurance, finance or professional services, our team is ready to understand your requirements and guide you through the next steps."
@@ -298,6 +305,49 @@ const ContactSection = () => {
               );
             })}
 
+          </div>
+        </div>
+      </section>
+
+      {/* ================= QR CODES ================= */}
+
+      <section className="bg-[#f4f3ef] pb-16 sm:pb-20">
+        <div className="mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
+          <div className="mb-8 text-center">
+            <p className="text-[10px] font-semibold uppercase tracking-[4px] text-[#102b29]/40">
+              Scan & Connect
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold text-[#102b29] sm:text-3xl">
+              Connect With K S & Company
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            {[
+              { title: "WhatsApp", image: whatsappQR },
+              { title: "Instagram", image: instagramQR },
+              { title: "Facebook", image: facebookQR },
+              { title: "LinkedIn", image: linkedinQR },
+              { title: "Website", image: googleQR },
+              { title: "Google Reviews", image: googleReviewQR },
+            ].map((qr, index) => (
+              <motion.div
+                key={qr.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.45, delay: index * 0.07 }}
+                className="group flex min-h-[180px] flex-col items-center justify-between border border-[#102b29]/10 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#c5a46d]/60 hover:shadow-[0_12px_35px_rgba(16,43,41,0.08)] sm:min-h-[195px] sm:p-4"
+              >
+                <div className="flex h-[115px] w-[115px] items-center justify-center overflow-hidden border border-[#102b29]/8 bg-white p-2 transition-transform duration-300 group-hover:scale-[1.03] sm:h-[125px] sm:w-[125px]">
+                  <img src={qr.image} alt={`${qr.title} QR Code`} className="h-full w-full object-contain" />
+                </div>
+
+                <p className="mt-3 text-center text-[10px] font-semibold uppercase tracking-[2px] text-[#102b29] sm:text-[11px]">
+                  {qr.title}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -978,6 +1028,7 @@ const ContactSection = () => {
         </div>
 
       </section>
+
 
 
       {/* ================= FINAL CTA ================= */}

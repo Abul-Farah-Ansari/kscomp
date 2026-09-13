@@ -6,32 +6,32 @@ const CoreValues = () => {
     {
       number: "01",
       title: "Integrity",
-      text: "We believe trust begins with honesty, ethical conduct and responsible professional decisions.",
+      text: "We believe in honest and ethical professional practices.",
     },
     {
       number: "02",
-      title: "Commitment",
-      text: "We approach responsibilities with dedication and a consistent effort to provide dependable support.",
+      title: "Client First",
+      text: "Our solutions begin with understanding our client's needs.",
     },
     {
       number: "03",
-      title: "Clarity",
-      text: "Important information should be understandable. Clear communication remains central to our approach.",
+      title: "Accuracy",
+      text: "We focus on precision in every financial and compliance assignment.",
     },
     {
       number: "04",
-      title: "Consistency",
-      text: "Reliable professional relationships are built through disciplined processes and dependable standards.",
+      title: "Transparency",
+      text: "Clear communication and transparent processes build lasting trust.",
     },
     {
       number: "05",
-      title: "Respect",
-      text: "Every client relationship deserves attention, understanding and professional respect.",
+      title: "Professional Excellence",
+      text: "We continuously improve our knowledge, technology and service quality.",
     },
     {
       number: "06",
-      title: "Growth",
-      text: "Continuous learning and improvement help us remain relevant and provide long-term value.",
+      title: "Long-Term Partnership",
+      text: "We aim to grow with our clients, not simply serve them.",
     },
   ];
 
@@ -61,7 +61,6 @@ const CoreValues = () => {
             How We Work.
           </h2>
         </motion.div>
-
 
         <div className="mt-20 grid border-l border-t border-[#102b29]/10 sm:grid-cols-2 lg:grid-cols-3">
 

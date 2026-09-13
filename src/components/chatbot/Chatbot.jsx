@@ -21,7 +21,7 @@ const Chatbot = () => {
       id: 1,
       type: "bot",
       text:
-        "Hello 👋 I'm the KS & Company virtual assistant. How can I help you today?",
+        "Hello 👋 I'm the K S & Company virtual assistant. How can I help you today?",
     },
   ]);
 

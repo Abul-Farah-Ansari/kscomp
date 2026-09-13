@@ -485,7 +485,7 @@ const ServicesCategories = () => {
                         group-hover:text-white/45
                       "
                     >
-                      KS & COMPANY
+                      K S & COMPANY
                     </span>
 
                   </div>

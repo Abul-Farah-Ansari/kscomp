@@ -9,7 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const faqs = [
   {
-    question: "What services does KS & Company provide?",
+    question: "What services does K S & Company provide?",
     answer:
       "We provide professional financial and business advisory services, including accounting, taxation, financial management, business analysis, compliance support, and strategic guidance.",
   },
@@ -19,7 +19,7 @@ const faqs = [
       "Our services are designed for individuals, startups, small and medium-sized businesses, and established organizations seeking reliable financial and professional guidance.",
   },
   {
-    question: "How do I get started with KS & Company?",
+    question: "How do I get started with K S & Company?",
     answer:
       "You can contact our team or book an appointment to discuss your requirements. We will understand your needs and recommend the most suitable professional support.",
   },
@@ -34,7 +34,7 @@ const faqs = [
       "Our work follows a structured professional approach with careful review, updated knowledge, and attention to applicable financial and regulatory requirements.",
   },
   {
-    question: "Can I work with KS & Company for long-term support?",
+    question: "Can I work with K S & Company for long-term support?",
     answer:
       "Yes. We believe in building long-term professional relationships and can provide ongoing support as your business and financial requirements evolve.",
   },

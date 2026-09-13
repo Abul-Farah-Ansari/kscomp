@@ -758,7 +758,7 @@ const FinancialManagement = () => {
                       text-white/65
                     "
                   >
-                    KS &amp; Company
+                    K S &amp; Company
                   </span>
 
                   <ArrowUpRight

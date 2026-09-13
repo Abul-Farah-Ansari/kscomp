@@ -5,23 +5,33 @@ const WhyChooseUs = () => {
   const reasons = [
     {
       number: "01",
-      title: "Professional Responsibility",
-      text: "Every client requirement is approached with care, discipline and a strong sense of professional responsibility.",
+      title: "Personalized Solutions",
+      text: "Providing personalized solutions based on each client's needs and circumstances.",
     },
     {
       number: "02",
-      title: "Clear Communication",
-      text: "We believe clients should understand important information instead of feeling overwhelmed by unnecessary complexity.",
+      title: "Compliance Support",
+      text: "Helping clients maintain proper tax and regulatory compliance with reliable professional support.",
     },
     {
       number: "03",
-      title: "Practical Guidance",
-      text: "Our approach focuses on real-world requirements and practical circumstances rather than generic recommendations.",
+      title: "Financial & Business Advisory",
+      text: "Supporting businesses with accounting, finance and strategic advisory to help them move forward with confidence.",
     },
     {
       number: "04",
-      title: "Long-Term Support",
-      text: "We value professional relationships that continue as client requirements and responsibilities evolve.",
+      title: "Tax & Insurance Solutions",
+      text: "Providing suitable Tax & insurance solutions as part of our integrated professional support.",
+    },
+    {
+      number: "05",
+      title: "Technology & Expertise",
+      text: "Using technology and professional expertise to improve accuracy and efficiency in our services.",
+    },
+    {
+      number: "06",
+      title: "Trust & Transparency",
+      text: "Building relationships based on trust, transparency and integrity with every client we serve.",
     },
   ];
 
@@ -35,6 +45,7 @@ const WhyChooseUs = () => {
 
       <div className="relative mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
 
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -50,23 +61,22 @@ const WhyChooseUs = () => {
           </div>
 
           <h2 className="mt-8 max-w-4xl text-5xl font-bold leading-[1.1] tracking-tight text-[#102b29] sm:text-6xl">
-            Professional Service
+            Professional Support
             <br />
             <span className="text-[#426b66]">
-              Built Around You.
+              Built Around Your Needs.
             </span>
           </h2>
 
           <p className="mt-8 max-w-3xl text-lg leading-9 text-[#102b29]/70">
-            Choosing the right professional advisor is about more than
-            selecting a service provider. It is about finding a dependable
-            partner who understands your requirements and communicates with
-            responsibility.
+            We aim to provide practical, reliable and personalized support
+            while helping our clients manage their financial and regulatory
+            responsibilities with clarity, accuracy and confidence.
           </p>
         </motion.div>
 
-
-        <div className="mt-20 grid gap-6 md:grid-cols-2">
+        {/* Reasons */}
+        <div className="mt-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
           {reasons.map((item, index) => (
             <motion.div
@@ -84,7 +94,7 @@ const WhyChooseUs = () => {
                 {item.number}
               </span>
 
-              <h3 className="mt-7 text-3xl font-semibold text-[#102b29]">
+              <h3 className="mt-7 text-3xl font-semibold leading-tight text-[#102b29]">
                 {item.title}
               </h3>
 

@@ -13,7 +13,7 @@ import {
   FaFacebookF,
 } from "react-icons/fa";
 
-// KS & Company Logo
+// K S & Company Logo
 import KSCompanyLogo from "../assets/WhatsApp Image 2026-08-30 at 19.16.22 (1).jpeg";
 
 const Footer = () => {
@@ -121,7 +121,7 @@ const Footer = () => {
 
               <div className="flex items-center gap-5">
 
-                {/* ================= KS & COMPANY LOGO ================= */}
+                {/* ================= K S & COMPANY LOGO ================= */}
 
                 <div
                   className="
@@ -144,7 +144,7 @@ const Footer = () => {
 
                   <img
                     src={KSCompanyLogo}
-                    alt="KS & Company"
+                    alt="K S & Company"
                     className="
                       h-full
                       w-full
@@ -180,7 +180,7 @@ const Footer = () => {
                       text-white
                     "
                   >
-                    KS & Company
+                    K S & Company
                   </h2>
 
                   <p
@@ -723,7 +723,7 @@ const Footer = () => {
           {/* COPYRIGHT */}
 
           <p>
-            © {new Date().getFullYear()} KS & Company.
+            © {new Date().getFullYear()} K S & Company.
             All rights reserved.
           </p>
 

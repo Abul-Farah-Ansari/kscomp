@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 
 import heroVideo from "../../assets/hero-video.mp4";
+import rightSideGif from "../../assets/hero-right-animation.gif";
 
 const Hero = () => {
   const rotatingTexts = [
@@ -68,7 +69,6 @@ const Hero = () => {
         bg-[#0b211f]
       "
     >
-
       {/* =====================================================
           BACKGROUND VIDEO
       ===================================================== */}
@@ -126,7 +126,6 @@ const Hero = () => {
           to-transparent
         "
       />
-
 
       {/* =====================================================
           GOLDEN AMBIENT LIGHT
@@ -187,7 +186,6 @@ const Hero = () => {
         "
       />
 
-
       {/* Decorative Lines */}
 
       <div
@@ -228,7 +226,6 @@ const Hero = () => {
         "
       />
 
-
       {/* =====================================================
           MAIN CONTAINER
       ===================================================== */}
@@ -257,7 +254,6 @@ const Hero = () => {
           xl:px-6
         "
       >
-
         <div
           className="
             grid
@@ -276,8 +272,6 @@ const Hero = () => {
             xl:gap-8
           "
         >
-
-
           {/* =================================================
               LEFT SIDE
           ================================================= */}
@@ -295,7 +289,6 @@ const Hero = () => {
               lg:pt-0
             "
           >
-
             {/* Company Badge */}
 
             <div
@@ -319,9 +312,7 @@ const Hero = () => {
                 sm:mb-5
               "
             >
-
               <span className="relative flex h-2 w-2">
-
                 <span
                   className="
                     absolute
@@ -344,7 +335,6 @@ const Hero = () => {
                     bg-[#d8bb72]
                   "
                 />
-
               </span>
 
               <span
@@ -361,11 +351,9 @@ const Hero = () => {
                   sm:text-xs
                 "
               >
-                KS &amp; COMPANY
+                K S &amp; COMPANY
               </span>
-
             </div>
-
 
             {/* =================================================
                 MAIN HEADING
@@ -378,7 +366,6 @@ const Hero = () => {
                 text-white
               "
             >
-
               {/* Main Title */}
 
               <span
@@ -403,7 +390,6 @@ const Hero = () => {
                 Tax Consultant
               </span>
 
-
               {/* Decorative Line */}
 
               <span
@@ -426,7 +412,6 @@ const Hero = () => {
                   xl:text-[3.7rem]
                 "
               >
-
                 <span
                   className="
                     absolute
@@ -443,9 +428,7 @@ const Hero = () => {
                     sm:w-36
                   "
                 />
-
               </span>
-
 
               {/* =================================================
                   HIGHLIGHTED TYPING TEXT
@@ -461,7 +444,6 @@ const Hero = () => {
                   sm:mt-5
                 "
               >
-
                 <span
                   className="
                     absolute
@@ -507,7 +489,6 @@ const Hero = () => {
                     lg:text-[3rem]
                   "
                 >
-
                   {displayText}
 
                   <span
@@ -522,7 +503,6 @@ const Hero = () => {
                       shadow-[0_0_8px_rgba(230,201,121,0.7)]
                     "
                   />
-
                 </span>
 
                 <span
@@ -539,11 +519,8 @@ const Hero = () => {
                     sm:w-28
                   "
                 />
-
               </span>
-
             </h1>
-
 
             {/* =================================================
                 DESCRIPTION
@@ -569,7 +546,6 @@ const Hero = () => {
               clarity, confidence and long-term vision.
             </p>
 
-
             {/* =================================================
                 BUTTONS
             ================================================= */}
@@ -588,7 +564,6 @@ const Hero = () => {
                 sm:mt-7
               "
             >
-
               {/* Get Started */}
 
               <Link
@@ -623,7 +598,6 @@ const Hero = () => {
                   max-[380px]:text-[13px]
                 "
               >
-
                 <span className="relative z-10">
                   Get Started
                 </span>
@@ -653,9 +627,7 @@ const Hero = () => {
                     group-hover:left-[130%]
                   "
                 />
-
               </Link>
-
 
               {/* Explore Services */}
 
@@ -690,7 +662,6 @@ const Hero = () => {
                   max-[380px]:text-[13px]
                 "
               >
-
                 <span
                   className="
                     flex
@@ -711,11 +682,8 @@ const Hero = () => {
                 </span>
 
                 Explore Services
-
               </Link>
-
             </div>
-
 
             {/* =================================================
                 TRUST INDICATORS
@@ -736,11 +704,9 @@ const Hero = () => {
                 sm:mt-8
               "
             >
-
               {/* TRUSTED */}
 
               <div className="flex items-center gap-2">
-
                 <ShieldCheck
                   size={17}
                   strokeWidth={1.5}
@@ -764,9 +730,7 @@ const Hero = () => {
                     Professional Advisory
                   </p>
                 </div>
-
               </div>
-
 
               <div
                 className="
@@ -779,11 +743,9 @@ const Hero = () => {
                 "
               />
 
-
               {/* GROWTH */}
 
               <div className="flex items-center gap-2">
-
                 <TrendingUp
                   size={17}
                   strokeWidth={1.5}
@@ -807,9 +769,7 @@ const Hero = () => {
                     Built For The Future
                   </p>
                 </div>
-
               </div>
-
 
               <div
                 className="
@@ -822,11 +782,9 @@ const Hero = () => {
                 "
               />
 
-
               {/* EXPERIENCE */}
 
               <div className="flex items-center gap-2">
-
                 <BadgeCheck
                   size={17}
                   strokeWidth={1.5}
@@ -850,16 +808,12 @@ const Hero = () => {
                     Professional Experience
                   </p>
                 </div>
-
               </div>
-
             </div>
-
           </div>
 
-
           {/* =================================================
-              RIGHT SIDE — GOLD GST CIRCLE
+              RIGHT SIDE — GIF
           ================================================= */}
 
           <div
@@ -872,6 +826,7 @@ const Hero = () => {
               lg:justify-end
             "
           >
+            {/* Outer decorative area */}
 
             <div
               className="
@@ -899,7 +854,6 @@ const Hero = () => {
                 xl:w-[470px]
               "
             >
-
               {/* Outer Ring */}
 
               <div
@@ -955,9 +909,8 @@ const Hero = () => {
                 "
               />
 
-
               {/* =================================================
-                  MAIN GOLD CIRCLE
+                  GIF CIRCLE
               ================================================= */}
 
               <div
@@ -968,13 +921,12 @@ const Hero = () => {
                   w-[245px]
                   items-center
                   justify-center
+                  overflow-hidden
                   rounded-full
-                  bg-gradient-to-br
-                  from-[#f2d993]
-                  via-[#d1ae61]
-                  to-[#8a682d]
-                  p-[1px]
-                  shadow-[0_25px_70px_rgba(0,0,0,0.55),0_0_35px_rgba(200,165,90,0.12)]
+                  border
+                  border-[#d8bb72]/35
+                  bg-[#0b211f]
+                  shadow-[0_25px_70px_rgba(0,0,0,0.55),0_0_35px_rgba(200,165,90,0.18)]
 
                   min-[361px]:h-[270px]
                   min-[361px]:w-[270px]
@@ -987,49 +939,56 @@ const Hero = () => {
 
                   lg:h-[385px]
                   lg:w-[385px]
+
+                  xl:h-[385px]
+                  xl:w-[385px]
                 "
               >
+                {/* GIF */}
 
-                {/* Metallic Highlight */}
+                <img
+                  src={rightSideGif}
+                  alt="KS & Company professional advisory services"
+                  className="
+                    absolute
+                    inset-0
+                    h-full
+                    w-full
+                    object-cover
+                  "
+                />
+
+                {/* Subtle overlay for premium blending */}
 
                 <div
                   className="
+                    pointer-events-none
                     absolute
                     inset-0
                     rounded-full
                     bg-gradient-to-br
-                    from-white/35
+                    from-white/[0.08]
                     via-transparent
-                    to-black/20
+                    to-[#071c1a]/20
                   "
                 />
 
-                {/* Dark Interior */}
+                {/* Soft inner border */}
 
                 <div
                   className="
+                    pointer-events-none
                     absolute
-                    inset-[2px]
-                    rounded-full
-                    bg-[radial-gradient(circle_at_35%_25%,#173b36_0%,#0d2926_42%,#071c1a_100%)]
-                  "
-                />
-
-                {/* Inner Gold Border */}
-
-                <div
-                  className="
-                    absolute
-                    inset-[10px]
+                    inset-[9px]
                     rounded-full
                     border
-                    border-[#d8bb72]/30
+                    border-white/10
 
-                    sm:inset-[13px]
+                    sm:inset-[12px]
                   "
                 />
 
-                {/* Gloss Reflection */}
+                {/* Gloss reflection */}
 
                 <div
                   className="
@@ -1043,337 +1002,12 @@ const Hero = () => {
                     rounded-full
                     bg-gradient-to-r
                     from-transparent
-                    via-white/[0.12]
+                    via-white/[0.10]
                     to-transparent
                     blur-lg
                   "
                 />
-
-                {/* Top Highlight */}
-
-                <div
-                  className="
-                    absolute
-                    left-[28%]
-                    top-[13px]
-                    h-px
-                    w-[44%]
-                    bg-gradient-to-r
-                    from-transparent
-                    via-white/35
-                    to-transparent
-                    blur-[1px]
-
-                    sm:top-[17px]
-                  "
-                />
-
-                {/* Bottom Reflection */}
-
-                <div
-                  className="
-                    pointer-events-none
-                    absolute
-                    bottom-[10%]
-                    left-[25%]
-                    h-[18%]
-                    w-[50%]
-                    rounded-full
-                    bg-[#c7a45d]/10
-                    blur-2xl
-                  "
-                />
-
-
-                {/* =================================================
-                    GST CENTER CONTENT
-                ================================================= */}
-
-                <div
-                  className="
-                    relative
-                    z-10
-                    flex
-                    flex-col
-                    items-center
-                    text-center
-                  "
-                >
-
-                  {/* =================================================
-                      GST ICON / BADGE
-                  ================================================= */}
-
-                  <div
-                    className="
-                      relative
-                      mb-2
-                      flex
-                      h-[58px]
-                      w-[58px]
-                      items-center
-                      justify-center
-                      rounded-full
-                      border
-                      border-[#d8bb72]/70
-                      bg-gradient-to-br
-                      from-[#fffaf0]
-                      to-[#e9dfc8]
-                      shadow-[0_8px_30px_rgba(0,0,0,0.35)]
-
-                      min-[361px]:h-[64px]
-                      min-[361px]:w-[64px]
-
-                      sm:mb-3
-                      sm:h-[72px]
-                      sm:w-[72px]
-                    "
-                  >
-
-                    {/* GST Symbol */}
-
-                    <div
-                      className="
-                        relative
-                        flex
-                        h-[45px]
-                        w-[45px]
-                        items-center
-                        justify-center
-                        rounded-full
-                        border-[2px]
-                        border-[#0b211f]
-
-                        min-[361px]:h-[50px]
-                        min-[361px]:w-[50px]
-
-                        sm:h-[56px]
-                        sm:w-[56px]
-                      "
-                    >
-
-                      <Percent
-                        className="
-                          absolute
-                          right-[6px]
-                          top-[6px]
-                          h-3
-                          w-3
-                          text-[#c7a45d]
-
-                          sm:right-[7px]
-                          sm:top-[7px]
-                        "
-                        strokeWidth={3}
-                      />
-
-                      <span
-                        className="
-                          font-black
-                          text-[15px]
-                          tracking-[-0.04em]
-                          text-[#0b211f]
-
-                          min-[361px]:text-[17px]
-
-                          sm:text-[19px]
-                        "
-                      >
-                        GST
-                      </span>
-
-                    </div>
-
-                  </div>
-
-
-                  {/* =================================================
-                      9+
-                  ================================================= */}
-
-                  <div className="flex items-baseline">
-
-                    <span
-                      className="
-                        bg-gradient-to-b
-                        from-[#f3dc9d]
-                        via-[#d8bb72]
-                        to-[#a37b35]
-                        bg-clip-text
-                        text-[3.6rem]
-                        font-bold
-                        leading-none
-                        tracking-[-0.08em]
-                        text-transparent
-
-                        min-[361px]:text-[4rem]
-
-                        sm:text-[5rem]
-                      "
-                    >
-                      9+
-                    </span>
-
-                  </div>
-
-
-                  <span
-                    className="
-                      mt-1
-                      text-[7px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.25em]
-                      text-white/45
-
-                      sm:text-[9px]
-                      sm:tracking-[0.32em]
-                    "
-                  >
-                    Years of Experience
-                  </span>
-
-
-                  {/* Divider */}
-
-                  <div
-                    className="
-                      my-3
-                      flex
-                      items-center
-                      gap-2
-
-                      sm:my-4
-                    "
-                  >
-
-                    <span
-                      className="
-                        h-px
-                        w-7
-                        bg-gradient-to-r
-                        from-transparent
-                        to-[#d8bb72]/70
-
-                        sm:w-11
-                      "
-                    />
-
-                    <span
-                      className="
-                        h-1
-                        w-1
-                        rounded-full
-                        bg-[#d8bb72]
-                        shadow-[0_0_8px_rgba(216,187,114,0.7)]
-                      "
-                    />
-
-                    <span
-                      className="
-                        h-px
-                        w-7
-                        bg-gradient-to-l
-                        from-transparent
-                        to-[#d8bb72]/70
-
-                        sm:w-11
-                      "
-                    />
-
-                  </div>
-
-
-                  {/* GST Practitioner */}
-
-                  <h2
-                    className="
-                      text-[1.55rem]
-                      font-semibold
-                      leading-none
-                      tracking-[-0.03em]
-                      text-[#e1c77f]
-
-                      min-[361px]:text-[1.7rem]
-
-                      sm:text-[2.3rem]
-                    "
-                  >
-                    GST Practitioner
-                  </h2>
-
-
-                  {/* Name */}
-
-                  <p
-                    className="
-                      mt-2
-                      text-[10px]
-                      font-medium
-                      tracking-[0.04em]
-                      text-white/60
-
-                      min-[361px]:text-[11px]
-
-                      sm:mt-2.5
-                      sm:text-[13px]
-                    "
-                  >
-                    Md. Khursheed Alam
-                  </p>
-
-
-                  {/* Experience Label */}
-
-                  <p
-                    className="
-                      mt-1
-                      text-[6px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.28em]
-                      text-white/45
-
-                      sm:text-[8px]
-                      sm:tracking-[0.32em]
-                    "
-                  >
-                    Professional Tax &amp; GST Services
-                  </p>
-
-
-                  {/* Stars */}
-
-                  <div
-                    className="
-                      mt-2
-                      flex
-                      items-center
-                      gap-1
-
-                      sm:mt-3
-                    "
-                  >
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <span
-                        key={star}
-                        className="
-                          text-[8px]
-                          text-[#d8bb72]
-                          drop-shadow-[0_0_5px_rgba(216,187,114,0.45)]
-
-                          sm:text-[11px]
-                        "
-                      >
-                        ★
-                      </span>
-                    ))}
-                  </div>
-
-                </div>
-
               </div>
-
 
               {/* =================================================
                   FEATURE CARD 1
@@ -1397,7 +1031,6 @@ const Hero = () => {
                   sm:block
                 "
               >
-
                 <div
                   className="
                     absolute
@@ -1411,51 +1044,7 @@ const Hero = () => {
                   "
                 />
 
-                <div className="flex items-center gap-2.5">
-
-                  <div
-                    className="
-                      flex
-                      h-7
-                      w-7
-                      items-center
-                      justify-center
-                      rounded-full
-                      border
-                      border-[#d8bb72]/20
-                      bg-[#d8bb72]/10
-                    "
-                  >
-                    <TrendingUp
-                      size={14}
-                      className="text-[#d8bb72]"
-                    />
-                  </div>
-
-                  <div>
-
-                    <p
-                      className="
-                        text-[8px]
-                        font-semibold
-                        uppercase
-                        tracking-[0.16em]
-                        text-[#d8bb72]
-                      "
-                    >
-                      Expertise
-                    </p>
-
-                    <p className="mt-0.5 text-[9px] text-white/55">
-                      GST &amp; Tax Advisory
-                    </p>
-
-                  </div>
-
-                </div>
-
-              </div>
-
+                              </div>
 
               {/* =================================================
                   FEATURE CARD 2
@@ -1479,7 +1068,6 @@ const Hero = () => {
                   sm:block
                 "
               >
-
                 <div
                   className="
                     absolute
@@ -1494,7 +1082,6 @@ const Hero = () => {
                 />
 
                 <div className="flex items-center gap-2.5">
-
                   <div
                     className="
                       flex
@@ -1515,7 +1102,6 @@ const Hero = () => {
                   </div>
 
                   <div>
-
                     <p
                       className="
                         text-[8px]
@@ -1531,13 +1117,9 @@ const Hero = () => {
                     <p className="mt-0.5 text-[9px] text-white/40">
                       9+ Years Experience
                     </p>
-
                   </div>
-
                 </div>
-
               </div>
-
 
               {/* =================================================
                   DECORATIVE DOTS
@@ -1579,15 +1161,10 @@ const Hero = () => {
                   bg-white/30
                 "
               />
-
             </div>
-
           </div>
-
         </div>
-
       </div>
-
 
       {/* =====================================================
           SCROLL INDICATOR
@@ -1607,7 +1184,6 @@ const Hero = () => {
           md:flex
         "
       >
-
         <span
           className="
             text-[8px]
@@ -1628,9 +1204,7 @@ const Hero = () => {
             to-transparent
           "
         />
-
       </div>
-
     </section>
   );
 };

@@ -26,24 +26,22 @@ const FounderMessage = () => {
           </div>
 
           <h2 className="mt-8 text-4xl font-bold leading-tight text-[#102b29] sm:text-5xl">
-            A Commitment
+            More Than a Service.
             <br />
-            Beyond a Service.
+            A Trusted Partnership.
           </h2>
 
           <p className="mt-8 max-w-xl leading-8 text-[#102b29]/70">
-            We believe professional services should be built around
-            responsibility, trust and a genuine understanding of the people
-            and businesses we serve.
+            Our approach is simple — understand the client, solve the problem
+            and support long-term growth.
           </p>
 
           <p className="mt-5 max-w-xl leading-8 text-[#102b29]/70">
-            Our goal is to build relationships where clients feel confident
-            seeking professional guidance as their requirements continue to
-            evolve.
+            We believe that professional services are not just about
+            completing a task; they are about building trust, transparency and
+            lasting relationships with our clients.
           </p>
         </motion.div>
-
 
         {/* RIGHT DARK CARD */}
 
@@ -68,19 +66,20 @@ const FounderMessage = () => {
             />
 
             <blockquote className="mt-10 max-w-xl text-2xl font-medium leading-[1.7] text-white sm:text-3xl">
-              "Professional trust is built through consistency, responsibility
-              and the confidence clients develop in every interaction."
+              “We believe that professional services are not just about
+              completing a task; they are about building trust, transparency
+              and lasting relationships with our clients.”
             </blockquote>
 
             <div className="mt-12 h-px w-full bg-white/10" />
 
             <div className="mt-8">
               <h4 className="text-lg font-semibold text-white">
-                KS & Company
+                K S & Company
               </h4>
 
               <p className="mt-2 text-sm tracking-wide text-white/50">
-                PROFESSIONAL ADVISORY TEAM
+                YOUR COMPLIANCE, OUR COMMITMENT.
               </p>
             </div>
 

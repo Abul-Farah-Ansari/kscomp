@@ -1,8 +1,8 @@
 {
   "company": {
-    "name": "KS & Company",
+    "name": "K S & Company",
     "type": "Chartered Accountants",
-    "description": "KS & Company provides professional support across taxation, accounting, registration, HR compliance, government documentation, insurance and finance services for individuals and businesses.",
+    "description": "K S & Company provides professional support across taxation, accounting, registration, HR compliance, government documentation, insurance and finance services for individuals and businesses.",
     "values": [
       "Professional Expertise",
       "Trusted Guidance",
@@ -222,7 +222,7 @@
       "book",
       "meeting"
     ],
-    "description": "Customers can schedule a consultation with KS & Company through the Schedule Appointment option available on the website."
+    "description": "Customers can schedule a consultation with K S & Company through the Schedule Appointment option available on the website."
   },
 
   "commonQuestions": [
@@ -232,7 +232,7 @@
         "hi",
         "hey"
       ],
-      "answer": "Hello! 👋 Welcome to KS & Company. I can help you explore taxation, accounting, registration, compliance, documentation, insurance and finance services."
+      "answer": "Hello! 👋 Welcome to K S & Company. I can help you explore taxation, accounting, registration, compliance, documentation, insurance and finance services."
     },
 
     {
@@ -242,7 +242,7 @@
         "about ks",
         "ks company"
       ],
-      "answer": "KS & Company provides professional guidance and support across taxation, accounting, registration, compliance, documentation, insurance and finance services."
+      "answer": "K S & Company provides professional guidance and support across taxation, accounting, registration, compliance, documentation, insurance and finance services."
     },
 
     {
@@ -289,7 +289,7 @@
         "reach",
         "talk"
       ],
-      "answer": "You can contact KS & Company through the Contact page or submit an enquiry through the available forms."
+      "answer": "You can contact K S & Company through the Contact page or submit an enquiry through the available forms."
     }
   ]
 }

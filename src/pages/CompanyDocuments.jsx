@@ -25,7 +25,7 @@ const CompanyDocuments = () => {
       id: 1,
       title: "Company Brochure",
       description:
-        "Explore an overview of KS & Company, our professional services and the areas where we provide assistance to individuals and businesses.",
+        "Explore an overview of K S & Company, our professional services and the areas where we provide assistance to individuals and businesses.",
       type: "Company Information",
       icon: FileText,
       file: "/documents/ks%20%26%20company%20profile.pdf",
@@ -55,7 +55,7 @@ const CompanyDocuments = () => {
       id: 4,
       title: "Udyam / MSME Registration Certificate",
       description:
-        "Official Udyam Registration Certificate demonstrating the MSME registration status of KS & Company.",
+        "Official Udyam Registration Certificate demonstrating the MSME registration status of K S & Company.",
       type: "Government Certificate",
       icon: BadgeCheck,
       file: "/documents/Udyam%20Certificate%20ANX.pdf",
@@ -142,7 +142,7 @@ const CompanyDocuments = () => {
         label="Resources"
         title="Company"
         highlight="Documents."
-        description="Access important company information, official registrations and supporting documents from KS & Company."
+        description="Access important company information, official registrations and supporting documents from K S & Company."
       />
 
       {/* ============================================================
@@ -186,7 +186,7 @@ const CompanyDocuments = () => {
               Trust is an important part of professional relationships.
               This section provides access to relevant company documents
               and certifications for clients who want to know more about
-              KS & Company.
+              K S & Company.
             </p>
 
             <p className="mt-6 text-base leading-8 text-[#102b29]/65">
@@ -499,7 +499,7 @@ const CompanyDocuments = () => {
           <div className="max-w-3xl">
 
             <p className="text-xs font-semibold uppercase tracking-[5px] text-white/40">
-              KS & Company
+              K S & Company
             </p>
 
             <h2 className="mt-6 text-4xl font-bold leading-tight text-white sm:text-5xl">

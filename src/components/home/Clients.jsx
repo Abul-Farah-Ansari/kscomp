@@ -587,7 +587,7 @@ const Clients = () => {
               sm:tracking-[2px]
             "
           >
-            KS &amp; Company
+            K S &amp; Company
           </span>
 
         </motion.div>
