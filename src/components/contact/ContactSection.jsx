@@ -25,7 +25,13 @@ import instagramQR from "../../assets/insta.png";
 import facebookQR from "../../assets/fb.png";
 import linkedinQR from "../../assets/linkedIn.png";
 import googleQR from "../../assets/website.png";
-import googleReviewQR from "../../assets/whatsapp.png";
+import googleReviewQR from "../../assets/review.png";
+
+// Contact card images — replace these filenames later with your uploaded images.
+import callImage from "../../assets/contact/call.png";
+import emailImage from "../../assets/contact/email.png";
+import locationImage from "../../assets/contact/location.png";
+import whatsappImage from "../../assets/contact/whatsapp.png";
 
 import PageHero from "../PageHero";
 
@@ -247,64 +253,105 @@ const ContactSection = () => {
       {/* ================= QUICK CONTACT ================= */}
 
       <section className="relative z-10 -mt-6 pb-20 sm:-mt-8 sm:pb-24">
+        <div className="mx-auto max-w-[1380px] px-5 sm:px-8 lg:px-10">
+          {/* Premium 2 × 2 image layout */}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:gap-7">
+            {[
+              {
+                title: "Call Us",
+                image: callImage,
+                link: contactItems[0].link,
+              },
+              {
+                title: "Email Us",
+                image: emailImage,
+                link: contactItems[1].link,
+              },
+              {
+                title: "Visit Us",
+                image: locationImage,
+                link: contactItems[2].link,
+              },
+              {
+                title: "WhatsApp",
+                image: whatsappImage,
+                link: contactItems[3].link,
+              },
+            ].map((item, index) => (
+              <motion.a
+                key={item.title}
+                href={item.link}
+                aria-label={item.title}
+                initial={{
+                  opacity: 0,
+                  y: 30,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                  amount: 0.15,
+                }}
+                transition={{
+                  duration: 0.65,
+                  delay: index * 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+                  group
+                  relative
+                  flex
+                  min-h-[300px]
+                  items-center
+                  justify-center
+                  overflow-hidden
+                  bg-[#f8f7f3]
+                  p-4
+                  transition-all
+                  duration-500
+                  hover:-translate-y-1
+                  hover:shadow-[0_24px_55px_rgba(16,43,41,0.10)]
+                  sm:min-h-[340px]
+                  sm:p-5
+                  lg:min-h-[380px]
+                  lg:p-6
+                "
+              >
+                {/* Minimal premium edge */}
+                <div className="pointer-events-none absolute inset-0 border border-[#102b29]/8 transition-colors duration-500 group-hover:border-[#c5a46d]/55" />
 
-        <div className="mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
+                {/* Image — natural shape, large, no cropping */}
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="
+                    relative
+                    z-10
+                    block
+                    h-auto
+                    max-h-[275px]
+                    w-auto
+                    max-w-full
+                    object-contain
+                    object-center
+                    transition-transform
+                    duration-700
+                    ease-out
+                    group-hover:scale-[1.025]
+                    sm:max-h-[310px]
+                    lg:max-h-[350px]
+                  "
+                />
 
-          <div className="grid border border-[#102b29]/10 bg-white sm:grid-cols-2 lg:grid-cols-4">
+                {/* Soft premium glow */}
+                <div className="pointer-events-none absolute -bottom-20 left-1/2 z-0 h-40 w-3/4 -translate-x-1/2 rounded-full bg-[#c5a46d]/[0.07] blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-            {contactItems.map((item, index) => {
-
-              const Icon = item.icon;
-
-              return (
-                <motion.a
-                  key={item.title}
-                  href={item.link}
-                  initial={{
-                    opacity: 0,
-                    y: 25,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.08,
-                  }}
-                  className={`group p-7 transition hover:bg-[#f4f3ef] ${
-                    index !== contactItems.length - 1
-                      ? "border-b border-[#102b29]/10 lg:border-b-0 lg:border-r"
-                      : ""
-                  }`}
-                >
-
-                  <div className="flex h-12 w-12 items-center justify-center bg-[#102b29]">
-                    <Icon
-                      size={20}
-                      className="text-white"
-                    />
-                  </div>
-
-                  <h3 className="mt-6 text-xl font-semibold text-[#102b29]">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-[#102b29]/55">
-                    {item.description}
-                  </p>
-
-                  <div className="mt-5 text-sm font-medium leading-6 text-[#102b29]">
-                    {item.value}
-                  </div>
-
-                </motion.a>
-              );
-            })}
-
+                {/* Gold accent */}
+                <div className="pointer-events-none absolute bottom-0 left-1/2 z-20 h-[2px] w-0 -translate-x-1/2 bg-[#c5a46d] transition-all duration-500 group-hover:w-24" />
+              </motion.a>
+            ))}
           </div>
         </div>
       </section>
