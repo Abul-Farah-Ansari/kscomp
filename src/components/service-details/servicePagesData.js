@@ -1,507 +1,490 @@
-const servicePagesData = {
-  taxation: {
+const servicePagesData = [
+  /* =========================================================
+     01 - TAXATION SERVICES
+  ========================================================= */
+
+  {
     id: "taxation-services",
     number: "01",
     category: "Taxation Services",
 
-    eyebrow: "TAXATION SERVICES",
-
-    title: "Clarity in tax.",
-    titleAccent: "Confidence in every decision.",
-
-    description:
-      "Reliable tax compliance and return filing support for individuals and businesses.",
+    shortDescription:
+      "Complete taxation and statutory filing solutions for individuals, businesses and organizations.",
 
     overview:
-      "We provide practical taxation support designed to help individuals and businesses manage their tax responsibilities with clarity, accuracy and confidence.",
+      "Our taxation services help individuals and businesses manage their tax obligations accurately and efficiently. From income tax returns and GST compliance to TDS, TCS, EPF, ESIC and ROC filings, we provide end-to-end support for statutory compliance.",
 
     services: [
       {
         number: "01",
         name: "Income Tax Return (ITR)",
         description:
-          "Professional assistance for preparing and filing Income Tax Returns accurately and within applicable deadlines.",
+          "Professional preparation and filing of income tax returns for individuals, professionals and businesses.",
       },
+
       {
         number: "02",
         name: "GST Registration",
         description:
-          "Support for GST registration and completing the required documentation for eligible businesses.",
+          "Complete assistance with GST registration, documentation and compliance setup.",
       },
+
       {
         number: "03",
         name: "GST Return Filing",
         description:
-          "Timely preparation and filing of GST returns while helping businesses maintain proper compliance records.",
+          "Accurate and timely GST return preparation and filing to maintain statutory compliance.",
       },
+
       {
         number: "04",
         name: "TDS Return Filing",
         description:
-          "Assistance with preparing and filing TDS returns and maintaining related compliance documentation.",
+          "Preparation and filing of TDS returns with proper reconciliation and compliance support.",
       },
+
       {
         number: "05",
         name: "TCS Return Filing",
         description:
-          "Support for TCS return preparation and filing according to applicable compliance requirements.",
+          "TCS return preparation and filing services for businesses and applicable taxpayers.",
       },
+
       {
         number: "06",
         name: "EPF Return Filing",
         description:
-          "Assistance with EPF-related return filing and compliance documentation for employers.",
+          "EPF return preparation and filing assistance for employers and organizations.",
       },
+
       {
         number: "07",
         name: "ESIC Return Filing",
         description:
-          "Support for ESIC compliance and return-related filing requirements.",
+          "ESIC return filing and compliance assistance for eligible businesses and employees.",
       },
-    ],
 
-    strengths: [
-      "Accurate compliance support",
-      "Timely filing assistance",
-      "Practical professional guidance",
-      "Personalized client support",
+      {
+        number: "08",
+        name: "ROC Filing",
+        description:
+          "ROC filing and statutory compliance support for registered companies and businesses.",
+      },
     ],
   },
 
-  insurance: {
+  /* =========================================================
+     02 - INSURANCE SERVICES
+  ========================================================= */
+
+  {
     id: "insurance-services",
     number: "02",
     category: "Insurance Services",
 
-    eyebrow: "INSURANCE SERVICES",
-
-    title: "Protection for",
-    titleAccent: "what matters most.",
-
-    description:
-      "Insurance assistance to help individuals and businesses explore suitable protection options.",
+    shortDescription:
+      "Insurance solutions designed to protect your vehicle, health, life, property and business interests.",
 
     overview:
-      "We assist individuals and businesses in understanding and exploring suitable insurance options based on their requirements.",
+      "We assist clients in understanding and accessing suitable insurance solutions across multiple categories. Our services cover vehicle, health, life, marine and property insurance requirements.",
 
     services: [
       {
         number: "01",
         name: "Vehicle Insurance",
         description:
-          "Assistance with vehicle insurance requirements and policy-related support.",
+          "Vehicle insurance assistance covering policy selection, renewal and related documentation.",
       },
+
       {
         number: "02",
         name: "Health Insurance",
         description:
-          "Support for exploring health insurance options based on individual and family requirements.",
+          "Health insurance solutions designed to provide financial protection against medical expenses.",
       },
+
       {
         number: "03",
         name: "Life Insurance",
         description:
-          "Assistance with understanding and exploring life insurance protection options.",
+          "Life insurance assistance for financial protection and long-term planning.",
       },
+
       {
         number: "04",
         name: "Marine Insurance",
         description:
-          "Support for marine insurance-related requirements and documentation.",
+          "Marine insurance solutions for goods, cargo and transportation-related risks.",
       },
+
       {
         number: "05",
         name: "Home / Property Insurance",
         description:
-          "Assistance with exploring protection options for homes and other properties.",
+          "Insurance solutions designed to protect residential and commercial property against covered risks.",
       },
-    ],
-
-    strengths: [
-      "Requirement-based assistance",
-      "Policy-related support",
-      "Individual and family solutions",
-      "Business protection support",
     ],
   },
 
-  accounting: {
+  /* =========================================================
+     03 - ACCOUNTING SERVICES
+  ========================================================= */
+
+  {
     id: "accounting-services",
     number: "03",
     category: "Accounting Services",
 
-    eyebrow: "ACCOUNTING SERVICES",
-
-    title: "Financial records",
-    titleAccent: "with complete clarity.",
-
-    description:
-      "Structured accounting support designed to improve financial clarity and record management.",
+    shortDescription:
+      "Reliable accounting and bookkeeping support for accurate financial records and better business management.",
 
     overview:
-      "We provide structured accounting support to help businesses maintain organized financial records and gain better visibility into their financial position.",
+      "Our accounting services help businesses maintain organized and accurate financial records. We support day-to-day accounting, invoicing, receivables, payables and preparation of important financial statements.",
 
     services: [
       {
         number: "01",
         name: "Bookkeeping",
         description:
-          "Regular recording and organization of business financial transactions for better financial management.",
+          "Systematic recording and maintenance of business financial transactions and accounting records.",
       },
+
       {
         number: "02",
         name: "Banking Entry",
         description:
-          "Systematic recording and reconciliation support for banking transactions.",
+          "Accurate recording and reconciliation of banking transactions in accounting records.",
       },
+
       {
         number: "03",
         name: "Accounts Receivable",
         description:
-          "Support for tracking customer receivables and maintaining organized outstanding payment records.",
+          "Management and recording of amounts receivable from customers and clients.",
       },
+
       {
         number: "04",
         name: "Accounts Payable",
         description:
-          "Assistance with organizing supplier dues and maintaining accounts payable records.",
+          "Management and recording of outstanding payments and supplier liabilities.",
       },
+
       {
         number: "05",
         name: "Sales Invoice",
         description:
-          "Support for preparing and maintaining organized sales invoice records.",
+          "Preparation and management of sales invoices for business transactions.",
       },
+
       {
         number: "06",
         name: "Credit Note",
         description:
-          "Assistance with preparing and maintaining credit note documentation.",
+          "Preparation and accounting treatment of credit notes for eligible business transactions.",
       },
+
       {
         number: "07",
         name: "Purchase Invoice",
         description:
-          "Systematic recording and organization of purchase invoices.",
+          "Recording and management of purchase invoices for accurate business accounting.",
       },
+
       {
         number: "08",
         name: "Debit Note",
         description:
-          "Support for debit note preparation and related accounting documentation.",
+          "Preparation and accounting treatment of debit notes for applicable transactions.",
       },
+
       {
         number: "09",
         name: "Profit & Loss Account",
         description:
-          "Preparation support for understanding business income, expenses and overall profitability.",
+          "Preparation of profit and loss statements to understand business income, expenses and profitability.",
       },
+
       {
         number: "10",
         name: "Balance Sheet",
         description:
-          "Assistance with preparing financial position statements and maintaining structured records.",
+          "Preparation of balance sheets presenting the financial position of the business.",
       },
-    ],
-
-    strengths: [
-      "Structured financial records",
-      "Organized transaction management",
-      "Financial reporting support",
-      "Better financial visibility",
     ],
   },
 
-  finance: {
-    id: "finance-services",
-    number: "04",
-    category: "Loan & Finance Services",
+  /* =========================================================
+     04 - REGISTRATION SERVICES
+  ========================================================= */
 
-    eyebrow: "LOAN & FINANCE",
-
-    title: "Finance that moves",
-    titleAccent: "your plans forward.",
-
-    description:
-      "Professional assistance for personal, business and home financing requirements.",
-
-    overview:
-      "We provide assistance for personal, business and home financing requirements, helping clients understand and navigate relevant financial application needs.",
-
-    services: [
-      {
-        number: "01",
-        name: "Saving Account",
-        description:
-          "Assistance with opening and understanding suitable savings account options.",
-      },
-      {
-        number: "02",
-        name: "Personal Loan",
-        description:
-          "Guidance for personal financing requirements.",
-      },
-      {
-        number: "03",
-        name: "Business Loan",
-        description:
-          "Financial assistance and guidance for business funding requirements.",
-      },
-      {
-        number: "04",
-        name: "Home Loan",
-        description:
-          "Support for home loan application and financing requirements.",
-      },
-      {
-        number: "05",
-        name: "LAP Loan",
-        description:
-          "Loan against property assistance and documentation guidance.",
-      },
-      {
-        number: "06",
-        name: "Credit Card",
-        description:
-          "Guidance regarding credit card services and application requirements.",
-      },
-    ],
-
-    strengths: [
-      "Personal financing assistance",
-      "Business funding guidance",
-      "Home financing support",
-      "Application documentation guidance",
-    ],
-  },
-
-  registration: {
+  {
     id: "registration-services",
-    number: "05",
+    number: "04",
     category: "Registration Services",
 
-    eyebrow: "REGISTRATION SERVICES",
-
-    title: "Build your business",
-    titleAccent: "on the right foundation.",
-
-    description:
-      "Business registration and statutory registration support for new and growing businesses.",
+    shortDescription:
+      "Business registration and licensing assistance for entrepreneurs, startups, firms and companies.",
 
     overview:
-      "We provide guidance and documentation support for establishing businesses and completing important registration requirements.",
+      "We provide assistance with business registrations and statutory registrations required for starting and operating a business in India. Our services cover companies, firms, LLPs, MSMEs, food licenses, IEC and trademarks.",
 
     services: [
       {
         number: "01",
         name: "Company Registration",
         description:
-          "Guidance and documentation support for establishing a company according to applicable requirements.",
+          "Assistance with company incorporation and the documentation required to establish a registered business entity.",
       },
+
       {
         number: "02",
         name: "Proprietorship Firm Registration",
         description:
-          "Assistance with documentation and registration requirements for proprietorship businesses.",
+          "Registration assistance for individuals starting and operating a proprietorship business.",
       },
+
       {
         number: "03",
         name: "Partnership Firm Registration",
         description:
-          "Support for partnership firm documentation and registration processes.",
+          "Assistance with partnership firm registration and required documentation.",
       },
+
       {
         number: "04",
         name: "Private Limited Company",
         description:
-          "Assistance with documentation and registration requirements for Private Limited Companies.",
+          "Complete assistance for incorporating a private limited company and completing required formalities.",
       },
+
       {
         number: "05",
         name: "LLP Registration",
         description:
-          "Support for Limited Liability Partnership registration and documentation requirements.",
+          "Assistance with Limited Liability Partnership registration and incorporation formalities.",
       },
+
       {
         number: "06",
         name: "One Person Company (OPC)",
         description:
-          "Guidance for OPC registration and the documentation required for the incorporation process.",
+          "Registration assistance for entrepreneurs establishing a One Person Company.",
       },
+
       {
         number: "07",
         name: "UDYAM / MSME Registration",
         description:
-          "Assistance with UDYAM and MSME registration for eligible businesses.",
+          "Assistance with UDYAM/MSME registration and related documentation.",
       },
+
       {
         number: "08",
         name: "FSSAI / Food License",
         description:
-          "Documentation and application support for food businesses requiring FSSAI registration or licensing.",
+          "Assistance with FSSAI registration and licensing requirements for food-related businesses.",
       },
+
       {
         number: "09",
         name: "Import Export Code (IEC)",
         description:
-          "Assistance with IEC application and related documentation for import and export businesses.",
+          "IEC registration assistance for businesses involved in import and export activities.",
       },
+
       {
         number: "10",
         name: "Trademark Registration",
         description:
-          "Support with trademark application documentation and registration processes.",
+          "Trademark registration assistance for protecting business names, brands and associated intellectual property.",
       },
-    ],
-
-    strengths: [
-      "Business registration support",
-      "Documentation assistance",
-      "Statutory registration guidance",
-      "Support for new and growing businesses",
     ],
   },
 
-  hrCompliance: {
+  /* =========================================================
+     05 - HR COMPLIANCE SERVICES
+  ========================================================= */
+
+  {
     id: "hr-compliance-services",
-    number: "06",
+    number: "05",
     category: "HR Compliance Services",
 
-    eyebrow: "HR COMPLIANCE",
-
-    title: "Simplifying payroll.",
-    titleAccent: "Strengthening compliance.",
-
-    description:
-      "Practical payroll and employee compliance support for businesses and organizations.",
+    shortDescription:
+      "Essential HR, payroll and employee compliance support for businesses and organizations.",
 
     overview:
-      "We provide practical support for payroll-related documentation and employee compliance requirements.",
+      "Our HR compliance services help businesses maintain proper employee records, payroll documentation and statutory compliance. We assist with salary sheets, salary slips, ESI, EPF and other HR compliance requirements.",
 
     services: [
       {
         number: "01",
         name: "Salary Sheet & Salary Slip",
         description:
-          "Preparation support for structured salary sheets and employee salary slips.",
+          "Preparation and management of salary sheets and employee salary slips.",
       },
+
       {
         number: "02",
         name: "ESI & EPF Compliance",
         description:
-          "Assistance with maintaining ESI and EPF-related compliance records and filings.",
+          "Assistance with ESI and EPF related statutory compliance and documentation.",
       },
+
       {
         number: "03",
         name: "HR Compliance Forms",
         description:
-          "Support for preparing Form A, B, C, D and other applicable compliance documentation.",
+          "Preparation and support for required HR compliance forms and employee documentation.",
       },
-    ],
-
-    strengths: [
-      "Structured payroll support",
-      "Employee compliance assistance",
-      "ESI & EPF support",
-      "HR documentation assistance",
     ],
   },
 
-  otherCompliance: {
+  /* =========================================================
+     06 - OTHER COMPLIANCE SERVICES
+  ========================================================= */
+
+  {
     id: "other-compliance",
-    number: "07",
+    number: "06",
     category: "Other Compliance Services",
 
-    eyebrow: "OTHER COMPLIANCE",
-
-    title: "Specialized support",
-    titleAccent: "for important requirements.",
-
-    description:
-      "Specialized compliance and financial documentation support for important business requirements.",
+    shortDescription:
+      "Specialized compliance and documentation support for financial, foreign transaction and business requirements.",
 
     overview:
-      "We provide specialized compliance and financial documentation assistance for requirements that fall beyond regular taxation and accounting services.",
+      "We provide specialized compliance and documentation services for businesses and individuals requiring support beyond routine taxation and accounting activities.",
 
     services: [
       {
         number: "01",
         name: "15CA & 15CB for Foreign Transactions",
         description:
-          "Documentation and professional coordination support for foreign remittance compliance requirements.",
+          "Assistance with 15CA and 15CB requirements for applicable foreign remittance and international transactions.",
       },
+
       {
         number: "02",
         name: "Project Report for Loan / Cash Credit",
         description:
-          "Preparation support for structured project reports required for loan and cash credit applications.",
+          "Preparation of project reports and financial documentation required for loan and cash credit applications.",
       },
-    ],
-
-    strengths: [
-      "Specialized documentation",
-      "Foreign transaction support",
-      "Project report assistance",
-      "Financial documentation support",
     ],
   },
 
-  governmentDocumentation: {
+  /* =========================================================
+     07 - GOVERNMENT & DOCUMENTATION SERVICES
+  ========================================================= */
+
+  {
     id: "government-documentation",
-    number: "08",
+    number: "07",
     category: "Government & Documentation Services",
 
-    eyebrow: "GOVERNMENT & DOCUMENTATION",
-
-    title: "Important documents.",
-    titleAccent: "Handled with clarity.",
-
-    description:
-      "Convenient assistance with important government documentation and digital application processes.",
+    shortDescription:
+      "Convenient assistance with important government documents, certificates and online applications.",
 
     overview:
-      "We assist clients with important government documentation and digital application-related processes.",
+      "We assist individuals and businesses with various government documentation and online application requirements, helping simplify documentation and application processes.",
 
     services: [
       {
         number: "01",
         name: "PAN Card (New / Correction)",
         description:
-          "Support for new PAN applications and PAN correction-related documentation.",
+          "Assistance with new PAN applications and PAN correction requirements.",
       },
+
       {
         number: "02",
         name: "TAN Card (New / Correction)",
         description:
-          "Assistance with TAN applications and correction processes.",
+          "Assistance with TAN application and correction requirements.",
       },
+
       {
         number: "03",
         name: "Digital Signature Certificate (DSC)",
         description:
-          "Support with Digital Signature Certificate application and documentation requirements.",
+          "Digital Signature Certificate assistance for online filings, registrations and business requirements.",
       },
+
       {
         number: "04",
         name: "Passport Apply Online",
         description:
-          "Guidance and documentation assistance for online passport application processes.",
+          "Assistance with online passport application and related documentation.",
       },
+
       {
         number: "05",
         name: "PAN-Aadhaar Linking",
         description:
-          "Assistance with PAN and Aadhaar linking procedures.",
+          "Assistance with PAN and Aadhaar linking requirements.",
       },
     ],
+  },
 
-    strengths: [
-      "Government documentation assistance",
-      "Digital application support",
-      "Application guidance",
-      "Documentation coordination",
+  /* =========================================================
+     08 - LOAN & FINANCE SERVICES
+  ========================================================= */
+
+  {
+    id: "finance-services",
+    number: "08",
+    category: "Loan & Finance Services",
+
+    shortDescription:
+      "Financial products and loan assistance for personal, business, housing and other funding requirements.",
+
+    overview:
+      "We assist clients with various financial products and funding requirements, including savings accounts, personal loans, business loans, home loans, LAP loans and credit cards.",
+
+    services: [
+      {
+        number: "01",
+        name: "Saving Account",
+        description:
+          "Assistance with savings account-related financial services and documentation.",
+      },
+
+      {
+        number: "02",
+        name: "Personal Loan",
+        description:
+          "Personal loan assistance for eligible individuals based on applicable requirements.",
+      },
+
+      {
+        number: "03",
+        name: "Business Loan",
+        description:
+          "Business loan assistance for working capital, expansion and other business funding requirements.",
+      },
+
+      {
+        number: "04",
+        name: "Home Loan",
+        description:
+          "Home loan assistance for eligible individuals looking to finance residential property.",
+      },
+
+      {
+        number: "05",
+        name: "LAP Loan",
+        description:
+          "Loan Against Property assistance for eligible funding requirements against applicable property.",
+      },
+
+      {
+        number: "06",
+        name: "Credit Card",
+        description:
+          "Credit card assistance based on applicable eligibility and documentation requirements.",
+      },
     ],
   },
-};
+];
 
 export default servicePagesData;

@@ -18,41 +18,41 @@ import { servicesData } from "../components/services/servicesData";
    01 - Taxation Services
    02 - Insurance Services
    03 - Accounting Services
-   04 - Loan & Finance Services
-   05 - Registration Services
-   06 - HR Compliance Services
-   07 - Other Compliance Services
-   08 - Government & Documentation Services
+   04 - Registration Services
+   05 - HR Compliance Services
+   06 - Other Compliance Services
+   07 - Government & Documentation Services
+   08 - Loan & Finance Services
 ========================================= */
 
 const categoryOrder = [
   "taxation-services",
   "insurance-services",
   "accounting-services",
-  "finance-services",
   "registration-services",
   "hr-compliance-services",
   "other-compliance",
   "government-documentation",
+  "finance-services",
 ];
 
 
 /* =========================================
    CATEGORY NUMBERS
 
-   Keep these fixed so the category number
-   always matches the design order.
+   These numbers are fixed and independent
+   of the order inside servicesData.js.
 ========================================= */
 
 const categoryNumbers = {
   "taxation-services": "01",
   "insurance-services": "02",
   "accounting-services": "03",
-  "finance-services": "04",
-  "registration-services": "05",
-  "hr-compliance-services": "06",
-  "other-compliance": "07",
-  "government-documentation": "08",
+  "registration-services": "04",
+  "hr-compliance-services": "05",
+  "other-compliance": "06",
+  "government-documentation": "07",
+  "finance-services": "08",
 };
 
 
@@ -68,9 +68,9 @@ const Services = () => {
   /* =========================================
      ORDER SERVICES ACCORDING TO DESIGN
 
-     This ensures the detailed service
-     sections appear in exactly the same
-     order as the category cards.
+     This explicitly builds the array using
+     categoryOrder instead of relying on the
+     order inside servicesData.js.
   ========================================== */
 
   const orderedServices = categoryOrder
@@ -126,25 +126,21 @@ const Services = () => {
             ...category,
 
             /*
-              Fixed category number based on
-              the actual design order.
+              Fixed category number.
 
               01 Taxation
               02 Insurance
               03 Accounting
-              04 Loan & Finance
-              05 Registration
-              06 HR Compliance
-              07 Other Compliance
-              08 Government
+              04 Registration
+              05 HR Compliance
+              06 Other Compliance
+              07 Government
+              08 Loan & Finance
             */
 
             number:
               categoryNumbers[category.id] ||
-              String(index + 1).padStart(
-                2,
-                "0"
-              ),
+              "01",
           }}
 
 

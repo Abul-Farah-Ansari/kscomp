@@ -3,137 +3,111 @@ import { ArrowDownRight } from "lucide-react";
 import { Icon } from "@iconify/react";
 import { servicesData } from "./servicesData";
 
-/* =========================================
-   CATEGORY BACKGROUND IMAGES
-========================================= */
+/* =========================================================
+   CATEGORY IMAGES
+========================================================= */
 
 const categoryImages = {
-  "taxation-services":
-    "/images/services/taxation.jpg",
-
-  "finance-services":
-    "/images/services/finance.jpg",
-
-  "insurance-services":
-    "/images/services/insurance.jpg",
-
-  "accounting-services":
-    "/images/services/accounting.jpg",
-
-  "registration-services":
-    "/images/services/registration.jpg",
-
-  "hr-compliance-services":
-    "/images/services/hr.jpg",
-
-  "other-compliance":
-    "/images/services/compliance.jpg",
-
+  "taxation-services": "/images/services/taxation.jpg",
+  "insurance-services": "/images/services/insurance.jpg",
+  "accounting-services": "/images/services/accounting.jpg",
+  "registration-services": "/images/services/registration.jpg",
+  "hr-compliance-services": "/images/services/hr.jpg",
+  "other-compliance": "/images/services/compliance.jpg",
   "government-documentation":
     "/images/services/documentation.jpg",
+  "finance-services": "/images/services/finance.jpg",
 };
 
-
-/* =========================================
+/* =========================================================
    CATEGORY ICONS
-========================================= */
+========================================================= */
 
 const categoryIcons = {
-
-  /* TAXATION
-     Tax document + percentage
-  */
-
   "taxation-services":
     "mdi:file-document-percent-outline",
-
-  /* FINANCE */
-
-  "finance-services":
-    "mdi:chart-line",
-
-  /* INSURANCE */
 
   "insurance-services":
     "mdi:shield-check-outline",
 
-  /* ACCOUNTING */
-
   "accounting-services":
     "mdi:calculator-variant-outline",
-
-  /* REGISTRATION */
 
   "registration-services":
     "mdi:office-building-outline",
 
-  /* HR */
-
   "hr-compliance-services":
     "mdi:account-group-outline",
-
-  /* OTHER COMPLIANCE */
 
   "other-compliance":
     "mdi:clipboard-check-outline",
 
-  /* GOVERNMENT */
-
   "government-documentation":
     "mdi:file-document-outline",
+
+  "finance-services":
+    "mdi:chart-line",
 };
 
+/* =========================================================
+   MASTER CATEGORY ORDER
+========================================================= */
 
-/* =========================================
-   EXACT CATEGORY ORDER
-
-   01 - Taxation
-   02 - Insurance
-   03 - Accounting
-   04 - Loan & Finance
-   05 - Registration
-   06 - HR Compliance
-   07 - Other Compliance
-   08 - Government & Documentation
-========================================= */
-
-const categoryOrder = [
+const CATEGORY_ORDER = [
   "taxation-services",
   "insurance-services",
   "accounting-services",
-  "finance-services",
   "registration-services",
   "hr-compliance-services",
   "other-compliance",
   "government-documentation",
+  "finance-services",
 ];
 
+/* =========================================================
+   MASTER CATEGORY NUMBERS
 
-/* =========================================
-   EXACT SERIAL NUMBERS
-========================================= */
+   NEVER TAKE NUMBERS FROM servicesData.js
+========================================================= */
 
-const categoryNumbers = {
+const CATEGORY_NUMBERS = {
   "taxation-services": "01",
   "insurance-services": "02",
   "accounting-services": "03",
-  "finance-services": "04",
-  "registration-services": "05",
-  "hr-compliance-services": "06",
-  "other-compliance": "07",
-  "government-documentation": "08",
+  "registration-services": "04",
+  "hr-compliance-services": "05",
+  "other-compliance": "06",
+  "government-documentation": "07",
+  "finance-services": "08",
 };
 
+/* =========================================================
+   FORCE CATEGORY ORDER
 
-/* =========================================
-   SERVICES CATEGORIES
-========================================= */
+   This is the important part.
+
+   We do NOT sort servicesData.
+
+   We build a new array directly from
+   CATEGORY_ORDER.
+========================================================= */
+
+const getOrderedCategories = () => {
+  return CATEGORY_ORDER
+    .map((categoryId) =>
+      servicesData.find(
+        (category) => category.id === categoryId
+      )
+    )
+    .filter(Boolean);
+};
+
+/* =========================================================
+   COMPONENT
+========================================================= */
 
 const ServicesCategories = () => {
-
-  /* =========================================
-     SCROLL TO SERVICE SECTION
-  ========================================== */
+  const orderedServices = getOrderedCategories();
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -146,18 +120,6 @@ const ServicesCategories = () => {
     }
   };
 
-
-  /* =========================================
-     SORT CATEGORIES
-  ========================================== */
-
-  const orderedServices = [...servicesData].sort(
-    (a, b) =>
-      categoryOrder.indexOf(a.id) -
-      categoryOrder.indexOf(b.id)
-  );
-
-
   return (
     <section
       className="
@@ -169,12 +131,11 @@ const ServicesCategories = () => {
         sm:pb-24
       "
     >
-
       <div className="mx-auto max-w-7xl">
 
-        {/* =====================================
+        {/* =====================================================
             HEADER
-        ===================================== */}
+        ===================================================== */}
 
         <div
           className="
@@ -187,9 +148,7 @@ const ServicesCategories = () => {
             md:justify-between
           "
         >
-
           <div>
-
             <p
               className="
                 text-xs
@@ -200,7 +159,6 @@ const ServicesCategories = () => {
             >
               OUR SERVICES
             </p>
-
 
             <h2
               className="
@@ -216,9 +174,7 @@ const ServicesCategories = () => {
               <br />
               for every need.
             </h2>
-
           </div>
-
 
           <p
             className="
@@ -228,17 +184,16 @@ const ServicesCategories = () => {
               text-[#102b29]/60
             "
           >
-            From taxation and financial solutions to insurance,
-            registration, compliance and documentation, explore our
-            complete range of professional services.
+            From taxation and financial solutions to
+            insurance, registration, compliance and
+            documentation, explore our complete range
+            of professional services.
           </p>
-
         </div>
 
-
-        {/* =====================================
+        {/* =====================================================
             CATEGORY GRID
-        ===================================== */}
+        ===================================================== */}
 
         <div
           className="
@@ -249,22 +204,21 @@ const ServicesCategories = () => {
             lg:grid-cols-4
           "
         >
-
           {orderedServices.map((item, index) => {
 
-            const serialNumber =
-              categoryNumbers[item.id] ||
-              String(index + 1).padStart(2, "0");
+            /*
+             * NUMBER IS BASED ONLY ON CATEGORY ID.
+             */
 
+            const serialNumber =
+              CATEGORY_NUMBERS[item.id];
 
             const icon =
               categoryIcons[item.id] ||
               "mdi:briefcase-outline";
 
-
             const backgroundImage =
               categoryImages[item.id];
-
 
             return (
               <motion.button
@@ -273,27 +227,22 @@ const ServicesCategories = () => {
                 onClick={() =>
                   scrollToSection(item.id)
                 }
-
                 initial={{
                   opacity: 0,
                   y: 25,
                 }}
-
                 whileInView={{
                   opacity: 1,
                   y: 0,
                 }}
-
                 viewport={{
                   once: true,
                   amount: 0.15,
                 }}
-
                 transition={{
                   duration: 0.45,
                   delay: index * 0.05,
                 }}
-
                 className="
                   group
                   relative
@@ -313,9 +262,7 @@ const ServicesCategories = () => {
                 "
               >
 
-                {/* =================================
-                    BACKGROUND IMAGE
-                ================================= */}
+                {/* BACKGROUND */}
 
                 {backgroundImage && (
                   <div
@@ -340,10 +287,7 @@ const ServicesCategories = () => {
                   />
                 )}
 
-
-                {/* =================================
-                    DARK OVERLAY
-                ================================= */}
+                {/* OVERLAY */}
 
                 <div
                   className="
@@ -356,10 +300,7 @@ const ServicesCategories = () => {
                   "
                 />
 
-
-                {/* =================================
-                    SUBTLE GOLD GLOW
-                ================================= */}
+                {/* GOLD GLOW */}
 
                 <div
                   className="
@@ -379,10 +320,7 @@ const ServicesCategories = () => {
                   "
                 />
 
-
-                {/* =================================
-                    INNER BORDER
-                ================================= */}
+                {/* INNER BORDER */}
 
                 <div
                   className="
@@ -397,10 +335,7 @@ const ServicesCategories = () => {
                   "
                 />
 
-
-                {/* =================================
-                    CATEGORY ICON
-                ================================= */}
+                {/* ICON */}
 
                 <div
                   className="
@@ -410,7 +345,6 @@ const ServicesCategories = () => {
                     z-10
                   "
                 >
-
                   <Icon
                     icon={icon}
                     width="64"
@@ -422,16 +356,11 @@ const ServicesCategories = () => {
                       duration-500
                       group-hover:scale-110
                       group-hover:opacity-100
-                      group-hover:drop-shadow-[0_0_12px_rgba(199,164,93,0.2)]
                     "
                   />
-
                 </div>
 
-
-                {/* =================================
-                    CONTENT
-                ================================= */}
+                {/* CONTENT */}
 
                 <div
                   className="
@@ -443,9 +372,7 @@ const ServicesCategories = () => {
                   "
                 >
 
-                  {/* =================================
-                      TOP
-                  ================================= */}
+                  {/* TOP */}
 
                   <div
                     className="
@@ -454,9 +381,6 @@ const ServicesCategories = () => {
                       justify-between
                     "
                   >
-
-                    {/* SERIAL NUMBER */}
-
                     <span
                       className="
                         text-sm
@@ -471,9 +395,6 @@ const ServicesCategories = () => {
                       {serialNumber}
                     </span>
 
-
-                    {/* BRAND */}
-
                     <span
                       className="
                         text-[10px]
@@ -485,19 +406,13 @@ const ServicesCategories = () => {
                         group-hover:text-white/45
                       "
                     >
-                      K S & COMPANY
+                      KS & COMPANY
                     </span>
-
                   </div>
 
-
-                  {/* =================================
-                      BOTTOM
-                  ================================= */}
+                  {/* BOTTOM */}
 
                   <div className="mt-auto">
-
-                    {/* CATEGORY NAME */}
 
                     <h3
                       className="
@@ -514,9 +429,6 @@ const ServicesCategories = () => {
                       {item.category}
                     </h3>
 
-
-                    {/* BOTTOM ACTION */}
-
                     <div
                       className="
                         mt-6
@@ -528,9 +440,6 @@ const ServicesCategories = () => {
                         pt-5
                       "
                     >
-
-                      {/* SERVICE COUNT */}
-
                       <span
                         className="
                           text-[11px]
@@ -542,11 +451,8 @@ const ServicesCategories = () => {
                           group-hover:text-white/70
                         "
                       >
-                        {item.services.length} SERVICES
+                        {item.services?.length || 0} SERVICES
                       </span>
-
-
-                      {/* ARROW */}
 
                       <span
                         className="
@@ -565,28 +471,22 @@ const ServicesCategories = () => {
                           group-hover:text-[#102b29]
                         "
                       >
-
                         <ArrowDownRight
                           size={18}
                           strokeWidth={1.6}
                         />
-
                       </span>
-
                     </div>
 
                   </div>
-
                 </div>
 
               </motion.button>
             );
           })}
-
         </div>
 
       </div>
-
     </section>
   );
 };

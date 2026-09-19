@@ -17,6 +17,8 @@ const serviceIcons = {
   "TCS Return Filing": "mdi:cash-check",
   "EPF Return Filing": "mdi:account-cash-outline",
   "ESIC Return Filing": "mdi:medical-bag",
+  "FSSAI Annual Return": "mdi:food-outline",
+  "ROC Filing": "mdi:file-document-check-outline",
 
   // Insurance
   Vehicle: "mdi:car-shield",
@@ -75,6 +77,67 @@ const serviceIcons = {
 };
 
 /* =========================================================
+   SERVICE IMAGE FOLDERS
+   Images are numbered 1, 2, 3... inside each folder.
+
+   The number controls the service-image sequence.
+   Example:
+   1.png -> Service 01
+   2.png -> Service 02
+   3.png -> Service 03
+   ...
+========================================================= */
+
+const serviceImageFolders = {
+  "taxation-services": "1_Taxation Services",
+  "insurance-services": "2_Insurance Services",
+  "accounting-services": "3_Accounting Services",
+  "registration-services": "4_Registration Services",
+  "hr-compliance-services": "5_HR Compliance Services",
+  "other-compliance": "6_Other Compliance",
+  "government-documentation": "7_Government & Documentation",
+  "finance-services": "8_Loans",
+};
+
+/*
+  Vite imports every image from the Services directory.
+  We then filter by the exact category folder and sort ONLY
+  by the numeric filename.
+
+  Therefore:
+    1.png / 1.jpg / 1.webp -> Service 01
+    2.png / 2.jpg / 2.webp -> Service 02
+    10.png                  -> Service 10
+
+  This avoids alphabetical filename ordering such as:
+    1, 10, 11, 2, 3...
+*/
+const serviceImageFiles = import.meta.glob(
+  "../../assets/Services/**/*.{png,jpg,jpeg,webp,avif}",
+  { eager: true, query: "?url", import: "default" }
+);
+
+const getNumericFileNumber = (path) => {
+  const fileName = path.split("/").pop() || "";
+  const match = fileName.match(/^(\d+)(?:\.[^.]+)$/);
+
+  return match ? Number(match[1]) : Number.MAX_SAFE_INTEGER;
+};
+
+const getServiceImages = (categoryId) => {
+  const folder = serviceImageFolders[categoryId];
+
+  if (!folder) return [];
+
+  return Object.entries(serviceImageFiles)
+    .filter(([path]) => path.includes(`/Services/${folder}/`))
+    .sort(([pathA], [pathB]) => {
+      return getNumericFileNumber(pathA) - getNumericFileNumber(pathB);
+    })
+    .map(([, image]) => image);
+};
+
+/* =========================================================
    MAIN COMPONENT
 ========================================================= */
 
@@ -91,6 +154,27 @@ const ServiceList = ({ data }) => {
   const [submitError, setSubmitError] = useState("");
 
   if (!data?.services?.length) return null;
+
+  const serviceImages = getServiceImages(data.id);
+
+  /*
+    Taxation also includes ROC Filing.
+    Add it here only when it is not already present in the
+    supplied service data, so the component remains compatible
+    with your existing servicePagesData.js.
+  */
+  const displayServices =
+    data.id === "taxation-services" &&
+    !data.services.some((service) => service.name === "ROC Filing")
+      ? [
+          ...data.services,
+          {
+            name: "ROC Filing",
+            description:
+              "Support for ROC filing requirements and applicable corporate compliance documentation.",
+          },
+        ]
+      : data.services;
 
   /* =======================================================
      EMAILJS CONFIG
@@ -264,7 +348,7 @@ const ServiceList = ({ data }) => {
           ==================================================== */}
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {data.services.map((service, index) => {
+            {displayServices.map((service, index) => {
               const icon =
                 serviceIcons[service.name] || "mdi:briefcase-outline";
 
@@ -275,8 +359,8 @@ const ServiceList = ({ data }) => {
                   onClick={() => openQueryForm(service.name)}
                   initial={{
                     opacity: 0,
-                    y: 35,
-                    scale: 0.97,
+                    y: 28,
+                    scale: 0.985,
                   }}
                   whileInView={{
                     opacity: 1,
@@ -296,156 +380,215 @@ const ServiceList = ({ data }) => {
                     group
                     relative
                     aspect-square
+                    w-full
                     overflow-hidden
                     border
                     border-[#0b211f]/10
-                    bg-white
-                    p-6
+                    bg-[#f4f1eb]
+                    p-0
                     text-left
-                    shadow-[0_12px_35px_rgba(11,33,31,0.045)]
+                    shadow-[0_14px_40px_rgba(11,33,31,0.06)]
                     transition-all
                     duration-500
-                    hover:-translate-y-2
+                    hover:-translate-y-1.5
                     hover:border-[#c5a46d]/60
-                    hover:shadow-[0_24px_55px_rgba(11,33,31,0.11)]
+                    hover:shadow-[0_24px_60px_rgba(11,33,31,0.15)]
                     focus:outline-none
                     focus:ring-2
                     focus:ring-[#c5a46d]/50
-                    sm:p-7
-                    lg:p-8
                   "
                 >
-                  {/* Background number */}
+                  {/* =================================================
+                      FULL-CARD IMAGE
+                  ================================================== */}
 
-                  <span
+                  {serviceImages[index] ? (
+                    <img
+                      src={serviceImages[index]}
+                      alt={service.name}
+                      className="
+                        absolute
+                        inset-0
+                        h-full
+                        w-full
+                        object-cover
+                        object-center
+                        transition-transform
+                        duration-700
+                        ease-[cubic-bezier(0.22,1,0.36,1)]
+                        group-hover:scale-[1.045]
+                      "
+                    />
+                  ) : (
+                    <div
+                      className="
+                        absolute
+                        inset-0
+                        flex
+                        items-center
+                        justify-center
+                        bg-[#0b211f]
+                        text-[#c5a46d]
+                      "
+                    >
+                      <Icon icon={icon} width={46} height={46} />
+                    </div>
+                  )}
+
+                  {/* =================================================
+                      LIGHT IMAGE WASH
+                      Keeps images clean before hover.
+                  ================================================== */}
+
+                  <div
                     className="
                       pointer-events-none
                       absolute
-                      -right-3
-                      -top-8
-                      font-serif
-                      text-[130px]
-                      font-medium
-                      leading-none
-                      text-[#0b211f]/[0.035]
-                      transition-all
+                      inset-0
+                      bg-gradient-to-t
+                      from-[#0b211f]/18
+                      via-transparent
+                      to-white/5
+                      opacity-100
+                      transition-opacity
                       duration-500
-                      group-hover:text-[#c5a46d]/[0.10]
+                      group-hover:opacity-0
                     "
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                  />
 
-                  {/* Gold top accent */}
-
-                  <div className="absolute left-0 top-0 h-[2px] w-0 bg-[#c5a46d] transition-all duration-500 group-hover:w-full" />
-
-                  {/* Iconify icon */}
+                  {/* =================================================
+                      HOVER OVERLAY
+                  ================================================== */}
 
                   <div
                     className="
-                      relative
-                      z-10
-                      flex
-                      h-16
-                      w-16
-                      items-center
-                      justify-center
-                      border
-                      border-[#c5a46d]/35
-                      bg-[#0b211f]
-                      text-[#c5a46d]
-                      shadow-[0_10px_25px_rgba(11,33,31,0.12)]
+                      pointer-events-none
+                      absolute
+                      inset-0
+                      z-20
+                      bg-[#0b211f]/0
                       transition-all
                       duration-500
-                      group-hover:scale-110
-                      group-hover:border-[#c5a46d]
-                      group-hover:bg-[#c5a46d]
-                      group-hover:text-[#0b211f]
+                      group-hover:bg-[#0b211f]/88
                     "
-                  >
-                    <Icon
-                      icon={icon}
-                      width={31}
-                      height={31}
-                    />
-                  </div>
+                  />
 
-                  {/* Service number */}
-
-                  <p className="relative z-10 mt-6 text-[9px] font-bold uppercase tracking-[0.28em] text-[#285b68]/55">
-                    SERVICE {String(index + 1).padStart(2, "0")}
-                  </p>
-
-                  {/* Service name */}
-
-                  <h3
-                    className="
-                      relative
-                      z-10
-                      mt-3
-                      max-w-[92%]
-                      text-xl
-                      font-semibold
-                      leading-[1.2]
-                      tracking-[-0.025em]
-                      text-[#0b211f]
-                      transition-colors
-                      duration-300
-                      group-hover:text-[#285b68]
-                      sm:text-[21px]
-                    "
-                  >
-                    {service.name}
-                  </h3>
-
-                  {/* Description */}
-
-                  {service.description && (
-                    <p className="relative z-10 mt-3 line-clamp-3 max-w-[95%] text-xs leading-6 text-[#0b211f]/55 sm:text-[13px]">
-                      {service.description}
-                    </p>
-                  )}
-
-                  {/* Query indicator */}
+                  {/* =================================================
+                      HOVER CONTENT
+                  ================================================== */}
 
                   <div
                     className="
                       absolute
-                      bottom-6
-                      right-6
+                      inset-0
+                      z-30
                       flex
-                      h-10
-                      w-10
-                      items-center
-                      justify-center
-                      border
-                      border-[#0b211f]/10
-                      bg-[#f4f1eb]
-                      text-[#0b211f]
+                      flex-col
+                      justify-end
+                      p-6
+                      opacity-0
                       transition-all
                       duration-500
-                      group-hover:border-[#c5a46d]
-                      group-hover:bg-[#0b211f]
-                      group-hover:text-[#c5a46d]
-                      sm:bottom-7
-                      sm:right-7
+                      group-hover:opacity-100
+                      sm:p-7
+                      lg:p-8
                     "
                   >
-                    <ArrowUpRight
-                      size={17}
-                      strokeWidth={1.7}
-                      className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    {/* Service content */}
+
+                    <div
+                      className="
+                        translate-y-4
+                        transition-transform
+                        duration-500
+                        group-hover:translate-y-0
+                      "
+                    >
+                      <h3
+                        className="
+                          max-w-[92%]
+                          text-[25px]
+                          font-semibold
+                          leading-[1.08]
+                          tracking-[-0.035em]
+                          text-white
+                          sm:text-[27px]
+                          lg:text-[29px]
+                        "
+                      >
+                        {service.name}
+                      </h3>
+
+                      {service.description && (
+                        <p
+                          className="
+                            mt-3
+                            max-w-[92%]
+                            text-[11px]
+                            leading-5
+                            text-white/65
+                            sm:text-xs
+                            sm:leading-6
+                          "
+                        >
+                          {service.description}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Arrow */}
+
+                    <div
+                      className="
+                        absolute
+                        bottom-6
+                        right-6
+                        flex
+                        h-11
+                        w-11
+                        items-center
+                        justify-center
+                        border
+                        border-[#c5a46d]/50
+                        bg-[#c5a46d]
+                        text-[#0b211f]
+                        transition-all
+                        duration-500
+                        group-hover:translate-x-0
+                        sm:bottom-7
+                        sm:right-7
+                        lg:bottom-8
+                        lg:right-8
+                      "
+                    >
+                      <ArrowUpRight
+                        size={18}
+                        strokeWidth={1.7}
+                        className="
+                          transition-transform
+                          duration-300
+                          group-hover:-translate-y-0.5
+                          group-hover:translate-x-0.5
+                        "
+                      />
+                    </div>
+
+                    {/* Bottom gold line */}
+
+                    <div
+                      className="
+                        absolute
+                        bottom-0
+                        left-0
+                        h-[3px]
+                        w-0
+                        bg-[#c5a46d]
+                        transition-all
+                        duration-700
+                        group-hover:w-full
+                      "
                     />
                   </div>
-
-                  {/* Bottom accent */}
-
-                  <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-[#c5a46d] transition-all duration-500 group-hover:w-20" />
-
-                  {/* Hover glow */}
-
-                  <div className="pointer-events-none absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-[#c5a46d]/[0.07] blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 </motion.button>
               );
             })}

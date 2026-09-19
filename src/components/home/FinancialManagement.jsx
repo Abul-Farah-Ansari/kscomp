@@ -1,7 +1,6 @@
 import React from "react";
 import {
   ArrowRight,
-  ArrowUpRight,
   TrendingUp,
   ShieldCheck,
   BarChart3,
@@ -9,6 +8,12 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+
+import financialManagementImage from "../../assets/mngmt/financial-mngmt.jpeg";
+
+/* =========================================================
+   SERVICES
+========================================================= */
 
 const services = [
   {
@@ -37,6 +42,10 @@ const services = [
   },
 ];
 
+/* =========================================================
+   COMPONENT
+========================================================= */
+
 const FinancialManagement = () => {
   return (
     <section
@@ -52,7 +61,9 @@ const FinancialManagement = () => {
         lg:items-center
       "
     >
-      {/* BACKGROUND DECORATION */}
+      {/* =====================================================
+          BACKGROUND DECORATION
+      ===================================================== */}
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
@@ -82,7 +93,9 @@ const FinancialManagement = () => {
         />
       </div>
 
-      {/* MAIN CONTAINER */}
+      {/* =====================================================
+          MAIN CONTAINER
+      ===================================================== */}
 
       <div
         className="
@@ -102,7 +115,9 @@ const FinancialManagement = () => {
           lg:py-8
         "
       >
-        {/* SECTION HEADER */}
+        {/* ===================================================
+            SECTION HEADER
+        =================================================== */}
 
         <div
           className="
@@ -204,7 +219,9 @@ const FinancialManagement = () => {
           </motion.div>
         </div>
 
-        {/* MAIN CONTENT */}
+        {/* ===================================================
+            MAIN CONTENT
+        =================================================== */}
 
         <div
           className="
@@ -219,7 +236,9 @@ const FinancialManagement = () => {
             lg:gap-14
           "
         >
-          {/* LEFT CONTENT */}
+          {/* =================================================
+              LEFT CONTENT
+          ================================================= */}
 
           <div className="order-2 lg:order-1">
             <motion.div
@@ -331,8 +350,7 @@ const FinancialManagement = () => {
                 {services.map((item, index) => {
                   const Icon = item.icon;
 
-                  const isGreen =
-                    item.color === "green";
+                  const isGreen = item.color === "green";
 
                   return (
                     <motion.div
@@ -448,8 +466,6 @@ const FinancialManagement = () => {
                 }}
                 className="mt-6"
               >
-                {/* UPDATED LINK */}
-
                 <Link
                   to="/services"
                   className="
@@ -493,7 +509,9 @@ const FinancialManagement = () => {
             </motion.div>
           </div>
 
-          {/* RIGHT IMAGE */}
+          {/* =================================================
+              RIGHT SIDE — LOCAL IMAGE ONLY
+          ================================================= */}
 
           <motion.div
             initial={{
@@ -515,327 +533,56 @@ const FinancialManagement = () => {
             className="
               relative
               order-1
+              flex
+              w-full
+              items-center
+              justify-center
               lg:order-2
             "
           >
-            {/* DECORATIVE FRAME */}
+            {/* =================================================
+                ONLY LOCAL IMAGE
+            ================================================= */}
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{
-                delay: 0.3,
-                duration: 0.7,
-              }}
-              className="
-                absolute
-                -right-3
-                -top-3
-
-                h-full
-                w-full
-
-                rounded-2xl
-                border
-                border-[#285b68]/20
-              "
-            />
-
-            {/* IMAGE */}
-
-            <div
-              className="
-                relative
-                z-10
-
-                h-[360px]
-
-                overflow-hidden
-                rounded-2xl
-                bg-[#153538]
-
-                shadow-[0_20px_45px_rgba(22,58,55,0.12)]
-
-                sm:h-[440px]
-
-                lg:h-[430px]
-              "
-            >
-              <motion.img
-                initial={{ scale: 1.08 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 1.1,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1300&q=90"
-                alt="Financial planning and analysis"
-                className="
-                  h-full
-                  w-full
-                  object-cover
-                "
-              />
-
-              {/* IMAGE OVERLAY */}
-
-              <div
-                className="
-                  absolute
-                  inset-0
-
-                  bg-gradient-to-t
-                  from-[#09292c]/75
-                  via-[#123c3e]/15
-                  to-transparent
-                "
-              />
-
-              {/* TOP LABEL */}
-
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: -15,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: 0.45,
-                  duration: 0.6,
-                }}
-                className="
-                  absolute
-                  left-5
-                  top-5
-
-                  sm:left-6
-                  sm:top-6
-                "
-              >
-                <div
-                  className="
-                    rounded-lg
-                    border
-                    border-white/15
-
-                    bg-[#102e30]/65
-
-                    px-3
-                    py-2
-
-                    backdrop-blur-md
-                  "
-                >
-                  <p
-                    className="
-                      text-[8px]
-                      uppercase
-                      tracking-[1.7px]
-                      text-white/50
-                    "
-                  >
-                    Financial Advisory
-                  </p>
-
-                  <p
-                    className="
-                      mt-0.5
-                      text-[11px]
-                      font-medium
-                      text-white
-                    "
-                  >
-                    Clear • Practical • Reliable
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* CENTER ICON */}
-
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  scale: 0.75,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: 0.5,
-                  duration: 0.65,
-                }}
-                className="
-                  absolute
-                  left-1/2
-                  top-1/2
-
-                  flex
-                  h-[70px]
-                  w-[70px]
-
-                  -translate-x-1/2
-                  -translate-y-1/2
-
-                  items-center
-                  justify-center
-
-                  rounded-full
-
-                  border
-                  border-white/20
-
-                  bg-[#102f32]/60
-
-                  backdrop-blur-sm
-                "
-              >
-                <TrendingUp
-                  size={27}
-                  strokeWidth={1.3}
-                  className="text-[#9cc28a]"
-                />
-              </motion.div>
-
-              {/* BOTTOM CONTENT */}
-
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: 0.6,
-                  duration: 0.7,
-                }}
-                className="
-                  absolute
-                  bottom-5
-                  left-5
-                  right-5
-
-                  sm:bottom-7
-                  sm:left-7
-                  sm:right-7
-                "
-              >
-                <p
-                  className="
-                    text-[9px]
-                    uppercase
-                    tracking-[1.8px]
-                    text-[#a8c797]
-                  "
-                >
-                  Better decisions begin with clarity.
-                </p>
-
-                <div className="mt-2.5 h-px w-full bg-white/15" />
-
-                <div
-                  className="
-                    mt-2.5
-                    flex
-                    items-center
-                    justify-between
-                  "
-                >
-                  <span
-                    className="
-                      text-[11px]
-                      text-white/65
-                    "
-                  >
-                    K S &amp; Company
-                  </span>
-
-                  <ArrowUpRight
-                    size={17}
-                    strokeWidth={1.5}
-                    className="text-white/70"
-                  />
-                </div>
-              </motion.div>
-            </div>
-
-            {/* FLOATING INFO */}
-
-            <motion.div
+            <motion.img
               initial={{
                 opacity: 0,
-                y: 15,
+                scale: 0.96,
               }}
               whileInView={{
                 opacity: 1,
-                y: 0,
+                scale: 1,
               }}
               viewport={{
                 once: true,
+                amount: 0.25,
               }}
               transition={{
-                delay: 0.7,
-                duration: 0.6,
+                duration: 0.9,
+                ease: [0.22, 1, 0.36, 1],
               }}
+              src={financialManagementImage}
+              alt="Financial Management"
               className="
-                absolute
-                -bottom-4
-                left-5
-                z-20
+                block
+                h-auto
+                w-full
+                max-w-[600px]
+                object-contain
 
-                rounded-xl
+                sm:max-w-[650px]
 
-                border
-                border-[#dce7e1]
-
-                bg-white
-
-                px-4
-                py-3
-
-                shadow-[0_12px_30px_rgba(20,55,55,0.10)]
-
-                sm:left-7
+                lg:max-w-[680px]
+                lg:scale-105
               "
-            >
-              <p
-                className="
-                  text-[8px]
-                  uppercase
-                  tracking-[1.5px]
-                  text-[#899294]
-                "
-              >
-                Our Focus
-              </p>
-
-              <p
-                className="
-                  mt-1
-                  text-[11px]
-                  font-semibold
-                  text-[#283638]
-                "
-              >
-                Growth • Compliance • Strategy
-              </p>
-            </motion.div>
+            />
           </motion.div>
         </div>
       </div>
 
-      {/* BOTTOM BORDER */}
+      {/* =====================================================
+          BOTTOM BORDER
+      ===================================================== */}
 
       <div className="absolute bottom-0 left-0 h-px w-full bg-[#dce5e0]" />
     </section>

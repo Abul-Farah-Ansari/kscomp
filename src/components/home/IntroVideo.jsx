@@ -2,35 +2,95 @@ import React, { useState } from "react";
 import { Play, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import introBackground from "../../assets/introbackground/ChatGPT Image Sep 17, 2026, 05_39_00 PM.png";
+
 const IntroVideo = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      {/* ================= INTRO VIDEO SECTION ================= */}
+      {/* =====================================================
+          INTRO VIDEO SECTION
+      ===================================================== */}
 
-      <section className="relative h-screen min-h-[650px] w-full overflow-hidden bg-[#10282c]">
+      <section className="relative h-screen min-h-[650px] w-full overflow-hidden bg-[#102b29]">
 
-        {/* ================= BACKGROUND IMAGE ================= */}
+        {/* ===================================================
+            LOCAL BACKGROUND IMAGE
+        =================================================== */}
 
         <div className="absolute inset-0">
 
           <img
-            src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2200&q=85"
+            src={introBackground}
             alt="K S & Company professionals"
-            className="h-full w-full scale-105 object-cover opacity-70"
+            className="
+              h-full
+              w-full
+              object-cover
+              object-center
+            "
           />
 
-          {/* DARK OVERLAYS */}
+          {/* =================================================
+              SOFT DARK GREEN OVERLAPPING GRADIENT
+          ================================================= */}
 
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0c2024]/95 via-[#16373b]/80 to-[#173d3f]/55" />
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+              w-full
+              bg-gradient-to-r
+              from-[#102b29]
+              via-[#102b29]/90
+              via-[38%]
+              to-transparent
+            "
+          />
 
-          <div className="absolute inset-0 bg-black/20" />
+          {/* =================================================
+              HIGH → LOW SOFT GRADIENT
+          ================================================= */}
 
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+              bg-gradient-to-br
+              from-[#102b29]/85
+              via-[#102b29]/35
+              via-[42%]
+              to-transparent
+            "
+          />
+
+          {/* =================================================
+              LOWER GREEN BLEND
+          ================================================= */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              bottom-0
+              left-0
+              h-[55%]
+              w-[65%]
+              bg-gradient-to-tr
+              from-[#102b29]/70
+              via-[#102b29]/25
+              to-transparent
+              blur-[2px]
+            "
+          />
         </div>
 
-
-        {/* ================= DECORATIVE CIRCLES ================= */}
+        {/* ===================================================
+            DECORATIVE CIRCLES
+        =================================================== */}
 
         <div
           className="
@@ -60,8 +120,9 @@ const IntroVideo = () => {
           "
         />
 
-
-        {/* ================= MAIN CONTENT ================= */}
+        {/* ===================================================
+            MAIN CONTENT
+        =================================================== */}
 
         <div
           className="
@@ -77,10 +138,11 @@ const IntroVideo = () => {
             lg:px-12
           "
         >
-
           <div className="max-w-[850px]">
 
-            {/* SMALL LABEL */}
+            {/* =================================================
+                SMALL LABEL
+            ================================================= */}
 
             <motion.div
               initial={{
@@ -99,17 +161,24 @@ const IntroVideo = () => {
               }}
               className="mb-7 flex items-center gap-4"
             >
-
               <span className="h-[2px] w-12 bg-[#8fbd73]" />
 
-              <span className="text-[11px] font-semibold uppercase tracking-[3px] text-[#b7d7a5]">
+              <span
+                className="
+                  text-[11px]
+                  font-semibold
+                  uppercase
+                  tracking-[3px]
+                  text-[#b7d7a5]
+                "
+              >
                 Discover K S & Company
               </span>
-
             </motion.div>
 
-
-            {/* HEADING */}
+            {/* =================================================
+                HEADING
+            ================================================= */}
 
             <motion.h2
               initial={{
@@ -138,17 +207,16 @@ const IntroVideo = () => {
                 lg:text-[82px]
               "
             >
-
               Financial clarity.
 
               <span className="block text-[#a8c99b]">
                 Built for growth.
               </span>
-
             </motion.h2>
 
-
-            {/* DESCRIPTION */}
+            {/* =================================================
+                DESCRIPTION
+            ================================================= */}
 
             <motion.p
               initial={{
@@ -181,120 +249,177 @@ const IntroVideo = () => {
             </motion.p>
 
           </div>
-
         </div>
 
+        {/* ===================================================
+            PLAY BUTTON + TAP TO PLAY
+        =================================================== */}
 
-        {/* ================= CENTER PLAY BUTTON ================= */}
-
-        <motion.button
-          initial={{
-            opacity: 0,
-            scale: 0.7,
-          }}
-          whileInView={{
-            opacity: 1,
-            scale: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.7,
-            delay: 0.35,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          whileHover={{
-            scale: 1.08,
-          }}
-          whileTap={{
-            scale: 0.95,
-          }}
-          onClick={() => setIsOpen(true)}
-          aria-label="Play introduction video"
+        <div
           className="
-            group
             absolute
             left-1/2
             top-1/2
             z-20
-            flex
-            h-[96px]
-            w-[96px]
             -translate-x-1/2
             -translate-y-1/2
+            flex
+            flex-col
             items-center
-            justify-center
-            rounded-full
-            bg-[#326844]
-            text-white
-            shadow-[0_15px_50px_rgba(0,0,0,0.35)]
-            transition-all
-            duration-300
-            hover:bg-[#285b68]
-            sm:h-[108px]
-            sm:w-[108px]
           "
         >
 
-          {/* OUTER RING */}
+          {/* PLAY BUTTON */}
 
-          <span
+          <motion.button
+            initial={{
+              opacity: 0,
+              scale: 0.7,
+            }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.35,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            whileHover={{
+              scale: 1.08,
+            }}
+            whileTap={{
+              scale: 0.95,
+            }}
+            onClick={() => setIsOpen(true)}
+            aria-label="Play introduction video"
             className="
-              pointer-events-none
-              absolute
-              -inset-4
-              rounded-full
-              border
-              border-white/20
-              transition-all
-              duration-500
-              group-hover:scale-110
-            "
-          />
-
-
-          {/* SECOND OUTER RING */}
-
-          <span
-            className="
-              pointer-events-none
-              absolute
-              -inset-8
-              rounded-full
-              border
-              border-[#9acb7c]/20
-            "
-          />
-
-
-          {/* PLAY ICON */}
-
-          <Play
-            size={38}
-            fill="currentColor"
-            className="relative z-10 ml-1.5 sm:h-[42px] sm:w-[42px]"
-          />
-
-
-          {/* PULSE EFFECT */}
-
-          <span
-            className="
-              pointer-events-none
-              absolute
-              inset-0
+              group
+              relative
+              flex
+              h-[96px]
+              w-[96px]
+              items-center
+              justify-center
               rounded-full
               bg-[#326844]
-              opacity-30
-              animate-ping
+              text-white
+              shadow-[0_15px_50px_rgba(0,0,0,0.35)]
+              transition-all
+              duration-300
+              hover:bg-[#285b68]
+              sm:h-[108px]
+              sm:w-[108px]
             "
-          />
+          >
 
-        </motion.button>
+            {/* OUTER RING */}
 
+            <span
+              className="
+                pointer-events-none
+                absolute
+                -inset-4
+                rounded-full
+                border
+                border-white/20
+                transition-all
+                duration-500
+                group-hover:scale-110
+              "
+            />
 
-        {/* ================= BOTTOM TEXT ================= */}
+            {/* SECOND OUTER RING */}
+
+            <span
+              className="
+                pointer-events-none
+                absolute
+                -inset-8
+                rounded-full
+                border
+                border-[#9acb7c]/20
+              "
+            />
+
+            {/* PLAY ICON */}
+
+            <Play
+              size={38}
+              fill="currentColor"
+              className="
+                relative
+                z-10
+                ml-1.5
+                sm:h-[42px]
+                sm:w-[42px]
+              "
+            />
+
+            {/* PULSE */}
+
+            <span
+              className="
+                pointer-events-none
+                absolute
+                inset-0
+                rounded-full
+                bg-[#326844]
+                opacity-30
+                animate-ping
+              "
+            />
+
+          </motion.button>
+
+          {/* =================================================
+              TAP TO PLAY VIDEO
+          ================================================= */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 8,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              delay: 0.65,
+              duration: 0.5,
+            }}
+            className="
+              mt-7
+              whitespace-nowrap
+              text-center
+            "
+          >
+            <span
+              className="
+                text-[10px]
+                font-medium
+                uppercase
+                tracking-[2.5px]
+                text-white/75
+                sm:text-[11px]
+              "
+            >
+              Tap to play video
+            </span>
+          </motion.div>
+
+        </div>
+
+        {/* ===================================================
+            BOTTOM TEXT
+        =================================================== */}
 
         <div
           className="
@@ -314,21 +439,34 @@ const IntroVideo = () => {
             lg:right-12
           "
         >
-
-          <span className="text-[10px] uppercase tracking-[2px] text-white/35">
+          <span
+            className="
+              text-[10px]
+              uppercase
+              tracking-[2px]
+              text-white/35
+            "
+          >
             Chartered Accountants
           </span>
 
-          <span className="text-[10px] uppercase tracking-[2px] text-white/35">
+          <span
+            className="
+              text-[10px]
+              uppercase
+              tracking-[2px]
+              text-white/35
+            "
+          >
             Scroll to Explore ↓
           </span>
-
         </div>
 
       </section>
 
-
-      {/* ================= VIDEO MODAL ================= */}
+      {/* =====================================================
+          VIDEO MODAL
+      ===================================================== */}
 
       <AnimatePresence>
 
@@ -358,7 +496,9 @@ const IntroVideo = () => {
             "
           >
 
-            {/* ================= CLOSE BUTTON ================= */}
+            {/* =================================================
+                CLOSE BUTTON
+            ================================================= */}
 
             <button
               onClick={() => setIsOpen(false)}
@@ -388,8 +528,9 @@ const IntroVideo = () => {
               <X size={22} />
             </button>
 
-
-            {/* ================= VIDEO CONTAINER ================= */}
+            {/* =================================================
+                VIDEO CONTAINER
+            ================================================= */}
 
             <motion.div
               initial={{
@@ -420,7 +561,9 @@ const IntroVideo = () => {
               "
             >
 
-              {/* ================= LOCAL MP4 VIDEO ================= */}
+              {/* =================================================
+                  LOCAL MP4 VIDEO
+              ================================================= */}
 
               <div className="aspect-video">
 
@@ -429,7 +572,12 @@ const IntroVideo = () => {
                   autoPlay
                   playsInline
                   preload="metadata"
-                  className="h-full w-full object-contain bg-black"
+                  className="
+                    h-full
+                    w-full
+                    object-contain
+                    bg-black
+                  "
                 >
 
                   <source
@@ -450,7 +598,6 @@ const IntroVideo = () => {
         )}
 
       </AnimatePresence>
-
     </>
   );
 };

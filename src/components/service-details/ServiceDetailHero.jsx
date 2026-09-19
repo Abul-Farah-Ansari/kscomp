@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-import serviceDetailImage from "../../assets/service-detail.jpg";
+import serviceDetailImage from "../../assets/service-details.png";
 
 const ServiceDetailHero = ({ data }) => {
   if (!data) return null;

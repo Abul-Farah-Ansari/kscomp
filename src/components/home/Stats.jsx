@@ -8,28 +8,28 @@ import {
 
 const stats = [
   {
-    number: 300,
+    number: 1200,
     suffix: "+",
     label: "Clients Served",
     icon: Users,
     size: "large",
   },
   {
-    number: 8,
+    number: 9,
     suffix: "+",
     label: "Years Experience",
     icon: TrendingUp,
     size: "small",
   },
   {
-    number: 98,
+    number: 99,
     suffix: "%",
     label: "Work Accuracy",
     icon: Target,
     size: "small",
   },
   {
-    number: 93,
+    number: 100,
     suffix: "%",
     label: "Client Retention",
     icon: Handshake,
