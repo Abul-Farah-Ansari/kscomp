@@ -233,7 +233,7 @@ export const chatbotData = {
     /* ================= GOVERNMENT DOCUMENTATION ================= */
 
     {
-      category: "Government & Documentation Services",
+      category: "Documentation Support Services",
 
       keywords: [
         "government",
@@ -441,7 +441,7 @@ export const chatbotData = {
       ],
 
       answer:
-        "K S & Company provides Taxation, Accounting, Registration, HR Compliance, Other Compliance, Government & Documentation, Insurance and Finance & Loan services.",
+        "K S & Company provides Taxation, Accounting, Registration, HR Compliance, Other Compliance, Documentation Support, Insurance and Finance & Loan services.",
     },
 
 
@@ -562,7 +562,7 @@ export const chatbotData = {
       ],
 
       answer:
-        "Our Government & Documentation Services include PAN Card New/Correction, TAN Card New/Correction, Digital Signature Certificate (DSC), Passport Apply Online and PAN-Aadhaar Linking.",
+        "Our Documentation Support Services include PAN Card New/Correction, TAN Card New/Correction, Digital Signature Certificate (DSC), Passport Apply Online and PAN-Aadhaar Linking.",
     },
 
 

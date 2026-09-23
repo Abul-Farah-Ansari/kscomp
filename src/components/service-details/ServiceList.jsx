@@ -68,7 +68,7 @@ const serviceIcons = {
   "15CA & 15CB for Foreign Transactions": "mdi:currency-usd",
   "Project Report for Loan / Cash Credit": "mdi:file-chart-outline",
 
-  // Government & Documentation
+  // Documentation Support
   "PAN Card": "mdi:card-account-details-outline",
   "TAN Card": "mdi:card-text-outline",
   DSC: "mdi:certificate-outline",
@@ -95,7 +95,7 @@ const serviceImageFolders = {
   "registration-services": "4_Registration Services",
   "hr-compliance-services": "5_HR Compliance Services",
   "other-compliance": "6_Other Compliance",
-  "government-documentation": "7_Government & Documentation",
+  "government-documentation": "7_Documentation Support",
   "finance-services": "8_Loans",
 };
 

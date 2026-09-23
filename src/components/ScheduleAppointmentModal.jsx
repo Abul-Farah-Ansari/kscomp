@@ -57,7 +57,7 @@ const ScheduleAppointmentModal = ({ isOpen, onClose }) => {
     "Registration Services",
     "HR Compliance Services",
     "Other Compliance",
-    "Government & Documentation Services",
+    "Documentation Support Services",
     "Insurance Services",
     "Finance & Loan Services",
   ];

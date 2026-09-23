@@ -47,7 +47,7 @@ const CATEGORY_CONFIG = [
   {
     id: "government-documentation",
     number: "07",
-    title: "Government & Documentation Services",
+    title: "Documentation Support Services",
   },
   {
     id: "finance-services",

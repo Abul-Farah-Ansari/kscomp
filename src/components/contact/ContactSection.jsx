@@ -807,8 +807,8 @@ const ContactSection = () => {
                         Other Compliance
                       </option>
 
-                      <option value="Government & Documentation Services">
-                        Government & Documentation Services
+                      <option value="Documentation Support Services">
+                        Documentation Support Services
                       </option>
 
                       <option value="Insurance Services">

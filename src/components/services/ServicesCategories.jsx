@@ -106,7 +106,7 @@ const CATEGORY_CONFIG = [
   {
     id: "government-documentation",
     number: "07",
-    title: "Government & Documentation Services",
+    title: "Documentation Support Services",
     icon: "mdi:file-document-outline",
     fallbackImage: "/images/services/documentation.jpg",
   },

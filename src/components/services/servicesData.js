@@ -262,13 +262,13 @@ export const servicesData = [
   },
 
   /* =========================================
-     06 - GOVERNMENT & DOCUMENTATION
+     06 - Documentation Support
   ========================================== */
 
   {
     id: "government-documentation",
     number: "06",
-    category: "Government & Documentation Services",
+    category: "Documentation Support Services",
     shortDescription:
       "Convenient assistance with important government documentation and digital application processes.",
 

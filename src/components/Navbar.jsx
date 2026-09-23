@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import {
   MessageSquare,
@@ -23,35 +23,6 @@ import KS from "../assets/mngmt/WhatsApp Image 2026-08-30 at 19.16.22 (1).png";
 
 import ScheduleAppointmentModal from "./ScheduleAppointmentModal";
 
-
-/* =========================================================
-   MAIN MENU
-========================================================= */
-
-const menuItems = [
-  {
-    name: "Home",
-    path: "/",
-  },
-  {
-    name: "About",
-    path: "/about",
-  },
-  {
-    name: "Our Services",
-    path: "/services",
-  },
-  {
-    name: "Contact",
-    path: "/contact",
-  },
-  {
-    name: "Careers",
-    path: "/careers",
-  },
-];
-
-
 /* =========================================================
    SERVICES SUBMENU
 ========================================================= */
@@ -63,7 +34,6 @@ const serviceMenuItems = [
     icon: ReceiptText,
     description: "Tax planning & return filing",
   },
-
   {
     name: "Insurance Services",
     path: "/services/insurance",
@@ -98,114 +68,89 @@ const serviceMenuItems = [
     name: "Government & Documentation",
     path: "/services/government-documentation",
     icon: FileCheck,
-    description: "Government & documentation",
+    description: "Government documentation support",
   },
-    {
+  {
     name: "Loan & Finance Services",
     path: "/services/finance",
     icon: ChartLine,
     description: "Loans & financial assistance",
-  }
+  },
+  {
+    name: "All Services",
+    path: "/services",
+    icon: FileText,
+    description: "View all professional services",
+  },
 ];
 
+/* =========================================================
+   NAVBAR
+========================================================= */
 
 const Navbar = () => {
-
-  const location = useLocation();
-
-  /* =========================================================
-     STATES
-  ========================================================= */
-
   const [mobileMenu, setMobileMenu] = useState(false);
-
   const [hasScrolled, setHasScrolled] = useState(false);
-
   const [navbarOpen, setNavbarOpen] = useState(true);
 
   const [resourceOpen, setResourceOpen] = useState(false);
-
   const [mobileResourceOpen, setMobileResourceOpen] = useState(false);
 
   const [serviceOpen, setServiceOpen] = useState(false);
-
   const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
 
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
-
 
   /* =========================================================
      SCROLL HANDLER
   ========================================================= */
 
   useEffect(() => {
-
     const handleScroll = () => {
-
       const isScrolled = window.scrollY > 100;
 
       setHasScrolled(isScrolled);
 
       if (!isScrolled) {
-
         setNavbarOpen(true);
-
         setMobileMenu(false);
-
       } else {
-
         setNavbarOpen(false);
-
         setMobileMenu(false);
-
         setResourceOpen(false);
-
         setServiceOpen(false);
       }
     };
-
 
     window.addEventListener("scroll", handleScroll);
 
     handleScroll();
 
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-
   }, []);
-
 
   /* =========================================================
      NAVBAR TOGGLE
   ========================================================= */
 
   const toggleNavbar = () => {
-
     setNavbarOpen((prev) => !prev);
-
     setMobileMenu(false);
-
     setResourceOpen(false);
-
     setServiceOpen(false);
   };
-
 
   /* =========================================================
      CLOSE MOBILE MENU
   ========================================================= */
 
   const closeMobileMenu = () => {
-
     setMobileMenu(false);
-
     setMobileResourceOpen(false);
-
     setMobileServiceOpen(false);
   };
-
 
   return (
     <>
@@ -252,7 +197,6 @@ const Navbar = () => {
           }
         `}
       >
-
         <div className="mx-auto w-full max-w-[1500px] px-4 sm:px-6 lg:px-8">
 
           {/* =================================================
@@ -260,7 +204,6 @@ const Navbar = () => {
           ================================================== */}
 
           <div className="flex h-[76px] items-center justify-between sm:h-[84px] lg:h-[90px]">
-
 
             {/* =================================================
                 BRAND / LOGO
@@ -271,9 +214,6 @@ const Navbar = () => {
               onClick={closeMobileMenu}
               className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3"
             >
-
-              {/* LOGO */}
-
               <div
                 className="
                   flex
@@ -294,7 +234,6 @@ const Navbar = () => {
                   lg:w-[58px]
                 "
               >
-
                 <img
                   src={KS}
                   alt="K S & Company Logo"
@@ -305,14 +244,9 @@ const Navbar = () => {
                     p-1
                   "
                 />
-
               </div>
 
-
-              {/* COMPANY NAME */}
-
               <div className="ml-1 flex min-w-0 flex-col">
-
                 <h1
                   className="
                     whitespace-nowrap
@@ -328,7 +262,6 @@ const Navbar = () => {
                 >
                   K S &amp; COMPANY
                 </h1>
-
 
                 <span
                   className="
@@ -347,11 +280,8 @@ const Navbar = () => {
                 >
                   CHARTERED ACCOUNTANTS
                 </span>
-
               </div>
-
             </NavLink>
-
 
             {/* =================================================
                 DESKTOP MENU
@@ -359,10 +289,7 @@ const Navbar = () => {
 
             <div className="hidden h-full shrink-0 items-center lg:flex">
 
-
-              {/* =================================================
-                  HOME
-              ================================================== */}
+              {/* HOME */}
 
               <NavLink
                 to="/"
@@ -391,7 +318,6 @@ const Navbar = () => {
                   }
                 `}
               >
-
                 Home
 
                 <span
@@ -410,13 +336,9 @@ const Navbar = () => {
                     group-hover:scale-x-100
                   "
                 />
-
               </NavLink>
 
-
-              {/* =================================================
-                  ABOUT
-              ================================================== */}
+              {/* ABOUT */}
 
               <NavLink
                 to="/about"
@@ -444,7 +366,6 @@ const Navbar = () => {
                   }
                 `}
               >
-
                 About
 
                 <span
@@ -463,13 +384,10 @@ const Navbar = () => {
                     group-hover:scale-x-100
                   "
                 />
-
               </NavLink>
 
-
               {/* =================================================
-                  OUR SERVICES DROPDOWN
-                  SAME STYLE AS RESOURCES
+                  OUR SERVICES
               ================================================== */}
 
               <div
@@ -477,7 +395,6 @@ const Navbar = () => {
                 onMouseEnter={() => setServiceOpen(true)}
                 onMouseLeave={() => setServiceOpen(false)}
               >
-
                 <button
                   type="button"
                   onClick={() => setServiceOpen(!serviceOpen)}
@@ -502,9 +419,7 @@ const Navbar = () => {
                     xl:text-[19px]
                   "
                 >
-
                   Our Services
-
 
                   <ChevronDown
                     size={17}
@@ -514,14 +429,11 @@ const Navbar = () => {
 
                       ${
                         serviceOpen
-                          ? "rotate-180"
+                          ? "rotate-180 text-[#d4af37]"
                           : ""
                       }
                     `}
                   />
-
-
-                  {/* HOVER LINE */}
 
                   <span
                     className="
@@ -539,21 +451,16 @@ const Navbar = () => {
                       group-hover:scale-x-100
                     "
                   />
-
                 </button>
 
-
-                {/* =================================================
-                    SERVICES DROPDOWN
-                    MATCHED TO RESOURCES DROPDOWN
-                ================================================== */}
+                {/* SERVICES DROPDOWN */}
 
                 <div
                   className={`
                     absolute
                     right-0
                     top-[76px]
-                    w-[260px]
+                    w-[290px]
                     origin-top-right
                     overflow-hidden
                     rounded-b-xl
@@ -564,7 +471,6 @@ const Navbar = () => {
                     backdrop-blur-xl
 
                     sm:top-[84px]
-
                     lg:top-[90px]
 
                     transition-all
@@ -587,463 +493,97 @@ const Navbar = () => {
                     }
                   `}
                 >
-
-                  {/* TAXATION */}
-
-                  <NavLink
-                    to="/services/taxation"
-                    onClick={() => setServiceOpen(false)}
-                    className="
-                      group
-                      flex
-                      items-center
-                      gap-4
-                      border-b
-                      border-white/10
-                      px-5
-                      py-4
-                      transition-all
-                      duration-300
-
-                      hover:bg-white/10
-                    "
-                  >
-
-                    <div
-                      className="
-                        flex
-                        h-10
-                        w-10
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-lg
-                        bg-white/10
-                        text-white
-                        transition
-
-                        group-hover:bg-white
-                        group-hover:text-[#102b29]
-                      "
-                    >
-                      <ReceiptText size={18} />
-                    </div>
-
-
-                    <div>
-
-                      <p className="text-[14px] font-semibold text-white">
-                        Taxation Services
-                      </p>
-
-                      <p className="mt-1 text-[11px] text-white/50">
-                        Tax & return filing
-                      </p>
-
-                    </div>
-
-                  </NavLink>
-
-
-                  {/* LOAN & FINANCE */}
-
-
-
-                  {/* INSURANCE */}
-
-                  <NavLink
-                    to="/services/insurance"
-                    onClick={() => setServiceOpen(false)}
-                    className="
-                      group
-                      flex
-                      items-center
-                      gap-4
-                      border-b
-                      border-white/10
-                      px-5
-                      py-4
-                      transition-all
-                      duration-300
-
-                      hover:bg-white/10
-                    "
-                  >
-
-                    <div
-                      className="
-                        flex
-                        h-10
-                        w-10
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-lg
-                        bg-white/10
-                        text-white
-                        transition
-
-                        group-hover:bg-white
-                        group-hover:text-[#102b29]
-                      "
-                    >
-                      <InsuranceIcon size={18} />
-                    </div>
-
-
-                    <div>
-
-                      <p className="text-[14px] font-semibold text-white">
-                        Insurance Services
-                      </p>
-
-                      <p className="mt-1 text-[11px] text-white/50">
-                        Life, health & general insurance
-                      </p>
-
-                    </div>
-
-                  </NavLink>
-
-
-                  {/* ACCOUNTING */}
-
-                  <NavLink
-                    to="/services/accounting"
-                    onClick={() => setServiceOpen(false)}
-                    className="
-                      group
-                      flex
-                      items-center
-                      gap-4
-                      border-b
-                      border-white/10
-                      px-5
-                      py-4
-                      transition-all
-                      duration-300
-
-                      hover:bg-white/10
-                    "
-                  >
-
-                    <div
-                      className="
-                        flex
-                        h-10
-                        w-10
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-lg
-                        bg-white/10
-                        text-white
-                        transition
-
-                        group-hover:bg-white
-                        group-hover:text-[#102b29]
-                      "
-                    >
-                      <Calculator size={18} />
-                    </div>
-
-
-                    <div>
-
-                      <p className="text-[14px] font-semibold text-white">
-                        Accounting Services
-                      </p>
-
-                      <p className="mt-1 text-[11px] text-white/50">
-                        Accounting & bookkeeping
-                      </p>
-
-                    </div>
-
-                  </NavLink>
-
-
-                  {/* REGISTRATION */}
-
-                  <NavLink
-                    to="/services/registration"
-                    onClick={() => setServiceOpen(false)}
-                    className="
-                      group
-                      flex
-                      items-center
-                      gap-4
-                      border-b
-                      border-white/10
-                      px-5
-                      py-4
-                      transition-all
-                      duration-300
-
-                      hover:bg-white/10
-                    "
-                  >
-
-                    <div
-                      className="
-                        flex
-                        h-10
-                        w-10
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-lg
-                        bg-white/10
-                        text-white
-                        transition
-
-                        group-hover:bg-white
-                        group-hover:text-[#102b29]
-                      "
-                    >
-                      <Building2 size={18} />
-                    </div>
-
-
-                    <div>
-
-                      <p className="text-[14px] font-semibold text-white">
-                        Registration Services
-                      </p>
-
-                      <p className="mt-1 text-[11px] text-white/50">
-                        Business registrations
-                      </p>
-
-                    </div>
-
-                  </NavLink>
-
-
-                  {/* HR COMPLIANCE */}
-
-                  <NavLink
-                    to="/services/hr-compliance"
-                    onClick={() => setServiceOpen(false)}
-                    className="
-                      group
-                      flex
-                      items-center
-                      gap-4
-                      border-b
-                      border-white/10
-                      px-5
-                      py-4
-                      transition-all
-                      duration-300
-
-                      hover:bg-white/10
-                    "
-                  >
-
-                    <div
-                      className="
-                        flex
-                        h-10
-                        w-10
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-lg
-                        bg-white/10
-                        text-white
-                        transition
-
-                        group-hover:bg-white
-                        group-hover:text-[#102b29]
-                      "
-                    >
-                      <Users size={18} />
-                    </div>
-
-
-                    <div>
-
-                      <p className="text-[14px] font-semibold text-white">
-                        HR Compliance Services
-                      </p>
-
-                      <p className="mt-1 text-[11px] text-white/50">
-                        Payroll & HR compliance
-                      </p>
-
-                    </div>
-
-                  </NavLink>
-
-
-                  {/* OTHER COMPLIANCE */}
-
-                  <NavLink
-                    to="/services/other-compliance"
-                    onClick={() => setServiceOpen(false)}
-                    className="
-                      group
-                      flex
-                      items-center
-                      gap-4
-                      border-b
-                      border-white/10
-                      px-5
-                      py-4
-                      transition-all
-                      duration-300
-
-                      hover:bg-white/10
-                    "
-                  >
-
-                    <div
-                      className="
-                        flex
-                        h-10
-                        w-10
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-lg
-                        bg-white/10
-                        text-white
-                        transition
-
-                        group-hover:bg-white
-                        group-hover:text-[#102b29]
-                      "
-                    >
-                      <ClipboardCheck size={18} />
-                    </div>
-
-
-                    <div>
-
-                      <p className="text-[14px] font-semibold text-white">
-                        Other Compliance
-                      </p>
-
-                      <p className="mt-1 text-[11px] text-white/50">
-                        Specialized compliance support
-                      </p>
-
-                    </div>
-
-                  </NavLink>
-
-
-                  {/* GOVERNMENT */}
-
-                  <NavLink
-                    to="/services/government-documentation"
-                    onClick={() => setServiceOpen(false)}
-                    className="
-                      group
-                      flex
-                      items-center
-                      gap-4
-                      px-5
-                      py-4
-                      transition-all
-                      duration-300
-
-                      hover:bg-white/10
-                    "
-                  >
-
-                    <div
-                      className="
-                        flex
-                        h-10
-                        w-10
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-lg
-                        bg-white/10
-                        text-white
-                        transition
-
-                        group-hover:bg-white
-                        group-hover:text-[#102b29]
-                      "
-                    >
-                      <FileCheck size={18} />
-                    </div>
-
-
-                    <div>
-
-                      <p className="text-[14px] font-semibold text-white">
-                        Government &amp; Documentation
-                      </p>
-
-                      <p className="mt-1 text-[11px] text-white/50">
-                        Government & documentation
-                      </p>
-
-                    </div>
-
-                  </NavLink>
-                  {/* LOAN & FINANCE */}
-
-<NavLink
-  to="/services/finance"
-  onClick={() => setServiceOpen(false)}
-  className="
-    group
-    flex
-    items-center
-    gap-4
-    border-b
-    border-white/10
-    px-5
-    py-4
-    transition-all
-    duration-300
-    hover:bg-white/10
-  "
->
-  <div
-    className="
-      flex
-      h-10
-      w-10
-      shrink-0
-      items-center
-      justify-center
-      rounded-lg
-      bg-white/10
-      text-white
-      transition
-      group-hover:bg-white
-      group-hover:text-[#102b29]
-    "
-  >
-    <ChartLine size={18} />
-  </div>
-
-  <div>
-    <p className="text-[14px] font-semibold text-white">
-      Loan &amp; Finance Services
-    </p>
-
-    <p className="mt-1 text-[11px] text-white/50">
-      Loans & financial assistance
-    </p>
-  </div>
-</NavLink>
-
+                  {serviceMenuItems.map((item, index) => {
+                    const Icon = item.icon;
+
+                    return (
+                      <NavLink
+                        key={item.name}
+                        to={item.path}
+                        onClick={() => setServiceOpen(false)}
+                        className="
+                          group
+                          flex
+                          items-center
+                          gap-4
+                          border-b
+                          border-white/10
+                          px-5
+                          py-3.5
+                          transition-all
+                          duration-300
+                          last:border-b-0
+                          hover:bg-white/10
+                        "
+                      >
+                        <div
+                          className="
+                            flex
+                            h-10
+                            w-10
+                            shrink-0
+                            items-center
+                            justify-center
+                            rounded-lg
+                            bg-white/10
+                            text-white
+                            transition-all
+                            duration-300
+                            group-hover:bg-[#d4af37]
+                            group-hover:text-[#102b29]
+                          "
+                        >
+                          <Icon size={18} />
+                        </div>
+
+                        <div className="min-w-0">
+                          <p
+                            className="
+                              text-[14px]
+                              font-semibold
+                              text-white
+                              transition-colors
+                              duration-300
+                              group-hover:text-[#d4af37]
+                            "
+                          >
+                            {item.name}
+                          </p>
+
+                          <p
+                            className="
+                              mt-1
+                              text-[11px]
+                              text-white/50
+                              transition-colors
+                              duration-300
+                              group-hover:text-white/70
+                            "
+                          >
+                            {item.description}
+                          </p>
+                        </div>
+
+                        <span
+                          className="
+                            ml-auto
+                            text-[10px]
+                            font-medium
+                            text-white/25
+                            transition-colors
+                            duration-300
+                            group-hover:text-[#d4af37]/70
+                          "
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </NavLink>
+                    );
+                  })}
                 </div>
-
               </div>
 
-
-              {/* =================================================
-                  CONTACT
-              ================================================== */}
+              {/* CONTACT */}
 
               <NavLink
                 to="/contact"
@@ -1071,7 +611,6 @@ const Navbar = () => {
                   }
                 `}
               >
-
                 Contact
 
                 <span
@@ -1090,12 +629,60 @@ const Navbar = () => {
                     group-hover:scale-x-100
                   "
                 />
-
               </NavLink>
 
+              {/* =================================================
+                  CAREERS
+              ================================================== */}
+
+              <NavLink
+                to="/careers"
+                className={({ isActive }) => `
+                  group
+                  relative
+                  flex
+                  h-full
+                  cursor-pointer
+                  items-center
+                  whitespace-nowrap
+                  px-4
+                  text-[17px]
+                  font-semibold
+                  transition-colors
+                  duration-200
+
+                  xl:px-5
+                  xl:text-[19px]
+
+                  ${
+                    isActive
+                      ? "text-white"
+                      : "text-white/75 hover:text-white"
+                  }
+                `}
+              >
+                Careers
+
+                <span
+                  className="
+                    absolute
+                    bottom-0
+                    left-4
+                    right-4
+                    h-[3px]
+                    origin-center
+                    scale-x-0
+                    rounded-full
+                    bg-white
+                    transition-transform
+                    duration-300
+                    group-hover:scale-x-100
+                  "
+                />
+              </NavLink>
 
               {/* =================================================
-                  RESOURCES DROPDOWN
+                  RESOURCES
               ================================================== */}
 
               <div
@@ -1103,7 +690,6 @@ const Navbar = () => {
                 onMouseEnter={() => setResourceOpen(true)}
                 onMouseLeave={() => setResourceOpen(false)}
               >
-
                 <button
                   type="button"
                   onClick={() => setResourceOpen(!resourceOpen)}
@@ -1128,9 +714,7 @@ const Navbar = () => {
                     xl:text-[19px]
                   "
                 >
-
                   Resources
-
 
                   <ChevronDown
                     size={17}
@@ -1140,14 +724,11 @@ const Navbar = () => {
 
                       ${
                         resourceOpen
-                          ? "rotate-180"
+                          ? "rotate-180 text-[#d4af37]"
                           : ""
                       }
                     `}
                   />
-
-
-                  {/* HOVER LINE */}
 
                   <span
                     className="
@@ -1165,9 +746,7 @@ const Navbar = () => {
                       group-hover:scale-x-100
                     "
                   />
-
                 </button>
-
 
                 {/* =================================================
                     RESOURCES DROPDOWN
@@ -1189,7 +768,6 @@ const Navbar = () => {
                     backdrop-blur-xl
 
                     sm:top-[84px]
-
                     lg:top-[90px]
 
                     transition-all
@@ -1218,7 +796,7 @@ const Navbar = () => {
                   <NavLink
                     to="/privacy-policy"
                     onClick={() => setResourceOpen(false)}
-                    className={({ isActive }) => `
+                    className="
                       group
                       flex
                       items-center
@@ -1229,15 +807,9 @@ const Navbar = () => {
                       py-5
                       transition-all
                       duration-300
-
-                      ${
-                        isActive
-                          ? "bg-white/10"
-                          : "hover:bg-white/10"
-                      }
-                    `}
+                      hover:bg-white/10
+                    "
                   >
-
                     <div
                       className="
                         flex
@@ -1249,37 +821,51 @@ const Navbar = () => {
                         rounded-lg
                         bg-white/10
                         text-white
-                        transition
+                        transition-all
+                        duration-300
 
-                        group-hover:bg-white
+                        group-hover:bg-[#d4af37]
                         group-hover:text-[#102b29]
                       "
                     >
                       <ShieldCheck size={18} />
                     </div>
 
-
                     <div>
-
-                      <p className="text-[15px] font-semibold text-white">
+                      <p
+                        className="
+                          text-[15px]
+                          font-semibold
+                          text-white
+                          transition-colors
+                          duration-300
+                          group-hover:text-[#d4af37]
+                        "
+                      >
                         Privacy Policy
                       </p>
 
-                      <p className="mt-1 text-[11px] text-white/50">
+                      <p
+                        className="
+                          mt-1
+                          text-[11px]
+                          text-white/50
+                          transition-colors
+                          duration-300
+                          group-hover:text-white/70
+                        "
+                      >
                         Information & privacy guidelines
                       </p>
-
                     </div>
-
                   </NavLink>
-
 
                   {/* COMPANY DOCUMENTS */}
 
                   <NavLink
                     to="/company-documents"
                     onClick={() => setResourceOpen(false)}
-                    className={({ isActive }) => `
+                    className="
                       group
                       flex
                       items-center
@@ -1288,15 +874,9 @@ const Navbar = () => {
                       py-5
                       transition-all
                       duration-300
-
-                      ${
-                        isActive
-                          ? "bg-white/10"
-                          : "hover:bg-white/10"
-                      }
-                    `}
+                      hover:bg-white/10
+                    "
                   >
-
                     <div
                       className="
                         flex
@@ -1308,45 +888,53 @@ const Navbar = () => {
                         rounded-lg
                         bg-white/10
                         text-white
-                        transition
+                        transition-all
+                        duration-300
 
-                        group-hover:bg-white
+                        group-hover:bg-[#d4af37]
                         group-hover:text-[#102b29]
                       "
                     >
                       <FileText size={18} />
                     </div>
 
-
                     <div>
-
-                      <p className="text-[15px] font-semibold text-white">
+                      <p
+                        className="
+                          text-[15px]
+                          font-semibold
+                          text-white
+                          transition-colors
+                          duration-300
+                          group-hover:text-[#d4af37]
+                        "
+                      >
                         Company's Documents
                       </p>
 
-                      <p className="mt-1 text-[11px] text-white/50">
+                      <p
+                        className="
+                          mt-1
+                          text-[11px]
+                          text-white/50
+                          transition-colors
+                          duration-300
+                          group-hover:text-white/70
+                        "
+                      >
                         Important company resources
                       </p>
-
                     </div>
-
                   </NavLink>
 
                 </div>
-
               </div>
 
-
-              {/* =================================================
-                  DIVIDER
-              ================================================== */}
+              {/* DIVIDER */}
 
               <div className="mx-2 h-[38px] w-px bg-white/20" />
 
-
-              {/* =================================================
-                  SCHEDULE APPOINTMENT
-              ================================================== */}
+              {/* SCHEDULE APPOINTMENT */}
 
               <button
                 type="button"
@@ -1363,19 +951,15 @@ const Navbar = () => {
                   text-white
                   transition-all
                   duration-300
-                  hover:text-[#9bd66f]
+                  hover:text-[#d4af37]
 
                   xl:px-4
                   xl:text-[19px]
                 "
               >
-
                 <div className="relative shrink-0">
 
-                  {/* PULSE DOT */}
-
                   <span className="absolute -right-2 -top-2 flex h-4 w-4">
-
                     <span
                       className="
                         absolute
@@ -1402,27 +986,20 @@ const Navbar = () => {
                         shadow-[0_0_12px_rgba(143,206,98,0.9)]
                       "
                     />
-
                   </span>
-
 
                   <MessageSquare
                     size={22}
                     strokeWidth={1.5}
                     className="text-[#6DA8B8]"
                   />
-
                 </div>
-
 
                 <span>
                   Schedule Appointment
                 </span>
-
               </button>
-
             </div>
-
 
             {/* =================================================
                 MOBILE MENU BUTTON
@@ -1455,24 +1032,19 @@ const Navbar = () => {
                 lg:hidden
               "
             >
-
               {mobileMenu ? (
                 <X size={21} />
               ) : (
                 <Menu size={21} />
               )}
-
             </button>
-
           </div>
-
 
           {/* =================================================
               MOBILE MENU
           ================================================== */}
 
           {mobileMenu && (
-
             <div
               className="
                 w-full
@@ -1484,9 +1056,7 @@ const Navbar = () => {
                 lg:hidden
               "
             >
-
               <div className="w-full">
-
 
                 {/* HOME */}
 
@@ -1511,14 +1081,13 @@ const Navbar = () => {
 
                     ${
                       isActive
-                        ? "text-[#9bd66f]"
+                        ? "text-[#d4af37]"
                         : "text-white/80 hover:text-white"
                     }
                   `}
                 >
                   Home
                 </NavLink>
-
 
                 {/* ABOUT */}
 
@@ -1542,7 +1111,7 @@ const Navbar = () => {
 
                     ${
                       isActive
-                        ? "text-[#9bd66f]"
+                        ? "text-[#d4af37]"
                         : "text-white/80 hover:text-white"
                     }
                   `}
@@ -1550,10 +1119,7 @@ const Navbar = () => {
                   About
                 </NavLink>
 
-
-                {/* =================================================
-                    MOBILE SERVICES
-                ================================================== */}
+                {/* MOBILE SERVICES */}
 
                 <button
                   type="button"
@@ -1579,11 +1145,9 @@ const Navbar = () => {
                     sm:text-[14px]
                   "
                 >
-
                   <span>
                     Our Services
                   </span>
-
 
                   <ChevronDown
                     size={17}
@@ -1593,19 +1157,16 @@ const Navbar = () => {
 
                       ${
                         mobileServiceOpen
-                          ? "rotate-180 text-[#9bd66f]"
+                          ? "rotate-180 text-[#d4af37]"
                           : ""
                       }
                     `}
                   />
-
                 </button>
-
 
                 {/* MOBILE SERVICE ITEMS */}
 
                 {mobileServiceOpen && (
-
                   <div
                     className="
                       border-b
@@ -1613,9 +1174,7 @@ const Navbar = () => {
                       bg-[#102b29]/80
                     "
                   >
-
-                    {serviceMenuItems.map((item) => {
-
+                    {serviceMenuItems.map((item, index) => {
                       const Icon = item.icon;
 
                       return (
@@ -1641,7 +1200,6 @@ const Navbar = () => {
                             last:border-b-0
                           "
                         >
-
                           <div
                             className="
                               flex
@@ -1653,30 +1211,41 @@ const Navbar = () => {
                               rounded-lg
                               bg-white/10
                               text-white/70
+                              transition-all
+                              duration-300
 
-                              group-hover:bg-white
+                              group-hover:bg-[#d4af37]
                               group-hover:text-[#102b29]
                             "
                           >
-
                             <Icon size={15} />
-
                           </div>
 
-
-                          <span>
+                          <span
+                            className="
+                              transition-colors
+                              duration-300
+                              group-hover:text-[#d4af37]
+                            "
+                          >
                             {item.name}
                           </span>
 
+                          <span
+                            className="
+                              ml-auto
+                              text-[9px]
+                              text-white/25
+                              group-hover:text-[#d4af37]/70
+                            "
+                          >
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
                         </NavLink>
                       );
-
                     })}
-
                   </div>
-
                 )}
-
 
                 {/* CONTACT */}
 
@@ -1700,7 +1269,7 @@ const Navbar = () => {
 
                     ${
                       isActive
-                        ? "text-[#9bd66f]"
+                        ? "text-[#d4af37]"
                         : "text-white/80 hover:text-white"
                     }
                   `}
@@ -1708,17 +1277,42 @@ const Navbar = () => {
                   Contact
                 </NavLink>
 
+                {/* CAREERS */}
 
-                {/* =================================================
-                    MOBILE RESOURCES
-                ================================================== */}
+                <NavLink
+                  to="/careers"
+                  onClick={closeMobileMenu}
+                  className={({ isActive }) => `
+                    flex
+                    w-full
+                    items-center
+                    justify-between
+                    border-b
+                    border-white/10
+                    px-2
+                    py-3
+                    text-[13px]
+                    font-medium
+                    transition-colors
+
+                    sm:text-[14px]
+
+                    ${
+                      isActive
+                        ? "text-[#d4af37]"
+                        : "text-white/80 hover:text-white"
+                    }
+                  `}
+                >
+                  Careers
+                </NavLink>
+
+                {/* MOBILE RESOURCES */}
 
                 <button
                   type="button"
                   onClick={() =>
-                    setMobileResourceOpen(
-                      !mobileResourceOpen
-                    )
+                    setMobileResourceOpen(!mobileResourceOpen)
                   }
                   className="
                     flex
@@ -1739,11 +1333,9 @@ const Navbar = () => {
                     sm:text-[14px]
                   "
                 >
-
                   <span>
                     Resources
                   </span>
-
 
                   <ChevronDown
                     size={17}
@@ -1753,31 +1345,31 @@ const Navbar = () => {
 
                       ${
                         mobileResourceOpen
-                          ? "rotate-180"
+                          ? "rotate-180 text-[#d4af37]"
                           : ""
                       }
                     `}
                   />
-
                 </button>
-
 
                 {/* MOBILE RESOURCES ITEMS */}
 
                 {mobileResourceOpen && (
-
                   <div
                     className="
                       border-b
                       border-white/10
-                      bg-white/[0.03]
+                      bg-[#102b29]/80
                     "
                   >
+
+                    {/* PRIVACY POLICY */}
 
                     <NavLink
                       to="/privacy-policy"
                       onClick={closeMobileMenu}
                       className="
+                        group
                         flex
                         items-center
                         gap-3
@@ -1789,24 +1381,30 @@ const Navbar = () => {
                         text-white/70
                         transition
                         hover:bg-white/5
-                        hover:text-white
                       "
                     >
-
                       <ShieldCheck
                         size={16}
-                        className="text-white/70"
+                        className="
+                          text-white/70
+                          transition-colors
+                          duration-300
+                          group-hover:text-[#d4af37]
+                        "
                       />
 
-                      Privacy Policy
-
+                      <span className="transition-colors duration-300 group-hover:text-[#d4af37]">
+                        Privacy Policy
+                      </span>
                     </NavLink>
 
+                    {/* COMPANY DOCUMENTS */}
 
                     <NavLink
                       to="/company-documents"
                       onClick={closeMobileMenu}
                       className="
+                        group
                         flex
                         items-center
                         gap-3
@@ -1816,57 +1414,26 @@ const Navbar = () => {
                         text-white/70
                         transition
                         hover:bg-white/5
-                        hover:text-white
                       "
                     >
-
                       <FileText
                         size={16}
-                        className="text-white/70"
+                        className="
+                          text-white/70
+                          transition-colors
+                          duration-300
+                          group-hover:text-[#d4af37]
+                        "
                       />
 
-                      Company's Documents
-
+                      <span className="transition-colors duration-300 group-hover:text-[#d4af37]">
+                        Company's Documents
+                      </span>
                     </NavLink>
 
                   </div>
-
                 )}
-
-
-                {/* CAREERS */}
-
-                <NavLink
-                  to="/careers"
-                  onClick={closeMobileMenu}
-                  className={({ isActive }) => `
-                    flex
-                    w-full
-                    items-center
-                    justify-between
-                    border-b
-                    border-white/10
-                    px-2
-                    py-3
-                    text-left
-                    text-[13px]
-                    font-medium
-                    transition-colors
-
-                    sm:text-[14px]
-
-                    ${
-                      isActive
-                        ? "text-[#9bd66f]"
-                        : "text-white/80 hover:text-white"
-                    }
-                  `}
-                >
-                  Careers
-                </NavLink>
-
               </div>
-
 
               {/* =================================================
                   MOBILE SCHEDULE APPOINTMENT
@@ -1900,7 +1467,6 @@ const Navbar = () => {
                   sm:text-[14px]
                 "
               >
-
                 <div className="relative">
 
                   <span className="absolute -right-2 -top-2 flex h-3.5 w-3.5">
@@ -1932,34 +1498,24 @@ const Navbar = () => {
 
                   </span>
 
-
                   <MessageSquare
                     size={17}
                     strokeWidth={1.5}
                   />
-
                 </div>
 
-
                 Schedule Appointment
-
               </button>
-
             </div>
-
           )}
-
         </div>
-
       </nav>
-
 
       {/* =====================================================
           RIGHT CORNER TOGGLE
       ====================================================== */}
 
       {hasScrolled && (
-
         <button
           type="button"
           onClick={toggleNavbar}
@@ -2004,7 +1560,6 @@ const Navbar = () => {
             hover:bg-[#326844]
           "
         >
-
           <span
             className="
               absolute
@@ -2019,7 +1574,6 @@ const Navbar = () => {
             "
           />
 
-
           {navbarOpen ? (
             <ChevronUp
               size={22}
@@ -2031,11 +1585,8 @@ const Navbar = () => {
               strokeWidth={1.8}
             />
           )}
-
         </button>
-
       )}
-
 
       {/* =====================================================
           SCHEDULE APPOINTMENT MODAL
@@ -2045,10 +1596,8 @@ const Navbar = () => {
         isOpen={isAppointmentOpen}
         onClose={() => setIsAppointmentOpen(false)}
       />
-
     </>
   );
 };
-
 
 export default Navbar;

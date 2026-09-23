@@ -21,7 +21,7 @@ const categoryFolders = {
   "registration-services": "4_Registration Services",
   "hr-compliance-services": "5_HR Compliance Services",
   "other-compliance": "6_Other Compliance",
-  "government-documentation": "7_Government & Documentation",
+  "government-documentation": "7_Documentation Support",
   "finance-services": "8_Loans",
 };
 
@@ -62,7 +62,7 @@ const categoryNumbers = {
 | ├── 4_Registration Services/
 | ├── 5_HR Compliance Services/
 | ├── 6_Other Compliance/
-| ├── 7_Government & Documentation/
+| ├── 7_Documentation Support/
 | └── 8_Loans/
 |
 */
@@ -250,7 +250,7 @@ const serviceIcons = {
 
   /*
   |--------------------------------------------------------------------------
-  | GOVERNMENT & DOCUMENTATION
+  | Documentation Support
   |--------------------------------------------------------------------------
   */
 

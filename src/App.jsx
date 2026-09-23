@@ -21,6 +21,7 @@ import Home from "./pages/home";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
+import Career from "./pages/Career";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CompanyDocuments from "./pages/CompanyDocuments";
 
@@ -36,49 +37,6 @@ import Registration from "./pages/services/Registration";
 import HRCompliance from "./pages/services/HRCompliance";
 import OtherCompliance from "./pages/services/OtherCompliance";
 import GovernmentDocumentation from "./pages/services/GovernmentDocumentation";
-
-// ================================
-// CAREERS PAGE
-// ================================
-
-const Careers = () => {
-  return (
-    <main className="min-h-screen bg-[#f4f3ef] pt-24">
-      {/* HERO */}
-      <section className="bg-[#102b29] px-6 py-20 sm:py-24">
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="text-xs font-semibold tracking-[0.3em] text-white/50">
-            JOIN OUR TEAM
-          </p>
-
-          <h1 className="mt-5 text-4xl font-bold text-white sm:text-5xl md:text-6xl">
-            Careers at K S & Company
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/65 sm:text-lg">
-            Explore opportunities to learn, grow, and build a meaningful
-            professional career with K S & Company.
-          </p>
-        </div>
-      </section>
-
-      {/* CONTENT */}
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold text-[#102b29]">
-            Build Your Future With Us
-          </h2>
-
-          <p className="mx-auto mt-5 max-w-2xl leading-8 text-[#102b29]/70">
-            We believe great work comes from talented people who are curious,
-            responsible, and committed to delivering value. Join our team and
-            grow alongside experienced professionals.
-          </p>
-        </div>
-      </section>
-    </main>
-  );
-};
 
 // ================================
 // APP COMPONENT
@@ -156,7 +114,7 @@ function App() {
           element={<OtherCompliance />}
         />
 
-        {/* 08 — GOVERNMENT & DOCUMENTATION */}
+        {/* 08 — DOCUMENTATION SUPPORT */}
         <Route
           path="/services/government-documentation"
           element={<GovernmentDocumentation />}
@@ -165,12 +123,18 @@ function App() {
         {/* =====================================
             CONTACT
         ===================================== */}
-        <Route path="/contact" element={<Contact />} />
+        <Route
+          path="/contact"
+          element={<Contact />}
+        />
 
         {/* =====================================
             CAREERS
         ===================================== */}
-        <Route path="/careers" element={<Careers />} />
+        <Route
+          path="/careers"
+          element={<Career />}
+        />
 
         {/* =====================================
             PRIVACY POLICY
@@ -191,7 +155,10 @@ function App() {
         {/* =====================================
             404 FALLBACK
         ===================================== */}
-        <Route path="*" element={<Home />} />
+        <Route
+          path="*"
+          element={<Home />}
+        />
       </Routes>
 
       {/* WHATSAPP BUTTON */}

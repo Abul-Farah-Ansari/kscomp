@@ -7,7 +7,7 @@ const ServiceOverview = ({ data }) => {
       id="service-overview"
       className="
         relative
-        w-full
+        w-fullS
         overflow-hidden
         bg-[#ffffff]
         py-24

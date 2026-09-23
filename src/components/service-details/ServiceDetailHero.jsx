@@ -5,81 +5,49 @@ import { ArrowUpRight } from "lucide-react";
 import serviceDetailImage from "../../assets/service-details.png";
 
 /* =========================================================
-   SERVICE HERO IMAGES
-
-   Folder:
-   src/assets/heroimages/
-
-   1.png → Taxation
-   2.png → Insurance
-   3.png → Accounting
-   4.png → Registration
-   5.png → HR Compliance
-   6.png → Other Compliance
-   7.png → Government & Documentation
-   8.png → Loan & Finance
-========================================================= */
-
-const heroImages = import.meta.glob(
-  "../../assets/heroimages/*.{png,jpg,jpeg,webp,avif,PNG,JPG,JPEG,WEBP,AVIF}",
-  {
-    eager: true,
-    query: "?url",
-    import: "default",
-  }
-);
-
-/* =========================================================
-   FIND IMAGE BY SERVICE NUMBER
-========================================================= */
-
-const getHeroImage = (number) => {
-  const targetNumber = String(number || "")
-    .replace(/^0+/, "")
-    .trim();
-
-  const entry = Object.entries(heroImages).find(
-    ([path]) => {
-      const fileName = path
-        .split("/")
-        .pop()
-        ?.split(".")[0]
-        ?.trim();
-
-      return fileName === targetNumber;
-    }
-  );
-
-  return entry?.[1] || null;
-};
-
-/* =========================================================
-   COMPONENT
+   SERVICE DETAIL HERO
 ========================================================= */
 
 const ServiceDetailHero = ({ data }) => {
   if (!data) return null;
 
-  const serviceImage = getHeroImage(data.number);
+  /* =========================================================
+     HERO CONTENT
+  ========================================================= */
+
+  const heroTitle =
+    data.title ||
+    data.category ||
+    "Professional Services";
+
+  const heroDescription =
+    data.description ||
+    data.shortDescription ||
+    data.overview ||
+    "";
+
+  const serviceNumber = String(
+    data.number || "01"
+  ).padStart(2, "0");
 
   return (
     <section
       className="
         relative
-        h-[100svh]
-        min-h-[620px]
+        flex
+        min-h-[100svh]
         w-full
         overflow-hidden
+
         bg-[#0b211f]
         text-white
+
         pt-[88px]
-        box-border
       "
     >
-
-      {/* =========================================================
+      {/* =====================================================
           FULL HERO BACKGROUND
-      ========================================================== */}
+      ===================================================== */}
 
       <motion.div
         initial={{
@@ -94,7 +62,10 @@ const ServiceDetailHero = ({ data }) => {
           duration: 1.2,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className="absolute inset-0"
+        className="
+          absolute
+          inset-0
+        "
       >
         <img
           src={serviceDetailImage}
@@ -109,38 +80,40 @@ const ServiceDetailHero = ({ data }) => {
         />
       </motion.div>
 
-      {/* =========================================================
-          DARK GREEN OVERLAY
-      ========================================================== */}
+      {/* =====================================================
+          DARK OVERLAY
+      ===================================================== */}
 
       <div
         className="
           pointer-events-none
           absolute
           inset-0
-          bg-[#0b211f]/55
+
+          bg-[#0b211f]/30
         "
       />
 
-      {/* =========================================================
-          LEFT GRADIENT
-      ========================================================== */}
+      {/* =====================================================
+          LEFT TEXT GRADIENT
+      ===================================================== */}
 
       <div
         className="
           pointer-events-none
           absolute
           inset-0
+
           bg-gradient-to-r
-          from-[#0b211f]/90
-          via-[#0b211f]/55
+          from-[#071c1a]/95
+          via-[#0b211f]/65
           to-[#0b211f]/10
         "
       />
 
-      {/* =========================================================
+      {/* =====================================================
           BOTTOM GRADIENT
-      ========================================================== */}
+      ===================================================== */}
 
       <div
         className="
@@ -148,17 +121,19 @@ const ServiceDetailHero = ({ data }) => {
           absolute
           inset-x-0
           bottom-0
-          h-[42%]
+
+          h-[48%]
+
           bg-gradient-to-t
-          from-[#0b211f]/85
-          via-[#0b211f]/30
+          from-[#071c1a]/90
+          via-[#0b211f]/35
           to-transparent
         "
       />
 
-      {/* =========================================================
+      {/* =====================================================
           DECORATIVE CIRCLES
-      ========================================================== */}
+      ===================================================== */}
 
       <div
         className="
@@ -168,315 +143,562 @@ const ServiceDetailHero = ({ data }) => {
           overflow-hidden
         "
       >
-        <div
-          className="
-            absolute
-            -right-[180px]
-            -top-[180px]
-            h-[600px]
-            w-[600px]
-            rounded-full
-            border
-            border-white/[0.07]
-          "
-        />
+        {/* LARGE CIRCLE */}
 
         <div
           className="
             absolute
-            -right-[120px]
-            -top-[120px]
+
+            -right-[180px]
+            -top-[180px]
+
+            h-[620px]
+            w-[620px]
+
+            rounded-full
+
+            border
+            border-white/[0.06]
+          "
+        />
+
+        {/* GOLD CIRCLE */}
+
+        <div
+          className="
+            absolute
+
+            -right-[110px]
+            -top-[110px]
+
             h-[470px]
             w-[470px]
+
             rounded-full
+
             border
             border-[#c5a46d]/20
           "
         />
 
+        {/* GOLD DOT */}
+
         <div
           className="
             absolute
+
             right-[16%]
             top-[22%]
+
             h-2
             w-2
+
             rounded-full
+
             bg-[#c5a46d]
+
             shadow-[0_0_18px_rgba(197,164,109,0.8)]
+          "
+        />
+
+        {/* SMALL DECORATIVE LINE */}
+
+        <div
+          className="
+            absolute
+
+            bottom-[17%]
+            right-[10%]
+
+            hidden
+
+            h-px
+            w-[110px]
+
+            bg-gradient-to-r
+            from-transparent
+            to-[#c5a46d]/40
+
+            lg:block
           "
         />
       </div>
 
-      {/* =========================================================
-          MAIN CONTAINER
-      ========================================================== */}
+      {/* =====================================================
+          MAIN CONTENT
+      ===================================================== */}
 
       <div
         className="
           relative
           z-10
+
           mx-auto
+
           flex
-          h-full
-          min-h-0
+          min-h-[calc(100svh-88px)]
           w-full
-          max-w-[1500px]
-          flex-col
-          px-5
-          sm:px-8
-          lg:px-12
-          xl:px-16
+          max-w-[1600px]
+
+          items-center
+
+          px-6
+          py-16
+
+          sm:px-10
+
+          lg:px-16
+
+          xl:px-20
         "
       >
-
-        {/* =======================================================
-            HERO CONTENT AREA
-        ======================================================== */}
+        {/* =================================================
+            TEXT AREA
+        ================================================= */}
 
         <div
           className="
             relative
-            flex
-            min-h-0
-            flex-1
-            items-center
-            py-5
-            sm:py-7
-            lg:py-8
+
+            w-full
+
+            max-w-[900px]
+
+            pt-8
+
+            sm:pt-10
+
+            lg:pt-0
           "
         >
-
-          {/* =====================================================
-              SERVICE IMAGE CARD
-
-              Slightly taller + narrower
-          ====================================================== */}
+          {/* =================================================
+              SERVICE NUMBER
+          ================================================= */}
 
           <motion.div
             initial={{
               opacity: 0,
-              x: -70,
+              y: 15,
             }}
             animate={{
               opacity: 1,
-              x: 0,
+              y: 0,
             }}
             transition={{
-              duration: 0.9,
-              delay: 0.25,
+              duration: 0.7,
+              delay: 0.2,
+            }}
+            className="
+              mb-7
+
+              flex
+              items-center
+              gap-4
+            "
+          >
+            <span
+              className="
+                text-[11px]
+                font-semibold
+
+                tracking-[0.28em]
+
+                text-[#c5a46d]
+
+                sm:text-[12px]
+              "
+            >
+              {serviceNumber}
+            </span>
+
+            <span
+              className="
+                h-px
+                w-12
+
+                bg-[#c5a46d]/60
+              "
+            />
+
+            <span
+              className="
+                text-[10px]
+                font-medium
+
+                uppercase
+
+                tracking-[0.28em]
+
+                text-white/45
+
+                sm:text-[11px]
+              "
+            >
+              Professional Services
+            </span>
+          </motion.div>
+
+          {/* =================================================
+              HERO TITLE
+          ================================================= */}
+
+          <motion.h1
+            key={heroTitle}
+            initial={{
+              opacity: 0,
+              y: 30,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.8,
               ease: [0.22, 1, 0.36, 1],
             }}
             className="
-              relative
-              z-20
-              w-full
-              max-w-[780px]
-              lg:w-[62%]
-              xl:w-[60%]
+              max-w-[900px]
+
+              text-[48px]
+              font-semibold
+
+              leading-[1.02]
+
+              tracking-[-0.04em]
+
+              text-white
+
+              sm:text-[58px]
+
+              md:text-[66px]
+
+              lg:text-[76px]
+
+              xl:text-[88px]
             "
           >
+            {heroTitle}
+          </motion.h1>
 
-            {/* =================================================
-                IMAGE CARD
-            ================================================== */}
+          {/* =================================================
+              GOLD UNDERLINE
+          ================================================= */}
 
-            <div
+          <motion.div
+            initial={{
+              opacity: 0,
+              width: 0,
+            }}
+            animate={{
+              opacity: 1,
+              width: 90,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.25,
+            }}
+            className="
+              mt-7
+
+              h-[2px]
+
+              bg-[#c5a46d]
+            "
+          />
+
+          {/* =================================================
+              DESCRIPTION
+          ================================================= */}
+
+          {heroDescription && (
+            <motion.p
+              key={heroDescription}
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.8,
+                delay: 0.35,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="
-                relative
-                h-[470px]
-                w-full
-                overflow-hidden
-                bg-[#0b211f]
-                shadow-[0_30px_80px_rgba(0,0,0,0.42)]
-                sm:h-[495px]
-                md:h-[515px]
-                lg:h-[525px]
-                xl:h-[540px]
+                mt-7
+
+                max-w-[720px]
+
+                text-[15px]
+                leading-7
+
+                text-white/60
+
+                sm:text-[16px]
+                sm:leading-8
+
+                lg:text-[17px]
               "
             >
+              {heroDescription}
+            </motion.p>
+          )}
 
-              {/* =================================================
-                  SERVICE IMAGE
-              ================================================== */}
+          {/* =================================================
+              SERVICE CATEGORY
+          ================================================= */}
 
-              {serviceImage ? (
-                <motion.img
-                  initial={{
-                    opacity: 0,
-                    scale: 1.05,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  transition={{
-                    duration: 1,
-                    delay: 0.35,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  src={serviceImage}
-                  alt={data.category || "Professional Service"}
-                  className="
-                    absolute
-                    inset-0
-                    h-full
-                    w-full
-                    object-cover
-                    object-center
-                  "
-                />
-              ) : (
-                <div
-                  className="
-                    absolute
-                    inset-0
-                    flex
-                    items-center
-                    justify-center
-                    bg-[#0b211f]
-                  "
-                >
-                  <span className="text-sm text-white/40">
-                    Service Image
-                  </span>
-                </div>
-              )}
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 15,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: 0.55,
+            }}
+            className="
+              mt-8
+            "
+          >
+            <span
+              className="
+                text-[11px]
+                font-medium
 
-              {/* =================================================
-                  SUBTLE BOTTOM OVERLAY
+                uppercase
 
-                  Keeps button readable without hiding image.
-              ================================================== */}
+                tracking-[0.22em]
 
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  inset-x-0
-                  bottom-0
-                  h-[35%]
-                  bg-gradient-to-t
-                  from-[#0b211f]/55
-                  to-transparent
-                "
-              />
-
-              {/* =================================================
-                  INNER GOLD BORDER
-              ================================================== */}
-
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  inset-3
-                  z-10
-                  border
-                  border-[#c5a46d]/25
-                  sm:inset-4
-                "
-              />
-
-              {/* =================================================
-                  EXPLORE SERVICE BUTTON
-
-                  REAL REACT / HTML
-              ================================================== */}
-
-              <motion.a
-                href="#service-overview"
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                transition={{
-                  duration: 0.7,
-                  delay: 0.8,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                whileHover={{
-                  y: -4,
-                }}
-                whileTap={{
-                  scale: 0.97,
-                }}
-                className="
-                  group
-                  absolute
-                  bottom-7
-                  left-7
-                  z-30
-                  inline-flex
-                  items-center
-                  gap-3
-                  border
-                  border-[#c5a46d]
-                  bg-[#c5a46d]
-                  px-5
-                  py-3
-                  text-[8px]
-                  font-semibold
-                  uppercase
-                  tracking-[1.7px]
-                  text-[#0b211f]
-                  shadow-[0_12px_35px_rgba(0,0,0,0.35)]
-                  transition-all
-                  duration-300
-                  hover:bg-[#d5b97f]
-                  hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]
-                  sm:bottom-9
-                  sm:left-9
-                  sm:px-6
-                  sm:py-3.5
-                  sm:text-[9px]
-                  md:bottom-10
-                  md:left-10
-                  lg:bottom-11
-                  lg:left-11
-                "
-              >
-
-                <span>
-                  Explore Service
-                </span>
-
-                <span
-                  className="
-                    flex
-                    h-6
-                    w-6
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#0b211f]
-                    text-[#c5a46d]
-                    transition-transform
-                    duration-300
-                    group-hover:-translate-y-0.5
-                    group-hover:translate-x-0.5
-                  "
-                >
-                  <ArrowUpRight
-                    size={13}
-                    strokeWidth={1.8}
-                  />
-                </span>
-
-              </motion.a>
-
-            </div>
-
+                text-white/35
+              "
+            >
+              {data.category}
+            </span>
           </motion.div>
 
-        </div>
+          {/* =================================================
+              EXPLORE SERVICE BUTTON
+          ================================================= */}
 
+          <motion.a
+            href="#service-overview"
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.8,
+              delay: 0.65,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            whileHover={{
+              y: -3,
+            }}
+            whileTap={{
+              scale: 0.97,
+            }}
+            className="
+              group
+
+              mt-9
+
+              inline-flex
+
+              items-center
+              gap-4
+
+              border
+              border-[#c5a46d]
+
+              bg-[#c5a46d]
+
+              px-6
+              py-3.5
+
+              text-[10px]
+              font-semibold
+
+              uppercase
+
+              tracking-[0.18em]
+
+              text-[#102b29]
+
+              shadow-[0_12px_35px_rgba(0,0,0,0.28)]
+
+              transition-all
+              duration-300
+
+              hover:bg-transparent
+
+              hover:text-[#c5a46d]
+
+              sm:px-7
+              sm:py-4
+
+              sm:text-[11px]
+            "
+          >
+            <span>
+              Explore Service
+            </span>
+
+            <span
+              className="
+                flex
+                h-7
+                w-7
+
+                items-center
+                justify-center
+
+                rounded-full
+
+                bg-[#102b29]
+
+                text-[#c5a46d]
+
+                transition-transform
+                duration-300
+
+                group-hover:-translate-y-0.5
+                group-hover:translate-x-0.5
+              "
+            >
+              <ArrowUpRight
+                size={14}
+                strokeWidth={1.7}
+              />
+            </span>
+          </motion.a>
+        </div>
       </div>
 
+      {/* =====================================================
+          BOTTOM SERVICE INDICATOR
+      ===================================================== */}
+
+      <div
+        className="
+          absolute
+          bottom-7
+          left-6
+          z-20
+
+          hidden
+
+          items-center
+          gap-3
+
+          sm:left-10
+          sm:flex
+
+          lg:left-16
+          xl:left-20
+        "
+      >
+        <span
+          className="
+            h-px
+            w-8
+
+            bg-white/20
+          "
+        />
+
+        <span
+          className="
+            text-[9px]
+            uppercase
+
+            tracking-[0.25em]
+
+            text-white/30
+          "
+        >
+          K S &amp; Company
+        </span>
+      </div>
+
+      {/* =====================================================
+          SCROLL INDICATOR
+      ===================================================== */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        transition={{
+          delay: 1.2,
+          duration: 0.8,
+        }}
+        className="
+          absolute
+          bottom-8
+          right-6
+          z-20
+
+          hidden
+
+          items-center
+          gap-3
+
+          sm:flex
+
+          lg:right-16
+          xl:right-20
+        "
+      >
+        <span
+          className="
+            text-[9px]
+
+            uppercase
+
+            tracking-[0.25em]
+
+            text-white/30
+          "
+        >
+          Explore
+        </span>
+
+        <span
+          className="
+            flex
+            h-7
+            w-7
+
+            items-center
+            justify-center
+
+            rounded-full
+
+            border
+            border-white/15
+          "
+        >
+          <ArrowUpRight
+            size={12}
+            strokeWidth={1.5}
+            className="rotate-90 text-[#c5a46d]"
+          />
+        </span>
+      </motion.div>
     </section>
   );
 };
