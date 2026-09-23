@@ -2,6 +2,18 @@ import React from "react";
 import { motion } from "framer-motion";
 
 /* =========================================================
+   CLIENT LOGO IMPORTS
+========================================================= */
+
+import ZaibInfotechLogo from "../../assets/images/clients/zaib-infotech.png";
+import ExpertOrganizersLogo from "../../assets/images/clients/expert-organizers.png";
+import AlvidaToursLogo from "../../assets/images/clients/alvida-tours.png";
+
+import IOCLLogo from "../../assets/hr-compliance/iocl_square.png";
+import JaksonLogo from "../../assets/hr-compliance/jakson_square.png";
+import SterlingWilsonLogo from "../../assets/hr-compliance/sterling_wilson_square.png";
+
+/* =========================================================
    MAIN CLIENTS
    TOTAL = 16
 
@@ -13,79 +25,94 @@ import { motion } from "framer-motion";
 const clients = [
   {
     name: "Zaib Infotech",
-    logo: "/images/clients/zaib-infotech.png",
+    logo: ZaibInfotechLogo,
     type: "image",
   },
+
   {
     name: "Expert Organizers",
-    logo: "/images/clients/expert-organizers.png",
+    logo: ExpertOrganizersLogo,
     type: "image",
   },
+
   {
     name: "Alvida Tour and Travels",
-    logo: "/images/clients/alvida-tours.png",
+    logo: AlvidaToursLogo,
     type: "image",
   },
+
   {
     name: "AR Printing and Packaging",
     initials: "AR",
     type: "text",
   },
+
   {
     name: "BROSWEL RESEARCH INDIA Pvt. Ltd",
     initials: "BR",
     type: "text",
   },
+
   {
     name: "CORRO VISTA PRIVATE LIMITED",
     initials: "CV",
     type: "text",
   },
+
   {
     name: "HAND TO HAND SERVICES PRIVATE LIMITED",
     initials: "HH",
     type: "text",
   },
+
   {
     name: "IRIUM LABS (OPC) PRIVATE LIMITED",
     initials: "IL",
     type: "text",
   },
+
   {
     name: "KUSCO PRIVATE LIMITED",
     initials: "KP",
     type: "text",
   },
+
   {
     name: "MAS ELECTRA TECH PRIVATE LIMITED",
     initials: "ME",
     type: "text",
   },
+
   {
     name: "MOONEXT CONSTRUCTIONS PRIVATE LIMITED",
     initials: "MC",
     type: "text",
   },
+
   {
     name: "NEXUS WORKFORCE PRIVATE LIMITED",
     initials: "NW",
     type: "text",
   },
+
   {
     name: "NUSKY INFRATECH PRIVATE LIMITED",
     initials: "NI",
     type: "text",
   },
+
   {
     name: "Payexcel Business Solutions Private Limited",
     initials: "PB",
     type: "text",
   },
+
   {
     name: "RADIATION POWER PRIVATE LIMITED",
     initials: "RP",
     type: "text",
   },
+
   {
     name: "Scrapjet Private Limited",
     initials: "SP",
@@ -111,20 +138,26 @@ const hrComplianceClients = [
     name: "Indian Oil Corporation Limited",
     location: "Barauni, Bihar",
     initials: "IOCL",
-    logo: "../../../public/images/hr-compliance/iocl_square.png",
+    logo: IOCLLogo,
+    type: "image",
   },
+
   {
     name: "Jakson Limited",
     location: "India",
     initials: "JAKSON",
-    logo: "../../../public/images/hr-compliance/jakson_square.png",
+    logo: JaksonLogo,
+    type: "image",
   },
+
   {
     name: "Sterling & Wilson Private Limited",
     location: "India",
     initials: "S&W",
-    logo: "../../../public/images/hr-compliance/sterling_wilson_square.png",
+    logo: SterlingWilsonLogo,
+    type: "image",
   },
+
   {
     name: "ABC Company",
     location: "Delhi",
@@ -167,7 +200,6 @@ const ClientCard = ({ client, index }) => {
         sm:w-[275px]
       "
     >
-
       {/* TOP GOLD ACCENT */}
 
       <div
@@ -261,10 +293,9 @@ const ClientCard = ({ client, index }) => {
           group-hover:-translate-y-1
         "
       >
-
         {/* IMAGE CLIENT */}
 
-        {client.type === "image" && (
+        {client.type === "image" && client.logo && (
           <div
             className="
               flex
@@ -357,7 +388,6 @@ const ClientCard = ({ client, index }) => {
             </span>
           </div>
         )}
-
       </div>
 
       {/* GOLD DIVIDER */}
@@ -427,7 +457,6 @@ const ClientCard = ({ client, index }) => {
           group-hover:w-24
         "
       />
-
     </div>
   );
 };
@@ -436,10 +465,7 @@ const ClientCard = ({ client, index }) => {
    MARQUEE
 ========================================================= */
 
-const ClientMarquee = ({
-  clients,
-  reverse = false,
-}) => {
+const ClientMarquee = ({ clients, reverse = false }) => {
   const duplicatedClients = [
     ...clients,
     ...clients,
@@ -448,7 +474,6 @@ const ClientMarquee = ({
 
   return (
     <div className="group/marquee relative overflow-hidden">
-
       {/* LEFT FADE */}
 
       <div
@@ -513,7 +538,6 @@ const ClientMarquee = ({
           />
         ))}
       </div>
-
     </div>
   );
 };
@@ -535,7 +559,6 @@ const Clients = () => {
         lg:py-24
       "
     >
-
       {/* =====================================================
           BACKGROUND DETAILS
       ====================================================== */}
@@ -580,7 +603,6 @@ const Clients = () => {
           xl:px-16
         "
       >
-
         {/* =================================================
             HEADER
         ================================================= */}
@@ -613,9 +635,7 @@ const Clients = () => {
             sm:justify-between
           "
         >
-
           <div className="max-w-[760px]">
-
             <div
               className="
                 mb-4
@@ -667,6 +687,7 @@ const Clients = () => {
               "
             >
               Trusted relationships,
+
               <span
                 className="
                   block
@@ -676,7 +697,6 @@ const Clients = () => {
                 built over time.
               </span>
             </h2>
-
           </div>
 
           <div
@@ -689,7 +709,6 @@ const Clients = () => {
               sm:text-right
             "
           >
-
             <div
               className="
                 mt-1
@@ -712,9 +731,7 @@ const Clients = () => {
               Professional relationships built through trust,
               consistency and dependable financial support.
             </p>
-
           </div>
-
         </motion.div>
 
         {/* =================================================
@@ -750,7 +767,6 @@ const Clients = () => {
             sm:py-7
           "
         >
-
           {/* TOP LABEL */}
 
           <div
@@ -885,7 +901,6 @@ const Clients = () => {
               "
             />
           </div>
-
         </motion.div>
 
         {/* =================================================
@@ -914,7 +929,6 @@ const Clients = () => {
             justify-between
           "
         >
-
           <div
             className="
               flex
@@ -922,7 +936,6 @@ const Clients = () => {
               gap-3
             "
           >
-
             <span className="relative flex h-2 w-2">
               <span
                 className="
@@ -959,7 +972,6 @@ const Clients = () => {
             >
               16 trusted business relationships
             </span>
-
           </div>
 
           <span
@@ -974,7 +986,6 @@ const Clients = () => {
           >
             K S &amp; Company
           </span>
-
         </motion.div>
 
         {/* =================================================
@@ -1012,10 +1023,7 @@ const Clients = () => {
             lg:py-16
           "
         >
-
-          {/* =================================================
-              HR BACKGROUND DECORATIONS
-          ================================================= */}
+          {/* HR BACKGROUND DECORATIONS */}
 
           <div
             className="
@@ -1046,13 +1054,9 @@ const Clients = () => {
           />
 
           <div className="relative z-10">
-
-            {/* =================================================
-                HR HEADER
-            ================================================= */}
+            {/* HR HEADER */}
 
             <div className="mx-auto max-w-3xl text-center">
-
               <div
                 className="
                   mb-4
@@ -1062,7 +1066,6 @@ const Clients = () => {
                   gap-3
                 "
               >
-
                 <span
                   className="
                     h-px
@@ -1090,7 +1093,6 @@ const Clients = () => {
                     bg-[#c5a46d]
                   "
                 />
-
               </div>
 
               <h3
@@ -1134,12 +1136,9 @@ const Clients = () => {
                 Barauni, Bihar, Jakson Limited, Sterling &amp; Wilson
                 Private Limited and ABC Company, Delhi.
               </p>
-
             </div>
 
-            {/* =================================================
-                HR CLIENT CARDS — 4 CLIENTS
-            ================================================= */}
+            {/* HR CLIENT CARDS — 4 CLIENTS */}
 
             <div
               className="
@@ -1154,7 +1153,6 @@ const Clients = () => {
                 lg:gap-5
               "
             >
-
               {hrComplianceClients.map((client, index) => (
                 <motion.div
                   key={client.name}
@@ -1194,7 +1192,6 @@ const Clients = () => {
                     sm:p-6
                   "
                 >
-
                   {/* TOP NUMBER */}
 
                   <span
@@ -1241,7 +1238,6 @@ const Clients = () => {
                       pt-6
                     "
                   >
-
                     <div
                       className="
                         flex
@@ -1263,56 +1259,17 @@ const Clients = () => {
                         group-hover:shadow-[0_12px_30px_rgba(16,43,41,0.10)]
                       "
                     >
-
                       {client.logo ? (
-                        <>
-                          <img
-                            src={client.logo}
-                            alt={`${client.name} logo`}
-                            loading="lazy"
-                            referrerPolicy="no-referrer"
-                            className="
-                              h-full
-                              w-full
-                              object-contain
-                            "
-                            onError={(event) => {
-                              event.currentTarget.style.display = "none";
-
-                              const fallback =
-                                event.currentTarget.nextElementSibling;
-
-                              if (fallback) {
-                                fallback.style.display = "flex";
-                              }
-                            }}
-                          />
-
-                          <div
-                            className="
-                              hidden
-                              h-full
-                              w-full
-                              items-center
-                              justify-center
-                              bg-[#f7f5ef]
-                              px-3
-                              text-center
-                            "
-                          >
-                            <span
-                              className="
-                                font-serif
-                                text-xl
-                                font-semibold
-                                tracking-[0.06em]
-                                text-[#285b68]
-                              "
-                            >
-                              {client.initials}
-                            </span>
-                          </div>
-                        </>
+                        <img
+                          src={client.logo}
+                          alt={`${client.name} logo`}
+                          loading="lazy"
+                          className="
+                            h-full
+                            w-full
+                            object-contain
+                          "
+                        />
                       ) : (
                         <div
                           className="
@@ -1326,7 +1283,6 @@ const Clients = () => {
                             bg-[#f7f5ef]
                           "
                         >
-
                           <div
                             className="
                               absolute
@@ -1364,12 +1320,9 @@ const Clients = () => {
                           >
                             {client.initials}
                           </span>
-
                         </div>
                       )}
-
                     </div>
-
                   </div>
 
                   {/* DIVIDER */}
@@ -1389,7 +1342,6 @@ const Clients = () => {
                   {/* NAME */}
 
                   <div className="mt-4 text-center">
-
                     <h4
                       className="
                         text-[13px]
@@ -1417,7 +1369,6 @@ const Clients = () => {
                     >
                       {client.location}
                     </p>
-
                   </div>
 
                   {/* BOTTOM GOLD LINE */}
@@ -1436,15 +1387,11 @@ const Clients = () => {
                       group-hover:w-20
                     "
                   />
-
                 </motion.div>
               ))}
-
             </div>
 
-            {/* =================================================
-                HR FOOTNOTE
-            ================================================= */}
+            {/* HR FOOTNOTE */}
 
             <div
               className="
@@ -1469,11 +1416,8 @@ const Clients = () => {
                 Trusted support • Professional compliance • Reliable delivery
               </p>
             </div>
-
           </div>
-
         </motion.section>
-
       </div>
 
       {/* =========================================================
@@ -1481,9 +1425,7 @@ const Clients = () => {
       ========================================================= */}
 
       <style>{`
-
         @keyframes clientMarquee {
-
           0% {
             transform: translateX(0);
           }
@@ -1491,11 +1433,9 @@ const Clients = () => {
           100% {
             transform: translateX(calc(-33.333% - 6px));
           }
-
         }
 
         @keyframes clientMarqueeReverse {
-
           0% {
             transform: translateX(calc(-33.333% - 6px));
           }
@@ -1503,7 +1443,6 @@ const Clients = () => {
           100% {
             transform: translateX(0);
           }
-
         }
 
         .animate-client-marquee {
@@ -1534,7 +1473,6 @@ const Clients = () => {
         }
 
         @media (max-width: 640px) {
-
           .animate-client-marquee {
             animation-duration: 30s;
           }
@@ -1542,20 +1480,15 @@ const Clients = () => {
           .animate-client-marquee-reverse {
             animation-duration: 34s;
           }
-
         }
 
         @media (prefers-reduced-motion: reduce) {
-
           .animate-client-marquee,
           .animate-client-marquee-reverse {
             animation-play-state: paused;
           }
-
         }
-
       `}</style>
-
     </section>
   );
 };
