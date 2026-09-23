@@ -3,7 +3,11 @@ import ServiceDetailPage from "../../components/service-details/ServiceDetailPag
 import servicePagesData from "../../components/service-details/servicePagesData";
 
 const Registration = () => {
-  return <ServiceDetailPage data={servicePagesData.registration} />;
+  const registrationData = servicePagesData.find(
+    (service) => service.id === "registration-services"
+  );
+
+  return <ServiceDetailPage data={registrationData} />;
 };
 
 export default Registration;

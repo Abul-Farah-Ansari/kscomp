@@ -14,7 +14,7 @@ import {
 } from "react-icons/fa";
 
 // K S & Company Logo
-import KSCompanyLogo from "../assets/WhatsApp Image 2026-08-30 at 19.16.22 (1).jpeg";
+import KSCompanyLogo from "../assets/mngmt/WhatsApp Image 2026-08-30 at 19.16.22 (1).png";
 
 const Footer = () => {
   const [email, setEmail] = useState("");

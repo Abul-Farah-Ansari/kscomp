@@ -4,8 +4,63 @@ import { ArrowUpRight } from "lucide-react";
 
 import serviceDetailImage from "../../assets/service-details.png";
 
+/* =========================================================
+   SERVICE HERO IMAGES
+
+   Folder:
+   src/assets/heroimages/
+
+   1.png → Taxation
+   2.png → Insurance
+   3.png → Accounting
+   4.png → Registration
+   5.png → HR Compliance
+   6.png → Other Compliance
+   7.png → Government & Documentation
+   8.png → Loan & Finance
+========================================================= */
+
+const heroImages = import.meta.glob(
+  "../../assets/heroimages/*.{png,jpg,jpeg,webp,avif,PNG,JPG,JPEG,WEBP,AVIF}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
+
+/* =========================================================
+   FIND IMAGE BY SERVICE NUMBER
+========================================================= */
+
+const getHeroImage = (number) => {
+  const targetNumber = String(number || "")
+    .replace(/^0+/, "")
+    .trim();
+
+  const entry = Object.entries(heroImages).find(
+    ([path]) => {
+      const fileName = path
+        .split("/")
+        .pop()
+        ?.split(".")[0]
+        ?.trim();
+
+      return fileName === targetNumber;
+    }
+  );
+
+  return entry?.[1] || null;
+};
+
+/* =========================================================
+   COMPONENT
+========================================================= */
+
 const ServiceDetailHero = ({ data }) => {
   if (!data) return null;
+
+  const serviceImage = getHeroImage(data.number);
 
   return (
     <section
@@ -21,8 +76,9 @@ const ServiceDetailHero = ({ data }) => {
         box-border
       "
     >
+
       {/* =========================================================
-          FULL HERO IMAGE
+          FULL HERO BACKGROUND
       ========================================================== */}
 
       <motion.div
@@ -42,7 +98,8 @@ const ServiceDetailHero = ({ data }) => {
       >
         <img
           src={serviceDetailImage}
-          alt={`${data.category} - K S & Company`}
+          alt=""
+          aria-hidden="true"
           className="
             h-full
             w-full
@@ -53,7 +110,7 @@ const ServiceDetailHero = ({ data }) => {
       </motion.div>
 
       {/* =========================================================
-          DARK GREEN IMAGE OVERLAY
+          DARK GREEN OVERLAY
       ========================================================== */}
 
       <div
@@ -103,7 +160,14 @@ const ServiceDetailHero = ({ data }) => {
           DECORATIVE CIRCLES
       ========================================================== */}
 
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          overflow-hidden
+        "
+      >
         <div
           className="
             absolute
@@ -165,6 +229,7 @@ const ServiceDetailHero = ({ data }) => {
           xl:px-16
         "
       >
+
         {/* =======================================================
             HERO CONTENT AREA
         ======================================================== */}
@@ -181,8 +246,11 @@ const ServiceDetailHero = ({ data }) => {
             lg:py-8
           "
         >
+
           {/* =====================================================
-              DARK GREEN OVERLAPPING CARD
+              SERVICE IMAGE CARD
+
+              Slightly taller + narrower
           ====================================================== */}
 
           <motion.div
@@ -203,35 +271,97 @@ const ServiceDetailHero = ({ data }) => {
               relative
               z-20
               w-full
-              max-w-[720px]
-              lg:w-[58%]
-              xl:w-[55%]
+              max-w-[780px]
+              lg:w-[62%]
+              xl:w-[60%]
             "
           >
+
+            {/* =================================================
+                IMAGE CARD
+            ================================================== */}
+
             <div
               className="
                 relative
-                flex
-                h-[430px]
-                flex-col
-                justify-center
+                h-[470px]
+                w-full
                 overflow-hidden
-                bg-[#0b211f]/[0.97]
-                px-6
-                py-7
+                bg-[#0b211f]
                 shadow-[0_30px_80px_rgba(0,0,0,0.42)]
-                sm:h-[455px]
-                sm:px-9
-                sm:py-8
-                md:h-[470px]
-                md:px-11
-                lg:h-[485px]
-                lg:px-12
-                lg:py-9
-                xl:h-[500px]
-                xl:px-14
+                sm:h-[495px]
+                md:h-[515px]
+                lg:h-[525px]
+                xl:h-[540px]
               "
             >
+
+              {/* =================================================
+                  SERVICE IMAGE
+              ================================================== */}
+
+              {serviceImage ? (
+                <motion.img
+                  initial={{
+                    opacity: 0,
+                    scale: 1.05,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                  }}
+                  transition={{
+                    duration: 1,
+                    delay: 0.35,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  src={serviceImage}
+                  alt={data.category || "Professional Service"}
+                  className="
+                    absolute
+                    inset-0
+                    h-full
+                    w-full
+                    object-cover
+                    object-center
+                  "
+                />
+              ) : (
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    flex
+                    items-center
+                    justify-center
+                    bg-[#0b211f]
+                  "
+                >
+                  <span className="text-sm text-white/40">
+                    Service Image
+                  </span>
+                </div>
+              )}
+
+              {/* =================================================
+                  SUBTLE BOTTOM OVERLAY
+
+                  Keeps button readable without hiding image.
+              ================================================== */}
+
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-x-0
+                  bottom-0
+                  h-[35%]
+                  bg-gradient-to-t
+                  from-[#0b211f]/55
+                  to-transparent
+                "
+              />
+
               {/* =================================================
                   INNER GOLD BORDER
               ================================================== */}
@@ -241,373 +371,112 @@ const ServiceDetailHero = ({ data }) => {
                   pointer-events-none
                   absolute
                   inset-3
+                  z-10
                   border
-                  border-[#c5a46d]/20
+                  border-[#c5a46d]/25
                   sm:inset-4
                 "
               />
 
               {/* =================================================
-                  DECORATIVE CIRCLES
+                  EXPLORE SERVICE BUTTON
+
+                  REAL REACT / HTML
               ================================================== */}
 
-              <div
+              <motion.a
+                href="#service-overview"
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                transition={{
+                  duration: 0.7,
+                  delay: 0.8,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                whileHover={{
+                  y: -4,
+                }}
+                whileTap={{
+                  scale: 0.97,
+                }}
                 className="
-                  pointer-events-none
+                  group
                   absolute
-                  -right-[160px]
-                  -top-[160px]
-                  h-[380px]
-                  w-[380px]
-                  rounded-full
+                  bottom-7
+                  left-7
+                  z-30
+                  inline-flex
+                  items-center
+                  gap-3
                   border
-                  border-[#c5a46d]/10
-                "
-              />
-
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  -right-[110px]
-                  -top-[110px]
-                  h-[280px]
-                  w-[280px]
-                  rounded-full
-                  border
-                  border-white/[0.04]
-                "
-              />
-
-              {/* =================================================
-                  CONTENT
-              ================================================== */}
-
-              <div
-                className="
-                  relative
-                  z-10
-                  flex
-                  max-h-full
-                  flex-col
-                  justify-center
-                "
-              >
-                {/* =================================================
-                    NUMBER + LABEL
-                ================================================== */}
-
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: 15,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.65,
-                    delay: 0.4,
-                  }}
-                  className="
-                    mb-4
-                    flex
-                    shrink-0
-                    items-center
-                    gap-4
-                    sm:mb-5
-                  "
-                >
-                  <span
-                    className="
-                      font-serif
-                      text-2xl
-                      font-medium
-                      leading-none
-                      text-[#c5a46d]
-                      sm:text-3xl
-                    "
-                  >
-                    {data.number}
-                  </span>
-
-                  <span className="h-px w-8 bg-[#c5a46d]/60 sm:w-12" />
-
-                  <span
-                    className="
-                      text-[7px]
-                      font-semibold
-                      uppercase
-                      tracking-[2.2px]
-                      text-white/45
-                      sm:text-[8px]
-                    "
-                  >
-                    Professional Services
-                  </span>
-                </motion.div>
-
-                {/* =================================================
-                    EYEBROW
-                ================================================== */}
-
-                <motion.p
-                  initial={{
-                    opacity: 0,
-                    y: 15,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.65,
-                    delay: 0.47,
-                  }}
-                  className="
-                    mb-3
-                    shrink-0
-                    text-[8px]
-                    font-semibold
-                    uppercase
-                    tracking-[3.5px]
-                    text-[#c5a46d]
-                    sm:mb-4
-                    sm:text-[9px]
-                    sm:tracking-[4px]
-                  "
-                >
-                  {data.eyebrow}
-                </motion.p>
-
-                {/* =================================================
-                    MAIN TITLE
-                ================================================== */}
-
-                <div
-                  className="
-                    max-h-[190px]
-                    overflow-hidden
-                    sm:max-h-[215px]
-                  "
-                >
-                  <motion.h1
-                    initial={{
-                      opacity: 0,
-                      y: 55,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    transition={{
-                      duration: 0.85,
-                      delay: 0.54,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="
-                      max-w-[670px]
-                      font-serif
-                      text-[38px]
-                      font-medium
-                      leading-[0.94]
-                      tracking-[-1.7px]
-                      text-white
-                      sm:text-[48px]
-                      sm:tracking-[-2px]
-                      md:text-[56px]
-                      lg:text-[clamp(45px,4.4vw,70px)]
-                      xl:text-[76px]
-                    "
-                  >
-                    {data.title}
-
-                    <span className="block text-[#c5a46d]">
-                      {data.titleAccent}
-                    </span>
-                  </motion.h1>
-                </div>
-
-                {/* =================================================
-                    DESCRIPTION
-                ================================================== */}
-
-                <motion.p
-                  initial={{
-                    opacity: 0,
-                    y: 20,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.75,
-                    delay: 0.68,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="
-                    mt-5
-                    max-w-[530px]
-                    shrink-0
-                    text-[11px]
-                    leading-5
-                    text-white/55
-                    sm:mt-6
-                    sm:text-[13px]
-                    sm:leading-6
-                    lg:text-[14px]
-                    lg:leading-6
-                  "
-                >
-                  {data.description}
-                </motion.p>
-
-                {/* =================================================
-                    CTA
-                ================================================== */}
-
-                <motion.a
-                  href="#service-overview"
-                  initial={{
-                    opacity: 0,
-                    y: 18,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.65,
-                    delay: 0.8,
-                  }}
-                  whileHover={{
-                    y: -3,
-                  }}
-                  className="
-                    group
-                    mt-6
-                    inline-flex
-                    w-fit
-                    shrink-0
-                    items-center
-                    gap-3
-                    border
-                    border-[#c5a46d]
-                    bg-[#c5a46d]
-                    px-5
-                    py-3
-                    text-[8px]
-                    font-semibold
-                    uppercase
-                    tracking-[1.7px]
-                    text-[#0b211f]
-                    transition-all
-                    duration-300
-                    hover:bg-[#d5b97f]
-                    sm:mt-7
-                    sm:px-6
-                    sm:py-3.5
-                    sm:text-[9px]
-                  "
-                >
-                  Explore Service
-
-                  <span
-                    className="
-                      flex
-                      h-6
-                      w-6
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-[#0b211f]
-                      text-[#c5a46d]
-                      transition-transform
-                      duration-300
-                      group-hover:-translate-y-0.5
-                      group-hover:translate-x-0.5
-                    "
-                  >
-                    <ArrowUpRight
-                      size={13}
-                      strokeWidth={1.8}
-                    />
-                  </span>
-                </motion.a>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* =====================================================
-              FLOATING SERVICE NUMBER
-          ====================================================== */}
-
-          <motion.div
-            initial={{
-              opacity: 0,
-              scale: 0.8,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={{
-              duration: 0.7,
-              delay: 0.75,
-            }}
-            className="
-              absolute
-              bottom-[7%]
-              right-[5%]
-              z-30
-              hidden
-              h-[95px]
-              w-[95px]
-              items-center
-              justify-center
-              rounded-full
-              border
-              border-[#c5a46d]/50
-              bg-[#0b211f]/65
-              backdrop-blur-md
-              lg:flex
-              xl:h-[105px]
-              xl:w-[105px]
-            "
-          >
-            <div className="text-center">
-              <span
-                className="
-                  block
-                  font-serif
-                  text-2xl
-                  leading-none
-                  text-[#c5a46d]
-                  xl:text-3xl
-                "
-              >
-                {data.number}
-              </span>
-
-              <span
-                className="
-                  mt-2
-                  block
-                  text-[6px]
+                  border-[#c5a46d]
+                  bg-[#c5a46d]
+                  px-5
+                  py-3
+                  text-[8px]
                   font-semibold
                   uppercase
-                  tracking-[1.8px]
-                  text-white/50
+                  tracking-[1.7px]
+                  text-[#0b211f]
+                  shadow-[0_12px_35px_rgba(0,0,0,0.35)]
+                  transition-all
+                  duration-300
+                  hover:bg-[#d5b97f]
+                  hover:shadow-[0_16px_40px_rgba(0,0,0,0.4)]
+                  sm:bottom-9
+                  sm:left-9
+                  sm:px-6
+                  sm:py-3.5
+                  sm:text-[9px]
+                  md:bottom-10
+                  md:left-10
+                  lg:bottom-11
+                  lg:left-11
                 "
               >
-                Service
-              </span>
+
+                <span>
+                  Explore Service
+                </span>
+
+                <span
+                  className="
+                    flex
+                    h-6
+                    w-6
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-[#0b211f]
+                    text-[#c5a46d]
+                    transition-transform
+                    duration-300
+                    group-hover:-translate-y-0.5
+                    group-hover:translate-x-0.5
+                  "
+                >
+                  <ArrowUpRight
+                    size={13}
+                    strokeWidth={1.8}
+                  />
+                </span>
+
+              </motion.a>
+
             </div>
+
           </motion.div>
+
         </div>
+
       </div>
+
     </section>
   );
 };

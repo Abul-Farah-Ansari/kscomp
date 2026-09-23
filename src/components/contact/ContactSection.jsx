@@ -25,7 +25,7 @@ import instagramQR from "../../assets/insta.png";
 import facebookQR from "../../assets/fb.png";
 import linkedinQR from "../../assets/linkedIn.png";
 import googleQR from "../../assets/website.png";
-import googleReviewQR from "../../assets/review.png";
+import googleReviewQR from "../../assets/review.jpg";
 
 // Contact card images — replace these filenames later with your uploaded images.
 import callImage from "../../assets/contact/call.png";

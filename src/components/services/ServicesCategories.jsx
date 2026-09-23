@@ -3,114 +3,189 @@ import { ArrowDownRight } from "lucide-react";
 import { Icon } from "@iconify/react";
 import { servicesData } from "./servicesData";
 
-/* =========================================================
-   CATEGORY IMAGES
-========================================================= */
-
-const categoryImages = {
-  "taxation-services": "/images/services/taxation.jpg",
-  "insurance-services": "/images/services/insurance.jpg",
-  "accounting-services": "/images/services/accounting.jpg",
-  "registration-services": "/images/services/registration.jpg",
-  "hr-compliance-services": "/images/services/hr.jpg",
-  "other-compliance": "/images/services/compliance.jpg",
-  "government-documentation":
-    "/images/services/documentation.jpg",
-  "finance-services": "/images/services/finance.jpg",
-};
 
 /* =========================================================
-   CATEGORY ICONS
+   IIMI IMAGES
+
+   Folder:
+   src/assets/IIMI/
+
+   Images are used only for the visual card.
+   They do NOT control whether a card renders.
 ========================================================= */
 
-const categoryIcons = {
-  "taxation-services":
-    "mdi:file-document-percent-outline",
+const allIIMIImages = import.meta.glob(
+  "../../assets/IIMI/**/*.{png,jpg,jpeg,webp,avif,PNG,JPG,JPEG,WEBP,AVIF}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  }
+);
 
-  "insurance-services":
-    "mdi:shield-check-outline",
-
-  "accounting-services":
-    "mdi:calculator-variant-outline",
-
-  "registration-services":
-    "mdi:office-building-outline",
-
-  "hr-compliance-services":
-    "mdi:account-group-outline",
-
-  "other-compliance":
-    "mdi:clipboard-check-outline",
-
-  "government-documentation":
-    "mdi:file-document-outline",
-
-  "finance-services":
-    "mdi:chart-line",
-};
 
 /* =========================================================
-   MASTER CATEGORY ORDER
+   NATURAL IMAGE SORT
 ========================================================= */
 
-const CATEGORY_ORDER = [
-  "taxation-services",
-  "insurance-services",
-  "accounting-services",
-  "registration-services",
-  "hr-compliance-services",
-  "other-compliance",
-  "government-documentation",
-  "finance-services",
+const sortedIIMIImages = Object.entries(allIIMIImages)
+  .sort(([pathA], [pathB]) => {
+    const fileA = pathA.split("/").pop() || "";
+    const fileB = pathB.split("/").pop() || "";
+
+    const numberA = fileA.match(/\d+/)?.[0];
+    const numberB = fileB.match(/\d+/)?.[0];
+
+    if (numberA && numberB) {
+      return Number(numberA) - Number(numberB);
+    }
+
+    if (numberA) return -1;
+    if (numberB) return 1;
+
+    return fileA.localeCompare(fileB);
+  })
+  .map(([, image]) => image);
+
+
+/* =========================================================
+   CATEGORY CONFIGURATION
+
+   This guarantees that all 8 cards render.
+========================================================= */
+
+const CATEGORY_CONFIG = [
+  {
+    id: "taxation-services",
+    number: "01",
+    title: "Taxation Services",
+    icon: "mdi:file-document-percent-outline",
+    fallbackImage: "/images/services/taxation.jpg",
+  },
+
+  {
+    id: "insurance-services",
+    number: "02",
+    title: "Insurance Services",
+    icon: "mdi:shield-check-outline",
+    fallbackImage: "/images/services/insurance.jpg",
+  },
+
+  {
+    id: "accounting-services",
+    number: "03",
+    title: "Accounting Services",
+    icon: "mdi:calculator-variant-outline",
+    fallbackImage: "/images/services/accounting.jpg",
+  },
+
+  {
+    id: "registration-services",
+    number: "04",
+    title: "Registration Services",
+    icon: "mdi:office-building-outline",
+    fallbackImage: "/images/services/registration.jpg",
+  },
+
+  {
+    id: "hr-compliance-services",
+    number: "05",
+    title: "HR Compliance Services",
+    icon: "mdi:account-group-outline",
+    fallbackImage: "/images/services/hr.jpg",
+  },
+
+  {
+    id: "other-compliance",
+    number: "06",
+    title: "Other Compliance Services",
+    icon: "mdi:clipboard-check-outline",
+    fallbackImage: "/images/services/compliance.jpg",
+  },
+
+  {
+    id: "government-documentation",
+    number: "07",
+    title: "Government & Documentation Services",
+    icon: "mdi:file-document-outline",
+    fallbackImage: "/images/services/documentation.jpg",
+  },
+
+  {
+    id: "finance-services",
+    number: "08",
+    title: "Loan & Finance Services",
+    icon: "mdi:chart-line",
+    fallbackImage: "/images/services/finance.jpg",
+  },
 ];
 
-/* =========================================================
-   MASTER CATEGORY NUMBERS
-
-   NEVER TAKE NUMBERS FROM servicesData.js
-========================================================= */
-
-const CATEGORY_NUMBERS = {
-  "taxation-services": "01",
-  "insurance-services": "02",
-  "accounting-services": "03",
-  "registration-services": "04",
-  "hr-compliance-services": "05",
-  "other-compliance": "06",
-  "government-documentation": "07",
-  "finance-services": "08",
-};
 
 /* =========================================================
-   FORCE CATEGORY ORDER
+   GET SERVICE DATA
 
-   This is the important part.
-
-   We do NOT sort servicesData.
-
-   We build a new array directly from
-   CATEGORY_ORDER.
+   The category itself is always created from CATEGORY_CONFIG.
+   servicesData is only used for additional content.
 ========================================================= */
 
-const getOrderedCategories = () => {
-  return CATEGORY_ORDER
-    .map((categoryId) =>
-      servicesData.find(
-        (category) => category.id === categoryId
-      )
-    )
-    .filter(Boolean);
+const getServiceData = (category) => {
+  const service = servicesData.find(
+    (item) => item.id === category.id
+  );
+
+  return {
+    id: category.id,
+
+    number: category.number,
+
+    category:
+      service?.category ||
+      category.title,
+
+    shortDescription:
+      service?.shortDescription ||
+      "Professional assistance and expert support for your requirements.",
+
+    services:
+      service?.services ||
+      [],
+
+    icon: category.icon,
+
+    image:
+      sortedIIMIImages[
+        Number(category.number) - 1
+      ] ||
+      category.fallbackImage,
+  };
 };
+
 
 /* =========================================================
    COMPONENT
 ========================================================= */
 
 const ServicesCategories = () => {
-  const orderedServices = getOrderedCategories();
+
+  /*
+   * IMPORTANT:
+   *
+   * Always generate cards from CATEGORY_CONFIG.
+   *
+   * This guarantees exactly 8 cards.
+   */
+
+  const orderedServices =
+    CATEGORY_CONFIG.map(getServiceData);
+
+
+  /* =========================================================
+     SCROLL TO SERVICE SECTION
+  ========================================================== */
 
   const scrollToSection = (id) => {
-    const section = document.getElementById(id);
+    const section =
+      document.getElementById(id);
 
     if (section) {
       section.scrollIntoView({
@@ -119,6 +194,7 @@ const ServicesCategories = () => {
       });
     }
   };
+
 
   return (
     <section
@@ -131,11 +207,12 @@ const ServicesCategories = () => {
         sm:pb-24
       "
     >
+
       <div className="mx-auto max-w-7xl">
 
         {/* =====================================================
             HEADER
-        ===================================================== */}
+        ====================================================== */}
 
         <div
           className="
@@ -148,7 +225,9 @@ const ServicesCategories = () => {
             md:justify-between
           "
         >
+
           <div>
+
             <p
               className="
                 text-xs
@@ -174,7 +253,9 @@ const ServicesCategories = () => {
               <br />
               for every need.
             </h2>
+
           </div>
+
 
           <p
             className="
@@ -189,11 +270,22 @@ const ServicesCategories = () => {
             documentation, explore our complete range
             of professional services.
           </p>
+
         </div>
+
 
         {/* =====================================================
             CATEGORY GRID
-        ===================================================== */}
+
+            Desktop:
+            4 × 2
+
+            Tablet:
+            2 × 4
+
+            Mobile:
+            1 × 8
+        ====================================================== */}
 
         <div
           className="
@@ -204,45 +296,48 @@ const ServicesCategories = () => {
             lg:grid-cols-4
           "
         >
-          {orderedServices.map((item, index) => {
 
-            /*
-             * NUMBER IS BASED ONLY ON CATEGORY ID.
-             */
+          {orderedServices.map(
+            (item, index) => (
 
-            const serialNumber =
-              CATEGORY_NUMBERS[item.id];
-
-            const icon =
-              categoryIcons[item.id] ||
-              "mdi:briefcase-outline";
-
-            const backgroundImage =
-              categoryImages[item.id];
-
-            return (
               <motion.button
                 key={item.id}
                 type="button"
+
                 onClick={() =>
                   scrollToSection(item.id)
                 }
+
+                /* =============================================
+                   ENTRANCE ANIMATION
+                ============================================== */
+
                 initial={{
                   opacity: 0,
-                  y: 25,
+                  y: 30,
                 }}
+
                 whileInView={{
                   opacity: 1,
                   y: 0,
                 }}
+
                 viewport={{
                   once: true,
                   amount: 0.15,
                 }}
+
                 transition={{
-                  duration: 0.45,
-                  delay: index * 0.05,
+                  duration: 0.5,
+                  delay: index * 0.06,
+                  ease: [
+                    0.22,
+                    1,
+                    0.36,
+                    1,
+                  ],
                 }}
+
                 className="
                   group
                   relative
@@ -253,8 +348,8 @@ const ServicesCategories = () => {
                   text-left
                   transition-all
                   duration-500
-                  hover:-translate-y-1
-                  hover:shadow-[0_20px_45px_rgba(16,43,41,0.18)]
+                  hover:-translate-y-2
+                  hover:shadow-[0_25px_60px_rgba(16,43,41,0.25)]
                   focus:outline-none
                   focus:ring-2
                   focus:ring-[#c7a45d]/60
@@ -262,45 +357,85 @@ const ServicesCategories = () => {
                 "
               >
 
-                {/* BACKGROUND */}
-
-                {backgroundImage && (
-                  <div
-                    className="
-                      absolute
-                      bottom-0
-                      right-0
-                      h-[62%]
-                      w-[62%]
-                      bg-cover
-                      bg-center
-                      opacity-[0.16]
-                      transition-all
-                      duration-700
-                      group-hover:scale-110
-                      group-hover:opacity-[0.24]
-                    "
-                    style={{
-                      backgroundImage:
-                        `url("${backgroundImage}")`,
-                    }}
-                  />
-                )}
-
-                {/* OVERLAY */}
+                {/* =================================================
+                    BACKGROUND IMAGE
+                ================================================== */}
 
                 <div
                   className="
                     absolute
                     inset-0
+                    z-0
+                    bg-cover
+                    bg-center
+                    opacity-25
+                    transition-all
+                    duration-700
+                    ease-out
+                    group-hover:scale-110
+                    group-hover:opacity-45
+                  "
+                  style={{
+                    backgroundImage:
+                      `url("${item.image}")`,
+                  }}
+                />
+
+
+                {/* =================================================
+                    DARK OVERLAY
+
+                    This is intentionally strong so that
+                    white text remains readable.
+                ================================================== */}
+
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    z-[1]
                     bg-gradient-to-t
                     from-[#102b29]
-                    via-[#102b29]/95
-                    to-[#102b29]/30
+                    via-[#102b29]/90
+                    to-[#102b29]/35
+                    transition-all
+                    duration-700
+                    group-hover:from-[#071816]
+                    group-hover:via-[#102b29]/80
+                    group-hover:to-[#102b29]/25
                   "
                 />
 
-                {/* GOLD GLOW */}
+
+                {/* =================================================
+                    HOVER LIGHT SWEEP
+                ================================================== */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    -left-[120%]
+                    top-[-20%]
+                    z-[2]
+                    h-[150%]
+                    w-[55%]
+                    rotate-[18deg]
+                    bg-gradient-to-r
+                    from-transparent
+                    via-white/[0.10]
+                    to-transparent
+                    transition-all
+                    duration-[1000ms]
+                    ease-out
+                    group-hover:left-[135%]
+                  "
+                />
+
+
+                {/* =================================================
+                    GOLD GLOW
+                ================================================== */}
 
                 <div
                   className="
@@ -308,59 +443,171 @@ const ServicesCategories = () => {
                     absolute
                     -right-20
                     -top-20
-                    h-44
-                    w-44
+                    z-[2]
+                    h-48
+                    w-48
                     rounded-full
                     bg-[#c7a45d]/10
                     blur-3xl
                     opacity-0
-                    transition-opacity
+                    transition-all
                     duration-700
+                    group-hover:scale-150
                     group-hover:opacity-100
                   "
                 />
 
-                {/* INNER BORDER */}
+
+                {/* =================================================
+                    INNER BORDER
+                ================================================== */}
 
                 <div
                   className="
                     pointer-events-none
                     absolute
                     inset-4
+                    z-[3]
                     border
-                    border-white/[0.07]
-                    transition-colors
+                    border-white/[0.08]
+                    transition-all
                     duration-500
-                    group-hover:border-[#c7a45d]/20
+                    group-hover:inset-3
+                    group-hover:border-[#c7a45d]/60
                   "
                 />
 
-                {/* ICON */}
+
+                {/* =================================================
+                    NUMBER
+                ================================================== */}
 
                 <div
                   className="
                     absolute
-                    right-8
-                    top-16
+                    left-7
+                    top-7
                     z-10
                   "
                 >
-                  <Icon
-                    icon={icon}
-                    width="64"
-                    height="64"
+
+                  <span
                     className="
-                      text-[#c7a45d]
-                      opacity-80
+                      text-sm
+                      font-semibold
+                      tracking-wider
+                      text-white/50
                       transition-all
                       duration-500
-                      group-hover:scale-110
-                      group-hover:opacity-100
+                      group-hover:text-[#c7a45d]
+                      group-hover:tracking-[0.25em]
                     "
-                  />
+                  >
+                    {item.number}
+                  </span>
+
                 </div>
 
-                {/* CONTENT */}
+
+                {/* =================================================
+                    COMPANY LABEL
+                ================================================== */}
+
+                <div
+                  className="
+                    absolute
+                    right-7
+                    top-7
+                    z-10
+                  "
+                >
+
+                  <span
+                    className="
+                      text-[9px]
+                      font-medium
+                      tracking-[0.25em]
+                      text-white/35
+                      transition-all
+                      duration-500
+                      group-hover:text-white/80
+                    "
+                  >
+                    KS & COMPANY
+                  </span>
+
+                </div>
+
+
+                {/* =================================================
+                    ICON
+
+                    Dark background + gold icon normally.
+
+                    Gold background + dark icon on hover.
+                ================================================== */}
+
+                <motion.div
+                  className="
+                    absolute
+                    right-7
+                    top-20
+                    z-10
+                  "
+
+                  whileHover={{
+                    scale: 1.08,
+                    rotate: 3,
+                  }}
+
+                  transition={{
+                    type: "spring",
+                    stiffness: 250,
+                    damping: 15,
+                  }}
+                >
+
+                  <div
+                    className="
+                      flex
+                      h-[76px]
+                      w-[76px]
+                      items-center
+                      justify-center
+                      border
+                      border-[#c7a45d]/50
+                      bg-[#071816]/85
+                      backdrop-blur-md
+                      transition-all
+                      duration-500
+                      group-hover:border-[#c7a45d]
+                      group-hover:bg-[#c7a45d]
+                      group-hover:shadow-[0_10px_35px_rgba(199,164,93,0.35)]
+                    "
+                  >
+
+                    <Icon
+                      icon={item.icon}
+                      width="48"
+                      height="48"
+                      className="
+                        text-[#c7a45d]
+                        opacity-100
+                        transition-all
+                        duration-500
+                        group-hover:scale-125
+                        group-hover:text-[#102b29]
+                      "
+                    />
+
+                  </div>
+
+                </motion.div>
+
+
+                {/* =================================================
+                    CONTENT
+                ================================================== */}
 
                 <div
                   className="
@@ -372,87 +619,97 @@ const ServicesCategories = () => {
                   "
                 >
 
-                  {/* TOP */}
-
-                  <div
-                    className="
-                      flex
-                      items-start
-                      justify-between
-                    "
-                  >
-                    <span
-                      className="
-                        text-sm
-                        font-semibold
-                        tracking-wider
-                        text-white/40
-                        transition-colors
-                        duration-300
-                        group-hover:text-[#c7a45d]
-                      "
-                    >
-                      {serialNumber}
-                    </span>
-
-                    <span
-                      className="
-                        text-[10px]
-                        font-medium
-                        tracking-[0.25em]
-                        text-white/30
-                        transition-colors
-                        duration-300
-                        group-hover:text-white/45
-                      "
-                    >
-                      KS & COMPANY
-                    </span>
-                  </div>
-
-                  {/* BOTTOM */}
-
                   <div className="mt-auto">
+
+                    {/* =================================================
+                        MAIN TITLE
+
+                        Always WHITE for readability.
+                    ================================================== */}
 
                     <h3
                       className="
-                        max-w-[240px]
+                        max-w-[270px]
                         text-2xl
                         font-semibold
                         leading-tight
                         text-white
-                        transition-transform
+                        transition-all
                         duration-500
-                        group-hover:translate-x-1
+                        group-hover:translate-x-2
+                        group-hover:text-white
+                        group-hover:drop-shadow-[0_3px_8px_rgba(0,0,0,0.7)]
                       "
                     >
                       {item.category}
                     </h3>
 
+
+                    {/* =================================================
+                        DESCRIPTION
+
+                        Appears on hover.
+                    ================================================== */}
+
+                    <p
+                      className="
+                        mt-3
+                        max-w-[280px]
+                        max-h-0
+                        overflow-hidden
+                        text-[11px]
+                        leading-5
+                        text-white/80
+                        opacity-0
+                        transition-all
+                        duration-500
+                        group-hover:max-h-20
+                        group-hover:opacity-100
+                        group-hover:drop-shadow-[0_2px_5px_rgba(0,0,0,0.8)]
+                      "
+                    >
+                      {item.shortDescription}
+                    </p>
+
+
+                    {/* =================================================
+                        BOTTOM ACTION
+                    ================================================== */}
+
                     <div
                       className="
-                        mt-6
+                        mt-5
                         flex
                         items-center
                         justify-between
                         border-t
                         border-white/10
                         pt-5
+                        transition-all
+                        duration-500
+                        group-hover:border-[#c7a45d]/50
                       "
                     >
+
+                      {/* SERVICE COUNT */}
+
                       <span
                         className="
                           text-[11px]
                           font-semibold
                           tracking-[0.12em]
-                          text-white/45
-                          transition-colors
-                          duration-300
-                          group-hover:text-white/70
+                          text-white/50
+                          transition-all
+                          duration-500
+                          group-hover:translate-x-1
+                          group-hover:text-[#c7a45d]
                         "
                       >
-                        {item.services?.length || 0} SERVICES
+                        {item.services.length || 0} SERVICES
                       </span>
+
+
+                      {/* ARROW */}
 
                       <span
                         className="
@@ -465,30 +722,39 @@ const ServicesCategories = () => {
                           border-white/20
                           text-white
                           transition-all
-                          duration-300
-                          group-hover:border-white
-                          group-hover:bg-white
+                          duration-500
+                          group-hover:rotate-[-45deg]
+                          group-hover:scale-110
+                          group-hover:border-[#c7a45d]
+                          group-hover:bg-[#c7a45d]
                           group-hover:text-[#102b29]
                         "
                       >
+
                         <ArrowDownRight
                           size={18}
                           strokeWidth={1.6}
                         />
+
                       </span>
+
                     </div>
 
                   </div>
+
                 </div>
 
               </motion.button>
-            );
-          })}
+            )
+          )}
+
         </div>
 
       </div>
+
     </section>
   );
 };
+
 
 export default ServicesCategories;

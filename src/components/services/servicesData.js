@@ -4,7 +4,7 @@ export const servicesData = [
   ========================================== */
 
   {
-    id: "taxation-services",
+    id: "taxation",
     number: "01",
     category: "Taxation Services",
     shortDescription:
@@ -55,13 +55,12 @@ export const servicesData = [
     ],
   },
 
-
   /* =========================================
      02 - ACCOUNTING SERVICES
   ========================================== */
 
   {
-    id: "accounting-services",
+    id: "accounting",
     number: "02",
     category: "Accounting Services",
     shortDescription:
@@ -130,13 +129,12 @@ export const servicesData = [
     ],
   },
 
-
   /* =========================================
      03 - REGISTRATION SERVICES
   ========================================== */
 
   {
-    id: "registration-services",
+    id: "registration",
     number: "03",
     category: "Registration Services",
     shortDescription:
@@ -205,13 +203,12 @@ export const servicesData = [
     ],
   },
 
-
   /* =========================================
      04 - HR COMPLIANCE SERVICES
   ========================================== */
 
   {
-    id: "hr-compliance-services",
+    id: "hr-compliance",
     number: "04",
     category: "HR Compliance Services",
     shortDescription:
@@ -238,7 +235,6 @@ export const servicesData = [
     ],
   },
 
-
   /* =========================================
      05 - OTHER COMPLIANCE
   ========================================== */
@@ -264,7 +260,6 @@ export const servicesData = [
       },
     ],
   },
-
 
   /* =========================================
      06 - GOVERNMENT & DOCUMENTATION
@@ -310,13 +305,12 @@ export const servicesData = [
     ],
   },
 
-
   /* =========================================
      07 - INSURANCE SERVICES
   ========================================== */
 
   {
-    id: "insurance-services",
+    id: "insurance",
     number: "07",
     category: "Insurance Services",
     shortDescription:
@@ -355,13 +349,12 @@ export const servicesData = [
     ],
   },
 
-
   /* =========================================
      08 - LOAN & FINANCE SERVICES
   ========================================== */
 
   {
-    id: "finance-services",
+    id: "finance",
     number: "02",
     category: "Loan & Finance Services",
     shortDescription:

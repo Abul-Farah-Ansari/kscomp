@@ -7,177 +7,186 @@ import ServiceSection from "../components/services/ServiceSection";
 import ServiceModal from "../components/services/ServiceModal";
 
 import { servicesData } from "../components/services/servicesData";
+import servicePagesData from "../components/service-details/servicePagesData";
 
+/* =========================================================
+   FIXED CATEGORY ORDER
+========================================================= */
 
-/* =========================================
-   SERVICES DISPLAY ORDER
-
-   This controls the order of the sections
-   appearing below the category cards.
-
-   01 - Taxation Services
-   02 - Insurance Services
-   03 - Accounting Services
-   04 - Registration Services
-   05 - HR Compliance Services
-   06 - Other Compliance Services
-   07 - Government & Documentation Services
-   08 - Loan & Finance Services
-========================================= */
-
-const categoryOrder = [
-  "taxation-services",
-  "insurance-services",
-  "accounting-services",
-  "registration-services",
-  "hr-compliance-services",
-  "other-compliance",
-  "government-documentation",
-  "finance-services",
+const CATEGORY_CONFIG = [
+  {
+    id: "taxation-services",
+    number: "01",
+    title: "Taxation Services",
+  },
+  {
+    id: "insurance-services",
+    number: "02",
+    title: "Insurance Services",
+  },
+  {
+    id: "accounting-services",
+    number: "03",
+    title: "Accounting Services",
+  },
+  {
+    id: "registration-services",
+    number: "04",
+    title: "Registration Services",
+  },
+  {
+    id: "hr-compliance-services",
+    number: "05",
+    title: "HR Compliance Services",
+  },
+  {
+    id: "other-compliance",
+    number: "06",
+    title: "Other Compliance Services",
+  },
+  {
+    id: "government-documentation",
+    number: "07",
+    title: "Government & Documentation Services",
+  },
+  {
+    id: "finance-services",
+    number: "08",
+    title: "Loan & Finance Services",
+  },
 ];
 
+/* =========================================================
+   GET CATEGORY DATA
+========================================================= */
 
-/* =========================================
-   CATEGORY NUMBERS
+const getCategoryData = (config) => {
+  // First source: servicesData
+  const serviceData = servicesData.find(
+    (item) => item.id === config.id
+  );
 
-   These numbers are fixed and independent
-   of the order inside servicesData.js.
-========================================= */
+  // Second source: servicePagesData
+  const detailData = servicePagesData.find(
+    (item) => item.id === config.id
+  );
 
-const categoryNumbers = {
-  "taxation-services": "01",
-  "insurance-services": "02",
-  "accounting-services": "03",
-  "registration-services": "04",
-  "hr-compliance-services": "05",
-  "other-compliance": "06",
-  "government-documentation": "07",
-  "finance-services": "08",
+  /*
+    Merge both sources.
+
+    This is important because even if servicesData is
+    missing a category, servicePagesData can still provide
+    the detail information.
+  */
+
+  return {
+    ...config,
+
+    ...(detailData || {}),
+    ...(serviceData || {}),
+
+    id: config.id,
+
+    number: config.number,
+
+    category:
+      serviceData?.category ||
+      detailData?.category ||
+      config.title,
+
+    title:
+      serviceData?.title ||
+      detailData?.title ||
+      config.title,
+
+    shortDescription:
+      serviceData?.shortDescription ||
+      detailData?.shortDescription ||
+      detailData?.description ||
+      detailData?.overview ||
+      "Professional assistance and expert support for your requirements.",
+
+    description:
+      serviceData?.description ||
+      detailData?.description ||
+      detailData?.overview ||
+      "",
+
+    services:
+      serviceData?.services ||
+      detailData?.services ||
+      [],
+  };
 };
 
-
-/* =========================================
-   SERVICES PAGE
-========================================= */
+/* =========================================================
+   COMPONENT
+========================================================= */
 
 const Services = () => {
-  const [selectedService, setSelectedService] =
-    useState(null);
+  const [selectedService, setSelectedService] = useState(null);
 
+  /*
+    IMPORTANT:
+    Do NOT use .filter(Boolean) here.
 
-  /* =========================================
-     ORDER SERVICES ACCORDING TO DESIGN
+    CATEGORY_CONFIG guarantees that all 8 sections
+    are always rendered.
+  */
 
-     This explicitly builds the array using
-     categoryOrder instead of relying on the
-     order inside servicesData.js.
-  ========================================== */
-
-  const orderedServices = categoryOrder
-    .map((id) =>
-      servicesData.find(
-        (category) => category.id === id
-      )
-    )
-    .filter(Boolean);
-
+  const orderedServices = CATEGORY_CONFIG.map(
+    getCategoryData
+  );
 
   return (
     <main className="overflow-x-hidden bg-[#f3f1ec]">
 
-      {/* =====================================
-          SERVICES HERO
-      ===================================== */}
+      {/* =================================================
+          HERO
+      ================================================= */}
 
       <ServicesHero />
 
-
-      {/* =====================================
-          SERVICE SEARCH
-      ===================================== */}
+      {/* =================================================
+          SEARCH
+      ================================================= */}
 
       <ServicesSearch
         servicesData={servicesData}
         onServiceClick={setSelectedService}
       />
 
-
-      {/* =====================================
-          CATEGORY CARDS
-      ===================================== */}
+      {/* =================================================
+          8 CATEGORY CARDS
+      ================================================= */}
 
       <ServicesCategories />
 
-
-      {/* =====================================
-          SERVICE SECTIONS
-      ===================================== */}
+      {/* =================================================
+          ALL 8 SERVICE DETAIL SECTIONS
+      ================================================= */}
 
       {orderedServices.map((category, index) => (
-
         <ServiceSection
           key={category.id}
-
-          /* ---------------------------------
-             CATEGORY DATA
-          --------------------------------- */
-
-          category={{
-            ...category,
-
-            /*
-              Fixed category number.
-
-              01 Taxation
-              02 Insurance
-              03 Accounting
-              04 Registration
-              05 HR Compliance
-              06 Other Compliance
-              07 Government
-              08 Loan & Finance
-            */
-
-            number:
-              categoryNumbers[category.id] ||
-              "01",
-          }}
-
-
-          /* ---------------------------------
-             ALTERNATING SECTION BACKGROUND
-          --------------------------------- */
-
+          category={category}
           dark={index % 2 === 0}
-
-
-          /* ---------------------------------
-             SERVICE MODAL
-          --------------------------------- */
-
           onServiceClick={setSelectedService}
         />
-
       ))}
 
-
-      {/* =====================================
-          SERVICE DETAIL MODAL
-      ===================================== */}
+      {/* =================================================
+          SERVICE MODAL
+      ================================================= */}
 
       <ServiceModal
         selectedService={selectedService}
-
         servicesData={servicesData}
-
-        onClose={() =>
-          setSelectedService(null)
-        }
+        onClose={() => setSelectedService(null)}
       />
 
     </main>
   );
 };
-
 
 export default Services;

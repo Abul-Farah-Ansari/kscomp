@@ -22,53 +22,54 @@ const servicePagesData = [
           "Professional preparation and filing of income tax returns for individuals, professionals and businesses.",
       },
 
-      {
-        number: "02",
-        name: "GST Registration",
-        description:
-          "Complete assistance with GST registration, documentation and compliance setup.",
-      },
+     
 
       {
-        number: "03",
+        number: "02",
         name: "GST Return Filing",
         description:
           "Accurate and timely GST return preparation and filing to maintain statutory compliance.",
       },
 
       {
-        number: "04",
+        number: "03",
         name: "TDS Return Filing",
         description:
           "Preparation and filing of TDS returns with proper reconciliation and compliance support.",
       },
 
       {
-        number: "05",
+        number: "04",
         name: "TCS Return Filing",
         description:
           "TCS return preparation and filing services for businesses and applicable taxpayers.",
       },
 
       {
-        number: "06",
+        number: "05",
         name: "EPF Return Filing",
         description:
           "EPF return preparation and filing assistance for employers and organizations.",
       },
 
       {
-        number: "07",
+        number: "06",
         name: "ESIC Return Filing",
         description:
           "ESIC return filing and compliance assistance for eligible businesses and employees.",
       },
 
       {
-        number: "08",
+        number: "07",
         name: "ROC Filing",
         description:
           "ROC filing and statutory compliance support for registered companies and businesses.",
+      },
+        {
+        number: "08",
+        name: "FSSAI Annual Return filing",
+        description:
+          "FSSAI annual return filing and compliance support for registered food businesses.",
       },
     ],
   },
@@ -102,6 +103,7 @@ const servicePagesData = [
         description:
           "Health insurance solutions designed to provide financial protection against medical expenses.",
       },
+      
 
       {
         number: "03",
@@ -123,6 +125,19 @@ const servicePagesData = [
         description:
           "Insurance solutions designed to protect residential and commercial property against covered risks.",
       },
+      {
+  number: "06",
+  name: "Group Health Insurance",
+  description:
+    "Comprehensive health insurance coverage for employees and their families, providing financial protection against hospitalization and covered medical expenses.",
+},
+{
+  number: "07",
+  name: "Personal Accident Insurance",
+  description:
+    "Insurance coverage that provides financial protection against accidental injuries, disability, and accidental death arising from covered incidents.",
+},
+
     ],
   },
 
@@ -211,6 +226,18 @@ const servicePagesData = [
         description:
           "Preparation of balance sheets presenting the financial position of the business.",
       },
+      {
+  number: "11",
+  name: "Trading Account",
+  description:
+    "Preparation of trading accounts to determine gross profit or loss from the business's trading activities.",
+},
+{
+  number: "12",
+  name: "Trial Balance",
+  description:
+    "Preparation and verification of trial balances to ensure the accuracy and proper recording of accounting entries.",
+},
     ],
   },
 
@@ -237,68 +264,81 @@ const servicePagesData = [
           "Assistance with company incorporation and the documentation required to establish a registered business entity.",
       },
 
-      {
+       {
         number: "02",
+        name: "GST Registration",
+        description:
+          "Complete assistance with GST registration, documentation and compliance setup.",
+      },
+
+      {
+        number: "03",
         name: "Proprietorship Firm Registration",
         description:
           "Registration assistance for individuals starting and operating a proprietorship business.",
       },
 
       {
-        number: "03",
+        number: "04",
         name: "Partnership Firm Registration",
         description:
           "Assistance with partnership firm registration and required documentation.",
       },
 
       {
-        number: "04",
+        number: "05",
         name: "Private Limited Company",
         description:
           "Complete assistance for incorporating a private limited company and completing required formalities.",
       },
 
       {
-        number: "05",
+        number: "06",
         name: "LLP Registration",
         description:
           "Assistance with Limited Liability Partnership registration and incorporation formalities.",
       },
 
       {
-        number: "06",
+        number: "07",
         name: "One Person Company (OPC)",
         description:
           "Registration assistance for entrepreneurs establishing a One Person Company.",
       },
 
       {
-        number: "07",
+        number: "08",
         name: "UDYAM / MSME Registration",
         description:
           "Assistance with UDYAM/MSME registration and related documentation.",
       },
 
       {
-        number: "08",
+        number: "09",
         name: "FSSAI / Food License",
         description:
           "Assistance with FSSAI registration and licensing requirements for food-related businesses.",
       },
 
       {
-        number: "09",
+        number: "10",
         name: "Import Export Code (IEC)",
         description:
           "IEC registration assistance for businesses involved in import and export activities.",
       },
 
       {
-        number: "10",
+        number: "11",
         name: "Trademark Registration",
         description:
           "Trademark registration assistance for protecting business names, brands and associated intellectual property.",
       },
+      {
+  number: "12",
+  name: "Trust / NGO Registration",
+  description:
+    "Professional assistance with Trust and NGO registration, documentation, compliance requirements, and the setup process for charitable and social organizations.",
+},
     ],
   },
 
@@ -307,71 +347,105 @@ const servicePagesData = [
   ========================================================= */
 
   {
-    id: "hr-compliance-services",
-    number: "05",
-    category: "HR Compliance Services",
+  id: "hr-compliance-services",
+  number: "05",
+  category: "HR Compliance Services",
 
-    shortDescription:
-      "Essential HR, payroll and employee compliance support for businesses and organizations.",
+  shortDescription:
+    "Essential HR, payroll and employee compliance support for businesses and organizations.",
 
-    overview:
-      "Our HR compliance services help businesses maintain proper employee records, payroll documentation and statutory compliance. We assist with salary sheets, salary slips, ESI, EPF and other HR compliance requirements.",
+  overview:
+    "Our HR compliance services help businesses maintain accurate employee records, payroll documentation and statutory compliance. We assist with muster rolls, salary sheets, salary slips, ESIC, EPF and payment-related documentation to help businesses maintain organized and compliant HR processes.",
 
-    services: [
-      {
-        number: "01",
-        name: "Salary Sheet & Salary Slip",
-        description:
-          "Preparation and management of salary sheets and employee salary slips.",
-      },
+  services: [
+    {
+      number: "01",
+      name: "Muster Roll",
+      description:
+        "Preparation and maintenance of muster rolls to record employee attendance, working days and other essential workforce details.",
+    },
 
-      {
-        number: "02",
-        name: "ESI & EPF Compliance",
-        description:
-          "Assistance with ESI and EPF related statutory compliance and documentation.",
-      },
+    {
+      number: "02",
+      name: "Salary Sheet",
+      description:
+        "Preparation of detailed salary sheets covering employee earnings, deductions, allowances and net salary for accurate payroll management.",
+    },
 
-      {
-        number: "03",
-        name: "HR Compliance Forms",
-        description:
-          "Preparation and support for required HR compliance forms and employee documentation.",
-      },
-    ],
-  },
+    {
+      number: "03",
+      name: "Salary Slip",
+      description:
+        "Preparation and issuance of employee salary slips showing salary components, deductions and net pay for clear payroll records.",
+    },
 
+    {
+      number: "04",
+      name: "ESIC Compliance",
+      description:
+        "Assistance with ESIC compliance, including employee-related documentation, contribution records and statutory filing requirements.",
+    },
+
+    {
+      number: "05",
+      name: "EPF Compliance",
+      description:
+        "Support for EPF compliance, including employee records, contribution calculations, documentation and applicable statutory filing requirements.",
+    },
+
+    {
+      number: "06",
+      name: "Payment Sheet",
+      description:
+        "Preparation of employee payment sheets to maintain accurate records of salary payments, deductions and payroll disbursements.",
+    },
+  ],
+},
   /* =========================================================
      06 - OTHER COMPLIANCE SERVICES
   ========================================================= */
 
   {
-    id: "other-compliance",
-    number: "06",
-    category: "Other Compliance Services",
+  id: "other-compliance",
+  number: "06",
+  category: "Other Compliance Services",
 
-    shortDescription:
-      "Specialized compliance and documentation support for financial, foreign transaction and business requirements.",
+  shortDescription:
+    "Specialized compliance, financial planning and documentation support for foreign transactions and business requirements.",
 
-    overview:
-      "We provide specialized compliance and documentation services for businesses and individuals requiring support beyond routine taxation and accounting activities.",
+  overview:
+    "We provide specialized compliance and financial documentation services for businesses and individuals requiring support beyond routine taxation and accounting activities, including foreign remittance documentation, project reports and business budgeting.",
 
-    services: [
-      {
-        number: "01",
-        name: "15CA & 15CB for Foreign Transactions",
-        description:
-          "Assistance with 15CA and 15CB requirements for applicable foreign remittance and international transactions.",
-      },
+  services: [
+    {
+      number: "01",
+      name: "Form 15CA",
+      description:
+        "Assistance with preparation and filing of Form 15CA for applicable payments or remittances made to non-residents, as per applicable requirements.",
+    },
 
-      {
-        number: "02",
-        name: "Project Report for Loan / Cash Credit",
-        description:
-          "Preparation of project reports and financial documentation required for loan and cash credit applications.",
-      },
-    ],
-  },
+    {
+      number: "02",
+      name: "Form 15CB",
+      description:
+        "Assistance with Form 15CB, including review of applicable tax provisions and certification requirements for eligible foreign remittances.",
+    },
+
+    {
+      number: "03",
+      name: "Project Report for Loan / Cash Credit",
+      description:
+        "Preparation of project reports and financial documentation required for loan, working capital and cash credit applications.",
+    },
+
+    {
+      number: "04",
+      name: "Budget for Your Company",
+      description:
+        "Preparation of business budgets covering projected income, expenses, cash flow and financial requirements to support effective business planning.",
+    },
+  ],
+},
 
   /* =========================================================
      07 - GOVERNMENT & DOCUMENTATION SERVICES
@@ -483,6 +557,19 @@ const servicePagesData = [
         description:
           "Credit card assistance based on applicable eligibility and documentation requirements.",
       },
+      {
+  number: "06",
+  name: "Car Loan",
+  description:
+    "Assistance with car loan documentation and application support, including financial documents and guidance required for vehicle financing.",
+},
+
+{
+  number: "07",
+  name: "OD & CC",
+  description:
+    "Support for Overdraft (OD) and Cash Credit (CC) facilities, including financial documentation and assistance with bank application requirements.",
+},
     ],
   },
 ];

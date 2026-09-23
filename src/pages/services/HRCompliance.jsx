@@ -3,7 +3,11 @@ import ServiceDetailPage from "../../components/service-details/ServiceDetailPag
 import servicePagesData from "../../components/service-details/servicePagesData";
 
 const HRCompliance = () => {
-  return <ServiceDetailPage data={servicePagesData.hrCompliance} />;
+  const hrComplianceData = servicePagesData.find(
+    (service) => service.id === "hr-compliance-services"
+  );
+
+  return <ServiceDetailPage data={hrComplianceData} />;
 };
 
 export default HRCompliance;

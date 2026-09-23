@@ -19,7 +19,7 @@ import {
   FileCheck,
 } from "lucide-react";
 
-import KS from "../assets/WhatsApp Image 2026-08-30 at 19.16.22 (1).jpeg";
+import KS from "../assets/mngmt/WhatsApp Image 2026-08-30 at 19.16.22 (1).png";
 
 import ScheduleAppointmentModal from "./ScheduleAppointmentModal";
 

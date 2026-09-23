@@ -3,7 +3,11 @@ import ServiceDetailPage from "../../components/service-details/ServiceDetailPag
 import servicePagesData from "../../components/service-details/servicePagesData";
 
 const OtherCompliance = () => {
-  return <ServiceDetailPage data={servicePagesData.otherCompliance} />;
+  const otherComplianceData = servicePagesData.find(
+    (service) => service.id === "other-compliance"
+  );
+
+  return <ServiceDetailPage data={otherComplianceData} />;
 };
 
 export default OtherCompliance;

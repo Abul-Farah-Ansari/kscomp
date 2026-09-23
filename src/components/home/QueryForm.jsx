@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Send, Mail, Phone, MessageCircle } from "lucide-react";
+import { Send } from "lucide-react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+
+import QueryImage from "../../assets/mngmt/Queryimg.png";
 
 const QueryForm = () => {
   const [formData, setFormData] = useState({
@@ -39,7 +41,6 @@ const QueryForm = () => {
       [name]: value,
     }));
 
-    // Remove previous message when user starts editing again
     if (status.message) {
       setStatus({
         type: "",
@@ -73,8 +74,6 @@ const QueryForm = () => {
         message: formData.message.trim(),
       };
 
-      console.log("Sending query through EmailJS:", templateParams);
-
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
@@ -84,15 +83,12 @@ const QueryForm = () => {
         }
       );
 
-      console.log("Query sent successfully.");
-
       setStatus({
         type: "success",
         message:
           "Your enquiry has been sent successfully. We will get back to you shortly.",
       });
 
-      // Clear form after successful submission
       setFormData({
         name: "",
         email: "",
@@ -114,303 +110,235 @@ const QueryForm = () => {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#f4f7f5] py-16 sm:py-20 lg:py-24">
+    <section className="relative min-h-screen w-full overflow-hidden bg-[#f3f1ec]">
 
-      {/* ================= BACKGROUND ================= */}
+      {/* =====================================================
+          FULL SCREEN CONTAINER
+      ===================================================== */}
 
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="grid min-h-screen w-full lg:grid-cols-[30%_70%]">
 
-        <div
+        {/* =================================================
+            LEFT IMAGE — 30%
+        ================================================= */}
+
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1],
+          }}
           className="
-            absolute
-            -right-32
-            top-1/2
-            h-[450px]
-            w-[450px]
-            -translate-y-1/2
-            rounded-full
-            bg-[#326844]/[0.045]
-            blur-[20px]
+            relative
+            hidden
+            min-h-screen
+            overflow-hidden
+            lg:block
           "
-        />
+        >
 
-        <div
-          className="
-            absolute
-            -left-24
-            bottom-[-120px]
-            h-[350px]
-            w-[350px]
-            rounded-full
-            border
-            border-[#326844]/10
-          "
-        />
+          {/* Soft green overlay */}
 
-      </div>
+          <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-[#102b29]/30 via-transparent to-transparent" />
 
-      {/* ================= CONTENT ================= */}
+          {/* Image */}
 
-      <div className="relative z-10 mx-auto w-full max-w-[1350px] px-5 sm:px-8 lg:px-12 xl:px-16">
-
-        <div className="grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-
-          {/* ================= LEFT CONTENT ================= */}
-
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.7,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
-
-            {/* LABEL */}
-
-            <div className="mb-5 flex items-center gap-3">
-
-              <span className="h-px w-10 bg-[#326844]" />
-
-              <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#326844]">
-                Get In Touch
-              </span>
-
-            </div>
-
-            {/* HEADING */}
-
-            <h2
-              className="
-                max-w-[520px]
-                text-[38px]
-                font-semibold
-                leading-[1.1]
-                tracking-tight
-                text-[#1e2d30]
-                sm:text-[52px]
-                lg:text-[58px]
-              "
-            >
-              Let's discuss your
-
-              <span className="block text-[#326844]">
-                requirements.
-              </span>
-            </h2>
-
-            {/* DESCRIPTION */}
-
-            <p className="mt-6 max-w-[430px] text-sm leading-7 text-[#687779]">
-              Share your query with us and our professional team will
-              understand your requirements and get back to you with the
-              right guidance.
-            </p>
-
-            {/* CONTACT OPTIONS */}
-
-            <div className="mt-10 space-y-5">
-
-              {/* EMAIL */}
-
-              <div className="flex items-center gap-4">
-
-                <div
-                  className="
-                    flex
-                    h-11
-                    w-11
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#326844]/10
-                    text-[#326844]
-                  "
-                >
-                  <Mail size={18} strokeWidth={1.7} />
-                </div>
-
-                <div>
-
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8a9897]">
-                    Email Us
-                  </p>
-
-                  <a
-                    href="mailto:info@ks-company.in"
-                    className="mt-1 block text-sm font-medium text-[#334544] transition-colors hover:text-[#326844]"
-                  >
-                    info@ks-company.in
-                  </a>
-
-                </div>
-
-              </div>
-
-              {/* PHONE */}
-
-              <div className="flex items-center gap-4">
-
-                <div
-                  className="
-                    flex
-                    h-11
-                    w-11
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#285b68]/10
-                    text-[#285b68]
-                  "
-                >
-                  <Phone size={18} strokeWidth={1.7} />
-                </div>
-
-                <div>
-
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8a9897]">
-                    Call Us
-                  </p>
-
-                  <a
-                    href="tel:+917004946933"
-                    className="mt-1 block text-sm font-medium text-[#334544] transition-colors hover:text-[#326844]"
-                  >
-                    +91 7004946933
-                  </a>
-
-                </div>
-
-              </div>
-
-              {/* RESPONSE */}
-
-              <div className="flex items-center gap-4">
-
-                <div
-                  className="
-                    flex
-                    h-11
-                    w-11
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-[#75b43c]/10
-                    text-[#326844]
-                  "
-                >
-                  <MessageCircle size={18} strokeWidth={1.7} />
-                </div>
-
-                <div>
-
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#8a9897]">
-                    Quick Response
-                  </p>
-
-                  <p className="mt-1 text-sm font-medium text-[#334544]">
-                    We'll get back to you shortly
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </motion.div>
-
-          {/* ================= FORM ================= */}
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{
-              duration: 0.7,
-              delay: 0.1,
-            }}
+          <img
+            src={QueryImage}
+            alt="Professional tax advisor"
             className="
-              relative
-              border-t
-              border-[#1e5260]/15
-              pt-2
+              absolute
+              inset-0
+              h-full
+              w-full
+              object-cover
+              object-center
+            "
+          />
+
+        </motion.div>
+
+        {/* =================================================
+            RIGHT FORM — 70%
+        ================================================= */}
+
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{
+            duration: 0.8,
+            delay: 0.05,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="min-h-screen w-full bg-[#0d302d]"
+        >
+
+          <div
+            className="
+              flex
+              min-h-screen
+              w-full
+              flex-col
+              justify-center
+              px-7
+              py-12
+              sm:px-12
+              md:px-16
+              lg:px-[7vw]
+              xl:px-[8vw]
             "
           >
 
-            <form onSubmit={handleSubmit} className="pt-5">
+            {/* =================================================
+                FORM CONTENT
+            ================================================= */}
 
-              {/* NAME + EMAIL */}
+            <div className="w-full max-w-[900px]">
 
-              <div className="grid gap-6 sm:grid-cols-2">
+              {/* EYEBROW */}
 
-                {/* NAME */}
+              <div className="mb-7">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.42em] text-[#819593] sm:text-[11px]">
+                  Send an Enquiry
+                </span>
+              </div>
 
-                <div className="relative">
+              {/* HEADING */}
 
-                  <label
-                    htmlFor="name"
-                    className="
-                      mb-2
-                      block
-                      text-[10px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.15em]
-                      text-[#687779]
-                    "
-                  >
-                    Your Name
-                  </label>
+              <h2
+                className="
+                  max-w-[700px]
+                  text-[38px]
+                  font-semibold
+                  leading-[1.05]
+                  tracking-[-0.035em]
+                  text-white
+                  sm:text-[48px]
+                  lg:text-[54px]
+                  xl:text-[60px]
+                "
+              >
+                Let's Discuss Your
 
-                  <input
-                    id="name"
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    autoComplete="name"
-                    placeholder="Enter your name"
-                    className="
-                      w-full
-                      border-0
-                      border-b
-                      border-[#1e5260]/20
-                      bg-transparent
-                      px-0
-                      py-3
-                      text-sm
-                      text-[#1e2d30]
-                      outline-none
-                      transition-colors
-                      duration-300
-                      placeholder:text-[#a3aeac]
-                      focus:border-[#326844]
-                    "
-                  />
+                <span className="block text-[#829694]">
+                  Requirements.
+                </span>
+              </h2>
+
+              {/* DESCRIPTION */}
+
+              <p
+                className="
+                  mt-7
+                  max-w-[700px]
+                  text-[14px]
+                  leading-7
+                  text-[#829694]
+                  sm:text-[15px]
+                "
+              >
+                Fill out the form below and provide a brief overview of your
+                requirement.
+              </p>
+
+              {/* =================================================
+                  FORM
+              ================================================= */}
+
+              <form onSubmit={handleSubmit} className="mt-12">
+
+                {/* NAME + PHONE */}
+
+                <div className="grid grid-cols-1 gap-7 md:grid-cols-2">
+
+                  {/* NAME */}
+
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="mb-3 block text-[12px] font-medium text-[#8fa3a0]"
+                    >
+                      Full Name *
+                    </label>
+
+                    <input
+                      id="name"
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      autoComplete="name"
+                      placeholder="Enter your name"
+                      className="
+                        h-[62px]
+                        w-full
+                        border
+                        border-[#34514e]
+                        bg-[#193b38]
+                        px-5
+                        text-[14px]
+                        text-white
+                        outline-none
+                        transition-all
+                        duration-300
+                        placeholder:text-[#637b78]
+                        focus:border-[#b6c29e]
+                        focus:bg-[#1c403d]
+                      "
+                    />
+                  </div>
+
+                  {/* PHONE */}
+
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="mb-3 block text-[12px] font-medium text-[#8fa3a0]"
+                    >
+                      Phone Number *
+                    </label>
+
+                    <input
+                      id="phone"
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                      autoComplete="tel"
+                      placeholder="Enter phone number"
+                      className="
+                        h-[62px]
+                        w-full
+                        border
+                        border-[#34514e]
+                        bg-[#193b38]
+                        px-5
+                        text-[14px]
+                        text-white
+                        outline-none
+                        transition-all
+                        duration-300
+                        placeholder:text-[#637b78]
+                        focus:border-[#b6c29e]
+                        focus:bg-[#1c403d]
+                      "
+                    />
+                  </div>
 
                 </div>
 
                 {/* EMAIL */}
 
-                <div className="relative">
+                <div className="mt-7">
 
                   <label
                     htmlFor="email"
-                    className="
-                      mb-2
-                      block
-                      text-[10px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.15em]
-                      text-[#687779]
-                    "
+                    className="mb-3 block text-[12px] font-medium text-[#8fa3a0]"
                   >
                     Email Address
                   </label>
@@ -423,75 +351,22 @@ const QueryForm = () => {
                     onChange={handleChange}
                     required
                     autoComplete="email"
-                    placeholder="Enter your email"
+                    placeholder="Enter your email address"
                     className="
+                      h-[62px]
                       w-full
-                      border-0
-                      border-b
-                      border-[#1e5260]/20
-                      bg-transparent
-                      px-0
-                      py-3
-                      text-sm
-                      text-[#1e2d30]
+                      border
+                      border-[#34514e]
+                      bg-[#193b38]
+                      px-5
+                      text-[14px]
+                      text-white
                       outline-none
-                      transition-colors
+                      transition-all
                       duration-300
-                      placeholder:text-[#a3aeac]
-                      focus:border-[#326844]
-                    "
-                  />
-
-                </div>
-
-              </div>
-
-              {/* PHONE + SERVICE */}
-
-              <div className="mt-7 grid gap-6 sm:grid-cols-2">
-
-                {/* PHONE */}
-
-                <div>
-
-                  <label
-                    htmlFor="phone"
-                    className="
-                      mb-2
-                      block
-                      text-[10px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.15em]
-                      text-[#687779]
-                    "
-                  >
-                    Phone Number
-                  </label>
-
-                  <input
-                    id="phone"
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    autoComplete="tel"
-                    placeholder="Enter phone number"
-                    className="
-                      w-full
-                      border-0
-                      border-b
-                      border-[#1e5260]/20
-                      bg-transparent
-                      px-0
-                      py-3
-                      text-sm
-                      text-[#1e2d30]
-                      outline-none
-                      transition-colors
-                      duration-300
-                      placeholder:text-[#a3aeac]
-                      focus:border-[#326844]
+                      placeholder:text-[#637b78]
+                      focus:border-[#b6c29e]
+                      focus:bg-[#1c403d]
                     "
                   />
 
@@ -499,231 +374,232 @@ const QueryForm = () => {
 
                 {/* SERVICE */}
 
-                <div>
+                <div className="mt-7">
 
                   <label
                     htmlFor="service"
-                    className="
-                      mb-2
-                      block
-                      text-[10px]
-                      font-semibold
-                      uppercase
-                      tracking-[0.15em]
-                      text-[#687779]
-                    "
+                    className="mb-3 block text-[12px] font-medium text-[#8fa3a0]"
                   >
                     Select Service
                   </label>
 
-                  <select
-                    id="service"
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    required
-                    className="
-                      w-full
-                      cursor-pointer
-                      border-0
-                      border-b
-                      border-[#1e5260]/20
-                      bg-transparent
-                      px-0
-                      py-3
-                      text-sm
-                      text-[#1e2d30]
-                      outline-none
-                      transition-colors
-                      duration-300
-                      focus:border-[#326844]
-                    "
-                  >
+                  <div className="relative">
 
-                    <option value="">
-                      Select a service
-                    </option>
+                    <select
+                      id="service"
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      required
+                      className="
+                        h-[62px]
+                        w-full
+                        cursor-pointer
+                        appearance-none
+                        border
+                        border-[#34514e]
+                        bg-[#193b38]
+                        px-5
+                        pr-14
+                        text-[14px]
+                        text-white
+                        outline-none
+                        transition-all
+                        duration-300
+                        focus:border-[#b6c29e]
+                        focus:bg-[#1c403d]
+                      "
+                    >
 
-                    <option value="Accounting">
-                      Accounting
-                    </option>
+                      <option value="">
+                        Select a service
+                      </option>
 
-                    <option value="Taxation">
-                      Taxation
-                    </option>
+                      <option value="Accounting">
+                        Accounting
+                      </option>
 
-                    <option value="Financial Management">
-                      Financial Management
-                    </option>
+                      <option value="Taxation">
+                        Taxation
+                      </option>
 
-                    <option value="Business Advisory">
-                      Business Advisory
-                    </option>
+                      <option value="Financial Management">
+                        Financial Management
+                      </option>
 
-                    <option value="Compliance">
-                      Compliance Support
-                    </option>
+                      <option value="Business Advisory">
+                        Business Advisory
+                      </option>
 
-                    <option value="Insurance">
-                      Insurance
-                    </option>
+                      <option value="Compliance">
+                        Compliance Support
+                      </option>
 
-                    <option value="Registration">
-                      Registration Services
-                    </option>
+                      <option value="Insurance">
+                        Insurance
+                      </option>
 
-                    <option value="Government Documentation">
-                      Government Documentation
-                    </option>
+                      <option value="Registration">
+                        Registration Services
+                      </option>
 
-                    <option value="Other">
-                      Other
-                    </option>
+                      <option value="Government Documentation">
+                        Government Documentation
+                      </option>
 
-                  </select>
+                      <option value="Other">
+                        Other
+                      </option>
+
+                    </select>
+
+                    {/* Arrow */}
+
+                    <div className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-white">
+
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+
+                    </div>
+
+                  </div>
 
                 </div>
 
-              </div>
+                {/* REQUIREMENT */}
 
-              {/* MESSAGE */}
+                <div className="mt-7">
 
-              <div className="mt-8">
+                  <label
+                    htmlFor="message"
+                    className="mb-3 block text-[12px] font-medium text-[#8fa3a0]"
+                  >
+                    Your Requirement
+                  </label>
 
-                <label
-                  htmlFor="message"
-                  className="
-                    mb-2
-                    block
-                    text-[10px]
-                    font-semibold
-                    uppercase
-                    tracking-[0.15em]
-                    text-[#687779]
-                  "
-                >
-                  Your Query
-                </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows="5"
+                    placeholder="Tell us briefly how we can help you..."
+                    className="
+                      min-h-[155px]
+                      w-full
+                      resize-none
+                      border
+                      border-[#34514e]
+                      bg-[#193b38]
+                      px-5
+                      py-4
+                      text-[14px]
+                      leading-7
+                      text-white
+                      outline-none
+                      transition-all
+                      duration-300
+                      placeholder:text-[#637b78]
+                      focus:border-[#b6c29e]
+                      focus:bg-[#1c403d]
+                    "
+                  />
 
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows="4"
-                  placeholder="Tell us how we can help you..."
-                  className="
-                    w-full
-                    resize-none
-                    border-0
-                    border-b
-                    border-[#1e5260]/20
-                    bg-transparent
-                    px-0
-                    py-3
-                    text-sm
-                    leading-7
-                    text-[#1e2d30]
-                    outline-none
-                    transition-colors
-                    duration-300
-                    placeholder:text-[#a3aeac]
-                    focus:border-[#326844]
-                  "
-                />
+                </div>
 
-              </div>
+                {/* STATUS */}
 
-              {/* ================= STATUS MESSAGE ================= */}
+                {status.message && (
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      y: 8,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    className={`mt-5 border px-4 py-3 text-sm ${
+                      status.type === "success"
+                        ? "border-[#6f9270]/40 bg-[#6f9270]/10 text-[#a8c0a7]"
+                        : "border-red-300/30 bg-red-500/10 text-red-300"
+                    }`}
+                  >
+                    {status.message}
+                  </motion.div>
+                )}
 
-              {status.message && (
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: 8,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  className={`mt-5 rounded-lg border px-4 py-3 text-sm ${
-                    status.type === "success"
-                      ? "border-[#326844]/20 bg-[#326844]/[0.06] text-[#326844]"
-                      : "border-red-200 bg-red-50 text-red-600"
-                  }`}
-                >
-                  {status.message}
-                </motion.div>
-              )}
+                {/* =================================================
+                    BOTTOM ACTION
+                ================================================= */}
 
-              {/* SUBMIT */}
+                <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
 
-              <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="max-w-[320px] text-[10px] leading-5 text-[#6f8582]">
+                    Your information will be handled professionally and
+                    securely.
+                  </p>
 
-                <p className="text-[11px] leading-5 text-[#899694]">
-                  Your information will be handled professionally and
-                  securely.
-                </p>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="
+                      group
+                      inline-flex
+                      shrink-0
+                      items-center
+                      justify-center
+                      gap-3
+                      border
+                      border-[#b6c29e]
+                      bg-[#b6c29e]
+                      px-8
+                      py-4
+                      text-[10px]
+                      font-semibold
+                      uppercase
+                      tracking-[0.18em]
+                      text-[#102f2c]
+                      transition-all
+                      duration-300
+                      hover:bg-transparent
+                      hover:text-[#b6c29e]
+                      disabled:cursor-not-allowed
+                      disabled:opacity-50
+                    "
+                  >
+                    {isSubmitting ? "Sending..." : "Send Query"}
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="
-                    group
-                    inline-flex
-                    shrink-0
-                    items-center
-                    justify-center
-                    gap-3
-                    rounded-full
-                    bg-[#326844]
-                    px-7
-                    py-3.5
-                    text-[10px]
-                    font-semibold
-                    uppercase
-                    tracking-[0.16em]
-                    text-white
-                    shadow-[0_10px_30px_rgba(50,104,68,0.18)]
-                    transition-all
-                    duration-300
-                    hover:-translate-y-1
-                    hover:bg-[#285b68]
-                    hover:shadow-[0_16px_35px_rgba(40,91,104,0.25)]
-                    disabled:cursor-not-allowed
-                    disabled:opacity-60
-                    disabled:hover:translate-y-0
-                  "
-                >
+                    {!isSubmitting && (
+                      <Send
+                        size={16}
+                        strokeWidth={1.8}
+                        className="transition-transform duration-300 group-hover:translate-x-1"
+                      />
+                    )}
+                  </button>
 
-                  {isSubmitting ? "Sending..." : "Send Query"}
+                </div>
 
-                  {!isSubmitting && (
-                    <Send
-                      size={16}
-                      strokeWidth={1.8}
-                      className="
-                        transition-transform
-                        duration-300
-                        group-hover:translate-x-1
-                        group-hover:-translate-y-1
-                      "
-                    />
-                  )}
+              </form>
 
-                </button>
+            </div>
+          </div>
 
-              </div>
-
-            </form>
-
-          </motion.div>
-
-        </div>
+        </motion.div>
 
       </div>
-
     </section>
   );
 };

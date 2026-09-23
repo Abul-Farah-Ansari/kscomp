@@ -3,9 +3,11 @@ import ServiceDetailPage from "../../components/service-details/ServiceDetailPag
 import servicePagesData from "../../components/service-details/servicePagesData";
 
 const Accounting = () => {
-  return (
-    <ServiceDetailPage data={servicePagesData.accounting} />
+  const accountingData = servicePagesData.find(
+    (service) => service.id === "accounting-services"
   );
+
+  return <ServiceDetailPage data={accountingData} />;
 };
 
 export default Accounting;

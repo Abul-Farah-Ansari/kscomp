@@ -3,7 +3,11 @@ import ServiceDetailPage from "../../components/service-details/ServiceDetailPag
 import servicePagesData from "../../components/service-details/servicePagesData";
 
 const Insurance = () => {
-  return <ServiceDetailPage data={servicePagesData.insurance} />;
+  const insuranceData = servicePagesData.find(
+    (service) => service.id === "insurance-services"
+  );
+
+  return <ServiceDetailPage data={insuranceData} />;
 };
 
 export default Insurance;
