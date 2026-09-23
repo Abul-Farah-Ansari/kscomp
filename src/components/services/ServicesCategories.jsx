@@ -51,7 +51,7 @@ const sortedIIMIImages = Object.entries(allIIMIImages)
 /* =========================================================
    CATEGORY CONFIGURATION
 
-   This guarantees that all 8 cards render.
+   This guarantees that all 9 cards render.
 ========================================================= */
 
 const CATEGORY_CONFIG = [
@@ -110,6 +110,13 @@ const CATEGORY_CONFIG = [
     icon: "mdi:file-document-outline",
     fallbackImage: "/images/services/documentation.jpg",
   },
+    {
+    id: "it-services",
+    number: "09",
+    title: "IT Services",
+    icon: "mdi:laptop",
+    fallbackImage: "/images/services/it-services.jpg",
+  },
 
   {
     id: "finance-services",
@@ -118,6 +125,7 @@ const CATEGORY_CONFIG = [
     icon: "mdi:chart-line",
     fallbackImage: "/images/services/finance.jpg",
   },
+  
 ];
 
 

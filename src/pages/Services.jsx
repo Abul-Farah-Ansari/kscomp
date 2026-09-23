@@ -49,13 +49,18 @@ const CATEGORY_CONFIG = [
     number: "07",
     title: "Documentation Support Services",
   },
+   {
+    id: "it-services",
+    number: "08",
+    title: "IT Services",
+  },
   {
     id: "finance-services",
-    number: "08",
+    number: "09",
     title: "Loan & Finance Services",
   },
+ 
 ];
-
 /* =========================================================
    GET CATEGORY DATA
 ========================================================= */

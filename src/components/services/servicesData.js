@@ -353,9 +353,48 @@ export const servicesData = [
      08 - LOAN & FINANCE SERVICES
   ========================================== */
 
+
+    /* =========================================
+     09 - IT SERVICES
+  ========================================== */
+
+ {
+  id: "it-services",
+  number: "08",
+  category: "IT Services",
+  shortDescription:
+    "Practical IT solutions for business software, websites, applications and infrastructure requirements.",
+
+  services: [
+    {
+      name: "Vyapar Software",
+      description:
+        "Setup, installation and support for Vyapar business accounting and billing software.",
+    },
+
+    {
+      name: "Tally Cloud & Installation",
+      description:
+        "Tally installation and cloud-based setup support for secure and convenient business accounting access.",
+    },
+
+    {
+      name: "Web & Application",
+      description:
+        "Professional website and custom web application development solutions for businesses and organizations.",
+    },
+
+    {
+      name: "Domain, Server & VPS",
+      description:
+        "Domain registration, server hosting and VPS setup support for websites, applications and business systems.",
+    },
+  ],
+},
+
   {
     id: "finance",
-    number: "02",
+    number: "09",
     category: "Loan & Finance Services",
     shortDescription:
       "Professional assistance for personal, business and home financing requirements.",
@@ -398,4 +437,5 @@ export const servicesData = [
       },
     ],
   },
+
 ];

@@ -17,6 +17,7 @@ import {
   Users,
   ClipboardCheck,
   FileCheck,
+  Monitor,
 } from "lucide-react";
 
 import KS from "../assets/mngmt/WhatsApp Image 2026-08-30 at 19.16.22 (1).png";
@@ -46,6 +47,12 @@ const serviceMenuItems = [
     icon: Calculator,
     description: "Accounting & bookkeeping",
   },
+
+  /* =====================================================
+     IT SERVICES
+  ===================================================== */
+ 
+
   {
     name: "Registration Services",
     path: "/services/registration",
@@ -69,6 +76,12 @@ const serviceMenuItems = [
     path: "/services/government-documentation",
     icon: FileCheck,
     description: "Government documentation support",
+  },
+   {
+    name: "IT Services",
+    path: "/services/it-services",
+    icon: Monitor,
+    description: "Web, software & IT solutions",
   },
   {
     name: "Loan & Finance Services",
@@ -823,7 +836,6 @@ const Navbar = () => {
                         text-white
                         transition-all
                         duration-300
-
                         group-hover:bg-[#d4af37]
                         group-hover:text-[#102b29]
                       "
@@ -890,7 +902,6 @@ const Navbar = () => {
                         text-white
                         transition-all
                         duration-300
-
                         group-hover:bg-[#d4af37]
                         group-hover:text-[#102b29]
                       "
@@ -926,7 +937,6 @@ const Navbar = () => {
                       </p>
                     </div>
                   </NavLink>
-
                 </div>
               </div>
 
@@ -1502,6 +1512,7 @@ const Navbar = () => {
                     size={17}
                     strokeWidth={1.5}
                   />
+
                 </div>
 
                 Schedule Appointment

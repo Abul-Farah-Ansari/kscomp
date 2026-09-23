@@ -22,7 +22,8 @@ const categoryFolders = {
   "hr-compliance-services": "5_HR Compliance Services",
   "other-compliance": "6_Other Compliance",
   "government-documentation": "7_Documentation Support",
-  "finance-services": "8_Loans",
+  "it-services": "8_IT Services",
+  "finance-services": "9_Loans",
 };
 
 /*
@@ -40,7 +41,8 @@ const categoryNumbers = {
   "hr-compliance-services": "05",
   "other-compliance": "06",
   "government-documentation": "07",
-  "finance-services": "08",
+   "it-services": "08",
+  "finance-services": "09",
 };
 
 /*
@@ -271,6 +273,19 @@ const serviceIcons = {
   Passport: "mdi:passport",
 
   "PAN-Aadhaar Linking": "mdi:link-variant",
+
+    /* =========================================================
+     IT SERVICES
+  ========================================================= */
+
+  "Website Development": "mdi:web",
+  "Web Application Development": "mdi:web-box",
+  "E-Commerce Development": "mdi:cart-outline",
+  "Software Development": "mdi:application-brackets-outline",
+  "Mobile App Development": "mdi:cellphone",
+  "Website Maintenance & Support": "mdi:web-refresh",
+  "UI/UX Design": "mdi:palette-outline",
+  "SEO & Digital Solutions": "mdi:chart-line",
 
   /*
   |--------------------------------------------------------------------------

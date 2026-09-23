@@ -532,12 +532,59 @@ const servicePagesData = [
   },
 
   /* =========================================================
+   08 - IT SERVICES
+========================================================= */
+
+{
+  id: "it-services",
+  number: "08",
+  category: "IT Services",
+  title: "IT & Digital Solutions",
+
+  shortDescription:
+    "Practical technology solutions for business software, websites, applications and digital infrastructure.",
+
+  overview:
+    "We provide practical IT solutions for businesses and organizations, including Vyapar software, Tally Cloud and installation, website and application development, and domain, server and VPS support.",
+
+  services: [
+    {
+      number: "01",
+      name: "Vyapar Software",
+      description:
+        "Vyapar software setup and support for business billing, accounting, inventory and day-to-day business management.",
+    },
+
+    {
+      number: "02",
+      name: "Tally Cloud & Installation",
+      description:
+        "Tally installation and cloud setup support to help businesses access and manage their accounting software efficiently.",
+    },
+
+    {
+      number: "03",
+      name: "Web & Application",
+      description:
+        "Professional website and custom web application development solutions tailored to business requirements.",
+    },
+
+    {
+      number: "04",
+      name: "Domain, Server & VPS",
+      description:
+        "Domain registration, server hosting and VPS setup support for websites, applications and business systems.",
+    },
+  ],
+},
+
+  /* =========================================================
      08 - LOAN & FINANCE SERVICES
   ========================================================= */
 
   {
     id: "finance-services",
-    number: "08",
+    number: "09",
     category: "Loan & Finance Services",
     title: "Loans & Financial Solutions",
 

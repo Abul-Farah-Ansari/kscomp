@@ -96,7 +96,8 @@ const serviceImageFolders = {
   "hr-compliance-services": "5_HR Compliance Services",
   "other-compliance": "6_Other Compliance",
   "government-documentation": "7_Documentation Support",
-  "finance-services": "8_Loans",
+  "it-services": "8_IT Services",
+  "finance-services": "9_Loans",
 };
 
 /*

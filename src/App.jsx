@@ -32,11 +32,23 @@ import CompanyDocuments from "./pages/CompanyDocuments";
 import Taxation from "./pages/services/Taxation";
 import Insurance from "./pages/services/Insurance";
 import Accounting from "./pages/services/Accounting";
-import Finance from "./pages/services/Finance";
 import Registration from "./pages/services/Registration";
 import HRCompliance from "./pages/services/HRCompliance";
 import OtherCompliance from "./pages/services/OtherCompliance";
 import GovernmentDocumentation from "./pages/services/GovernmentDocumentation";
+import Finance from "./pages/services/Finance";
+
+// ================================
+// IT SERVICE DETAIL SYSTEM
+// ================================
+
+import ServiceDetailPage from "./components/service-details/ServiceDetailPage";
+import servicePagesData from "./components/service-details/servicePagesData";
+
+// Get IT Services data
+const itServicesData = servicePagesData.find(
+  (service) => service.id === "it-services"
+);
 
 // ================================
 // APP COMPONENT
@@ -53,20 +65,30 @@ function App() {
 
       {/* PAGE ROUTES */}
       <Routes>
+
         {/* =====================================
             HOME
         ===================================== */}
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={<Home />}
+        />
 
         {/* =====================================
             ABOUT
         ===================================== */}
-        <Route path="/about" element={<About />} />
+        <Route
+          path="/about"
+          element={<About />}
+        />
 
         {/* =====================================
             SERVICES OVERVIEW
         ===================================== */}
-        <Route path="/services" element={<Services />} />
+        <Route
+          path="/services"
+          element={<Services />}
+        />
 
         {/* =====================================
             SERVICE DETAIL PAGES
@@ -90,34 +112,44 @@ function App() {
           element={<Accounting />}
         />
 
-        {/* 04 — LOAN & FINANCE */}
-        <Route
-          path="/services/finance"
-          element={<Finance />}
-        />
-
-        {/* 05 — REGISTRATION */}
+        {/* 04 — REGISTRATION */}
         <Route
           path="/services/registration"
           element={<Registration />}
         />
 
-        {/* 06 — HR COMPLIANCE */}
+        {/* 05 — HR COMPLIANCE */}
         <Route
           path="/services/hr-compliance"
           element={<HRCompliance />}
         />
 
-        {/* 07 — OTHER COMPLIANCE */}
+        {/* 06 — OTHER COMPLIANCE */}
         <Route
           path="/services/other-compliance"
           element={<OtherCompliance />}
         />
 
-        {/* 08 — DOCUMENTATION SUPPORT */}
+        {/* 07 — DOCUMENTATION SUPPORT */}
         <Route
           path="/services/government-documentation"
           element={<GovernmentDocumentation />}
+        />
+
+        {/* 08 — IT SERVICES */}
+        <Route
+          path="/services/it-services"
+          element={
+            <ServiceDetailPage
+              data={itServicesData}
+            />
+          }
+        />
+
+        {/* 09 — LOAN & FINANCE */}
+        <Route
+          path="/services/finance"
+          element={<Finance />}
         />
 
         {/* =====================================
@@ -159,6 +191,7 @@ function App() {
           path="*"
           element={<Home />}
         />
+
       </Routes>
 
       {/* WHATSAPP BUTTON */}
