@@ -35,7 +35,11 @@ const CompanyDocuments = () => {
         "Explore an overview of K S & Company, our professional services and the areas where we provide assistance to individuals and businesses.",
       type: "Company Information",
       icon: FileText,
-      file: "../../public/documents/k s & company profile (1).pdf",
+
+      // IMPORTANT:
+      // PDF is inside public/documents/
+      // Do NOT use ../../public here.
+      file: "/documents/k%20s%20%26%20company%20profile%20%281%29.pdf",
     },
 
     {
@@ -161,7 +165,6 @@ const CompanyDocuments = () => {
 
   return (
     <main className="overflow-x-hidden bg-[#f4f3ef]">
-
       {/* ============================================================
           HERO
       ============================================================ */}
@@ -178,9 +181,7 @@ const CompanyDocuments = () => {
       ============================================================ */}
 
       <section className="py-20 sm:py-24">
-
         <div className="mx-auto grid max-w-[1280px] gap-12 px-6 sm:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:px-14">
-
           {/* LEFT */}
 
           <motion.div
@@ -244,9 +245,7 @@ const CompanyDocuments = () => {
               and supporting professional documents.
             </p>
           </motion.div>
-
         </div>
-
       </section>
 
       {/* ============================================================
@@ -254,15 +253,11 @@ const CompanyDocuments = () => {
       ============================================================ */}
 
       <section className="bg-white py-20 sm:py-24">
-
         <div className="mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
-
           {/* HEADER */}
 
           <div className="flex flex-col justify-between gap-6 border-b border-[#102b29]/10 pb-10 sm:flex-row sm:items-end">
-
             <div>
-
               <p className="text-xs font-semibold uppercase tracking-[5px] text-[#102b29]/45">
                 Official Documents
               </p>
@@ -270,22 +265,18 @@ const CompanyDocuments = () => {
               <h2 className="mt-5 text-4xl font-bold text-[#102b29] sm:text-5xl">
                 Documents & Certificates
               </h2>
-
             </div>
 
             <p className="max-w-md text-sm leading-7 text-[#102b29]/55">
               Access important company registrations, certificates and
               company information for business reference and verification.
             </p>
-
           </div>
 
           {/* LARGE PDF CARDS */}
 
           <div className="grid gap-8 pt-10 lg:grid-cols-2">
-
             {featuredDocuments.map((document, index) => {
-
               const Icon = document.icon;
 
               return (
@@ -320,11 +311,9 @@ const CompanyDocuments = () => {
                     hover:shadow-[0_20px_55px_rgba(16,43,41,0.12)]
                   "
                 >
-
                   {/* PDF FIRST PAGE */}
 
                   <div className="relative h-[430px] overflow-hidden bg-[#e8e7e2] sm:h-[500px] lg:h-[540px]">
-
                     {/* NUMBER */}
 
                     <div
@@ -380,28 +369,22 @@ const CompanyDocuments = () => {
                         to-transparent
                       "
                     />
-
                   </div>
 
                   {/* CARD INFORMATION */}
 
                   <div className="p-7 sm:p-9">
-
                     <div className="flex items-center justify-between gap-4">
-
                       <p className="text-[10px] font-semibold uppercase tracking-[3px] text-[#102b29]/40">
                         {document.type}
                       </p>
 
                       <div className="flex h-11 w-11 items-center justify-center bg-[#102b29]">
-
                         <Icon
                           size={20}
                           className="text-white"
                         />
-
                       </div>
-
                     </div>
 
                     <h3 className="mt-5 text-2xl font-semibold leading-tight text-[#102b29] sm:text-3xl">
@@ -415,7 +398,6 @@ const CompanyDocuments = () => {
                     {/* ACTIONS */}
 
                     <div className="mt-7 flex flex-wrap items-center gap-3">
-
                       <a
                         href={document.file}
                         target="_blank"
@@ -438,7 +420,6 @@ const CompanyDocuments = () => {
                         View Full Document
 
                         <ArrowUpRight size={16} />
-
                       </a>
 
                       <a
@@ -462,19 +443,13 @@ const CompanyDocuments = () => {
                       >
                         <Download size={17} />
                       </a>
-
                     </div>
-
                   </div>
-
                 </motion.article>
               );
             })}
-
           </div>
-
         </div>
-
       </section>
 
       {/* ============================================================
@@ -482,15 +457,11 @@ const CompanyDocuments = () => {
       ============================================================ */}
 
       <section className="bg-[#f4f3ef] py-16 sm:py-20">
-
         <div className="mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
-
           {/* HEADER */}
 
           <div className="flex flex-col justify-between gap-5 border-b border-[#102b29]/10 pb-8 sm:flex-row sm:items-end">
-
             <div>
-
               <p className="text-xs font-semibold uppercase tracking-[4px] text-[#102b29]/40">
                 Additional Records
               </p>
@@ -498,24 +469,18 @@ const CompanyDocuments = () => {
               <h2 className="mt-4 text-3xl font-bold text-[#102b29] sm:text-4xl">
                 Supporting Documents
               </h2>
-
             </div>
 
             <p className="max-w-md text-sm leading-7 text-[#102b29]/50">
               Additional professional and appointment-related documents
               are available here for reference.
             </p>
-
           </div>
 
-          {/* ========================================================
-              SUPPORTING DOCUMENT CARDS
-          ======================================================== */}
+          {/* SUPPORTING DOCUMENT CARDS */}
 
           <div className="mt-8 grid gap-4 md:grid-cols-2">
-
             {supportingDocuments.map((document, index) => {
-
               const Icon = document.icon;
 
               return (
@@ -558,70 +523,66 @@ const CompanyDocuments = () => {
                     lg:min-h-[180px]
                   "
                 >
-
                   {/* ==================================================
                       LEFT IMAGE AREA
                   ================================================== */}
 
-                 {/* ==================================================
-    LEFT IMAGE AREA
-================================================== */}
+                  <div
+                    className="
+                      relative
+                      flex
+                      h-[120px]
+                      w-[105px]
+                      shrink-0
+                      items-center
+                      justify-center
+                      border-r
+                      border-[#102b29]/10
+                      pr-4
+                      transition-colors
+                      duration-300
+                      group-hover:border-white/15
+                      sm:h-[135px]
+                      sm:w-[130px]
+                      sm:pr-6
+                    "
+                  >
+                    {/* IMAGE WITH BORDER ON ALL SIDES */}
 
-<div
-  className="
-    relative
-    flex
-    h-[120px]
-    w-[105px]
-    shrink-0
-    items-center
-    justify-center
-    border-r
-    border-[#102b29]/10
-    pr-4
-    transition-colors
-    duration-300
-    group-hover:border-white/15
-    sm:h-[135px]
-    sm:w-[130px]
-    sm:pr-6
-  "
->
-  {/* IMAGE WITH BORDER ON ALL SIDES */}
+                    <div
+                      className="
+                        flex
+                        h-[88px]
+                        w-[88px]
+                        items-center
+                        justify-center
+                        overflow-hidden
+                        border
+                        border-[#102b29]/20
+                        bg-white
+                        p-1
+                        transition-all
+                        duration-300
+                        group-hover:border-white/40
+                        sm:h-[105px]
+                        sm:w-[105px]
+                      "
+                    >
+                      <img
+                        src={document.image}
+                        alt={document.title}
+                        className="
+                          h-full
+                          w-full
+                          object-contain
+                          transition-transform
+                          duration-500
+                          group-hover:scale-105
+                        "
+                      />
+                    </div>
+                  </div>
 
-  <div
-    className="
-      flex
-      h-[88px]
-      w-[88px]
-      items-center
-      justify-center
-      overflow-hidden
-      border
-      border-[#102b29]/20
-      bg-white
-      p-1
-      transition-all
-      duration-300
-      group-hover:border-white/40
-      sm:h-[105px]
-      sm:w-[105px]
-    "
-  >
-    <img
-      src={document.image}
-      alt={document.title}
-      className="
-        h-full
-        w-full
-        object-contain
-        transition-transform
-        duration-500
-        group-hover:scale-105
-      "
-    />
-  </div>
-</div>
                   {/* ==================================================
                       DOCUMENT INFORMATION
                   ================================================== */}
@@ -639,11 +600,9 @@ const CompanyDocuments = () => {
                       sm:pl-6
                     "
                   >
-
                     {/* TEXT */}
 
                     <div className="min-w-0">
-
                       {/* FIRST LINE */}
 
                       <p
@@ -697,15 +656,11 @@ const CompanyDocuments = () => {
                           {document.subtitle}
                         </p>
                       )}
-
                     </div>
 
-                    {/* ==================================================
-                        ACTION BUTTONS
-                    ================================================== */}
+                    {/* ACTION BUTTONS */}
 
                     <div className="flex shrink-0 items-center gap-2">
-
                       {/* VIEW */}
 
                       <a
@@ -762,19 +717,13 @@ const CompanyDocuments = () => {
                       >
                         <Download size={17} />
                       </a>
-
                     </div>
-
                   </div>
-
                 </motion.div>
               );
             })}
-
           </div>
-
         </div>
-
       </section>
 
       {/* ============================================================
@@ -782,22 +731,16 @@ const CompanyDocuments = () => {
       ============================================================ */}
 
       <section className="bg-white py-20 sm:py-24">
-
         <div className="mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
-
           <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
-
             {/* LEFT */}
 
             <div>
-
               <div className="flex h-14 w-14 items-center justify-center bg-[#102b29]">
-
                 <ShieldCheck
                   size={25}
                   className="text-white"
                 />
-
               </div>
 
               <p className="mt-8 text-xs font-semibold uppercase tracking-[5px] text-[#102b29]/45">
@@ -812,15 +755,12 @@ const CompanyDocuments = () => {
                   Matters To Us.
                 </span>
               </h2>
-
             </div>
 
             {/* RIGHT */}
 
             <div className="grid gap-px bg-[#102b29]/10 sm:grid-cols-3">
-
               {trustPoints.map((point, index) => (
-
                 <motion.div
                   key={point.title}
                   initial={{
@@ -840,7 +780,6 @@ const CompanyDocuments = () => {
                   }}
                   className="bg-[#f4f3ef] p-7 sm:p-8"
                 >
-
                   <p className="text-xs font-semibold tracking-[3px] text-[#102b29]/35">
                     0{index + 1}
                   </p>
@@ -852,17 +791,11 @@ const CompanyDocuments = () => {
                   <p className="mt-4 text-sm leading-7 text-[#102b29]/60">
                     {point.description}
                   </p>
-
                 </motion.div>
-
               ))}
-
             </div>
-
           </div>
-
         </div>
-
       </section>
 
       {/* ============================================================
@@ -870,11 +803,8 @@ const CompanyDocuments = () => {
       ============================================================ */}
 
       <section className="bg-[#102b29] py-16 sm:py-20">
-
         <div className="mx-auto max-w-[1280px] px-6 sm:px-10 lg:px-14">
-
           <div className="max-w-3xl">
-
             <p className="text-xs font-semibold uppercase tracking-[5px] text-white/40">
               K S & Company
             </p>
@@ -892,13 +822,9 @@ const CompanyDocuments = () => {
               We aim to build long-term relationships through professional
               guidance, clear communication and transparency with our clients.
             </p>
-
           </div>
-
         </div>
-
       </section>
-
     </main>
   );
 };
